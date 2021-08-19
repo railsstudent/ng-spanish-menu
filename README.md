@@ -1,6 +1,6 @@
 # NgSpanishMenu
 
-The application shows a Spanish menu and customer has to choose dishes and beverage from it. After each selection, a card is created to display description and price dynamically. Finally, the application calculates the total price that customer has to play before leaving the restaurant.
+The application shows a Spanish menu and customer has to choose dishes and beverages from it. After each selection, a card is created to display description and price dynamically. Finally, the application calculates the total price that customer has to play before leaving the restaurant.
 
 ## Version
 
