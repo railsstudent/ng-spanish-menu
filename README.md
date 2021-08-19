@@ -1,6 +1,19 @@
 # NgSpanishMenu
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.1.
+The application shows a Spanish menu and customer has to choose dishes and beverage from it. After each selection, a card is created to display description and price dynamically. Finally, the application calculates the total price that customer has to play before leaving the restaurant.
+
+## Version
+
+- Node 14
+- NPM 7
+
+#Todo
+
+- Create a card to display description, quantity and price for now
+- Create Menu item component that displays description and price. Customer edits quality and clicks add button to order
+- Create Menu component that iterate food and drink choices to render menu items
+- Test components with Storybook
+- Someone who is good at UX (Not me!!!!) will design the application layout
 
 ## Development server
 

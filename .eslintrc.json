@@ -14,7 +14,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "app",
+            "prefix": ["app", "storybook"],
             "style": "camelCase"
           }
         ],
@@ -22,7 +22,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "app",
+            "prefix": ["app", "storybook"],
             "style": "kebab-case"
           }
         ]
@@ -33,9 +33,5 @@
       "extends": ["plugin:@angular-eslint/template/recommended"],
       "rules": {}
     }
-  ],
-  "extends": ["prettier"],
-  "rules": {
-    "prettier/prettier": ["error", { "singleQuote": true, "semi": false, "printWidth": 120 }]
-  }
+  ]
 }
