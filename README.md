@@ -7,7 +7,7 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - Node 14
 - NPM 7
 
-##Todo
+## Todo
 
 - Create a card to display description, quantity and price for now
 - Create Menu item component that displays description and price. Customer edits quality and clicks add button to order
