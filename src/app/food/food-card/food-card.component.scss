@@ -1,0 +1,20 @@
+:host {
+  display: block;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  border: 1px solid black;
+
+  .item {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+}
+
+
+
+
