@@ -1,2 +1,5 @@
-export * from './food-card/food-card.component'
+export * from './food-card'
 export * from './food.module'
+export * from './food-choice'
+export * from './food-menu'
+export * from './food-question'
