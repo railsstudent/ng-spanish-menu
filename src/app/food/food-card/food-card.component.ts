@@ -19,6 +19,6 @@ export class FoodCardComponent {
   quantity: number
 
   get total() {
-    return Math.round((this.price * this.quantity) * 100) / 100
+    return Math.round(this.price * this.quantity * 100) / 100
   }
 }

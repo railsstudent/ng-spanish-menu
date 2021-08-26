@@ -16,5 +16,5 @@ Primary.args = {
   name: 'Vino tinto',
   description: 'Red wine',
   price: 12.99,
-  quantity: 3
+  quantity: 3,
 }
