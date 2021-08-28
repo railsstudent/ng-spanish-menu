@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+$label-color: #585656;
+
+label.item {
+  font-size: 1rem;
+  .field {
+    color: $label-color;
+    margin-right: 0.5rem;
+  }
+}

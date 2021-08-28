@@ -174,8 +174,9 @@
     },
     {
       "name": "FoodCardComponent",
-      "id": "component-FoodCardComponent-40982b93b1ade438bf246379c7d3a372",
+      "id": "component-FoodCardComponent-98f53d5b201c0885fd8a3137827163d7",
       "file": "src/app/food/food-card/food-card.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -191,28 +192,28 @@
           "name": "description",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 13,
+          "line": 14,
           "type": "string"
         },
         {
           "name": "name",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 10,
+          "line": 11,
           "type": "string"
         },
         {
           "name": "price",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 16,
+          "line": 17,
           "type": "number"
         },
         {
           "name": "quantity",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 19,
+          "line": 20,
           "type": "number"
         }
       ],
@@ -226,7 +227,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, Input } from '@angular/core'\n\n@Component({\n  selector: 'app-food-card',\n  templateUrl: './food-card.component.html',\n  styleUrls: ['./food-card.component.scss'],\n})\nexport class FoodCardComponent {\n  @Input()\n  name: string\n\n  @Input()\n  description: string\n\n  @Input()\n  price: number\n\n  @Input()\n  quantity: number\n\n  get total() {\n    return Math.round((this.price * this.quantity) * 100) / 100\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\n@Component({\n  selector: 'app-food-card',\n  templateUrl: './food-card.component.html',\n  styleUrls: ['./food-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodCardComponent {\n  @Input()\n  name: string\n\n  @Input()\n  description: string\n\n  @Input()\n  price: number\n\n  @Input()\n  quantity: number\n\n  get total() {\n    return Math.round(this.price * this.quantity * 100) / 100\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -242,7 +243,7 @@
             "name": "total",
             "type": "",
             "returnType": "",
-            "line": 21
+            "line": 22
           }
         }
       },
@@ -250,8 +251,9 @@
     },
     {
       "name": "FoodChoiceComponent",
-      "id": "component-FoodChoiceComponent-ea2879aa4080753dfdd02125f0bcb099",
+      "id": "component-FoodChoiceComponent-f43400e24a0f38a8930eda18042f7790",
       "file": "src/app/food/food-choice/food-choice.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -273,7 +275,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss']\n})\nexport class FoodChoiceComponent {\n\n  // constructor() { }\n\n  // ngOnInit(): void {\n  // }\n\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core'\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent {\n  // constructor() { }\n  // ngOnInit(): void {\n  // }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -286,8 +288,9 @@
     },
     {
       "name": "FoodMenuComponent",
-      "id": "component-FoodMenuComponent-fd86db87dd73fce3a1a32b2c0029e271",
+      "id": "component-FoodMenuComponent-cc45350fad58a2fc905ba826d21fa9a0",
       "file": "src/app/food/food-menu/food-menu.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -309,7 +312,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  styleUrls: ['./food-menu.component.scss']\n})\nexport class FoodMenuComponent {\n\n  // constructor() { }\n\n  // ngOnInit(): void {\n  // }\n\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component } from '@angular/core'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  styleUrls: ['./food-menu.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent {\n  // constructor() { }\n  // ngOnInit(): void {\n  // }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -322,8 +325,9 @@
     },
     {
       "name": "FoodQuestionComponent",
-      "id": "component-FoodQuestionComponent-bc2b112a60ce561699d0d3379220d7c6",
+      "id": "component-FoodQuestionComponent-a9a6709912947dab77c944159908cc50",
       "file": "src/app/food/food-question/food-question.component.ts",
+      "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
       "entryComponents": [],
       "inputs": [],
@@ -334,21 +338,18 @@
       "styles": [],
       "templateUrl": ["./food-question.component.html"],
       "viewProviders": [],
-      "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [],
-      "methodsClass": [
+      "inputsClass": [
         {
-          "name": "ngOnInit",
-          "args": [],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 12,
+          "name": "question",
           "deprecated": false,
-          "deprecationMessage": ""
+          "deprecationMessage": "",
+          "line": 11,
+          "type": "string"
         }
       ],
+      "outputsClass": [],
+      "propertiesClass": [],
+      "methodsClass": [],
       "deprecated": false,
       "deprecationMessage": "",
       "hostBindings": [],
@@ -356,7 +357,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, OnInit } from '@angular/core';\n\n@Component({\n  selector: 'app-food-question',\n  templateUrl: './food-question.component.html',\n  styleUrls: ['./food-question.component.scss']\n})\nexport class FoodQuestionComponent implements OnInit {\n\n  constructor() { }\n\n  ngOnInit(): void {\n  }\n\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\n@Component({\n  selector: 'app-food-question',\n  templateUrl: './food-question.component.html',\n  styleUrls: ['./food-question.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodQuestionComponent {\n  @Input()\n  question: string\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -365,16 +366,7 @@
         }
       ],
       "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [],
-        "line": 8
-      },
-      "implements": ["OnInit"],
-      "templateData": "<p>food-question works!</p>\n"
+      "templateData": "<div class=\"container\">\n  <label name=\"question\" class=\"item\">Question:\n    <span>{{ question }}</span>\n  </label>\n</div>\n"
     },
     {
       "name": "HeaderComponent",
@@ -604,13 +596,13 @@
     },
     {
       "name": "FoodModule",
-      "id": "module-FoodModule-1200499fbd3be0f558eb6235eee3b17c",
+      "id": "module-FoodModule-f05220f26fa78d655e36866fe05af8c1",
       "description": "",
       "deprecationMessage": "",
       "deprecated": false,
       "file": "src/app/food/food.module.ts",
       "methods": [],
-      "sourceCode": "import { NgModule } from '@angular/core'\nimport { CommonModule } from '@angular/common'\nimport { FoodCardComponent } from './food-card';\nimport { FoodQuestionComponent } from './food-question'\nimport { FoodChoiceComponent } from './food-choice'\nimport { FoodMenuComponent } from './food-menu';\n@NgModule({\n  declarations: [FoodCardComponent, FoodQuestionComponent, FoodChoiceComponent, FoodMenuComponent],\n  imports: [CommonModule],\n})\nexport class FoodModule {}\n",
+      "sourceCode": "import { NgModule } from '@angular/core'\nimport { CommonModule } from '@angular/common'\nimport { FoodCardComponent } from './food-card'\nimport { FoodQuestionComponent } from './food-question'\nimport { FoodChoiceComponent } from './food-choice'\nimport { FoodMenuComponent } from './food-menu'\n@NgModule({\n  declarations: [FoodCardComponent, FoodQuestionComponent, FoodChoiceComponent, FoodMenuComponent],\n  imports: [CommonModule],\n})\nexport class FoodModule {}\n",
       "children": [
         {
           "type": "providers",
@@ -1160,7 +1152,7 @@
         "linktype": "component",
         "name": "FoodQuestionComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/3",
+        "coverageCount": "0/2",
         "status": "low"
       },
       {

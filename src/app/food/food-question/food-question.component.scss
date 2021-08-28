@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+
+  label.item {
+    padding: 0.5rem 0.75rem;
+  }
+}
