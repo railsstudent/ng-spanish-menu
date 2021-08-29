@@ -1,0 +1,38 @@
+$danger-color: #a94442;
+
+:host {
+  display: block;
+}
+
+.container {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  border: 1px solid black;
+  padding: 0.5rem;
+
+  .item {
+    flex: 1 1 calc(100% / 3 - 0.75rem * 2);
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .ng-invalid:not(form)  {
+    border-left: 5px solid $danger-color; /* red */
+  }
+
+  .alert {
+    display: inline;
+    &-danger {
+      color: $danger-color;
+      .error {
+        display: inline;
+      }
+    }
+  }
+}
+
+
+
+

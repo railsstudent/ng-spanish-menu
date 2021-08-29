@@ -1,1 +1,28 @@
-<p>food-choice works!</p>
+<div class="container">
+  <label name="name" class="item">
+    <span class="field">Name:</span>
+    <span class="field-text">{{ name }}</span>
+  </label>
+  <label name="description" class="item">
+    <span class="field">Description:</span>
+    <span class="field-text">{{ description }}</span>
+  </label>
+  <label name="price" class="item">
+    <span class="field">Price:</span>
+    <span class="field-text">{{ price }}</span>
+  </label>
+  <form [formGroup]="form" (ngSubmit)="onSubmit($event)">
+    <label name="quantity" class="item">
+      <span class="field">Quantity: </span>
+      <input type="number" formControlName="quantity" />
+    </label>
+    <div *ngIf="quantity.invalid && (quantity.touched || quantity.dirty)" class="alert alert-danger">
+      <div *ngIf="quantity.errors?.min" class="error">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>
+    </div>
+    <button type="submit" [disabled]="form.value.quantity <= 0">Submit</button>
+  </form>
+  <!-- <div class="item">
+    <p>Form Status: {{ form.status }}</p>
+    <p>Quantity: {{ form.value | json }}</p>
+  </div> -->
+</div>
