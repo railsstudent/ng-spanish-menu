@@ -15,6 +15,18 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - Test components with Storybook
 - Someone who is good at UX (Not me!!!!) will design the application layout
 
+# Data
+
+- Should food menu be hardcoded data in the component?
+- Should food menu loaded from static JSON file through http service?
+- Should food menu loaded from backend API that we create?
+
+# CSS
+
+- Angular Material?
+- Bootstrap?
+- TailwindCSS?
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
