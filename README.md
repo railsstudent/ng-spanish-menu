@@ -9,8 +9,9 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 
 ## Todo
 
-- Create a card to display description, quantity and price for now
-- Create Menu item component that displays description and price. Customer edits quality and clicks add button to order
+- ~~Create a card to display description, quantity and price for now
+- ~~Create Menu item component that displays description and price. Customer edits quality and clicks add button to order (done)
+- Create shell component to host smart and dumb components  (Nati)
 - Create Menu component that iterate food and drink choices to render menu items
 - Test components with Storybook
 - Someone who is good at UX (Not me!!!!) will design the application layout
