@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { pluck, tap } from 'rxjs/operators'
+import { of } from 'rxjs'
+import { catchError, pluck, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 import { Menu, MenuItem } from '../interfaces'
 
@@ -16,6 +17,10 @@ export class FoodService {
       .pipe(
         tap((data) => console.log(data)),
         pluck('menu'),
+        catchError((err: Error) => {
+          console.error(err)
+          return of([])
+        }),
       )
       .toPromise()
   }

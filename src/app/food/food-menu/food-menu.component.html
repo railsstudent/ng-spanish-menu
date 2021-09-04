@@ -1,1 +1,8 @@
-<p>food-menu works!</p>
+<div class="container">
+  <ng-container *ngFor="let menuItem of menuItems; index as i; trackBy: trackByFn">
+    <app-food-question [question]="menuItem.question"></app-food-question>
+    <ng-container *ngFor="let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn">
+      <app-food-choice [name]="choice.name" [description]="choice.description" [price]="choice.price"></app-food-choice>
+    </ng-container>
+  </ng-container>
+</div>
