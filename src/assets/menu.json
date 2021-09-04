@@ -1,0 +1,34 @@
+{
+  "menu": [
+    {
+      "id": "1",
+      "name": "Which appetizer do you wish to order?",
+      "choices": [
+        {
+          "id": "a",
+          "name": "Egg salad",
+          "description": "Egg salad",
+          "price": 4.99
+        },
+        {
+          "id": "b",
+          "name": "Tomato salad",
+          "description": "Tomato salad",
+          "price": 4.99
+        },
+        {
+          "id": "c",
+          "name": "Bread",
+          "description": "Bread",
+          "price": 4.99
+        },
+        {
+          "id": "d",
+          "name": "Buffalo Chicken Wings",
+          "description": "Spicy chicken wings",
+          "price": 4.99
+        }
+      ]
+    }
+  ]
+}
