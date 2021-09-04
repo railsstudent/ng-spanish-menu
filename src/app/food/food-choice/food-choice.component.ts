@@ -2,7 +2,7 @@ import { OrderedFoodChoice } from './interface'
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
-import { concatMap, delay, finalize, map, takeUntil, tap } from 'rxjs/operators'
+import { delay, map, takeUntil, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-food-choice',

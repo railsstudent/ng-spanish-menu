@@ -2,7 +2,7 @@
   "menu": [
     {
       "id": "1",
-      "name": "Which appetizer do you wish to order?",
+      "question": "Which appetizer(s) do you wish to order?",
       "choices": [
         {
           "id": "a",
@@ -20,13 +20,43 @@
           "id": "c",
           "name": "Bread",
           "description": "Bread",
-          "price": 4.99
+          "price": 6.99
         },
         {
           "id": "d",
           "name": "Buffalo Chicken Wings",
           "description": "Spicy chicken wings",
-          "price": 4.99
+          "price": 8.99
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "question": "Which dessert(s) do you wish to order?",
+      "choices": [
+        {
+          "id": "a1",
+          "name": "Ice cream",
+          "description": "Ice cream",
+          "price": 1.99
+        },
+        {
+          "id": "b1",
+          "name": "Tiramisu",
+          "description": "Coffee Flavoured Dessert from Italy",
+          "price": 2.99
+        },
+        {
+          "id": "c1",
+          "name": "Gulab Jamun",
+          "description": "Deep-fried sweets from India",
+          "price": 2.99
+        },
+        {
+          "id": "d1",
+          "name": "Lamingtons",
+          "description": "square sponge cakes from Australia",
+          "price": 3.99
         }
       ]
     }

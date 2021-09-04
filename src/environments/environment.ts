@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  menuUrl: 'assets/menu.json',
 }
 
 /*
