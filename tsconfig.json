@@ -21,7 +21,9 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@/food": ["src/app/food/index.ts"]
-    }
+    },
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
