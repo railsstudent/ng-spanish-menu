@@ -169,7 +169,7 @@
   "injectables": [
     {
       "name": "FoodService",
-      "id": "injectable-FoodService-ebdda99002e7c43e1e3cb0e740894550",
+      "id": "injectable-FoodService-db6ce665fb4f1bbe567609c5e3ab65c1",
       "file": "src/app/food/services/food.service.ts",
       "properties": [],
       "methods": [
@@ -184,7 +184,7 @@
             }
           ],
           "optional": false,
-          "returnType": "Observable<MenuItem[]>",
+          "returnType": "Observable<[] | undefined>",
           "typeParameters": [],
           "line": 13,
           "deprecated": false,
@@ -206,7 +206,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { Observable, of } from 'rxjs'\nimport { catchError, pluck, share } from 'rxjs/operators'\nimport { Menu, MenuItem } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService {\n  constructor(private http: HttpClient) {}\n\n  getFood(url: string): Observable<MenuItem[]> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      catchError((err: Error) => {\n        console.error(err)\n        return of([])\n      }),\n      share()\n    )\n  }\n}\n",
+      "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { Observable, of } from 'rxjs'\nimport { catchError, pluck, share } from 'rxjs/operators'\nimport { Menu, MenuItem } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService {\n  constructor(private http: HttpClient) {}\n\n  getFood(url: string): Observable<MenuItem[] | undefined> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      catchError((err: Error) => {\n        console.error(err)\n        return of(undefined)\n      }),\n      share(),\n    )\n  }\n}\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -653,7 +653,7 @@
     },
     {
       "name": "FoodMenuComponent",
-      "id": "component-FoodMenuComponent-da2de37c5d86ac50ef2997e202146ee5",
+      "id": "component-FoodMenuComponent-0560825ba1e18f33c786fcce95831b08",
       "file": "src/app/food/food-menu/food-menu.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -667,25 +667,25 @@
       "templateUrl": ["./food-menu.component.html"],
       "viewProviders": [],
       "inputsClass": [],
-      "outputsClass": [],
-      "propertiesClass": [
+      "outputsClass": [
         {
-          "name": "menuItems",
+          "name": "handleFoodChoice",
+          "defaultValue": "new EventEmitter<OrderedFoodChoice>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "MenuItem[]",
-          "optional": false,
-          "description": "",
-          "line": 16
-        },
+          "line": 17,
+          "type": "EventEmitter"
+        }
+      ],
+      "propertiesClass": [
         {
           "name": "menuItems$",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "Observable<MenuItem[]>",
+          "type": "Observable<[] | undefined>",
           "optional": false,
           "description": "",
-          "line": 17
+          "line": 19
         },
         {
           "name": "unsubscribe$",
@@ -695,7 +695,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 18
+          "line": 20
         }
       ],
       "methodsClass": [
@@ -718,7 +718,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 31,
+          "line": 32,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -734,34 +734,6 @@
             {
               "name": "choice",
               "type": "Choice",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
-        {
-          "name": "foodChoiceAdded",
-          "args": [
-            {
-              "name": "choice",
-              "type": "OrderedFoodChoice",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 35,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "choice",
-              "type": "OrderedFoodChoice",
               "deprecated": false,
               "deprecationMessage": "",
               "tagName": {
@@ -789,7 +761,7 @@
           "optional": false,
           "returnType": "string | number",
           "typeParameters": [],
-          "line": 27,
+          "line": 28,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -819,7 +791,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 39,
+          "line": 36,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -829,7 +801,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 22,
+          "line": 24,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -841,7 +813,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { FoodService } from '../services'\nimport { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'\nimport { Choice, MenuItem } from '../interfaces'\nimport { takeUntil } from 'rxjs/operators'\nimport { Observable, Subject } from 'rxjs'\nimport { environment } from 'src/environments/environment'\nimport { OrderedFoodChoice } from '../food-choice'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  styleUrls: ['./food-menu.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  menuItems: MenuItem[]\n  menuItems$: Observable<MenuItem[]>\n  unsubscribe$ = new Subject<boolean>()\n\n  constructor(private service: FoodService) {}\n\n  ngOnInit(): void {\n    console.log('ngOnInit called')\n    this.menuItems$ = this.service.getFood(environment.menuUrl).pipe(takeUntil(this.unsubscribe$))\n  }\n\n  menumItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  choiceTrackByFn(index: number, choice: Choice) {\n    return choice ? choice.id : index\n  }\n\n  foodChoiceAdded(choice: OrderedFoodChoice) {\n    console.log('choice', choice)\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n}\n",
+      "sourceCode": "import { FoodService } from '../services'\nimport { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { Choice, MenuItem } from '../interfaces'\nimport { takeUntil } from 'rxjs/operators'\nimport { Observable, Subject } from 'rxjs'\nimport { environment } from 'src/environments/environment'\nimport { OrderedFoodChoice } from '../food-choice'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  styleUrls: ['./food-menu.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  @Output()\n  handleFoodChoice = new EventEmitter<OrderedFoodChoice>()\n\n  menuItems$: Observable<MenuItem[] | undefined>\n  unsubscribe$ = new Subject<boolean>()\n\n  constructor(private service: FoodService) {}\n\n  ngOnInit(): void {\n    this.menuItems$ = this.service.getFood(environment.menuUrl).pipe(takeUntil(this.unsubscribe$))\n  }\n\n  menumItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  choiceTrackByFn(index: number, choice: Choice) {\n    return choice ? choice.id : index\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -863,7 +835,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 18,
+        "line": 20,
         "jsdoctags": [
           {
             "name": "service",
@@ -877,7 +849,7 @@
         ]
       },
       "implements": ["OnInit", "OnDestroy"],
-      "templateData": "<div class=\"container\" *ngIf=\"menuItems$ | async as menuItems else notAvailable\">\n  <ng-container *ngFor=\"let menuItem of menuItems; index as i; trackBy: menumItemTrackByFn\">\n    <app-food-question [question]=\"menuItem.question\"></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\">\n      <app-food-choice [name]=\"choice.name\" [description]=\"choice.description\" [price]=\"choice.price\"\n        (foodChoiceAdded)=\"foodChoiceAdded\"\n      ></app-food-choice>\n    </ng-container>\n  </ng-container>\n</div>\n<ng-template #notAvailable>No menu</ng-template>\n"
+      "templateData": "<div class=\"container\" *ngIf=\"menuItems$ | async as menuItems; else notAvailable\">\n  <ng-container *ngFor=\"let menuItem of menuItems; index as i; trackBy: menumItemTrackByFn\">\n    <app-food-question [question]=\"menuItem.question\"></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\">\n      <app-food-choice\n        [name]=\"choice.name\"\n        [description]=\"choice.description\"\n        [price]=\"choice.price\"\n        (foodChoiceAdded)=\"handleFoodChoice.emit($event)\"\n      ></app-food-choice>\n    </ng-container>\n  </ng-container>\n</div>\n<ng-template #notAvailable>No menu</ng-template>\n"
     },
     {
       "name": "FoodQuestionComponent",
@@ -1216,6 +1188,16 @@
         "defaultValue": "{\n  foodChoiceAdded: action('foodChoiceAdded'),\n}"
       },
       {
+        "name": "actionsData",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/food/food-menu.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  handleFoodChoice: action('handleFoodChoice'),\n}"
+      },
+      {
         "name": "context",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1230,6 +1212,16 @@
         "ctype": "miscellaneous",
         "subtype": "variable",
         "file": "src/stories/food/food-question.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Empty",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/food/food-menu.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -1273,7 +1265,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "() => {\n  return {\n    getFood: () => of(MockData),\n  }\n}"
+        "defaultValue": "(url = '') => {\n  return {\n    getFood: () => of(url !== 'failed' ? MockData : undefined),\n  }\n}"
       },
       {
         "name": "Large",
@@ -1326,17 +1318,7 @@
         "defaultValue": "Template.bind({})"
       },
       {
-        "name": "MockData",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/stories/food/food-menu.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "[]",
-        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        price: 4.99,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        price: 8.99,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        price: 1.99,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        price: 2.99,\n      },\n    ],\n  },\n]"
-      },
-      {
-        "name": "MockedSuccess",
+        "name": "Menu",
         "ctype": "miscellaneous",
         "subtype": "variable",
         "file": "src/stories/food/food-menu.stories.ts",
@@ -1344,6 +1326,16 @@
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "MockData",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/food/constants.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "MenuItem[]",
+        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        price: 4.99,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        price: 8.99,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        price: 5.99,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        price: 1.99,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        price: 2.99,\n      },\n    ],\n  },\n]"
       },
       {
         "name": "Primary",
@@ -1359,7 +1351,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/stories/food/food-card.stories.ts",
+        "file": "src/stories/food/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -1369,7 +1361,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/stories/food/food-choice.stories.ts",
+        "file": "src/stories/food/food-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -1438,16 +1430,6 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/stories/food/food-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodCardComponent>",
-        "defaultValue": "(args: FoodCardComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/stories/food/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -1458,11 +1440,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/stories/food/food-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodCardComponent>",
+        "defaultValue": "(args: FoodCardComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/stories/food/food-menu.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<FoodMenuComponent>",
-        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n  moduleMetadata: {\n    declarations: [FoodChoiceComponent, FoodQuestionComponent],\n  },\n})"
+        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: {\n    ...args,\n    ...actionsData,\n  },\n})"
       },
       {
         "name": "Template",
@@ -1509,6 +1501,58 @@
           "deprecationMessage": "",
           "type": "Story<FoodChoiceComponent>",
           "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: {\n    ...args,\n    ...actionsData,\n  },\n})"
+        }
+      ],
+      "src/stories/food/food-menu.stories.ts": [
+        {
+          "name": "actionsData",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-menu.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  handleFoodChoice: action('handleFoodChoice'),\n}"
+        },
+        {
+          "name": "Empty",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-menu.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "foodServiceFactory",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-menu.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "(url = '') => {\n  return {\n    getFood: () => of(url !== 'failed' ? MockData : undefined),\n  }\n}"
+        },
+        {
+          "name": "Menu",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-menu.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-menu.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<FoodMenuComponent>",
+          "defaultValue": "(args: FoodMenuComponent) => ({\n  props: {\n    ...args,\n    ...actionsData,\n  },\n})"
         }
       ],
       "src/test.ts": [
@@ -1586,48 +1630,6 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: false,\n  menuUrl: 'assets/menu.json',\n}"
-        }
-      ],
-      "src/stories/food/food-menu.stories.ts": [
-        {
-          "name": "foodServiceFactory",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/stories/food/food-menu.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "defaultValue": "() => {\n  return {\n    getFood: () => of(MockData),\n  }\n}"
-        },
-        {
-          "name": "MockData",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/stories/food/food-menu.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "[]",
-          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        price: 4.99,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        price: 8.99,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        price: 1.99,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        price: 2.99,\n      },\n    ],\n  },\n]"
-        },
-        {
-          "name": "MockedSuccess",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/stories/food/food-menu.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "defaultValue": "Template.bind({})"
-        },
-        {
-          "name": "Template",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/stories/food/food-menu.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story<FoodMenuComponent>",
-          "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n  moduleMetadata: {\n    declarations: [FoodChoiceComponent, FoodQuestionComponent],\n  },\n})"
         }
       ],
       "src/stories/Button.stories.ts": [
@@ -1746,6 +1748,18 @@
           "defaultValue": "(args: Page) => ({\n  props: args,\n})"
         }
       ],
+      "src/stories/food/constants.ts": [
+        {
+          "name": "MockData",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/constants.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "MenuItem[]",
+          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        price: 4.99,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        price: 8.99,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        price: 5.99,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        price: 1.99,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        price: 2.99,\n      },\n    ],\n  },\n]"
+        }
+      ],
       "src/stories/food/food-card.stories.ts": [
         {
           "name": "Primary",
@@ -1788,7 +1802,7 @@
     ]
   },
   "coverage": {
-    "count": 2,
+    "count": 1,
     "status": "low",
     "files": [
       {
@@ -1833,7 +1847,7 @@
         "linktype": "component",
         "name": "FoodMenuComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/10",
+        "coverageCount": "0/9",
         "status": "low"
       },
       {
@@ -2021,6 +2035,16 @@
         "status": "very-good"
       },
       {
+        "filePath": "src/stories/food/constants.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "MockData",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
         "filePath": "src/stories/food/food-card.stories.ts",
         "type": "variable",
         "linktype": "miscellaneous",
@@ -2075,6 +2099,26 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
+        "name": "actionsData",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/food/food-menu.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Empty",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/food/food-menu.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
         "name": "foodServiceFactory",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -2085,17 +2129,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "MockData",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/stories/food/food-menu.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "MockedSuccess",
+        "name": "Menu",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

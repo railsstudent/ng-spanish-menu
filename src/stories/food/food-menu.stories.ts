@@ -6,72 +6,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { of } from 'rxjs'
 import { action } from '@storybook/addon-actions'
+import { MockData } from './constants'
 
-const MockData = [
-  {
-    id: '1',
-    question: 'Which appetizer(s) do you wish to order?',
-    choices: [
-      {
-        id: 'a',
-        name: 'Egg salad',
-        description: 'Egg salad',
-        price: 4.99,
-      },
-      {
-        id: 'd',
-        name: 'Buffalo Chicken Wings',
-        description: 'Spicy chicken wings',
-        price: 8.99,
-      },
-      {
-        id: 'b',
-        name: 'Oven Baked Zucchini Chips',
-        description: 'Oven Baked Zucchini Chips',
-        price: 5.99,
-      },
-    ],
-  },
-  {
-    id: '2',
-    question: 'Which dessert(s) do you wish to order?',
-    choices: [
-      {
-        id: 'a1',
-        name: 'Ice cream',
-        description: 'Ice cream',
-        price: 1.99,
-      },
-      {
-        id: 'b1',
-        name: 'Tiramisu',
-        description: 'Coffee Flavoured Dessert from Italy',
-        price: 2.99,
-      },
-    ],
-  },
-]
-
-const foodServiceFactory = () => {
+const foodServiceFactory = (url = '') => {
   return {
-    getFood: () => of(MockData),
+    getFood: () => of(url !== 'failed' ? MockData : undefined),
   }
 }
 
 export default {
   title: 'Food Menu',
   component: FoodMenuComponent,
-  subcomponents: {
-    FoodChoiceComponent,
-    FoodQuestionComponent,
-  },
   decorators: [
     moduleMetadata({
+      declarations: [FoodChoiceComponent, FoodQuestionComponent],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
       providers: [
         {
           provide: FoodService,
-          useFactory: foodServiceFactory,
+          useFactory: () => foodServiceFactory(),
         },
       ],
     }),
@@ -87,10 +40,18 @@ const Template: Story<FoodMenuComponent> = (args: FoodMenuComponent) => ({
     ...args,
     ...actionsData,
   },
-  // moduleMetadata: {
-  //   declarations: [FoodChoiceComponent, FoodQuestionComponent],
-  // },
 })
 
-export const Primary = Template.bind({})
-Primary.args = {}
+export const Menu = Template.bind({})
+
+export const Empty = Template.bind({})
+Empty.decorators = [
+  moduleMetadata({
+    providers: [
+      {
+        provide: FoodService,
+        useFactory: () => foodServiceFactory('failed'),
+      },
+    ],
+  }),
+]

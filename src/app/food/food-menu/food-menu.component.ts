@@ -16,7 +16,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   @Output()
   handleFoodChoice = new EventEmitter<OrderedFoodChoice>()
 
-  menuItems$: Observable<MenuItem[]>
+  menuItems$: Observable<MenuItem[] | undefined>
   unsubscribe$ = new Subject<boolean>()
 
   constructor(private service: FoodService) {}

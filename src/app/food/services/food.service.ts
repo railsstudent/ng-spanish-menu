@@ -10,12 +10,12 @@ import { Menu, MenuItem } from '../interfaces'
 export class FoodService {
   constructor(private http: HttpClient) {}
 
-  getFood(url: string): Observable<MenuItem[]> {
+  getFood(url: string): Observable<MenuItem[] | undefined> {
     return this.http.get<Menu>(url).pipe(
       pluck('menu'),
       catchError((err: Error) => {
         console.error(err)
-        return of([])
+        return of(undefined)
       }),
       share(),
     )
