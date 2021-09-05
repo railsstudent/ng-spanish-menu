@@ -5,6 +5,7 @@ import { FoodChoiceComponent, FoodQuestionComponent, FoodMenuComponent, FoodServ
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { of } from 'rxjs'
+import { action } from '@storybook/addon-actions'
 
 const MockData = [
   {
@@ -22,6 +23,12 @@ const MockData = [
         name: 'Buffalo Chicken Wings',
         description: 'Spicy chicken wings',
         price: 8.99,
+      },
+      {
+        id: 'b',
+        name: 'Oven Baked Zucchini Chips',
+        description: 'Oven Baked Zucchini Chips',
+        price: 5.99,
       },
     ],
   },
@@ -71,11 +78,19 @@ export default {
   ],
 } as Meta
 
+export const actionsData = {
+  handleFoodChoice: action('handleFoodChoice'),
+}
+
 const Template: Story<FoodMenuComponent> = (args: FoodMenuComponent) => ({
-  props: args,
-  moduleMetadata: {
-    declarations: [FoodChoiceComponent, FoodQuestionComponent],
+  props: {
+    ...args,
+    ...actionsData,
   },
+  // moduleMetadata: {
+  //   declarations: [FoodChoiceComponent, FoodQuestionComponent],
+  // },
 })
 
-export const MockedSuccess = Template.bind({})
+export const Primary = Template.bind({})
+Primary.args = {}

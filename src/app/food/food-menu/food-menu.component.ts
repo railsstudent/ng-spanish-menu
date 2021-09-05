@@ -1,5 +1,5 @@
 import { FoodService } from '../services'
-import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { Choice, MenuItem } from '../interfaces'
 import { takeUntil } from 'rxjs/operators'
 import { Observable, Subject } from 'rxjs'
@@ -13,7 +13,9 @@ import { OrderedFoodChoice } from '../food-choice'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodMenuComponent implements OnInit, OnDestroy {
-  menuItems: MenuItem[]
+  @Output()
+  handleFoodChoice = new EventEmitter<OrderedFoodChoice>()
+
   menuItems$: Observable<MenuItem[]>
   unsubscribe$ = new Subject<boolean>()
 
@@ -29,10 +31,6 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
 
   choiceTrackByFn(index: number, choice: Choice) {
     return choice ? choice.id : index
-  }
-
-  handlFoodChoiceAdded(choice: OrderedFoodChoice) {
-    console.log('choice', choice)
   }
 
   ngOnDestroy(): void {

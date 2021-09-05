@@ -6,7 +6,7 @@
         [name]="choice.name"
         [description]="choice.description"
         [price]="choice.price"
-        (foodChoiceAdded)="(handlFoodChoiceAdded)"
+        (foodChoiceAdded)="handleFoodChoice.emit($event)"
       ></app-food-choice>
     </ng-container>
   </ng-container>
