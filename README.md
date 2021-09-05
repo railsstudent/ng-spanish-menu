@@ -12,16 +12,18 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - ~~Create a card to display description, quantity and price for now~~
 - ~~Create Menu item component that displays description and price. Customer edits quality and clicks add button to order (done)~~
 - Create shell component to host smart and dumb components (Nati)
-- Create Menu component that iterate food and drink choices to render menu items
+- Create Menu component that iterate food and drink choices to render menu items (Connie)
+- Create Menu card component the content project food question and food choices (Connie)
 - Test components with Storybook
 - Someone who is good at UX (Not me!!!!) will design the application layout
 - Create github action to Deploy to github page
+- Build storybook as a standalone application
 
 # Data
 
-- Should food menu be hardcoded data in the component?
-- Should food menu loaded from static JSON file through http service?
-- Should food menu loaded from backend API that we create?
+- ~~Should food menu be hardcoded data in the component?~~
+- ~~Should food menu loaded from static JSON file through http service? Http service retrieves data from static json file~~
+- ~~Should food menu loaded from backend API that we create?~~
 
 # CSS
 

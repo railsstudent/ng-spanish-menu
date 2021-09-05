@@ -13,7 +13,7 @@ const Template: Story<FoodQuestionComponent> = (args: FoodQuestionComponent) => 
 
 export const Drink = Template.bind({})
 Drink.args = {
-  question: 'What drink do you wish to order?',
+  question: 'Which drink do you wish to order?',
 }
 
 export const Food = Template.bind({})
