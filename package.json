@@ -12,7 +12,8 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
-    "build-storybook": "npm run docs:json && build-storybook"
+    "build-storybook": "npm run docs:json && build-storybook",
+    "github-page-deploy": "ng deploy –base-href=”https://railsstudent.github.io/ng-spanish-menu/” –repo=”https://github.com/railsstudent/ng-spanish-menu.git” –no-silent"
   },
   "private": true,
   "dependencies": {
