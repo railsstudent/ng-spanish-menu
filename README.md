@@ -17,7 +17,7 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - Test components with Storybook
 - Someone who is good at UX (Not me!!!!) will design the application layout
 - Create github action to Deploy to github page (Connie)
-- (Optional) Build storybook as a standalone application
+- (Optional) Build storybook as a standalone application (Connie)
 
 # Data
 
