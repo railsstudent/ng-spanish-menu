@@ -1181,16 +1181,6 @@
         "name": "actionsData",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/stories/food/food-choice.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  foodChoiceAdded: action('foodChoiceAdded'),\n}"
-      },
-      {
-        "name": "actionsData",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/stories/food/food-menu.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -1444,7 +1434,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<FoodChoiceComponent>",
-        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: {\n    ...args,\n    ...actionsData,\n  },\n})"
+        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: {\n    ...args,\n    // ...actionsData,\n  },\n})"
       },
       {
         "name": "Template",
@@ -1471,38 +1461,6 @@
     "typealiases": [],
     "enumerations": [],
     "groupedVariables": {
-      "src/stories/food/food-choice.stories.ts": [
-        {
-          "name": "actionsData",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/stories/food/food-choice.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  foodChoiceAdded: action('foodChoiceAdded'),\n}"
-        },
-        {
-          "name": "Primary",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/stories/food/food-choice.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "defaultValue": "Template.bind({})"
-        },
-        {
-          "name": "Template",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/stories/food/food-choice.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story<FoodChoiceComponent>",
-          "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: {\n    ...args,\n    ...actionsData,\n  },\n})"
-        }
-      ],
       "src/stories/food/food-menu.stories.ts": [
         {
           "name": "actionsData",
@@ -1781,6 +1739,28 @@
           "type": "Story<FoodCardComponent>",
           "defaultValue": "(args: FoodCardComponent) => ({\n  props: args,\n})"
         }
+      ],
+      "src/stories/food/food-choice.stories.ts": [
+        {
+          "name": "Primary",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-choice.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-choice.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<FoodChoiceComponent>",
+          "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: {\n    ...args,\n    // ...actionsData,\n  },\n})"
+        }
       ]
     },
     "groupedFunctions": {},
@@ -1802,7 +1782,7 @@
     ]
   },
   "coverage": {
-    "count": 1,
+    "count": 2,
     "status": "low",
     "files": [
       {
@@ -2060,16 +2040,6 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Template",
-        "coveragePercent": 0,
-        "coverageCount": "0/1",
-        "status": "low"
-      },
-      {
-        "filePath": "src/stories/food/food-choice.stories.ts",
-        "type": "variable",
-        "linktype": "miscellaneous",
-        "linksubtype": "variable",
-        "name": "actionsData",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

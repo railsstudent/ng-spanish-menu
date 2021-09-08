@@ -1,7 +1,6 @@
 import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { action } from '@storybook/addon-actions'
 import { FoodChoiceComponent } from '@/food'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
@@ -13,17 +12,11 @@ export default {
       imports: [ReactiveFormsModule, FormsModule],
     }),
   ],
+  argTypes: { onClick: { action: 'clicked' } },
 } as Meta
 
-export const actionsData = {
-  foodChoiceAdded: action('foodChoiceAdded'),
-}
-
 const Template: Story<FoodChoiceComponent> = (args: FoodChoiceComponent) => ({
-  props: {
-    ...args,
-    ...actionsData,
-  },
+  props: args,
 })
 
 export const Primary = Template.bind({})

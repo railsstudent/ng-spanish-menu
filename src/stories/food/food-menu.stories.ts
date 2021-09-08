@@ -5,7 +5,6 @@ import { FoodChoiceComponent, FoodQuestionComponent, FoodMenuComponent, FoodServ
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { of } from 'rxjs'
-import { action } from '@storybook/addon-actions'
 import { MockData } from './constants'
 
 const foodServiceFactory = (url = '') => {
@@ -29,17 +28,11 @@ export default {
       ],
     }),
   ],
+  argTypes: { onClick: { action: 'clicked' } },
 } as Meta
 
-export const actionsData = {
-  handleFoodChoice: action('handleFoodChoice'),
-}
-
 const Template: Story<FoodMenuComponent> = (args: FoodMenuComponent) => ({
-  props: {
-    ...args,
-    ...actionsData,
-  },
+  props: args,
 })
 
 export const Menu = Template.bind({})
