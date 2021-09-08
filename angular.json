@@ -104,7 +104,7 @@
           "builder": "angular-cli-ghpages:deploy",
           "options": {
             "baseHref": "https://railsstudent.github.io/ng-spanish-menu/",
-            "name": "Angular Nation Mentor Program",
+            "name": "railsstudent",
             "email": "cleung334@gmail.com",
             "message": "Deploy to gh-pages by angular-cli-ghpages",
             "repo": "https://github.com/railsstudent/ng-spanish-menu.git",

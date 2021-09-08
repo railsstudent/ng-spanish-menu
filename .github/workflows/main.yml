@@ -18,16 +18,8 @@ jobs:
           git config user.email "cleung334@gmail.com"
 
       - name: Install
-        run: |
-          npm install
-          npm run github-page-deploy
+        run: npm install
       - name: Build and Deploy Repo
-        uses: JamesIves/github-pages-deploy-action@releases/v3
-        with:
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-          BASE_BRANCH: main
-          BRANCH: gh-pages
-          CLEAN: true
-          GIT_CONFIG_NAME: railsstudent
-          GIT_CONFIG_EMAIL: cleung334@gmail.com
-          FOLDER: dist/ng-spanish-menu
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run github-page-deploy
