@@ -14,7 +14,7 @@
     "storybook": "npm run docs:json && start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook",
     "github-page-deploy": "ng deploy",
-    "storybook-deploy": "npx chromatic --project-token=2d2f648cf09b"
+    "chromatic": "npx chromatic --project-token=2d2f648cf09b"
   },
   "dependencies": {
     "@angular/animations": "~12.2.0",
