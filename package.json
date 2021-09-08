@@ -13,7 +13,7 @@
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
     "storybook": "npm run docs:json && start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook",
-    "github-page-deploy": "ng deploy --base-href='https://railsstudent.github.io/ng-spanish-menu/' --repo='https://github.com/railsstudent/ng-spanish-menu.git' --name='railsstudent' --email='cleung334@gmail.com' --no-silent"
+    "github-page-deploy": "ng deploy"
   },
   "dependencies": {
     "@angular/animations": "~12.2.0",
