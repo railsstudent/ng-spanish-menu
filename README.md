@@ -18,7 +18,8 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - Someone who is good at UX (Not me!!!!) will design the application layout
 - ~~Create npm script to deploy the project to github page by  angular-cli-ghpages (Connie)~~
 - Create github action to deploy the project to github page (Connie, stuck)
-- Build storybook as a standalone application (Connie)
+- ~~Build storybook as a standalone application (Connie)~~
+- Create github action to deploy storybook to chromium
 
 # Data
 
