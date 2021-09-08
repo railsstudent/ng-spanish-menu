@@ -12,6 +12,11 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Git config
+        run: |
+          git config user.name "railsstudent"
+          git config user.email "cleung334@gmail.com"
+
       - name: Install
         run: |
           npm install
