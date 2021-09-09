@@ -20,6 +20,9 @@ export class FoodChoiceComponent implements OnInit, OnDestroy {
   @Input()
   price: number
 
+  @Input()
+  soldout = false
+
   @Output()
   foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
 

@@ -24,4 +24,13 @@ Primary.args = {
   name: 'Vino tinto',
   description: 'Red wine',
   price: 12.99,
+  available: true,
+}
+
+export const Soldout = Template.bind({})
+Soldout.args = {
+  name: 'Vino tinto',
+  description: 'Red wine',
+  price: 12.99,
+  available: false,
 }

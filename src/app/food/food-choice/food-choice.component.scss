@@ -32,7 +32,7 @@ $danger-color: #a94442;
     }
   }
 
-  .processing {
+  .processing, .sold-out {
     color: $danger-color;
     display: inline
   }

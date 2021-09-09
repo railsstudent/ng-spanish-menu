@@ -11,7 +11,7 @@
     <span class="field">Price:</span>
     <span class="field-text">{{ price }}</span>
   </label>
-  <form [formGroup]="form" (ngSubmit)="submitChoice$.next($event)">
+  <form [formGroup]="form" (ngSubmit)="submitChoice$.next($event)" *ngIf="available; else soldout">
     <label name="quantity" class="item">
       <span class="field">Quantity: </span>
       <input type="number" formControlName="quantity" />
@@ -28,4 +28,7 @@
     <p>Form Status: {{ form.status }}</p>
     <p>Quantity: {{ form.value | json }}</p>
   </div> -->
+  <ng-template #soldout>
+    <span class="item sold-out">Sorry, this choice is sold out</span>
+  </ng-template>
 </div>

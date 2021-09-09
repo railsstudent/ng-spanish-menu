@@ -16,8 +16,8 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - (I think it is a good idea) Create Menu card component to content project food question and food choices
 - Test components with Storybook
 - Someone who is good at UX (Not me!!!!) will design the application layout
-- ~~Create npm script to deploy the project to github page by  angular-cli-ghpages (Connie)~~
-- Create github action to deploy the project to github page (Connie, stuck)
+- ~~Create npm script to deploy the project to github page by angular-cli-ghpages (Connie)~~
+- Create github action to deploy the project to github page (stuck)
 - ~~Build storybook as a standalone application (Connie)~~
 - Create github action to deploy storybook to chromium
 
