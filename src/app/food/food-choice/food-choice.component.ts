@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnI
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { delay, map, takeUntil, tap } from 'rxjs/operators'
+import { Choice } from '../interfaces'
 
 @Component({
   selector: 'app-food-choice',
@@ -12,16 +13,7 @@ import { delay, map, takeUntil, tap } from 'rxjs/operators'
 })
 export class FoodChoiceComponent implements OnInit, OnDestroy {
   @Input()
-  name: string
-
-  @Input()
-  description: string
-
-  @Input()
-  price: number
-
-  @Input()
-  soldout = false
+  choice: Choice
 
   @Output()
   foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
@@ -47,9 +39,9 @@ export class FoodChoiceComponent implements OnInit, OnDestroy {
         delay(1000),
         map(() => ({
           ...this.form.value,
-          name: this.name,
-          description: this.description,
-          price: this.price,
+          name: this.choice.name,
+          description: this.choice.description,
+          price: this.choice.price,
         })),
         tap(() => (this.processing = false)),
         takeUntil(this.unsubscribe$),

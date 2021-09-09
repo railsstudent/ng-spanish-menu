@@ -5,11 +5,23 @@ import { FoodChoiceComponent, FoodQuestionComponent, FoodMenuComponent, FoodServ
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { of } from 'rxjs'
-import { MockData } from './constants'
+import { MockData, SoldoutMockData } from './constants'
 
-const foodServiceFactory = (url = '') => {
+const foodServiceFactory = () => {
   return {
-    getFood: () => of(url !== 'failed' ? MockData : undefined),
+    getFood: () => of(MockData),
+  }
+}
+
+const soldoutFoodServiceFactory = () => {
+  return {
+    getFood: () => of(SoldoutMockData),
+  }
+}
+
+const emptyFoodServiceFactory = () => {
+  return {
+    getFood: () => of(undefined),
   }
 }
 
@@ -37,13 +49,25 @@ const Template: Story<FoodMenuComponent> = (args: FoodMenuComponent) => ({
 
 export const Menu = Template.bind({})
 
+export const SoldoutFoodMenu = Template.bind({})
+SoldoutFoodMenu.decorators = [
+  moduleMetadata({
+    providers: [
+      {
+        provide: FoodService,
+        useFactory: soldoutFoodServiceFactory,
+      },
+    ],
+  }),
+]
+
 export const Empty = Template.bind({})
 Empty.decorators = [
   moduleMetadata({
     providers: [
       {
         provide: FoodService,
-        useFactory: () => foodServiceFactory('failed'),
+        useFactory: emptyFoodServiceFactory,
       },
     ],
   }),

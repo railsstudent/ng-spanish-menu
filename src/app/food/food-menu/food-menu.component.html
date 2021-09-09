@@ -2,12 +2,7 @@
   <ng-container *ngFor="let menuItem of menuItems; index as i; trackBy: menumItemTrackByFn">
     <app-food-question [question]="menuItem.question"></app-food-question>
     <ng-container *ngFor="let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn">
-      <app-food-choice
-        [name]="choice.name"
-        [description]="choice.description"
-        [price]="choice.price"
-        (foodChoiceAdded)="handleFoodChoice.emit($event)"
-      ></app-food-choice>
+      <app-food-choice [choice]="choice" (foodChoiceAdded)="handleFoodChoice.emit($event)"></app-food-choice>
     </ng-container>
   </ng-container>
 </div>

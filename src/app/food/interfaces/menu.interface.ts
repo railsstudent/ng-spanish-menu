@@ -3,6 +3,7 @@ export interface Choice {
   name: string
   description: string
   price: number
+  available: boolean
 }
 
 export interface Menu {

@@ -1,17 +1,17 @@
 <div class="container">
   <label name="name" class="item">
     <span class="field">Name:</span>
-    <span class="field-text">{{ name }}</span>
+    <span class="field-text">{{ choice.name }}</span>
   </label>
   <label name="description" class="item">
     <span class="field">Description:</span>
-    <span class="field-text">{{ description }}</span>
+    <span class="field-text">{{ choice.description }}</span>
   </label>
   <label name="price" class="item">
     <span class="field">Price:</span>
-    <span class="field-text">{{ price }}</span>
+    <span class="field-text">{{ choice.price }}</span>
   </label>
-  <form [formGroup]="form" (ngSubmit)="submitChoice$.next($event)" *ngIf="available; else soldout">
+  <form [formGroup]="form" (ngSubmit)="submitChoice$.next($event)" *ngIf="choice.available; else soldout">
     <label name="quantity" class="item">
       <span class="field">Quantity: </span>
       <input type="number" formControlName="quantity" />
