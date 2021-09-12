@@ -13,7 +13,7 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - ~~Create Menu item component that displays description and price. Customer edits quality and clicks add button to order (done)~~
 - Create shell component to host smart and dumb components (Nati)
 - ~~Create Menu component that iterate food and drink choices to render menu items (Connie)~~
-- (I think it is a good idea) Create Menu card component to content project food question and food choices
+- ~~Create Menu card component to content project food question and food choices~~
 - Test components with Storybook
 - Someone who is good at UX (Not me!!!!) will design the application layout
 - ~~Create npm script to deploy the project to github page by angular-cli-ghpages (Connie)~~

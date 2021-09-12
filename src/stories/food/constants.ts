@@ -63,13 +63,6 @@ export const SoldoutMockData: MenuItem[] = [
         available: false,
       },
       {
-        id: 'e',
-        name: 'Mango Jello',
-        description: 'Mango Jello',
-        price: 1.99,
-        available: true,
-      },
-      {
         id: 'd',
         name: 'Buffalo Chicken Wings',
         description: 'Spicy chicken wings',

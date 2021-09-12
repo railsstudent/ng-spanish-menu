@@ -1,9 +1,9 @@
 <div class="container" *ngIf="menuItems$ | async as menuItems; else notAvailable">
-  <ng-container *ngFor="let menuItem of menuItems; index as i; trackBy: menumItemTrackByFn">
-    <app-food-question [question]="menuItem.question"></app-food-question>
-    <ng-container *ngFor="let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn">
+  <app-food-menu-card *ngFor="let menuItem of menuItems; index as i; trackBy: menumItemTrackByFn">
+    <app-food-question [question]="menuItem.question" head></app-food-question>
+    <ng-container *ngFor="let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn" body>
       <app-food-choice [choice]="choice" (foodChoiceAdded)="handleFoodChoice.emit($event)"></app-food-choice>
     </ng-container>
-  </ng-container>
+  </app-food-menu-card>
 </div>
 <ng-template #notAvailable>No menu</ng-template>

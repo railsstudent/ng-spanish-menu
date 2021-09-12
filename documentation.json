@@ -648,7 +648,7 @@
     },
     {
       "name": "FoodMenuCardComponent",
-      "id": "component-FoodMenuCardComponent-ec58033fdc183b9c3a104b2761063dc4",
+      "id": "component-FoodMenuCardComponent-4203a743d33f6c0ce499771c37fc333b",
       "file": "src/app/food/food-menu-card/food-menu-card.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -671,7 +671,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component } from '@angular/core';\n\n@Component({\n  selector: 'app-food-menu-card',\n  templateUrl: './food-menu-card.component.html',\n  styleUrls: ['./food-menu-card.component.scss']\n})\nexport class FoodMenuCardComponent {}\n",
+      "sourceCode": "import { Component } from '@angular/core'\n\n@Component({\n  selector: 'app-food-menu-card',\n  templateUrl: './food-menu-card.component.html',\n  styleUrls: ['./food-menu-card.component.scss'],\n})\nexport class FoodMenuCardComponent {}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -680,7 +680,7 @@
         }
       ],
       "stylesData": "",
-      "templateData": "<p>food-choice-card works!</p>\n"
+      "templateData": "<div>\n  <ng-content select=\"[head]\"></ng-content>\n  <ng-content select=\"[body]\"></ng-content>\n</div>\n"
     },
     {
       "name": "FoodMenuComponent",
@@ -880,7 +880,7 @@
         ]
       },
       "implements": ["OnInit", "OnDestroy"],
-      "templateData": "<div class=\"container\" *ngIf=\"menuItems$ | async as menuItems; else notAvailable\">\n  <ng-container *ngFor=\"let menuItem of menuItems; index as i; trackBy: menumItemTrackByFn\">\n    <app-food-question [question]=\"menuItem.question\"></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\">\n      <app-food-choice [choice]=\"choice\" (foodChoiceAdded)=\"handleFoodChoice.emit($event)\"></app-food-choice>\n    </ng-container>\n  </ng-container>\n</div>\n<ng-template #notAvailable>No menu</ng-template>\n"
+      "templateData": "<div class=\"container\" *ngIf=\"menuItems$ | async as menuItems; else notAvailable\">\n  <app-food-menu-card *ngFor=\"let menuItem of menuItems; index as i; trackBy: menumItemTrackByFn\">\n    <app-food-question [question]=\"menuItem.question\" head></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\" body>\n      <app-food-choice [choice]=\"choice\" (foodChoiceAdded)=\"handleFoodChoice.emit($event)\"></app-food-choice>\n    </ng-container>\n  </app-food-menu-card>\n</div>\n<ng-template #notAvailable>No menu</ng-template>\n"
     },
     {
       "name": "FoodQuestionComponent",
@@ -1158,13 +1158,13 @@
     },
     {
       "name": "FoodModule",
-      "id": "module-FoodModule-cc220cd91c8072f9367db793c886a795",
+      "id": "module-FoodModule-815bd124dcb8ee39a208dadacf81e5de",
       "description": "",
       "deprecationMessage": "",
       "deprecated": false,
       "file": "src/app/food/food.module.ts",
       "methods": [],
-      "sourceCode": "import { FormsModule, ReactiveFormsModule } from '@angular/forms'\nimport { NgModule } from '@angular/core'\nimport { CommonModule } from '@angular/common'\nimport { FoodCardComponent } from './food-card'\nimport { FoodQuestionComponent } from './food-question'\nimport { FoodChoiceComponent } from './food-choice'\nimport { FoodMenuComponent } from './food-menu';\nimport { FoodMenuCardComponent } from './food-menu-card'\n\n@NgModule({\n  declarations: [FoodCardComponent, FoodQuestionComponent, FoodChoiceComponent, FoodMenuComponent, FoodMenuCardComponent],\n  imports: [CommonModule, FormsModule, ReactiveFormsModule],\n})\nexport class FoodModule {}\n",
+      "sourceCode": "import { FormsModule, ReactiveFormsModule } from '@angular/forms'\nimport { NgModule } from '@angular/core'\nimport { CommonModule } from '@angular/common'\nimport { FoodCardComponent } from './food-card'\nimport { FoodQuestionComponent } from './food-question'\nimport { FoodChoiceComponent } from './food-choice'\nimport { FoodMenuComponent } from './food-menu'\nimport { FoodMenuCardComponent } from './food-menu-card'\n\n@NgModule({\n  declarations: [\n    FoodCardComponent,\n    FoodQuestionComponent,\n    FoodChoiceComponent,\n    FoodMenuComponent,\n    FoodMenuCardComponent,\n  ],\n  imports: [CommonModule, FormsModule, ReactiveFormsModule],\n})\nexport class FoodModule {}\n",
       "children": [
         {
           "type": "providers",
@@ -1280,6 +1280,16 @@
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "FoodMenuItemTemplate",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/food/food-menu-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodMenuCardComponent>",
+        "defaultValue": "(args: FoodMenuCardComponent) => ({\n  props: {\n    ...args,\n    foodChoiceAdded: action('foodChoiceAdded'),\n  },\n  template: `<app-food-menu-card>\n    <app-food-question [question]=\"menuItem.question\" head></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\" body>\n      <app-food-choice [choice]=\"choice\" (foodChoiceAdded)=\"foodChoiceAdded($event)\"></app-food-choice>\n    </ng-container>\n  </app-food-menu-card>`,\n})"
       },
       {
         "name": "foodServiceFactory",
@@ -1399,7 +1409,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "Template.bind({})"
+        "defaultValue": "FoodMenuItemTemplate.bind({})"
       },
       {
         "name": "require",
@@ -1441,6 +1451,16 @@
         "defaultValue": "Template.bind({})"
       },
       {
+        "name": "Soldout",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/food/food-menu-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuItemTemplate.bind({})"
+      },
+      {
         "name": "SoldoutFoodMenu",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -1474,21 +1494,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/stories/Header.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<Header>",
-        "defaultValue": "(args: Header) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/stories/Button.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<Button>",
         "defaultValue": "(args: Button) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/stories/Header.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<Header>",
+        "defaultValue": "(args: Header) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -1519,16 +1539,6 @@
         "deprecationMessage": "",
         "type": "Story<FoodChoiceComponent>",
         "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/stories/food/food-menu-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodMenuCardComponent>",
-        "defaultValue": "(args: FoodMenuCardComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -1702,6 +1712,38 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: false,\n  menuUrl: 'assets/menu.json',\n}"
+        }
+      ],
+      "src/stories/food/food-menu-card.stories.ts": [
+        {
+          "name": "FoodMenuItemTemplate",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-menu-card.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<FoodMenuCardComponent>",
+          "defaultValue": "(args: FoodMenuCardComponent) => ({\n  props: {\n    ...args,\n    foodChoiceAdded: action('foodChoiceAdded'),\n  },\n  template: `<app-food-menu-card>\n    <app-food-question [question]=\"menuItem.question\" head></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\" body>\n      <app-food-choice [choice]=\"choice\" (foodChoiceAdded)=\"foodChoiceAdded($event)\"></app-food-choice>\n    </ng-container>\n  </app-food-menu-card>`,\n})"
+        },
+        {
+          "name": "Primary",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-menu-card.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "FoodMenuItemTemplate.bind({})"
+        },
+        {
+          "name": "Soldout",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/stories/food/food-menu-card.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "FoodMenuItemTemplate.bind({})"
         }
       ],
       "src/stories/Button.stories.ts": [
@@ -1894,28 +1936,6 @@
           "deprecationMessage": "",
           "type": "Story<FoodChoiceComponent>",
           "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
-        }
-      ],
-      "src/stories/food/food-menu-card.stories.ts": [
-        {
-          "name": "Primary",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/stories/food/food-menu-card.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "defaultValue": "Template.bind({})"
-        },
-        {
-          "name": "Template",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/stories/food/food-menu-card.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story<FoodMenuCardComponent>",
-          "defaultValue": "(args: FoodMenuCardComponent) => ({\n  props: args,\n})"
         }
       ]
     },
@@ -2254,6 +2274,16 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
+        "name": "FoodMenuItemTemplate",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/stories/food/food-menu-card.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
         "name": "Primary",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -2264,7 +2294,7 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
-        "name": "Template",
+        "name": "Soldout",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
