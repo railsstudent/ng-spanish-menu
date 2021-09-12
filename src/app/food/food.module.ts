@@ -5,8 +5,16 @@ import { FoodCardComponent } from './food-card'
 import { FoodQuestionComponent } from './food-question'
 import { FoodChoiceComponent } from './food-choice'
 import { FoodMenuComponent } from './food-menu'
+import { FoodMenuCardComponent } from './food-menu-card'
+
 @NgModule({
-  declarations: [FoodCardComponent, FoodQuestionComponent, FoodChoiceComponent, FoodMenuComponent],
+  declarations: [
+    FoodCardComponent,
+    FoodQuestionComponent,
+    FoodChoiceComponent,
+    FoodMenuComponent,
+    FoodMenuCardComponent,
+  ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class FoodModule {}
