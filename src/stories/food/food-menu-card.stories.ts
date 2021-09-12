@@ -14,7 +14,6 @@ export default {
       declarations: [FoodQuestionComponent, FoodChoiceComponent],
     }),
   ],
-  argTypes: { onClick: { action: 'clicked' } },
 } as Meta
 
 const FoodMenuItemTemplate: Story<FoodMenuCardComponent> = (args: FoodMenuCardComponent) => ({
@@ -37,25 +36,28 @@ Primary.args = {
     question: 'Do you wish to order dessert?',
     choices: [
       {
-        id: 'a',
-        name: 'Egg salad',
-        description: 'Egg salad',
-        price: 4.99,
-        available: true,
-      },
-      {
         id: 'd',
         name: 'Buffalo Chicken Wings',
         description: 'Spicy chicken wings',
         price: 8.99,
         available: true,
       },
+    ],
+  },
+}
+
+export const Soldout = FoodMenuItemTemplate.bind({})
+Soldout.args = {
+  menuItem: {
+    id: '1',
+    question: 'Do you wish to order dessert?',
+    choices: [
       {
-        id: 'b',
-        name: 'Oven Baked Zucchini Chips',
-        description: 'Oven Baked Zucchini Chips',
-        price: 5.99,
-        available: true,
+        id: 'a',
+        name: 'Egg salad',
+        description: 'Egg salad',
+        price: 4.99,
+        available: false,
       },
     ],
   },
