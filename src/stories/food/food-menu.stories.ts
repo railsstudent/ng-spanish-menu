@@ -1,27 +1,15 @@
 import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodChoiceComponent, FoodQuestionComponent, FoodMenuComponent, FoodService } from '@/food'
+import { FoodChoiceComponent, FoodQuestionComponent, FoodMenuComponent, FoodService, MenuItem } from '@/food'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { of } from 'rxjs'
 import { MockData, SoldoutMockData } from './constants'
 
-const foodServiceFactory = () => {
+const foodServiceFactory = (menuItems?: MenuItem[]) => {
   return {
-    getFood: () => of(MockData),
-  }
-}
-
-const soldoutFoodServiceFactory = () => {
-  return {
-    getFood: () => of(SoldoutMockData),
-  }
-}
-
-const emptyFoodServiceFactory = () => {
-  return {
-    getFood: () => of(undefined),
+    getFood: () => of(menuItems),
   }
 }
 
@@ -35,7 +23,7 @@ export default {
       providers: [
         {
           provide: FoodService,
-          useFactory: () => foodServiceFactory(),
+          useFactory: () => foodServiceFactory(MockData),
         },
       ],
     }),
@@ -55,7 +43,7 @@ SoldoutMenu.decorators = [
     providers: [
       {
         provide: FoodService,
-        useFactory: soldoutFoodServiceFactory,
+        useFactory: () => foodServiceFactory(SoldoutMockData),
       },
     ],
   }),
@@ -67,7 +55,7 @@ Empty.decorators = [
     providers: [
       {
         provide: FoodService,
-        useFactory: emptyFoodServiceFactory,
+        useFactory: () => foodServiceFactory(),
       },
     ],
   }),
