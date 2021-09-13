@@ -11,24 +11,25 @@
     <span class="field">Price:</span>
     <span class="field-text">{{ choice.price }}</span>
   </label>
-  <form [formGroup]="form" (ngSubmit)="submitChoice$.next($event)" *ngIf="choice.available; else soldout">
-    <label name="quantity" class="item">
-      <span class="field">Quantity: </span>
-      <input type="number" formControlName="quantity" />
-    </label>
-    <div *ngIf="quantity.invalid && (quantity.touched || quantity.dirty)" class="alert alert-danger">
-      <div *ngIf="quantity.errors?.min" class="error">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>
-    </div>
-    <div *ngIf="processing" class="alert">
-      <div class="processing">Loading...</div>
-    </div>
-    <button type="submit" [disabled]="processing || form.value.quantity <= 0">Submit</button>
-  </form>
-  <!-- <div class="item">
-    <p>Form Status: {{ form.status }}</p>
-    <p>Quantity: {{ form.value | json }}</p>
-  </div> -->
-  <ng-template #soldout>
-    <span class="item sold-out">Sorry, this choice is sold out</span>
+  <ng-container [ngSwitch]="choice.available">
+    <form [formGroup]="form" (ngSubmit)="submitChoice$.next($event)" *ngSwitchCase="true">
+      <label name="quantity" class="item">
+        <span class="field">Quantity: </span>
+        <input type="number" formControlName="quantity" />
+      </label>
+      <div *ngIf="quantity.invalid && (quantity.touched || quantity.dirty)" class="alert alert-danger">
+        <div *ngIf="quantity.errors?.min" class="error">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>
+      </div>
+      <div *ngIf="processing" class="alert">
+        <div class="processing">Loading...</div>
+      </div>
+      <button type="submit" [disabled]="processing || form.value.quantity <= 0">Submit</button>
+    </form>
+    <ng-container *ngSwitchDefault>
+      <ng-container *ngTemplateOutlet="soldout; context: { choice: choice }"> </ng-container>
+    </ng-container>
+  </ng-container>
+  <ng-template #soldout let-choice="choice">
+    <span class="item sold-out">Sorry, {{ choice.name }} is sold out</span>
   </ng-template>
 </div>
