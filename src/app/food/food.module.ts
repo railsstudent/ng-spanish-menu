@@ -5,7 +5,7 @@ import { FoodCardComponent } from './food-card'
 import { FoodQuestionComponent } from './food-question'
 import { FoodChoiceComponent } from './food-choice'
 import { FoodMenuComponent } from './food-menu'
-import { FoodMenuCardComponent } from './food-menu-card';
+import { FoodMenuCardComponent } from './food-menu-card'
 import { FoodTotalComponent } from './food-total'
 
 @NgModule({

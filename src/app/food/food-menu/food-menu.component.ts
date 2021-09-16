@@ -4,12 +4,11 @@ import { Choice, MenuItem } from '../interfaces'
 import { takeUntil } from 'rxjs/operators'
 import { Observable, Subject } from 'rxjs'
 import { environment } from 'src/environments/environment'
-import { OrderedFoodChoice } from '../food-choice'
+import { OrderedFoodChoice } from '../interfaces'
 
 @Component({
   selector: 'app-food-menu',
   templateUrl: './food-menu.component.html',
-  styleUrls: ['./food-menu.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodMenuComponent implements OnInit, OnDestroy {

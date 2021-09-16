@@ -1,9 +1,8 @@
-import { OrderedFoodChoice } from './interface'
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { delay, map, takeUntil, tap } from 'rxjs/operators'
-import { Choice } from '../interfaces'
+import { Choice, OrderedFoodChoice } from '../interfaces'
 
 @Component({
   selector: 'app-food-choice',
@@ -46,7 +45,7 @@ export class FoodChoiceComponent implements OnInit, OnDestroy {
         tap(() => (this.processing = false)),
         takeUntil(this.unsubscribe$),
       )
-      .subscribe((value) => this.foodChoiceAdded.emit(value))
+      .subscribe((value: OrderedFoodChoice) => this.foodChoiceAdded.emit(value))
   }
 
   get quantity() {
