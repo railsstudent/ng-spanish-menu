@@ -16,7 +16,7 @@ export default {
   ],
 } as Meta
 
-const FoodMenuItemTemplate: Story<FoodMenuCardComponent> = (args: FoodMenuCardComponent) => ({
+const FoodMenuCardTemplate: Story<FoodMenuCardComponent> = (args: FoodMenuCardComponent) => ({
   props: {
     ...args,
     foodChoiceAdded: action('foodChoiceAdded'),
@@ -29,7 +29,7 @@ const FoodMenuItemTemplate: Story<FoodMenuCardComponent> = (args: FoodMenuCardCo
   </app-food-menu-card>`,
 })
 
-export const Primary = FoodMenuItemTemplate.bind({})
+export const Primary = FoodMenuCardTemplate.bind({})
 Primary.args = {
   menuItem: {
     id: '1',
@@ -46,7 +46,7 @@ Primary.args = {
   },
 }
 
-export const Soldout = FoodMenuItemTemplate.bind({})
+export const Soldout = FoodMenuCardTemplate.bind({})
 Soldout.args = {
   menuItem: {
     id: '1',

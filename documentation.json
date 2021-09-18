@@ -545,7 +545,7 @@
         },
         {
             "name": "FoodMenuCardComponent",
-            "id": "component-FoodMenuCardComponent-4203a743d33f6c0ce499771c37fc333b",
+            "id": "component-FoodMenuCardComponent-8b2c3079453fb271be8d40906bf6ab2a",
             "file": "src/app/food/food-menu-card/food-menu-card.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -553,13 +553,10 @@
             "outputs": [],
             "providers": [],
             "selector": "app-food-menu-card",
-            "styleUrls": [
-                "./food-menu-card.component.scss"
-            ],
+            "styleUrls": [],
             "styles": [],
-            "templateUrl": [
-                "./food-menu-card.component.html"
-            ],
+            "template": "<div>\n  <ng-content select=\"[head]\"></ng-content>\n  <ng-content select=\"[body]\"></ng-content>\n</div>",
+            "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [],
             "outputsClass": [],
@@ -572,16 +569,10 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component } from '@angular/core'\n\n@Component({\n  selector: 'app-food-menu-card',\n  templateUrl: './food-menu-card.component.html',\n  styleUrls: ['./food-menu-card.component.scss'],\n})\nexport class FoodMenuCardComponent {}\n",
+            "sourceCode": "import { Component } from '@angular/core'\n\n@Component({\n  selector: 'app-food-menu-card',\n  template: `\n  <div>\n    <ng-content select=\"[head]\"></ng-content>\n    <ng-content select=\"[body]\"></ng-content>\n  </div>`,\n})\nexport class FoodMenuCardComponent {}\n",
             "assetsDirs": [],
-            "styleUrlsData": [
-                {
-                    "data": "",
-                    "styleUrl": "./food-menu-card.component.scss"
-                }
-            ],
-            "stylesData": "",
-            "templateData": "<div>\n  <ng-content select=\"[head]\"></ng-content>\n  <ng-content select=\"[body]\"></ng-content>\n</div>\n"
+            "styleUrlsData": "",
+            "stylesData": ""
         },
         {
             "name": "FoodMenuComponent",
