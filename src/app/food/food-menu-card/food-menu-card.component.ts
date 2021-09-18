@@ -2,7 +2,10 @@ import { Component } from '@angular/core'
 
 @Component({
   selector: 'app-food-menu-card',
-  templateUrl: './food-menu-card.component.html',
-  styleUrls: ['./food-menu-card.component.scss'],
+  template: `
+  <div>
+    <ng-content select="[head]"></ng-content>
+    <ng-content select="[body]"></ng-content>
+  </div>`,
 })
 export class FoodMenuCardComponent {}
