@@ -35,6 +35,9 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - TailwindCSS?
 - Taiga UI?
 
+## Translation
+- Transloco
+
 ## PWA
 Should we convert the application to PWA?
 
