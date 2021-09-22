@@ -13,6 +13,11 @@ jobs:
           persist-credentials: false
           fetch-depth: 0 # 👈 Required to retrieve git history
 
+      - name: Setup node 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+
       - name: Git config
         run: |
           git config user.name "railsstudent"
