@@ -1,12 +1,13 @@
 import { Component, Input } from '@angular/core'
 import { OrderedFoodChoice } from '../interfaces'
+import { FoodService } from '../services'
 
 @Component({
   selector: 'app-food-total',
   template: `
     <div class="container">
       <button [disabled]="!choices || choices.length <= 0" (click)="calculate()">Give me the check</button>
-      <div><span>Total of your bill: {{ total | currency }}</span></div>
+      <div><span>Total: USD {{ total }}</span></div>
     </div>
   `,
   styles: [
@@ -16,8 +17,9 @@ import { OrderedFoodChoice } from '../interfaces'
       }
 
       .container {
-        padding: 0.25rem;
+        padding: 0.5rem;
         border: 1px solid black;
+        display: flex;
       }
 
       button {
@@ -33,10 +35,9 @@ export class FoodTotalComponent {
 
   total = 0
 
+  constructor(private foodService: FoodService) {}
+
   calculate(): void {
-    this.total = this.choices.reduce((acc, choice) => {
-      const { price, quantity } = choice
-      return acc + price * quantity
-    }, 0)
+    this.total = this.foodService.calculateTotal(this.choices)
   }
 }

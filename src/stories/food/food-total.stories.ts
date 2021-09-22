@@ -1,10 +1,22 @@
+import { moduleMetadata } from '@storybook/angular';
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodTotalComponent } from '@/food'
+import { FoodService, FoodTotalComponent } from '@/food'
+import { foodServiceFactory } from './mock';
 
 export default {
   title: 'Food Total',
   component: FoodTotalComponent,
+  decorators: [
+    moduleMetadata({
+      providers: [
+        {
+          provide: FoodService,
+          useFactory: () => foodServiceFactory(),
+        },
+      ],
+    }),
+  ],
 } as Meta
 
 const Template: Story<FoodTotalComponent> = (args: FoodTotalComponent) => ({

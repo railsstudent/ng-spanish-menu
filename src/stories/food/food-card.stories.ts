@@ -17,4 +17,5 @@ Primary.args = {
   description: 'Red wine',
   price: 12.99,
   quantity: 3,
+  total: 38.97
 }

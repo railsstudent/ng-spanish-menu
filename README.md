@@ -26,7 +26,7 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - ~~Should food menu be hardcoded data in the component?~~
 - ~~Should food menu loaded from static JSON file through http service? Http service retrieves data from static json file~~
 - ~~Should food menu loaded from backend API that we create?~~
-- Want to explore Netlify function to return food menu (Connie)
+- ~~Want to explore Netlify function to return food menu (Connie)~~
 
 ## CSS and UI libraries
 
