@@ -1,17 +1,11 @@
 import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodChoiceComponent, FoodQuestionComponent, FoodMenuComponent, FoodService, MenuItem } from '@/food'
+import { FoodChoiceComponent, FoodQuestionComponent, FoodMenuComponent, FoodService } from '@/food'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
-import { of } from 'rxjs'
 import { MockData, SoldoutMockData } from './constants'
-
-const foodServiceFactory = (menuItems?: MenuItem[]) => {
-  return {
-    getFood: () => of(menuItems),
-  }
-}
+import { foodServiceFactory } from './mock'
 
 export default {
   title: 'Food Menu',

@@ -1,6 +1,6 @@
 [build]
   publish = "dist/ng-spanish-menu"
-  command = "ng build --prod"
+  command = "ng build"
   functions = "./src/assets/functions"
 [[redirects]]
   from = "/*"

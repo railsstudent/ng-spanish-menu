@@ -1045,6 +1045,16 @@
                 "defaultValue": "require.context('./', true, /\\.spec\\.ts$/)"
             },
             {
+                "name": "data",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/assets/functions/menu.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "object",
+                "defaultValue": "{\n  \"menu\": [\n    {\n      \"id\": \"1\",\n      \"question\": \"Which appetizer(s) do you wish to order?\",\n      \"choices\": [\n        {\n          \"id\": \"a\",\n          \"name\": \"Egg salad\",\n          \"description\": \"Egg salad\",\n          \"price\": 4.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"b\",\n          \"name\": \"Tomato salad\",\n          \"description\": \"Tomato salad\",\n          \"price\": 4.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"c\",\n          \"name\": \"Bread\",\n          \"description\": \"Bread\",\n          \"price\": 6.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"d\",\n          \"name\": \"Buffalo Chicken Wings\",\n          \"description\": \"Spicy chicken wings\",\n          \"price\": 8.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"e\",\n          \"name\": \"Siu Mei\",\n          \"description\": \"Chinese Dimsum\",\n          \"price\": 7.99,\n          \"available\": false\n        }\n      ]\n    },\n    {\n      \"id\": \"2\",\n      \"question\": \"Which dessert(s) do you wish to order?\",\n      \"choices\": [\n        {\n          \"id\": \"a1\",\n          \"name\": \"Ice cream\",\n          \"description\": \"Ice cream\",\n          \"price\": 1.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"b1\",\n          \"name\": \"Tiramisu\",\n          \"description\": \"Coffee Flavoured Dessert from Italy\",\n          \"price\": 2.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"c1\",\n          \"name\": \"Gulab Jamun\",\n          \"description\": \"Deep-fried sweets from India\",\n          \"price\": 2.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"d1\",\n          \"name\": \"Lamingtons\",\n          \"description\": \"square sponge cakes from Australia\",\n          \"price\": 3.99,\n          \"available\": true\n        }\n      ]\n    }\n  ]\n}"
+            },
+            {
                 "name": "Drink",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1072,7 +1082,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  production: true,\n  menuUrl: 'assets/menu.json',\n}"
+                "defaultValue": "{\n  production: true,\n  menuUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions/menu',\n}"
             },
             {
                 "name": "environment",
@@ -1082,7 +1092,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "object",
-                "defaultValue": "{\n  production: false,\n  menuUrl: 'assets/menu.json',\n}"
+                "defaultValue": "{\n  production: false,\n  menuUrl: 'http://localhost:8888/.netlify/functions/menu',\n}"
             },
             {
                 "name": "Food",
@@ -1095,7 +1105,7 @@
                 "defaultValue": "Template.bind({})"
             },
             {
-                "name": "FoodMenuItemTemplate",
+                "name": "FoodMenuCardTemplate",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
                 "file": "src/stories/food/food-menu-card.stories.ts",
@@ -1108,11 +1118,21 @@
                 "name": "foodServiceFactory",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
-                "file": "src/stories/food/food-menu.stories.ts",
+                "file": "src/stories/food/mock.ts",
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
                 "defaultValue": "(menuItems?: MenuItem[]) => {\n  return {\n    getFood: () => of(menuItems),\n  }\n}"
+            },
+            {
+                "name": "handler",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/assets/functions/menu.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "Handler",
+                "defaultValue": "async () => {\n  return {\n    statusCode: 200,\n    body: JSON.stringify(data),\n  };\n}"
             },
             {
                 "name": "Menu",
@@ -1172,7 +1192,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "FoodMenuItemTemplate.bind({})"
+                "defaultValue": "FoodMenuCardTemplate.bind({})"
             },
             {
                 "name": "Primary",
@@ -1211,7 +1231,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "FoodMenuItemTemplate.bind({})"
+                "defaultValue": "FoodMenuCardTemplate.bind({})"
             },
             {
                 "name": "SoldoutMenu",
@@ -1309,6 +1329,28 @@
                     "type": "literal type"
                 }
             ],
+            "src/assets/functions/menu.ts": [
+                {
+                    "name": "data",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/assets/functions/menu.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "object",
+                    "defaultValue": "{\n  \"menu\": [\n    {\n      \"id\": \"1\",\n      \"question\": \"Which appetizer(s) do you wish to order?\",\n      \"choices\": [\n        {\n          \"id\": \"a\",\n          \"name\": \"Egg salad\",\n          \"description\": \"Egg salad\",\n          \"price\": 4.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"b\",\n          \"name\": \"Tomato salad\",\n          \"description\": \"Tomato salad\",\n          \"price\": 4.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"c\",\n          \"name\": \"Bread\",\n          \"description\": \"Bread\",\n          \"price\": 6.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"d\",\n          \"name\": \"Buffalo Chicken Wings\",\n          \"description\": \"Spicy chicken wings\",\n          \"price\": 8.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"e\",\n          \"name\": \"Siu Mei\",\n          \"description\": \"Chinese Dimsum\",\n          \"price\": 7.99,\n          \"available\": false\n        }\n      ]\n    },\n    {\n      \"id\": \"2\",\n      \"question\": \"Which dessert(s) do you wish to order?\",\n      \"choices\": [\n        {\n          \"id\": \"a1\",\n          \"name\": \"Ice cream\",\n          \"description\": \"Ice cream\",\n          \"price\": 1.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"b1\",\n          \"name\": \"Tiramisu\",\n          \"description\": \"Coffee Flavoured Dessert from Italy\",\n          \"price\": 2.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"c1\",\n          \"name\": \"Gulab Jamun\",\n          \"description\": \"Deep-fried sweets from India\",\n          \"price\": 2.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"d1\",\n          \"name\": \"Lamingtons\",\n          \"description\": \"square sponge cakes from Australia\",\n          \"price\": 3.99,\n          \"available\": true\n        }\n      ]\n    }\n  ]\n}"
+                },
+                {
+                    "name": "handler",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/assets/functions/menu.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Handler",
+                    "defaultValue": "async () => {\n  return {\n    statusCode: 200,\n    body: JSON.stringify(data),\n  };\n}"
+                }
+            ],
             "src/stories/food/food-question.stories.ts": [
                 {
                     "name": "Drink",
@@ -1353,16 +1395,6 @@
                     "defaultValue": "Template.bind({})"
                 },
                 {
-                    "name": "foodServiceFactory",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/food/food-menu.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "(menuItems?: MenuItem[]) => {\n  return {\n    getFood: () => of(menuItems),\n  }\n}"
-                },
-                {
                     "name": "Menu",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
@@ -1402,7 +1434,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  production: true,\n  menuUrl: 'assets/menu.json',\n}"
+                    "defaultValue": "{\n  production: true,\n  menuUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions/menu',\n}"
                 }
             ],
             "src/environments/environment.ts": [
@@ -1414,12 +1446,12 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "object",
-                    "defaultValue": "{\n  production: false,\n  menuUrl: 'assets/menu.json',\n}"
+                    "defaultValue": "{\n  production: false,\n  menuUrl: 'http://localhost:8888/.netlify/functions/menu',\n}"
                 }
             ],
             "src/stories/food/food-menu-card.stories.ts": [
                 {
-                    "name": "FoodMenuItemTemplate",
+                    "name": "FoodMenuCardTemplate",
                     "ctype": "miscellaneous",
                     "subtype": "variable",
                     "file": "src/stories/food/food-menu-card.stories.ts",
@@ -1436,7 +1468,7 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "FoodMenuItemTemplate.bind({})"
+                    "defaultValue": "FoodMenuCardTemplate.bind({})"
                 },
                 {
                     "name": "Soldout",
@@ -1446,7 +1478,19 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "FoodMenuItemTemplate.bind({})"
+                    "defaultValue": "FoodMenuCardTemplate.bind({})"
+                }
+            ],
+            "src/stories/food/mock.ts": [
+                {
+                    "name": "foodServiceFactory",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/food/mock.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "(menuItems?: MenuItem[]) => {\n  return {\n    getFood: () => of(menuItems),\n  }\n}"
                 }
             ],
             "src/stories/food/constants.ts": [
@@ -1689,6 +1733,26 @@
                 "status": "low"
             },
             {
+                "filePath": "src/assets/functions/menu.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "data",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/assets/functions/menu.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "handler",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
                 "filePath": "src/environments/environment.prod.ts",
                 "type": "variable",
                 "linktype": "miscellaneous",
@@ -1783,7 +1847,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "FoodMenuItemTemplate",
+                "name": "FoodMenuCardTemplate",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1814,16 +1878,6 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Empty",
-                "coveragePercent": 0,
-                "coverageCount": "0/1",
-                "status": "low"
-            },
-            {
-                "filePath": "src/stories/food/food-menu.stories.ts",
-                "type": "variable",
-                "linktype": "miscellaneous",
-                "linksubtype": "variable",
-                "name": "foodServiceFactory",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1914,6 +1968,16 @@
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
                 "name": "Template",
+                "coveragePercent": 0,
+                "coverageCount": "0/1",
+                "status": "low"
+            },
+            {
+                "filePath": "src/stories/food/mock.ts",
+                "type": "variable",
+                "linktype": "miscellaneous",
+                "linksubtype": "variable",
+                "name": "foodServiceFactory",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
