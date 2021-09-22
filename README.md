@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/e6584d85-1560-49b0-9b14-9b91abbc3c40/deploy-status)](https://app.netlify.com/sites/mystifying-panini-99633b/deploys)
 # NgSpanishMenu
 
 The application shows a Spanish menu and customer has to choose dishes and beverages from it. After each selection, a card is created to display description and price dynamically. Finally, the application calculates the total price that customer has to play before leaving the restaurant.
@@ -6,6 +7,11 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 
 - Node 14
 - NPM 7
+
+## Setup Netlify function
+- npm install netlify-cli -g
+- ntl dev
+- http://localhost:8888/.netlify/functions/menu to retrieve menu
 
 ## Todo
 
