@@ -1,0 +1,8 @@
+[build]
+  publish = "dist/ng-spanish-menu"
+  command = "ng build --prod"
+  functions = "./src/assets/functions"
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

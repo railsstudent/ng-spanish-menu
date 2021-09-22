@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  menuUrl: 'assets/menu.json',
+  menuUrl: 'http://localhost:8888/.netlify/functions/menu',
 }
 
 /*
