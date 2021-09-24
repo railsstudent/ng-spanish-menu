@@ -178,10 +178,38 @@
     "injectables": [
         {
             "name": "FoodService",
-            "id": "injectable-FoodService-db6ce665fb4f1bbe567609c5e3ab65c1",
+            "id": "injectable-FoodService-fb27bde12add4ce29c5abf015319d01e",
             "file": "src/app/food/services/food.service.ts",
             "properties": [],
             "methods": [
+                {
+                    "name": "calculateTotal",
+                    "args": [
+                        {
+                            "name": "food",
+                            "type": "literal type[]",
+                            "deprecated": false,
+                            "deprecationMessage": ""
+                        }
+                    ],
+                    "optional": false,
+                    "returnType": "number",
+                    "typeParameters": [],
+                    "line": 24,
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "jsdoctags": [
+                        {
+                            "name": "food",
+                            "type": "literal type[]",
+                            "deprecated": false,
+                            "deprecationMessage": "",
+                            "tagName": {
+                                "text": "param"
+                            }
+                        }
+                    ]
+                },
                 {
                     "name": "getFood",
                     "args": [
@@ -215,7 +243,7 @@
             "deprecationMessage": "",
             "description": "",
             "rawdescription": "\n",
-            "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { Observable, of } from 'rxjs'\nimport { catchError, pluck, share } from 'rxjs/operators'\nimport { Menu, MenuItem } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService {\n  constructor(private http: HttpClient) {}\n\n  getFood(url: string): Observable<MenuItem[] | undefined> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      catchError((err: Error) => {\n        console.error(err)\n        return of(undefined)\n      }),\n      share(),\n    )\n  }\n}\n",
+            "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { Observable, of } from 'rxjs'\nimport { catchError, pluck, share } from 'rxjs/operators'\nimport { Menu, MenuItem } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService {\n  constructor(private http: HttpClient) {}\n\n  getFood(url: string): Observable<MenuItem[] | undefined> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      catchError((err: Error) => {\n        console.error(err)\n        return of(undefined)\n      }),\n      share(),\n    )\n  }\n\n  calculateTotal(food: { price: number, quantity: number }[]): number {\n    const cents = 100\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    return Math.round(unroundedTotal * cents) / cents\n  }\n}\n",
             "constructorObj": {
                 "name": "constructor",
                 "description": "",
@@ -303,7 +331,7 @@
         },
         {
             "name": "FoodCardComponent",
-            "id": "component-FoodCardComponent-98f53d5b201c0885fd8a3137827163d7",
+            "id": "component-FoodCardComponent-c3086f372f55d40af37c3f05d6924934",
             "file": "src/app/food/food-card/food-card.component.ts",
             "changeDetection": "ChangeDetectionStrategy.OnPush",
             "encapsulation": [],
@@ -348,6 +376,13 @@
                     "deprecationMessage": "",
                     "line": 20,
                     "type": "number"
+                },
+                {
+                    "name": "total",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "line": 23,
+                    "type": "number"
                 }
             ],
             "outputsClass": [],
@@ -360,7 +395,7 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\n@Component({\n  selector: 'app-food-card',\n  templateUrl: './food-card.component.html',\n  styleUrls: ['./food-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodCardComponent {\n  @Input()\n  name: string\n\n  @Input()\n  description: string\n\n  @Input()\n  price: number\n\n  @Input()\n  quantity: number\n\n  get total() {\n    return Math.round(this.price * this.quantity * 100) / 100\n  }\n}\n",
+            "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\n@Component({\n  selector: 'app-food-card',\n  templateUrl: './food-card.component.html',\n  styleUrls: ['./food-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodCardComponent {\n  @Input()\n  name: string\n\n  @Input()\n  description: string\n\n  @Input()\n  price: number\n\n  @Input()\n  quantity: number\n\n  @Input()\n  total: number\n}\n",
             "assetsDirs": [],
             "styleUrlsData": [
                 {
@@ -369,17 +404,6 @@
                 }
             ],
             "stylesData": "",
-            "accessors": {
-                "total": {
-                    "name": "total",
-                    "getSignature": {
-                        "name": "total",
-                        "type": "",
-                        "returnType": "",
-                        "line": 22
-                    }
-                }
-            },
             "templateData": "<div class=\"container\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span>{{ name }}</span>\n  </label>\n  <label class=\"item\" name=\"description\">\n    <span class=\"field\">Description:</span>\n    <span>{{ description }}</span>\n  </label>\n  <label class=\"item\" name=\"price\">\n    <span class=\"field\">Price:</span>\n    <span>{{ price }}</span>\n  </label>\n  <label class=\"item\" name=\"quantity\">\n    <span class=\"field\">Quantity:</span>\n    <span>{{ quantity }}</span>\n  </label>\n  <label class=\"item\" name=\"total\">\n    <span class=\"field\">Total:</span>\n    <span>USD {{ total }}</span>\n  </label>\n</div>\n"
         },
         {
@@ -825,7 +849,7 @@
         },
         {
             "name": "FoodTotalComponent",
-            "id": "component-FoodTotalComponent-8083098c787a753c43ee5d27ee9ff73f",
+            "id": "component-FoodTotalComponent-9004b5af7bf43212a6154391c1a11461",
             "file": "src/app/food/food-total/food-total.component.ts",
             "encapsulation": [],
             "entryComponents": [],
@@ -835,9 +859,9 @@
             "selector": "app-food-total",
             "styleUrls": [],
             "styles": [
-                "\n      :host {\n        display: block;\n      }\n\n      .container {\n        padding: 0.25rem;\n        border: 1px solid black;\n      }\n\n      button {\n        margin-right: 0.5rem;\n        margin-bottom: 0.25rem;\n      }\n    "
+                "\n      :host {\n        display: block;\n      }\n\n      .container {\n        padding: 0.5rem;\n        border: 1px solid black;\n        display: flex;\n      }\n\n      button {\n        margin-right: 0.5rem;\n        margin-bottom: 0.25rem;\n      }\n    "
             ],
-            "template": "<div class=\"container\">\n  <button [disabled]=\"!choices || choices.length <= 0\" (click)=\"calculate()\">Give me the check</button>\n  <div><span>Total of your bill: {{ total | currency }}</span></div>\n</div>\n",
+            "template": "<div class=\"container\">\n  <button [disabled]=\"!choices || choices.length <= 0\" (click)=\"calculate()\">Give me the check</button>\n  <div><span>Total: USD {{ total }}</span></div>\n</div>\n",
             "templateUrl": [],
             "viewProviders": [],
             "inputsClass": [
@@ -846,7 +870,7 @@
                     "defaultValue": "[]",
                     "deprecated": false,
                     "deprecationMessage": "",
-                    "line": 32,
+                    "line": 34,
                     "type": "OrderedFoodChoice[]"
                 }
             ],
@@ -860,7 +884,7 @@
                     "type": "number",
                     "optional": false,
                     "description": "",
-                    "line": 34
+                    "line": 36
                 }
             ],
             "methodsClass": [
@@ -870,7 +894,7 @@
                     "optional": false,
                     "returnType": "void",
                     "typeParameters": [],
-                    "line": 36,
+                    "line": 40,
                     "deprecated": false,
                     "deprecationMessage": ""
                 }
@@ -882,10 +906,36 @@
             "description": "",
             "rawdescription": "\n",
             "type": "component",
-            "sourceCode": "import { Component, Input } from '@angular/core'\nimport { OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"container\">\n      <button [disabled]=\"!choices || choices.length <= 0\" (click)=\"calculate()\">Give me the check</button>\n      <div><span>Total of your bill: {{ total | currency }}</span></div>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      .container {\n        padding: 0.25rem;\n        border: 1px solid black;\n      }\n\n      button {\n        margin-right: 0.5rem;\n        margin-bottom: 0.25rem;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent {\n  @Input()\n  choices: OrderedFoodChoice[] = []\n\n  total = 0\n\n  calculate(): void {\n    this.total = this.choices.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n  }\n}\n",
+            "sourceCode": "import { Component, Input } from '@angular/core'\nimport { OrderedFoodChoice } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"container\">\n      <button [disabled]=\"!choices || choices.length <= 0\" (click)=\"calculate()\">Give me the check</button>\n      <div><span>Total: USD {{ total }}</span></div>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      .container {\n        padding: 0.5rem;\n        border: 1px solid black;\n        display: flex;\n      }\n\n      button {\n        margin-right: 0.5rem;\n        margin-bottom: 0.25rem;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent {\n  @Input()\n  choices: OrderedFoodChoice[] = []\n\n  total = 0\n\n  constructor(private foodService: FoodService) {}\n\n  calculate(): void {\n    this.total = this.foodService.calculateTotal(this.choices)\n  }\n}\n",
             "assetsDirs": [],
             "styleUrlsData": "",
-            "stylesData": "\n      :host {\n        display: block;\n      }\n\n      .container {\n        padding: 0.25rem;\n        border: 1px solid black;\n      }\n\n      button {\n        margin-right: 0.5rem;\n        margin-bottom: 0.25rem;\n      }\n    \n"
+            "stylesData": "\n      :host {\n        display: block;\n      }\n\n      .container {\n        padding: 0.5rem;\n        border: 1px solid black;\n        display: flex;\n      }\n\n      button {\n        margin-right: 0.5rem;\n        margin-bottom: 0.25rem;\n      }\n    \n",
+            "constructorObj": {
+                "name": "constructor",
+                "description": "",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "args": [
+                    {
+                        "name": "foodService",
+                        "type": "FoodService",
+                        "deprecated": false,
+                        "deprecationMessage": ""
+                    }
+                ],
+                "line": 36,
+                "jsdoctags": [
+                    {
+                        "name": "foodService",
+                        "type": "FoodService",
+                        "deprecated": false,
+                        "deprecationMessage": "",
+                        "tagName": {
+                            "text": "param"
+                        }
+                    }
+                ]
+            }
         }
     ],
     "modules": [
@@ -1055,16 +1105,6 @@
                 "defaultValue": "{\n  \"menu\": [\n    {\n      \"id\": \"1\",\n      \"question\": \"Which appetizer(s) do you wish to order?\",\n      \"choices\": [\n        {\n          \"id\": \"a\",\n          \"name\": \"Egg salad\",\n          \"description\": \"Egg salad\",\n          \"price\": 4.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"b\",\n          \"name\": \"Tomato salad\",\n          \"description\": \"Tomato salad\",\n          \"price\": 4.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"c\",\n          \"name\": \"Bread\",\n          \"description\": \"Bread\",\n          \"price\": 6.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"d\",\n          \"name\": \"Buffalo Chicken Wings\",\n          \"description\": \"Spicy chicken wings\",\n          \"price\": 8.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"e\",\n          \"name\": \"Siu Mei\",\n          \"description\": \"Chinese Dimsum\",\n          \"price\": 7.99,\n          \"available\": false\n        }\n      ]\n    },\n    {\n      \"id\": \"2\",\n      \"question\": \"Which dessert(s) do you wish to order?\",\n      \"choices\": [\n        {\n          \"id\": \"a1\",\n          \"name\": \"Ice cream\",\n          \"description\": \"Ice cream\",\n          \"price\": 1.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"b1\",\n          \"name\": \"Tiramisu\",\n          \"description\": \"Coffee Flavoured Dessert from Italy\",\n          \"price\": 2.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"c1\",\n          \"name\": \"Gulab Jamun\",\n          \"description\": \"Deep-fried sweets from India\",\n          \"price\": 2.99,\n          \"available\": true\n        },\n        {\n          \"id\": \"d1\",\n          \"name\": \"Lamingtons\",\n          \"description\": \"square sponge cakes from Australia\",\n          \"price\": 3.99,\n          \"available\": true\n        }\n      ]\n    }\n  ]\n}"
             },
             {
-                "name": "Drink",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/food/food-question.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "name": "Empty",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1095,16 +1135,6 @@
                 "defaultValue": "{\n  production: false,\n  menuUrl: 'http://localhost:8888/.netlify/functions/menu',\n}"
             },
             {
-                "name": "Food",
-                "ctype": "miscellaneous",
-                "subtype": "variable",
-                "file": "src/stories/food/food-question.stories.ts",
-                "deprecated": false,
-                "deprecationMessage": "",
-                "type": "",
-                "defaultValue": "Template.bind({})"
-            },
-            {
                 "name": "FoodMenuCardTemplate",
                 "ctype": "miscellaneous",
                 "subtype": "variable",
@@ -1122,7 +1152,7 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "",
-                "defaultValue": "(menuItems?: MenuItem[]) => {\n  return {\n    getFood: () => of(menuItems),\n  }\n}"
+                "defaultValue": "(menuItems?: MenuItem[]) => {\n  return {\n    getFood: () => of(menuItems),\n    calculateTotal: (food: { price: number, quantity: number }[]): number => {\n      const cents = 100\n      const unroundedTotal = food.reduce((acc, choice) => {\n        const { price, quantity } = choice\n        return acc + price * quantity\n      }, 0)\n\n      return Math.round(unroundedTotal * cents) / cents\n    }\n  }\n}"
             },
             {
                 "name": "handler",
@@ -1133,6 +1163,16 @@
                 "deprecationMessage": "",
                 "type": "Handler",
                 "defaultValue": "async () => {\n  return {\n    statusCode: 200,\n    body: JSON.stringify(data),\n  };\n}"
+            },
+            {
+                "name": "LongQuestion",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/food/food-question.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Menu",
@@ -1212,6 +1252,16 @@
                 "deprecated": false,
                 "deprecationMessage": "",
                 "type": "literal type"
+            },
+            {
+                "name": "SimpleQuestion",
+                "ctype": "miscellaneous",
+                "subtype": "variable",
+                "file": "src/stories/food/food-question.stories.ts",
+                "deprecated": false,
+                "deprecationMessage": "",
+                "type": "",
+                "defaultValue": "Template.bind({})"
             },
             {
                 "name": "Soldout",
@@ -1351,38 +1401,6 @@
                     "defaultValue": "async () => {\n  return {\n    statusCode: 200,\n    body: JSON.stringify(data),\n  };\n}"
                 }
             ],
-            "src/stories/food/food-question.stories.ts": [
-                {
-                    "name": "Drink",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/food/food-question.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Food",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/food/food-question.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "",
-                    "defaultValue": "Template.bind({})"
-                },
-                {
-                    "name": "Template",
-                    "ctype": "miscellaneous",
-                    "subtype": "variable",
-                    "file": "src/stories/food/food-question.stories.ts",
-                    "deprecated": false,
-                    "deprecationMessage": "",
-                    "type": "Story<FoodQuestionComponent>",
-                    "defaultValue": "(args: FoodQuestionComponent) => ({\n  props: args,\n})"
-                }
-            ],
             "src/stories/food/food-menu.stories.ts": [
                 {
                     "name": "Empty",
@@ -1490,7 +1508,39 @@
                     "deprecated": false,
                     "deprecationMessage": "",
                     "type": "",
-                    "defaultValue": "(menuItems?: MenuItem[]) => {\n  return {\n    getFood: () => of(menuItems),\n  }\n}"
+                    "defaultValue": "(menuItems?: MenuItem[]) => {\n  return {\n    getFood: () => of(menuItems),\n    calculateTotal: (food: { price: number, quantity: number }[]): number => {\n      const cents = 100\n      const unroundedTotal = food.reduce((acc, choice) => {\n        const { price, quantity } = choice\n        return acc + price * quantity\n      }, 0)\n\n      return Math.round(unroundedTotal * cents) / cents\n    }\n  }\n}"
+                }
+            ],
+            "src/stories/food/food-question.stories.ts": [
+                {
+                    "name": "LongQuestion",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/food/food-question.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "SimpleQuestion",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/food/food-question.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "",
+                    "defaultValue": "Template.bind({})"
+                },
+                {
+                    "name": "Template",
+                    "ctype": "miscellaneous",
+                    "subtype": "variable",
+                    "file": "src/stories/food/food-question.stories.ts",
+                    "deprecated": false,
+                    "deprecationMessage": "",
+                    "type": "Story<FoodQuestionComponent>",
+                    "defaultValue": "(args: FoodQuestionComponent) => ({\n  props: args,\n})"
                 }
             ],
             "src/stories/food/constants.ts": [
@@ -1639,7 +1689,7 @@
                 "linktype": "component",
                 "name": "FoodCardComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/5",
+                "coverageCount": "0/6",
                 "status": "low"
             },
             {
@@ -1684,7 +1734,7 @@
                 "linktype": "component",
                 "name": "FoodTotalComponent",
                 "coveragePercent": 0,
-                "coverageCount": "0/4",
+                "coverageCount": "0/5",
                 "status": "low"
             },
             {
@@ -1729,7 +1779,7 @@
                 "linktype": "injectable",
                 "name": "FoodService",
                 "coveragePercent": 0,
-                "coverageCount": "0/3",
+                "coverageCount": "0/4",
                 "status": "low"
             },
             {
@@ -1917,7 +1967,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Drink",
+                "name": "LongQuestion",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"
@@ -1927,7 +1977,7 @@
                 "type": "variable",
                 "linktype": "miscellaneous",
                 "linksubtype": "variable",
-                "name": "Food",
+                "name": "SimpleQuestion",
                 "coveragePercent": 0,
                 "coverageCount": "0/1",
                 "status": "low"

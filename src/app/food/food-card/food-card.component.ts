@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+import { OrderedFoodChoice } from '../interfaces'
 
 @Component({
   selector: 'app-food-card',
@@ -8,16 +9,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 })
 export class FoodCardComponent {
   @Input()
-  name: string
-
-  @Input()
-  description: string
-
-  @Input()
-  price: number
-
-  @Input()
-  quantity: number
+  ordered: OrderedFoodChoice
 
   @Input()
   total: number
