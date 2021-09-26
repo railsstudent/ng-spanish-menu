@@ -2,6 +2,7 @@ export interface Choice {
   id: string
   name: string
   description: string
+  currency: string
   price: number
   available: boolean
 }

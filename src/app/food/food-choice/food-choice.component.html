@@ -9,7 +9,7 @@
   </label>
   <label name="price" class="item">
     <span class="field">Price:</span>
-    <span class="field-text">{{ choice.price }}</span>
+    <span class="field-text">{{ choice.currency }} {{ choice.price }}</span>
   </label>
   <ng-container [ngSwitch]="choice.available">
     <form [formGroup]="form" (ngSubmit)="submitChoice$.next($event)" *ngSwitchCase="true">

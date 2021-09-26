@@ -7,7 +7,7 @@ import { FoodService } from '../services'
   template: `
     <div class="container">
       <button [disabled]="!choices || choices.length <= 0" (click)="calculate()">Give me the check</button>
-      <div><span>Total: USD {{ total }}</span></div>
+      <div><span>Total: {{ choices?.[0]?.currency || '' }} {{ total }}</span></div>
     </div>
   `,
   styles: [

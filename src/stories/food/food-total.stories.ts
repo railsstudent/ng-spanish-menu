@@ -28,18 +28,21 @@ Primary.args = {
   choices: [
     {
       name: 'Food 1',
+      currency: 'USD',
       price: 1.99,
       description: 'Food 1 description',
       quantity: 1
     },
     {
       name: 'Food 2',
+      currency: 'USD',
       price: 0.99,
       description: 'Food 2 description',
       quantity: 5
     },
     {
       name: 'Food 3',
+      currency: 'USD',
       price: 2.99,
       description: 'Food 3 description',
       quantity: 2
