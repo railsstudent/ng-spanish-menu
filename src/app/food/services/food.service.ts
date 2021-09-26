@@ -21,7 +21,7 @@ export class FoodService {
     )
   }
 
-  calculateTotal(food: { price: number, quantity: number }[]): number {
+  calculateTotal(food: { price: number; quantity: number }[]): number {
     const cents = 100
     const unroundedTotal = food.reduce((acc, choice) => {
       const { price, quantity } = choice

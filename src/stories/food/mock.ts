@@ -1,10 +1,10 @@
-import { MenuItem } from "@/food"
-import { of } from "rxjs"
+import { MenuItem } from '@/food'
+import { of } from 'rxjs'
 
 export const foodServiceFactory = (menuItems?: MenuItem[]) => {
   return {
     getFood: () => of(menuItems),
-    calculateTotal: (food: { price: number, quantity: number }[]): number => {
+    calculateTotal: (food: { price: number; quantity: number }[]): number => {
       const cents = 100
       const unroundedTotal = food.reduce((acc, choice) => {
         const { price, quantity } = choice
@@ -12,6 +12,6 @@ export const foodServiceFactory = (menuItems?: MenuItem[]) => {
       }, 0)
 
       return Math.round(unroundedTotal * cents) / cents
-    }
+    },
   }
 }

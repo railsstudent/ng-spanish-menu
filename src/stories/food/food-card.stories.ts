@@ -20,17 +20,18 @@ Primary.args = {
     price: 12.99,
     quantity: 3,
   },
-  total: 38.97
+  total: 38.97,
 }
 
 export const LongDescription = Template.bind({})
 LongDescription.args = {
   ordered: {
     name: 'Food with long description',
-    description: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
+    description:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
     currency: 'USD',
     price: 12.99,
     quantity: 3,
   },
-  total: 38.97
+  total: 38.97,
 }

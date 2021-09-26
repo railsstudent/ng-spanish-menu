@@ -1,8 +1,8 @@
-import { moduleMetadata } from '@storybook/angular';
+import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
 import { FoodService, FoodTotalComponent } from '@/food'
-import { foodServiceFactory } from './mock';
+import { foodServiceFactory } from './mock'
 
 export default {
   title: 'Food Total',
@@ -31,26 +31,26 @@ Primary.args = {
       currency: 'USD',
       price: 1.99,
       description: 'Food 1 description',
-      quantity: 1
+      quantity: 1,
     },
     {
       name: 'Food 2',
       currency: 'USD',
       price: 0.99,
       description: 'Food 2 description',
-      quantity: 5
+      quantity: 5,
     },
     {
       name: 'Food 3',
       currency: 'USD',
       price: 2.99,
       description: 'Food 3 description',
-      quantity: 2
-    }
-  ]
+      quantity: 2,
+    },
+  ],
 }
 
 export const NoOrder = Template.bind({})
 NoOrder.args = {
-  choices: []
+  choices: [],
 }
