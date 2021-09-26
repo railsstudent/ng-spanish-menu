@@ -80,6 +80,7 @@ const data = {
           "id": "d1",
           "name": "Lamingtons",
           "description": "square sponge cakes from Australia",
+          "currency": "USD",
           "price": 3.99,
           "available": true
         }
