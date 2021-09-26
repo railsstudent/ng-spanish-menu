@@ -10,6 +10,7 @@ const data = {
           "id": "a",
           "name": "Egg salad",
           "description": "Egg salad",
+          "currency": "USD",
           "price": 4.99,
           "available": true
         },
@@ -17,6 +18,7 @@ const data = {
           "id": "b",
           "name": "Tomato salad",
           "description": "Tomato salad",
+          "currency": "USD",
           "price": 4.99,
           "available": true
         },
@@ -24,6 +26,7 @@ const data = {
           "id": "c",
           "name": "Bread",
           "description": "Bread",
+          "currency": "USD",
           "price": 6.99,
           "available": true
         },
@@ -31,6 +34,7 @@ const data = {
           "id": "d",
           "name": "Buffalo Chicken Wings",
           "description": "Spicy chicken wings",
+          "currency": "USD",
           "price": 8.99,
           "available": true
         },
@@ -38,6 +42,7 @@ const data = {
           "id": "e",
           "name": "Siu Mei",
           "description": "Chinese Dimsum",
+          "currency": "USD",
           "price": 7.99,
           "available": false
         }
@@ -51,6 +56,7 @@ const data = {
           "id": "a1",
           "name": "Ice cream",
           "description": "Ice cream",
+          "currency": "USD",
           "price": 1.99,
           "available": true
         },
@@ -58,6 +64,7 @@ const data = {
           "id": "b1",
           "name": "Tiramisu",
           "description": "Coffee Flavoured Dessert from Italy",
+          "currency": "USD",
           "price": 2.99,
           "available": true
         },
@@ -65,6 +72,7 @@ const data = {
           "id": "c1",
           "name": "Gulab Jamun",
           "description": "Deep-fried sweets from India",
+          "currency": "USD",
           "price": 2.99,
           "available": true
         },
