@@ -1,14 +1,15 @@
+import { HttpClientModule } from '@angular/common/http'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { HttpClientModule } from '@angular/common/http'
-import { FoodMenuComponent } from './food-menu.component'
-import { FoodService } from '../services'
+import { Meta, Story } from '@storybook/angular/types-6-0'
+
 import { FoodChoiceComponent } from '../food-choice'
-import { FoodQuestionComponent } from '../food-question'
 import { FoodChoiceFormComponent } from '../food-choice-form'
+import { FoodQuestionComponent } from '../food-question'
+import { FoodService } from '../services'
 import { foodServiceFactory, MockData, SoldoutMockData } from '../storybook-mock'
+import { FoodMenuComponent } from './food-menu.component'
 
 export default {
   title: 'Food Menu',

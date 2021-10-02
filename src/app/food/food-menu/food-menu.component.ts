@@ -1,10 +1,10 @@
-import { FoodService } from '../services'
 import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
-import { Choice, MenuItem } from '../interfaces'
-import { takeUntil } from 'rxjs/operators'
 import { Observable, Subject } from 'rxjs'
+import { takeUntil } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
-import { OrderedFoodChoice } from '../interfaces'
+
+import { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'
+import { FoodService } from '../services'
 
 @Component({
   selector: 'app-food-menu',

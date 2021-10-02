@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { Observable, of } from 'rxjs'
 import { catchError, pluck, share } from 'rxjs/operators'
+
 import { Menu, MenuItem } from '../interfaces'
 
 @Injectable({

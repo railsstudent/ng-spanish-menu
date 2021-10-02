@@ -1,5 +1,6 @@
-import { MenuItem } from '@/food'
 import { of } from 'rxjs'
+
+import { MenuItem } from '../interfaces'
 
 export const foodServiceFactory = (menuItems?: MenuItem[]) => {
   return {

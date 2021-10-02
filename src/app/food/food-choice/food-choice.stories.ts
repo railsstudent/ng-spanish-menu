@@ -1,9 +1,10 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { FoodChoiceComponent } from './food-choice.component'
+import { Meta, Story } from '@storybook/angular/types-6-0'
+
 import { FoodChoiceFormComponent } from '../food-choice-form'
+import { FoodChoiceComponent } from './food-choice.component'
 
 export default {
   title: 'Food Choice',

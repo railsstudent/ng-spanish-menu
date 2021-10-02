@@ -20,10 +20,11 @@ $danger-color: #a94442;
 
   .sold-out {
     color: $danger-color;
-    display: inline
+    display: inline;
+  }
+
+  .food-choice-form {
+    margin-left: 0.75rem;
+    margin-right: 0.75rem;
   }
 }
-
-
-
-

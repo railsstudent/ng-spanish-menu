@@ -1,4 +1,4 @@
-import { MenuItem } from '@/food'
+import { MenuItem } from '../interfaces'
 
 export const MockData: MenuItem[] = [
   {

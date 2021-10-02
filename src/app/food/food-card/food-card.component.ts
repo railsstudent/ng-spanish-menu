@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
+
 import { OrderedFoodChoice } from '../interfaces'
 
 @Component({

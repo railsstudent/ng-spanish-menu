@@ -1,7 +1,7 @@
 <form class="container" [formGroup]="form" (ngSubmit)="submitChoice$.next($event)">
   <label name="quantity" class="item">
     <span class="field">Quantity: </span>
-    <input type="number" formControlName="quantity" />
+    <input type="number" formControlName="quantity" class="spacer" />
   </label>
   <div *ngIf="quantity.invalid && (quantity.touched || quantity.dirty)" class="alert alert-danger">
     <div *ngIf="quantity.errors?.min" class="error">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>

@@ -1,6 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
+  "plugins": ["simple-import-sort", "import"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -14,7 +15,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": ["app", "storybook"],
+            "prefix": ["app"],
             "style": "camelCase"
           }
         ],
@@ -22,10 +23,15 @@
           "error",
           {
             "type": "element",
-            "prefix": ["app", "storybook"],
+            "prefix": ["app"],
             "style": "kebab-case"
           }
-        ]
+        ],
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "import/first": "error",
+        "import/newline-after-import": "error",
+        "import/no-duplicates": "error"
       }
     },
     {
