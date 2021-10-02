@@ -1,7 +1,13 @@
 import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodChoiceComponent, FoodQuestionComponent, FoodMenuComponent, FoodService } from '@/food'
+import {
+  FoodChoiceComponent,
+  FoodQuestionComponent,
+  FoodMenuComponent,
+  FoodService,
+  FoodChoiceFormComponent,
+} from '@/food'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { HttpClientModule } from '@angular/common/http'
 import { MockData, SoldoutMockData } from './constants'
@@ -12,7 +18,7 @@ export default {
   component: FoodMenuComponent,
   decorators: [
     moduleMetadata({
-      declarations: [FoodChoiceComponent, FoodQuestionComponent],
+      declarations: [FoodChoiceComponent, FoodQuestionComponent, FoodChoiceFormComponent],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
       providers: [
         {

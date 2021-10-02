@@ -2,7 +2,7 @@ import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { action } from '@storybook/addon-actions'
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodChoiceComponent, FoodMenuCardComponent, FoodQuestionComponent } from '@/food'
+import { FoodChoiceComponent, FoodChoiceFormComponent, FoodMenuCardComponent, FoodQuestionComponent } from '@/food'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 export default {
@@ -11,7 +11,7 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [ReactiveFormsModule, FormsModule],
-      declarations: [FoodQuestionComponent, FoodChoiceComponent],
+      declarations: [FoodQuestionComponent, FoodChoiceComponent, FoodChoiceFormComponent],
     }),
   ],
 } as Meta
