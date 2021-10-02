@@ -89,10 +89,16 @@ const data = {
   ],
 }
 
-const handler: Handler = async () => {
+const handler: Handler = async (event) => {
+  if (event.httpMethod === 'GET') {
+    return {
+      statusCode: 200,
+      body: JSON.stringify(data),
+    }
+  }
   return {
-    statusCode: 200,
-    body: JSON.stringify(data),
+    statusCode: 500,
+    body: `Unsupported http method: ${event.httpMethod}`,
   }
 }
 
