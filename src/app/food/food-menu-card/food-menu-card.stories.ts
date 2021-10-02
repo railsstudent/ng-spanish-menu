@@ -2,8 +2,11 @@ import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { action } from '@storybook/addon-actions'
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodChoiceComponent, FoodChoiceFormComponent, FoodMenuCardComponent, FoodQuestionComponent } from '@/food'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FoodMenuCardComponent } from './food-menu-card.component'
+import { FoodQuestionComponent } from '../food-question'
+import { FoodChoiceComponent } from '../food-choice'
+import { FoodChoiceFormComponent } from '../food-choice-form'
 
 export default {
   title: 'Food Menu Card',

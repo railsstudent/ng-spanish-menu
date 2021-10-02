@@ -1,8 +1,9 @@
 import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodService, FoodTotalComponent } from '@/food'
-import { foodServiceFactory } from './mock'
+import { FoodService } from '../services'
+import { foodServiceFactory } from '../storybook-mock'
+import { FoodTotalComponent } from './food-total.component'
 
 export default {
   title: 'Food Total',

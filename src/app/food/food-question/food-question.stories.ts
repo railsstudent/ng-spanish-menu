@@ -1,6 +1,6 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodQuestionComponent } from '@/food'
+import { FoodQuestionComponent } from './food-question.component'
 
 export default {
   title: 'Food Question',

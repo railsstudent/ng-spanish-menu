@@ -1,8 +1,9 @@
 import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodChoiceComponent, FoodChoiceFormComponent } from '@/food'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FoodChoiceComponent } from './food-choice.component'
+import { FoodChoiceFormComponent } from '../food-choice-form'
 
 export default {
   title: 'Food Choice',
@@ -20,14 +21,18 @@ const Template: Story<FoodChoiceComponent> = (args: FoodChoiceComponent) => ({
   props: args,
 })
 
+const defaultChoice = {
+  id: '1',
+  name: 'Vino Tinto',
+  description: 'Red wine',
+  currency: 'USD',
+  price: 12.99,
+}
+
 export const Primary = Template.bind({})
 Primary.args = {
   choice: {
-    id: '1',
-    name: 'Vino Tinto',
-    description: 'Red wine',
-    currency: 'USD',
-    price: 12.99,
+    ...defaultChoice,
     available: true,
   },
 }
@@ -35,11 +40,7 @@ Primary.args = {
 export const Soldout = Template.bind({})
 Soldout.args = {
   choice: {
-    id: '1',
-    name: 'Vino tinto',
-    description: 'Red wine',
-    currency: 'USD',
-    price: 12.99,
+    ...defaultChoice,
     available: false,
   },
 }
