@@ -12,19 +12,12 @@
     <span class="field-text">{{ choice.currency }} {{ choice.price }}</span>
   </label>
   <ng-container [ngSwitch]="choice.available">
-    <form [formGroup]="form" (ngSubmit)="submitChoice$.next($event)" *ngSwitchCase="true">
-      <label name="quantity" class="item">
-        <span class="field">Quantity: </span>
-        <input type="number" formControlName="quantity" />
-      </label>
-      <div *ngIf="quantity.invalid && (quantity.touched || quantity.dirty)" class="alert alert-danger">
-        <div *ngIf="quantity.errors?.min" class="error">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>
-      </div>
-      <div *ngIf="processing" class="alert">
-        <div class="processing">Loading...</div>
-      </div>
-      <button type="submit" [disabled]="processing || form.value.quantity <= 0">Submit</button>
-    </form>
+    <app-food-choice-form
+      class="food-choice-form"
+      (foodChoiceSubmitted)="submitFoodChoice($event)"
+      *ngSwitchCase="true"
+    >
+    </app-food-choice-form>
     <ng-container *ngSwitchDefault>
       <ng-container *ngTemplateOutlet="soldout; context: { choice: choice }"> </ng-container>
     </ng-container>

@@ -1,7 +1,7 @@
 import { moduleMetadata } from '@storybook/angular'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Story, Meta } from '@storybook/angular/types-6-0'
-import { FoodChoiceComponent } from '@/food'
+import { FoodChoiceComponent, FoodChoiceFormComponent } from '@/food'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 export default {
@@ -10,6 +10,7 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [ReactiveFormsModule, FormsModule],
+      declarations: [FoodChoiceFormComponent],
     }),
   ],
   argTypes: { onClick: { action: 'clicked' } },
@@ -23,7 +24,7 @@ export const Primary = Template.bind({})
 Primary.args = {
   choice: {
     id: '1',
-    name: 'Vino tinto',
+    name: 'Vino Tinto',
     description: 'Red wine',
     currency: 'USD',
     price: 12.99,

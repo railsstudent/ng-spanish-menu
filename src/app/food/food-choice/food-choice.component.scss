@@ -18,21 +18,7 @@ $danger-color: #a94442;
     margin-bottom: 0.5rem;
   }
 
-  .ng-invalid:not(form)  {
-    border-left: 5px solid $danger-color; /* red */
-  }
-
-  .alert {
-    display: inline;
-    &-danger {
-      color: $danger-color;
-      .error {
-        display: inline;
-      }
-    }
-  }
-
-  .processing, .sold-out {
+  .sold-out {
     color: $danger-color;
     display: inline
   }

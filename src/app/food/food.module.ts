@@ -7,6 +7,7 @@ import { FoodChoiceComponent } from './food-choice'
 import { FoodMenuComponent } from './food-menu'
 import { FoodMenuCardComponent } from './food-menu-card'
 import { FoodTotalComponent } from './food-total'
+import { FoodChoiceFormComponent } from './food-choice-form'
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { FoodTotalComponent } from './food-total'
     FoodMenuComponent,
     FoodMenuCardComponent,
     FoodTotalComponent,
+    FoodChoiceFormComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
