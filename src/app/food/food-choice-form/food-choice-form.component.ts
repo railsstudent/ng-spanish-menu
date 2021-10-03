@@ -24,7 +24,6 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
-    console.log('FoodChoiceFormComponent ngOnInit fired')
     this.submitChoice$
       .pipe(
         tap(($event) => {
