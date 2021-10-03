@@ -24,7 +24,7 @@ const Template: Story<FoodChoiceComponent> = (args: FoodChoiceComponent) => ({
 
 const defaultChoice = {
   id: '1',
-  name: 'Vino Tinto',
+  name: 'Vino Tinto xxxxxxxxxxxxxxx yyyyyyyyyyy ddffff adadasdasdas vvvvv ooo',
   description: 'Red wine',
   currency: 'USD',
   price: 12.99,

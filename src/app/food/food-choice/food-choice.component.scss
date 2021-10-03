@@ -12,10 +12,9 @@ $danger-color: #a94442;
   padding: 0.5rem;
 
   .item {
-    flex: 1 1 calc(100% / 3 - 0.75rem * 2);
+    flex: 1 1 calc(100% / 4 - 0.75rem * 2 - 0.5rem * 2);
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
-    margin-bottom: 0.5rem;
   }
 
   .sold-out {
