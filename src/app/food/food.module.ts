@@ -8,7 +8,7 @@ import { FoodChoiceFormComponent } from './food-choice-form'
 import { FoodMenuComponent } from './food-menu'
 import { FoodMenuCardComponent } from './food-menu-card'
 import { FoodQuestionComponent } from './food-question'
-import { FoodShellComponentComponent } from './food-shell-component'
+import { FoodShellComponent } from './food-shell'
 import { FoodTotalComponent } from './food-total'
 
 @NgModule({
@@ -20,7 +20,7 @@ import { FoodTotalComponent } from './food-total'
     FoodMenuCardComponent,
     FoodTotalComponent,
     FoodChoiceFormComponent,
-    FoodShellComponentComponent,
+    FoodShellComponent,
   ],
   imports: [CommonModule, FormsModule, ReactiveFormsModule],
 })
