@@ -8,6 +8,7 @@ import { FoodChoiceFormComponent } from './food-choice-form'
 import { FoodMenuComponent } from './food-menu'
 import { FoodMenuCardComponent } from './food-menu-card'
 import { FoodQuestionComponent } from './food-question'
+import { FoodRoutingModule } from './food-routing.module'
 import { FoodShellComponent } from './food-shell'
 import { FoodTotalComponent } from './food-total'
 
@@ -22,6 +23,6 @@ import { FoodTotalComponent } from './food-total'
     FoodChoiceFormComponent,
     FoodShellComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FoodRoutingModule],
 })
 export class FoodModule {}
