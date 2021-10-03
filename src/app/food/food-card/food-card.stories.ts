@@ -1,5 +1,6 @@
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
-import { Story, Meta } from '@storybook/angular/types-6-0'
+import { Meta, Story } from '@storybook/angular/types-6-0'
+
 import { FoodCardComponent } from './food-card.component'
 
 export default {
