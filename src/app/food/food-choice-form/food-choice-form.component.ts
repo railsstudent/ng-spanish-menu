@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { delay, map, takeUntil, tap } from 'rxjs/operators'
@@ -10,6 +10,9 @@ import { delay, map, takeUntil, tap } from 'rxjs/operators'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodChoiceFormComponent implements OnInit, OnDestroy {
+  @Input()
+  quantityRemained: number
+
   @Output()
   foodChoiceSubmitted = new EventEmitter<number>()
 
@@ -33,10 +36,11 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
         }),
         delay(1000),
         map(() => this.form.value),
+        map(({ quantity }) => +quantity),
         tap(() => (this.processing = false)),
         takeUntil(this.unsubscribe$),
       )
-      .subscribe(({ quantity }) => this.foodChoiceSubmitted.emit(quantity))
+      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))
   }
 
   get quantity() {
