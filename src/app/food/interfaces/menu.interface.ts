@@ -5,6 +5,7 @@ export interface Choice {
   currency: string
   price: number
   available: boolean
+  quantity: number
 }
 
 export interface Menu {

@@ -12,6 +12,7 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 4.99,
         available: true,
+        quantity: 10,
       },
       {
         id: 'd',
@@ -20,6 +21,7 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 8.99,
         available: true,
+        quantity: 10,
       },
       {
         id: 'b',
@@ -28,6 +30,7 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 5.99,
         available: true,
+        quantity: 10,
       },
     ],
   },
@@ -42,6 +45,7 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 1.99,
         available: true,
+        quantity: 10,
       },
       {
         id: 'b1',
@@ -50,6 +54,7 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 2.99,
         available: true,
+        quantity: 10,
       },
     ],
   },
@@ -67,6 +72,7 @@ export const SoldoutMockData: MenuItem[] = [
         currency: 'USD',
         price: 4.99,
         available: false,
+        quantity: 0,
       },
       {
         id: 'd',
@@ -75,6 +81,7 @@ export const SoldoutMockData: MenuItem[] = [
         currency: 'USD',
         price: 8.99,
         available: false,
+        quantity: 0,
       },
       {
         id: 'b',
@@ -83,6 +90,7 @@ export const SoldoutMockData: MenuItem[] = [
         currency: 'USD',
         price: 5.99,
         available: true,
+        quantity: 10,
       },
     ],
   },
@@ -97,6 +105,7 @@ export const SoldoutMockData: MenuItem[] = [
         currency: 'USD',
         price: 1.99,
         available: false,
+        quantity: 0,
       },
       {
         id: 'b1',
@@ -105,6 +114,7 @@ export const SoldoutMockData: MenuItem[] = [
         currency: 'USD',
         price: 2.99,
         available: true,
+        quantity: 10,
       },
     ],
   },

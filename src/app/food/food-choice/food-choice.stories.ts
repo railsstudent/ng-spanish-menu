@@ -28,6 +28,7 @@ const defaultChoice = {
   description: 'Red wine',
   currency: 'USD',
   price: 12.99,
+  quantity: 10,
 }
 
 export const Primary = Template.bind({})
@@ -43,5 +44,6 @@ Soldout.args = {
   choice: {
     ...defaultChoice,
     available: false,
+    quantity: 0,
   },
 }
