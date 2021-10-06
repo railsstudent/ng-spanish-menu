@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { delay, map, takeUntil, tap } from 'rxjs/operators'
 
+import { fulfillOrderValidator } from '../directives'
+
 @Component({
   selector: 'app-food-choice-form',
   templateUrl: './food-choice-form.component.html',
@@ -11,7 +13,7 @@ import { delay, map, takeUntil, tap } from 'rxjs/operators'
 })
 export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   @Input()
-  quantityRemained: number
+  quantityRemained = 0
 
   @Output()
   foodChoiceSubmitted = new EventEmitter<number>()
@@ -20,9 +22,16 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject<boolean>()
   processing = false
 
-  form = this.fb.group({
-    quantity: new FormControl(1, [Validators.required, Validators.min(1)]),
-  })
+  form = this.fb.group(
+    {
+      quantity: new FormControl(1, [
+        Validators.required,
+        Validators.min(1),
+        fulfillOrderValidator(this.quantityRemained),
+      ]),
+    },
+    { updateOn: 'blur' },
+  )
 
   constructor(private fb: FormBuilder) {}
 

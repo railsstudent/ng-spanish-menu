@@ -390,7 +390,7 @@
     },
     {
       "name": "FoodChoiceComponent",
-      "id": "component-FoodChoiceComponent-87a3872d2d8036c05cf457e4af9eb794",
+      "id": "component-FoodChoiceComponent-5742c18fbfa0716a74cc89c8e375ad5d",
       "file": "src/app/food/food-choice/food-choice.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -481,7 +481,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\n\nimport { Choice, OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit {\n  @Input()\n  choice: Choice\n\n  @Output()\n  foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n\n  quantityRemained = 0\n\n  ngOnInit(): void {\n    this.quantityRemained = this.choice.quantity\n  }\n\n  submitFoodChoice(quantity: number) {\n    const { name, description, price, currency } = this.choice\n    this.quantityRemained = this.quantityRemained - quantity\n    this.foodChoiceAdded.emit({\n      name,\n      description,\n      price,\n      currency,\n      quantity,\n    })\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\n\nimport { Choice, OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit {\n  @Input()\n  choice: Choice\n\n  @Output()\n  foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n\n  quantityRemained = 0\n\n  ngOnInit(): void {\n    this.quantityRemained = this.choice.quantity\n  }\n\n  submitFoodChoice(quantity: number) {\n    const { name, description, price, currency } = this.choice\n    const nextQuantity = this.quantityRemained - quantity\n    if (nextQuantity >= 0) {\n      this.quantityRemained = nextQuantity\n      this.foodChoiceAdded.emit({\n        name,\n        description,\n        price,\n        currency,\n        quantity,\n      })\n    }\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -491,11 +491,11 @@
       ],
       "stylesData": "",
       "implements": ["OnInit"],
-      "templateData": "<div class=\"container\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"field-text\">{{ choice.name }}</span>\n  </label>\n  <label name=\"description\" class=\"item\">\n    <span class=\"field\">Description:</span>\n    <span class=\"field-text\">{{ choice.description }}</span>\n  </label>\n  <label name=\"price\" class=\"item\">\n    <span class=\"field\">Price:</span>\n    <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n  </label>\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"field-text\">{{ quantityRemained }}</span>\n  </label>\n  <ng-container [ngSwitch]=\"quantityRemained > 0\">\n    <app-food-choice-form\n      class=\"food-choice-form\"\n      (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n      *ngSwitchCase=\"true\"\n    >\n    </app-food-choice-form>\n    <ng-container *ngSwitchDefault>\n      <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n    </ng-container>\n  </ng-container>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item sold-out\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
+      "templateData": "<div class=\"container\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"field-text\">{{ choice.name }}</span>\n  </label>\n  <label name=\"description\" class=\"item\">\n    <span class=\"field\">Description:</span>\n    <span class=\"field-text\">{{ choice.description }}</span>\n  </label>\n  <label name=\"price\" class=\"item\">\n    <span class=\"field\">Price:</span>\n    <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n  </label>\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"field-text\">{{ quantityRemained }}</span>\n  </label>\n  <ng-container [ngSwitch]=\"quantityRemained > 0\">\n    <app-food-choice-form\n      class=\"food-choice-form\"\n      [quantityRemained]=\"quantityRemained\"\n      (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n      *ngSwitchCase=\"true\"\n    >\n    </app-food-choice-form>\n    <ng-container *ngSwitchDefault>\n      <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n    </ng-container>\n  </ng-container>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item sold-out\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
     },
     {
       "name": "FoodChoiceFormComponent",
-      "id": "component-FoodChoiceFormComponent-8acbe199d4b6546ea74ce9176aff0a4e",
+      "id": "component-FoodChoiceFormComponent-0609eb19a10e2d49517a6599cc8106a2",
       "file": "src/app/food/food-choice-form/food-choice-form.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -508,27 +508,36 @@
       "styles": [],
       "templateUrl": ["./food-choice-form.component.html"],
       "viewProviders": [],
-      "inputsClass": [],
+      "inputsClass": [
+        {
+          "name": "quantityRemained",
+          "defaultValue": "0",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 16,
+          "type": "number"
+        }
+      ],
       "outputsClass": [
         {
           "name": "foodChoiceSubmitted",
           "defaultValue": "new EventEmitter<number>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 14,
+          "line": 19,
           "type": "EventEmitter"
         }
       ],
       "propertiesClass": [
         {
           "name": "form",
-          "defaultValue": "this.fb.group({\n    quantity: new FormControl(1, [Validators.required, Validators.min(1)]),\n  })",
+          "defaultValue": "this.fb.group({\n    quantity: new FormControl(1, [Validators.required, Validators.min(1), fulfillOrderValidator(this.quantityRemained)]),\n  })",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
           "optional": false,
           "description": "",
-          "line": 20
+          "line": 25
         },
         {
           "name": "processing",
@@ -538,7 +547,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 18
+          "line": 23
         },
         {
           "name": "submitChoice$",
@@ -548,7 +557,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 16
+          "line": 21
         },
         {
           "name": "unsubscribe$",
@@ -558,7 +567,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 17
+          "line": 22
         }
       ],
       "methodsClass": [
@@ -568,7 +577,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 46,
+          "line": 52,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -578,7 +587,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 26,
+          "line": 31,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -590,7 +599,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, takeUntil, tap } from 'rxjs/operators'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styleUrls: ['./food-choice-form.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  @Output()\n  foodChoiceSubmitted = new EventEmitter<number>()\n\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n  processing = false\n\n  form = this.fb.group({\n    quantity: new FormControl(1, [Validators.required, Validators.min(1)]),\n  })\n\n  constructor(private fb: FormBuilder) {}\n\n  ngOnInit(): void {\n    this.submitChoice$\n      .pipe(\n        tap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n        }),\n        delay(1000),\n        map(() => this.form.value),\n        tap(() => (this.processing = false)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe(({ quantity }) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  get quantity() {\n    return this.form.get('quantity') as FormControl\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, takeUntil, tap } from 'rxjs/operators'\n\nimport { fulfillOrderValidator } from '../directives'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styleUrls: ['./food-choice-form.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  @Input()\n  quantityRemained = 0\n\n  @Output()\n  foodChoiceSubmitted = new EventEmitter<number>()\n\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n  processing = false\n\n  form = this.fb.group({\n    quantity: new FormControl(1, [Validators.required, Validators.min(1), fulfillOrderValidator(this.quantityRemained)]),\n  })\n\n  constructor(private fb: FormBuilder) {}\n\n  ngOnInit(): void {\n    this.submitChoice$\n      .pipe(\n        tap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n        }),\n        delay(1000),\n        map(() => this.form.value),\n        map(({ quantity }) => +quantity),\n        tap(() => (this.processing = false)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  get quantity() {\n    return this.form.get('quantity') as FormControl\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -612,7 +621,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 22,
+        "line": 27,
         "jsdoctags": [
           {
             "name": "fb",
@@ -633,11 +642,11 @@
             "name": "quantity",
             "type": "",
             "returnType": "",
-            "line": 42
+            "line": 48
           }
         }
       },
-      "templateData": "<form class=\"container\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"spacer\" />\n  </label>\n  <div *ngIf=\"quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"alert alert-danger\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"error\">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>\n  </div>\n  <div *ngIf=\"processing\" class=\"alert\">\n    <div class=\"processing\">Loading...</div>\n  </div>\n  <button type=\"submit\" [disabled]=\"processing || form.value.quantity <= 0\">Submit</button>\n</form>\n"
+      "templateData": "<form class=\"container\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"spacer\" />\n  </label>\n  <div *ngIf=\"quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"alert alert-danger\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"error\">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>\n  </div>\n  <div *ngIf=\"processing\" class=\"alert\">\n    <div class=\"processing\">Loading...</div>\n  </div>\n  <button type=\"submit\" [disabled]=\"processing || form.value.quantity <= 0\">Submit</button>\n  <pre>\n    Error: {{ quantity.errors | json }}\n  </pre>\n</form>\n"
     },
     {
       "name": "FoodMenuCardComponent",
@@ -1128,13 +1137,13 @@
     },
     {
       "name": "FoodModule",
-      "id": "module-FoodModule-c9ef9b41032c8c67212feac71d5bdadf",
+      "id": "module-FoodModule-f0b6c7b317b46bfafe386047e23c2526",
       "description": "",
       "deprecationMessage": "",
       "deprecated": false,
       "file": "src/app/food/food.module.ts",
       "methods": [],
-      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms'\n\nimport { FoodCardComponent } from './food-card'\nimport { FoodChoiceComponent } from './food-choice'\nimport { FoodChoiceFormComponent } from './food-choice-form'\nimport { FoodMenuComponent } from './food-menu'\nimport { FoodMenuCardComponent } from './food-menu-card'\nimport { FoodQuestionComponent } from './food-question'\nimport { FoodRoutingModule } from './food-routing.module'\nimport { FoodShellComponent } from './food-shell'\nimport { FoodTotalComponent } from './food-total'\n\n@NgModule({\n  declarations: [\n    FoodCardComponent,\n    FoodQuestionComponent,\n    FoodChoiceComponent,\n    FoodMenuComponent,\n    FoodMenuCardComponent,\n    FoodTotalComponent,\n    FoodChoiceFormComponent,\n    FoodShellComponent,\n  ],\n  imports: [CommonModule, FormsModule, ReactiveFormsModule, FoodRoutingModule],\n})\nexport class FoodModule {}\n",
+      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms'\n\nimport { FoodCardComponent } from './food-card'\nimport { FoodChoiceComponent } from './food-choice'\nimport { FoodChoiceFormComponent } from './food-choice-form'\nimport { FoodMenuComponent } from './food-menu'\nimport { FoodMenuCardComponent } from './food-menu-card'\nimport { FoodQuestionComponent } from './food-question'\nimport { FoodRoutingModule } from './food-routing.module'\nimport { FoodShellComponent } from './food-shell'\nimport { FoodTotalComponent } from './food-total';\n\n@NgModule({\n  declarations: [\n    FoodCardComponent,\n    FoodQuestionComponent,\n    FoodChoiceComponent,\n    FoodMenuComponent,\n    FoodMenuCardComponent,\n    FoodTotalComponent,\n    FoodChoiceFormComponent,\n    FoodShellComponent,\n  ],\n  imports: [CommonModule, FormsModule, ReactiveFormsModule, FoodRoutingModule],\n})\nexport class FoodModule {}\n",
       "children": [
         {
           "type": "providers",
@@ -1248,7 +1257,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
-        "defaultValue": "{\n  menu: [\n    {\n      id: '1',\n      question: 'Which appetizer(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b',\n          name: 'Tomato salad',\n          description: 'Tomato salad',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n        },\n        {\n          id: 'd',\n          name: 'Buffalo Chicken Wings',\n          description: 'Spicy chicken wings',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n        },\n        {\n          id: 'e',\n          name: 'Siu Mei',\n          description: 'Chinese Dimsum',\n          currency: 'USD',\n          price: 3.99,\n          available: true,\n        },\n      ],\n    },\n    {\n      id: '2',\n      question: 'Which dessert(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b1',\n          name: 'Tiramisu',\n          description: 'Coffee Flavoured Dessert from Italy',\n          currency: 'USD',\n          price: 5.99,\n          available: true,\n        },\n        {\n          id: 'c1',\n          name: 'Gulab Jamun',\n          description: 'Deep-fried sweets from India',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n        },\n        {\n          id: 'd1',\n          name: 'Lamingtons',\n          description: 'square sponge cakes from Australia',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n        },\n      ],\n    },\n  ],\n}"
+        "defaultValue": "{\n  menu: [\n    {\n      id: '1',\n      question: 'Which appetizer(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b',\n          name: 'Tomato salad',\n          description: 'Tomato salad',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 10,\n        },\n        {\n          id: 'd',\n          name: 'Buffalo Chicken Wings',\n          description: 'Spicy chicken wings',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 10,\n        },\n        {\n          id: 'e',\n          name: 'Siu Mei',\n          description: 'Chinese Dimsum',\n          currency: 'USD',\n          price: 3.99,\n          available: true,\n          quantity: 10,\n        },\n      ],\n    },\n    {\n      id: '2',\n      question: 'Which dessert(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b1',\n          name: 'Tiramisu',\n          description: 'Coffee Flavoured Dessert from Italy',\n          currency: 'USD',\n          price: 5.99,\n          available: true,\n          quantity: 10,\n        },\n        {\n          id: 'c1',\n          name: 'Gulab Jamun',\n          description: 'Deep-fried sweets from India',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 10,\n        },\n        {\n          id: 'd1',\n          name: 'Lamingtons',\n          description: 'square sponge cakes from Australia',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 10,\n        },\n      ],\n    },\n  ],\n}"
       },
       {
         "name": "data",
@@ -1560,7 +1569,35 @@
         "defaultValue": "(args: FoodTotalComponent) => ({\n  props: args,\n})"
       }
     ],
-    "functions": [],
+    "functions": [
+      {
+        "name": "fulfillOrderValidator",
+        "file": "src/app/food/directives/fulfill-order-validator.directive.ts",
+        "ctype": "miscellaneous",
+        "subtype": "function",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "description": "",
+        "args": [
+          {
+            "name": "quantityRemained",
+            "deprecated": false,
+            "deprecationMessage": ""
+          }
+        ],
+        "returnType": "ValidatorFn",
+        "jsdoctags": [
+          {
+            "name": "quantityRemained",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "tagName": {
+              "text": "param"
+            }
+          }
+        ]
+      }
+    ],
     "typealiases": [],
     "enumerations": [],
     "groupedVariables": {
@@ -1594,7 +1631,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "object",
-          "defaultValue": "{\n  menu: [\n    {\n      id: '1',\n      question: 'Which appetizer(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b',\n          name: 'Tomato salad',\n          description: 'Tomato salad',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n        },\n        {\n          id: 'd',\n          name: 'Buffalo Chicken Wings',\n          description: 'Spicy chicken wings',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n        },\n        {\n          id: 'e',\n          name: 'Siu Mei',\n          description: 'Chinese Dimsum',\n          currency: 'USD',\n          price: 3.99,\n          available: true,\n        },\n      ],\n    },\n    {\n      id: '2',\n      question: 'Which dessert(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b1',\n          name: 'Tiramisu',\n          description: 'Coffee Flavoured Dessert from Italy',\n          currency: 'USD',\n          price: 5.99,\n          available: true,\n        },\n        {\n          id: 'c1',\n          name: 'Gulab Jamun',\n          description: 'Deep-fried sweets from India',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n        },\n        {\n          id: 'd1',\n          name: 'Lamingtons',\n          description: 'square sponge cakes from Australia',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n        },\n      ],\n    },\n  ],\n}"
+          "defaultValue": "{\n  menu: [\n    {\n      id: '1',\n      question: 'Which appetizer(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b',\n          name: 'Tomato salad',\n          description: 'Tomato salad',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 10,\n        },\n        {\n          id: 'd',\n          name: 'Buffalo Chicken Wings',\n          description: 'Spicy chicken wings',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 10,\n        },\n        {\n          id: 'e',\n          name: 'Siu Mei',\n          description: 'Chinese Dimsum',\n          currency: 'USD',\n          price: 3.99,\n          available: true,\n          quantity: 10,\n        },\n      ],\n    },\n    {\n      id: '2',\n      question: 'Which dessert(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b1',\n          name: 'Tiramisu',\n          description: 'Coffee Flavoured Dessert from Italy',\n          currency: 'USD',\n          price: 5.99,\n          available: true,\n          quantity: 10,\n        },\n        {\n          id: 'c1',\n          name: 'Gulab Jamun',\n          description: 'Deep-fried sweets from India',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 10,\n        },\n        {\n          id: 'd1',\n          name: 'Lamingtons',\n          description: 'square sponge cakes from Australia',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 10,\n        },\n      ],\n    },\n  ],\n}"
         },
         {
           "name": "handler",
@@ -1922,7 +1959,37 @@
         }
       ]
     },
-    "groupedFunctions": {},
+    "groupedFunctions": {
+      "src/app/food/directives/fulfill-order-validator.directive.ts": [
+        {
+          "name": "fulfillOrderValidator",
+          "file": "src/app/food/directives/fulfill-order-validator.directive.ts",
+          "ctype": "miscellaneous",
+          "subtype": "function",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "description": "",
+          "args": [
+            {
+              "name": "quantityRemained",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "returnType": "ValidatorFn",
+          "jsdoctags": [
+            {
+              "name": "quantityRemained",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        }
+      ]
+    },
     "groupedEnumerations": {},
     "groupedTypeAliases": {}
   },
@@ -1996,6 +2063,16 @@
         "status": "low"
       },
       {
+        "filePath": "src/app/food/directives/fulfill-order-validator.directive.ts",
+        "type": "function",
+        "linktype": "miscellaneous",
+        "linksubtype": "function",
+        "name": "fulfillOrderValidator",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
         "filePath": "src/app/food/food-card/food-card.component.ts",
         "type": "component",
         "linktype": "component",
@@ -2040,7 +2117,7 @@
         "linktype": "component",
         "name": "FoodChoiceFormComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/9",
+        "coverageCount": "0/10",
         "status": "low"
       },
       {

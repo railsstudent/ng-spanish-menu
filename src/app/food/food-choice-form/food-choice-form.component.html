@@ -10,4 +10,7 @@
     <div class="processing">Loading...</div>
   </div>
   <button type="submit" [disabled]="processing || form.value.quantity <= 0">Submit</button>
+  <pre>
+    Error: {{ quantity.errors | json }}
+  </pre>
 </form>

@@ -20,3 +20,6 @@ const Template: Story<FoodChoiceFormComponent> = (args: FoodChoiceFormComponent)
 })
 
 export const Primary = Template.bind({})
+Primary.args = {
+  quantityRemained: 10,
+}
