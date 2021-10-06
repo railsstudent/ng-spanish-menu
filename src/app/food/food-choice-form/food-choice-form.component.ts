@@ -13,7 +13,7 @@ import { fulfillOrderValidator } from '../directives'
 })
 export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   @Input()
-  quantityRemained = 0
+  quantityRemained!: number
 
   @Output()
   foodChoiceSubmitted = new EventEmitter<number>()
@@ -22,16 +22,12 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject<boolean>()
   processing = false
 
-  form = this.fb.group(
-    {
-      quantity: new FormControl(1, [
-        Validators.required,
-        Validators.min(1),
-        fulfillOrderValidator(this.quantityRemained),
-      ]),
-    },
-    { updateOn: 'blur' },
-  )
+  form = this.fb.group({
+    quantity: new FormControl(1, {
+      validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.quantityRemained)],
+      updateOn: 'blur',
+    }),
+  })
 
   constructor(private fb: FormBuilder) {}
 

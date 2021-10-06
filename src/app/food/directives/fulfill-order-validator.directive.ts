@@ -9,6 +9,8 @@ export function fulfillOrderValidator(quantityRemained: number): ValidatorFn {
       ? null
       : {
           notEnoughQuantity: true,
+          quantityRemained,
+          quantity,
           delta,
         }
   }
