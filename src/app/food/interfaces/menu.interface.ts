@@ -17,4 +17,6 @@ export interface MenuItem {
   choices: Choice[]
 }
 
-export type Quantity = { qty: number }
+export interface Quantity {
+  qty: number
+}

@@ -12,5 +12,5 @@
   <div *ngIf="processing" class="alert">
     <div class="processing">Loading...</div>
   </div>
-  <button type="submit" [disabled]="processing || form.value.quantity <= 0 || quantityRemained <= 0">Submit</button>
+  <button type="submit" [disabled]="processing || form.invalid || quantityRemained <= 0">Submit</button>
 </form>
