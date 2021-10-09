@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
-import { FormBuilder, FormControl, Validators } from '@angular/forms'
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { delay, map, takeUntil, tap } from 'rxjs/operators'
 
@@ -13,7 +13,7 @@ import { fulfillOrderValidator } from '../directives'
 })
 export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   @Input()
-  quantityRemained!: number
+  quantityRemained: number
 
   @Output()
   foodChoiceSubmitted = new EventEmitter<number>()
@@ -22,16 +22,18 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject<boolean>()
   processing = false
 
-  form = this.fb.group({
-    quantity: new FormControl(1, {
-      validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.quantityRemained)],
-      updateOn: 'blur',
-    }),
-  })
+  form: FormGroup
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      quantity: new FormControl(1, {
+        validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.quantityRemained)],
+        updateOn: 'blur',
+      }),
+    })
+
     this.submitChoice$
       .pipe(
         tap(($event) => {

@@ -23,3 +23,8 @@ export const Primary = Template.bind({})
 Primary.args = {
   quantityRemained: 10,
 }
+
+export const DisableSubmit = Template.bind({})
+DisableSubmit.args = {
+  quantityRemained: 0,
+}

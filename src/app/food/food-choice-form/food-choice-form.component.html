@@ -1,16 +1,16 @@
 <form class="container" [formGroup]="form" (ngSubmit)="submitChoice$.next($event)">
   <label name="quantity" class="item">
     <span class="field">Quantity: </span>
-    <input type="number" formControlName="quantity" class="spacer" />
+    <input type="number" formControlName="quantity" class="spacer" [readonly]="quantityRemained <= 0" />
   </label>
   <div *ngIf="quantity.invalid && (quantity.touched || quantity.dirty)" class="alert alert-danger">
     <div *ngIf="quantity.errors?.min" class="error">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>
+    <div *ngIf="quantity.errors?.notEnoughQuantity" class="error">
+      Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.
+    </div>
   </div>
   <div *ngIf="processing" class="alert">
     <div class="processing">Loading...</div>
   </div>
-  <button type="submit" [disabled]="processing || form.value.quantity <= 0">Submit</button>
-  <pre>
-    Error: {{ quantity.errors | json }}
-  </pre>
+  <button type="submit" [disabled]="processing || form.value.quantity <= 0 || quantityRemained <= 0">Submit</button>
 </form>
