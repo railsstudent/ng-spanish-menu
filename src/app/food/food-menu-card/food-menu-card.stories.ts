@@ -28,13 +28,19 @@ const FoodMenuCardTemplate: Story<FoodMenuCardComponent> = (args: FoodMenuCardCo
   template: `<app-food-menu-card>
     <app-food-question [question]="menuItem.question" head></app-food-question>
     <ng-container *ngFor="let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn" body>
-      <app-food-choice [choice]="choice" (foodChoiceAdded)="foodChoiceAdded($event)"></app-food-choice>
+      <app-food-choice [choice]="choice" [qtyMap]="qtyMap" (foodChoiceAdded)="foodChoiceAdded($event)"></app-food-choice>
     </ng-container>
   </app-food-menu-card>`,
 })
 
+const qtyMap = {
+  d: 10,
+  a: 0,
+}
+
 export const Primary = FoodMenuCardTemplate.bind({})
 Primary.args = {
+  qtyMap,
   menuItem: {
     id: '1',
     question: 'Do you wish to order dessert?',
@@ -53,6 +59,7 @@ Primary.args = {
 
 export const Soldout = FoodMenuCardTemplate.bind({})
 Soldout.args = {
+  qtyMap,
   menuItem: {
     id: '1',
     question: 'Do you wish to order dessert?',

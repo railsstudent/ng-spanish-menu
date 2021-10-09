@@ -1,2 +1,2 @@
 export * from './menu.interface'
-export * from './ordered-food-choice.interface'
+export * from './ordered-choice.interface'

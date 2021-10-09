@@ -11,7 +11,6 @@ export const MockData: MenuItem[] = [
         description: 'Egg salad',
         currency: 'USD',
         price: 4.99,
-        available: true,
         quantity: 10,
       },
       {
@@ -20,7 +19,6 @@ export const MockData: MenuItem[] = [
         description: 'Spicy chicken wings',
         currency: 'USD',
         price: 8.99,
-        available: true,
         quantity: 10,
       },
       {
@@ -29,7 +27,6 @@ export const MockData: MenuItem[] = [
         description: 'Oven Baked Zucchini Chips',
         currency: 'USD',
         price: 5.99,
-        available: true,
         quantity: 10,
       },
     ],
@@ -44,7 +41,6 @@ export const MockData: MenuItem[] = [
         description: 'Ice cream',
         currency: 'USD',
         price: 1.99,
-        available: true,
         quantity: 10,
       },
       {
@@ -53,7 +49,6 @@ export const MockData: MenuItem[] = [
         description: 'Coffee Flavoured Dessert from Italy',
         currency: 'USD',
         price: 2.99,
-        available: true,
         quantity: 10,
       },
     ],
@@ -71,7 +66,6 @@ export const SoldoutMockData: MenuItem[] = [
         description: 'Egg salad',
         currency: 'USD',
         price: 4.99,
-        available: false,
         quantity: 0,
       },
       {
@@ -80,7 +74,6 @@ export const SoldoutMockData: MenuItem[] = [
         description: 'Spicy chicken wings',
         currency: 'USD',
         price: 8.99,
-        available: false,
         quantity: 0,
       },
       {
@@ -89,7 +82,6 @@ export const SoldoutMockData: MenuItem[] = [
         description: 'Oven Baked Zucchini Chips',
         currency: 'USD',
         price: 5.99,
-        available: true,
         quantity: 10,
       },
     ],
@@ -104,7 +96,6 @@ export const SoldoutMockData: MenuItem[] = [
         description: 'Ice cream',
         currency: 'USD',
         price: 1.99,
-        available: false,
         quantity: 0,
       },
       {
@@ -113,7 +104,6 @@ export const SoldoutMockData: MenuItem[] = [
         description: 'Coffee Flavoured Dessert from Italy',
         currency: 'USD',
         price: 2.99,
-        available: true,
         quantity: 10,
       },
     ],

@@ -3,22 +3,13 @@
   "interfaces": [
     {
       "name": "Choice",
-      "id": "interface-Choice-bbc5aab92af179588136158577894293",
+      "id": "interface-Choice-ffd4fce5b56ef14648a20114f98cb5c8",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  available: boolean\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport type Quantity = { qty: number }\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport interface Quantity {\n  qty: number\n}\n",
       "properties": [
-        {
-          "name": "available",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "boolean",
-          "optional": false,
-          "description": "",
-          "line": 7
-        },
         {
           "name": "currency",
           "deprecated": false,
@@ -71,7 +62,7 @@
           "type": "number",
           "optional": false,
           "description": "",
-          "line": 8
+          "line": 7
         }
       ],
       "indexSignatures": [],
@@ -80,12 +71,12 @@
     },
     {
       "name": "Menu",
-      "id": "interface-Menu-bbc5aab92af179588136158577894293",
+      "id": "interface-Menu-ffd4fce5b56ef14648a20114f98cb5c8",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  available: boolean\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport type Quantity = { qty: number }\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport interface Quantity {\n  qty: number\n}\n",
       "properties": [
         {
           "name": "menu",
@@ -94,7 +85,7 @@
           "type": "MenuItem[]",
           "optional": false,
           "description": "",
-          "line": 12
+          "line": 11
         }
       ],
       "indexSignatures": [],
@@ -103,12 +94,12 @@
     },
     {
       "name": "MenuItem",
-      "id": "interface-MenuItem-bbc5aab92af179588136158577894293",
+      "id": "interface-MenuItem-ffd4fce5b56ef14648a20114f98cb5c8",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  available: boolean\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport type Quantity = { qty: number }\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport interface Quantity {\n  qty: number\n}\n",
       "properties": [
         {
           "name": "choices",
@@ -117,7 +108,7 @@
           "type": "Choice[]",
           "optional": false,
           "description": "",
-          "line": 17
+          "line": 16
         },
         {
           "name": "id",
@@ -126,7 +117,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 15
+          "line": 14
         },
         {
           "name": "question",
@@ -135,7 +126,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 16
+          "line": 15
         }
       ],
       "indexSignatures": [],
@@ -144,12 +135,12 @@
     },
     {
       "name": "OrderedFoodChoice",
-      "id": "interface-OrderedFoodChoice-d50fbe968fa5180b9723438f949f5658",
-      "file": "src/app/food/interfaces/ordered-food-choice.interface.ts",
+      "id": "interface-OrderedFoodChoice-3952981fd4d16ee1c43868baaa7e0a96",
+      "file": "src/app/food/interfaces/ordered-choice.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface OrderedFoodChoice {\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n",
+      "sourceCode": "export interface OrderedFoodChoice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n",
       "properties": [
         {
           "name": "currency",
@@ -158,7 +149,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 4
+          "line": 5
         },
         {
           "name": "description",
@@ -167,10 +158,10 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 3
+          "line": 4
         },
         {
-          "name": "name",
+          "name": "id",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "string",
@@ -179,13 +170,22 @@
           "line": 2
         },
         {
+          "name": "name",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 3
+        },
+        {
           "name": "price",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "number",
           "optional": false,
           "description": "",
-          "line": 5
+          "line": 6
         },
         {
           "name": "quantity",
@@ -194,7 +194,30 @@
           "type": "number",
           "optional": false,
           "description": "",
-          "line": 6
+          "line": 7
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 163,
+      "methods": []
+    },
+    {
+      "name": "Quantity",
+      "id": "interface-Quantity-ffd4fce5b56ef14648a20114f98cb5c8",
+      "file": "src/app/food/interfaces/menu.interface.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport interface Quantity {\n  qty: number\n}\n",
+      "properties": [
+        {
+          "name": "qty",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 20
         }
       ],
       "indexSignatures": [],
@@ -205,7 +228,7 @@
   "injectables": [
     {
       "name": "FoodService",
-      "id": "injectable-FoodService-e43a5e0f8665cc6c4f0b76a547c57f12",
+      "id": "injectable-FoodService-eaab21460fa2e930cfb07011cb90c307",
       "file": "src/app/food/services/food.service.ts",
       "properties": [
         {
@@ -378,7 +401,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { BehaviorSubject, Observable, of } from 'rxjs'\nimport { catchError, pluck, share, tap } from 'rxjs/operators'\n\nimport { Menu, MenuItem } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService {\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  constructor(private http: HttpClient) {}\n\n  getFood(url: string): Observable<MenuItem[] | undefined> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      tap(menu => {\n        const qtyMap = menu.reduce((acc, mi) => {\n          mi.choices.forEach(({ id, quantity }) => {\n            acc[id] = quantity\n          })\n          return acc\n        }, {} as Record<string, number>)\n        this.quantityAvailableSub$.next(qtyMap)\n      }),\n      catchError((err: Error) => {\n        console.error(err)\n        return of(undefined)\n      }),\n      share(),\n    )\n  }\n\n  calculateTotal(food: { price: number; quantity: number }[]): number {\n    const cents = 100\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    return Math.round(unroundedTotal * cents) / cents\n  }\n\n  isEnoughQuantity(id: string, quantity: number) {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (!qtyAvailableMap) {\n      return false\n    }\n\n    const qtyAvailable = qtyAvailableMap[id] || 0\n    return qtyAvailable - quantity >= 0\n  }\n\n  updateQuatity(id: string, quantity: number) {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap && qtyAvailableMap[id]) {\n      this.quantityAvailableSub$.next({\n        ...qtyAvailableMap,\n        id: qtyAvailableMap[id] - quantity\n      })\n    }\n  }\n}\n",
+      "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { BehaviorSubject, Observable, of } from 'rxjs'\nimport { catchError, pluck, share, tap } from 'rxjs/operators'\n\nimport { Menu, MenuItem } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService {\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  constructor(private http: HttpClient) {}\n\n  getFood(url: string): Observable<MenuItem[] | undefined> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      tap((menu) => {\n        const qtyMap = menu.reduce((acc, mi) => {\n          mi.choices.forEach(({ id, quantity }) => {\n            acc[id] = quantity\n          })\n          return acc\n        }, {} as Record<string, number>)\n        this.quantityAvailableSub$.next(qtyMap)\n      }),\n      catchError((err: Error) => {\n        console.error(err)\n        return of(undefined)\n      }),\n      share(),\n    )\n  }\n\n  calculateTotal(food: { price: number; quantity: number }[]): number {\n    const cents = 100\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    return Math.round(unroundedTotal * cents) / cents\n  }\n\n  isEnoughQuantity(id: string, quantity: number) {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (!qtyAvailableMap) {\n      return false\n    }\n\n    const qtyAvailable = qtyAvailableMap[id] || 0\n    return qtyAvailable - quantity >= 0\n  }\n\n  updateQuatity(id: string, quantity: number) {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap && qtyAvailableMap[id]) {\n      this.quantityAvailableSub$.next({\n        ...qtyAvailableMap,\n        id: qtyAvailableMap[id] - quantity,\n      })\n    }\n  }\n}\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -498,7 +521,7 @@
     },
     {
       "name": "FoodChoiceComponent",
-      "id": "component-FoodChoiceComponent-516749d0e042e2801420c60160dbc745",
+      "id": "component-FoodChoiceComponent-33deb564a4de133930a110e359e34348",
       "file": "src/app/food/food-choice/food-choice.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -516,8 +539,15 @@
           "name": "choice",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 16,
+          "line": 13,
           "type": "Choice"
+        },
+        {
+          "name": "qtyMap",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 16,
+          "type": "Record<string | number> | undefined | null"
         }
       ],
       "outputsClass": [
@@ -532,10 +562,10 @@
       ],
       "propertiesClass": [
         {
-          "name": "remained$",
+          "name": "remained",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "Observable<Quantity>",
+          "type": "number",
           "optional": false,
           "description": "",
           "line": 21
@@ -548,7 +578,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 25,
+          "line": 23,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -565,7 +595,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 36,
+          "line": 27,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -588,7 +618,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { Observable } from 'rxjs'\nimport { map } from 'rxjs/operators'\n\nimport { Choice, OrderedFoodChoice, Quantity } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit {\n  @Input()\n  choice: Choice\n\n  @Output()\n  foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n\n  remained$: Observable<Quantity>\n\n  constructor(private service: FoodService) {}\n\n  ngOnInit(): void {\n    this.remained$ = this.service.quantityAvailableMap$\n      .pipe(map(quatityAvailableMap => {\n        let qty = 0\n        if (quatityAvailableMap) {\n          qty =  quatityAvailableMap[this.choice.id] || 0\n        }\n        return { qty }\n      }))\n  }\n\n  submitFoodChoice(quantity: number) {\n    const { id, name, description, price, currency } = this.choice\n    if (this.service.isEnoughQuantity(id, quantity)) {\n      this.service.updateQuatity(id, quantity)\n      this.foodChoiceAdded.emit({\n        name,\n        description,\n        price,\n        currency,\n        quantity,\n      })\n    }\n\n    // const nextQuantity = this.quantityRemained - quantity\n    // if (nextQuantity >= 0) {\n    //   this.quantityRemained = nextQuantity\n    //   this.foodChoiceAdded.emit({\n    //     name,\n    //     description,\n    //     price,\n    //     currency,\n    //     quantity,\n    //   })\n    // }\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\n\nimport { Choice, OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit {\n  @Input()\n  choice: Choice\n\n  @Input()\n  qtyMap: Record<string, number> | undefined | null\n\n  @Output()\n  foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n\n  remained: number\n\n  ngOnInit(): void {\n    this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0\n  }\n\n  submitFoodChoice(quantity: number) {\n    const { id, name, description, price, currency } = this.choice\n    if (this.remained - quantity >= 0) {\n      this.foodChoiceAdded.emit({\n        id,\n        name,\n        description,\n        price,\n        currency,\n        quantity,\n      })\n    }\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -597,38 +627,12 @@
         }
       ],
       "stylesData": "",
-      "constructorObj": {
-        "name": "constructor",
-        "description": "",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "args": [
-          {
-            "name": "service",
-            "type": "FoodService",
-            "deprecated": false,
-            "deprecationMessage": ""
-          }
-        ],
-        "line": 21,
-        "jsdoctags": [
-          {
-            "name": "service",
-            "type": "FoodService",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          }
-        ]
-      },
       "implements": ["OnInit"],
-      "templateData": "<div class=\"container\" *ngIf=\"remained$ | async as remained\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"field-text\">{{ choice.name }}</span>\n  </label>\n  <label name=\"description\" class=\"item\">\n    <span class=\"field\">Description:</span>\n    <span class=\"field-text\">{{ choice.description }}</span>\n  </label>\n  <label name=\"price\" class=\"item\">\n    <span class=\"field\">Price:</span>\n    <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n  </label>\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"field-text\">{{ remained.qty }}</span>\n  </label>\n  <ng-container [ngSwitch]=\"remained.qty > 0\">\n    <app-food-choice-form\n      class=\"food-choice-form\"\n      [quantityRemained]=\"remained.qty\"\n      (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n      *ngSwitchCase=\"true\"\n    >\n    </app-food-choice-form>\n    <ng-container *ngSwitchDefault>\n      <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n    </ng-container>\n  </ng-container>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item sold-out\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
+      "templateData": "<div class=\"container\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"field-text\">{{ choice.name }}</span>\n  </label>\n  <label name=\"description\" class=\"item\">\n    <span class=\"field\">Description:</span>\n    <span class=\"field-text\">{{ choice.description }}</span>\n  </label>\n  <label name=\"price\" class=\"item\">\n    <span class=\"field\">Price:</span>\n    <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n  </label>\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"field-text\">{{ remained }}</span>\n  </label>\n  <ng-container [ngSwitch]=\"remained > 0\">\n    <app-food-choice-form\n      class=\"food-choice-form\"\n      [quantityRemained]=\"remained\"\n      (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n      *ngSwitchCase=\"true\"\n    >\n    </app-food-choice-form>\n    <ng-container *ngSwitchDefault>\n      <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n    </ng-container>\n  </ng-container>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item sold-out\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
     },
     {
       "name": "FoodChoiceFormComponent",
-      "id": "component-FoodChoiceFormComponent-36cbf613c9e374ecc4d048ad15562468",
+      "id": "component-FoodChoiceFormComponent-7df509704cf1966ca9a4010ff609f61b",
       "file": "src/app/food/food-choice-form/food-choice-form.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -663,10 +667,9 @@
       "propertiesClass": [
         {
           "name": "form",
-          "defaultValue": "this.fb.group({\n    quantity: new FormControl(1, {\n      validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.quantityRemained)],\n      updateOn: 'blur',\n    }),\n  })",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "",
+          "type": "FormGroup",
           "optional": false,
           "description": "",
           "line": 25
@@ -709,7 +712,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 55,
+          "line": 57,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -719,7 +722,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 34,
+          "line": 29,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -731,11 +734,11 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, takeUntil, tap } from 'rxjs/operators'\n\nimport { fulfillOrderValidator } from '../directives'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styleUrls: ['./food-choice-form.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  @Input()\n  quantityRemained!: number\n\n  @Output()\n  foodChoiceSubmitted = new EventEmitter<number>()\n\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n  processing = false\n\n  form = this.fb.group({\n    quantity: new FormControl(1, {\n      validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.quantityRemained)],\n      updateOn: 'blur',\n    }),\n  })\n\n  constructor(private fb: FormBuilder) {}\n\n  ngOnInit(): void {\n    this.submitChoice$\n      .pipe(\n        tap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n        }),\n        delay(1000),\n        map(() => this.form.value),\n        map(({ quantity }) => +quantity),\n        tap(() => (this.processing = false)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  get quantity() {\n    return this.form.get('quantity') as FormControl\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, takeUntil, tap } from 'rxjs/operators'\n\nimport { fulfillOrderValidator } from '../directives'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styleUrls: ['./food-choice-form.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  @Input()\n  quantityRemained: number\n\n  @Output()\n  foodChoiceSubmitted = new EventEmitter<number>()\n\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n  processing = false\n\n  form: FormGroup\n\n  constructor(private fb: FormBuilder) {}\n\n  ngOnInit(): void {\n    this.form = this.fb.group({\n      quantity: new FormControl(1, {\n        validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.quantityRemained)],\n        updateOn: 'blur',\n      }),\n    })\n\n    this.submitChoice$\n      .pipe(\n        tap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n        }),\n        delay(1000),\n        map(() => this.form.value),\n        map(({ quantity }) => +quantity),\n        tap(() => (this.processing = false)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  get quantity() {\n    return this.form.get('quantity') as FormControl\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
-          "data": "$danger-color: #a94442;\n\n:host {\n  display: block;\n}\n\n.container {\n  padding: 0.5rem 0;\n\n  .ng-invalid:not(form) {\n    border-left: 5px solid $danger-color;\n  }\n\n  .alert {\n    display: inline;\n    &-danger {\n      color: $danger-color;\n      .error {\n        display: inline;\n      }\n    }\n  }\n\n  .processing {\n    color: $danger-color;\n    display: inline;\n    margin-right: 0.5rem;\n  }\n\n  .item .spacer {\n    margin-right: 0.5rem;\n  }\n}\n",
+          "data": "$danger-color: #a94442;\n\n:host {\n  display: block;\n}\n\n.container {\n  padding: 0.5rem 0;\n\n  .ng-invalid:not(form) {\n    border-left: 5px solid $danger-color;\n  }\n\n  .alert {\n    display: inline;\n    &-danger {\n      color: $danger-color;\n      .error {\n        display: inline;\n        margin-right: 0.5rem;\n      }\n    }\n  }\n\n  .processing {\n    color: $danger-color;\n    display: inline;\n    margin-right: 0.5rem;\n  }\n\n  .item .spacer {\n    margin-right: 0.5rem;\n  }\n}\n",
           "styleUrl": "./food-choice-form.component.scss"
         }
       ],
@@ -753,7 +756,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 30,
+        "line": 25,
         "jsdoctags": [
           {
             "name": "fb",
@@ -774,11 +777,11 @@
             "name": "quantity",
             "type": "",
             "returnType": "",
-            "line": 51
+            "line": 53
           }
         }
       },
-      "templateData": "<form class=\"container\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"spacer\" />\n  </label>\n  <div *ngIf=\"quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"alert alert-danger\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"error\">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>\n  </div>\n  <div *ngIf=\"processing\" class=\"alert\">\n    <div class=\"processing\">Loading...</div>\n  </div>\n  <button type=\"submit\" [disabled]=\"processing || form.value.quantity <= 0\">Submit</button>\n  <pre>\n    Error: {{ quantity.errors | json }}\n  </pre>\n</form>\n"
+      "templateData": "<form class=\"container\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"spacer\" [readonly]=\"quantityRemained <= 0\" />\n  </label>\n  <div *ngIf=\"quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"alert alert-danger\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"error\">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>\n    <div *ngIf=\"quantity.errors?.notEnoughQuantity\" class=\"error\">\n      Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.\n    </div>\n  </div>\n  <div *ngIf=\"processing\" class=\"alert\">\n    <div class=\"processing\">Loading...</div>\n  </div>\n  <button type=\"submit\" [disabled]=\"processing || form.invalid || quantityRemained <= 0\">Submit</button>\n</form>\n"
     },
     {
       "name": "FoodMenuCardComponent",
@@ -813,7 +816,7 @@
     },
     {
       "name": "FoodMenuComponent",
-      "id": "component-FoodMenuComponent-bcd79adbd26f4115c12a602006502611",
+      "id": "component-FoodMenuComponent-422a3fb44fc4d3ff06517e8e1aa16b19",
       "file": "src/app/food/food-menu/food-menu.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -848,6 +851,15 @@
           "line": 18
         },
         {
+          "name": "qtyMap$",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Observable<Record | undefined>",
+          "optional": false,
+          "description": "",
+          "line": 19
+        },
+        {
           "name": "unsubscribe$",
           "defaultValue": "new Subject<boolean>()",
           "deprecated": false,
@@ -855,7 +867,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 19
+          "line": 20
         }
       ],
       "methodsClass": [
@@ -878,7 +890,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 31,
+          "line": 33,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -921,7 +933,7 @@
           "optional": false,
           "returnType": "string | number",
           "typeParameters": [],
-          "line": 27,
+          "line": 29,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -951,7 +963,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 35,
+          "line": 37,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -961,7 +973,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 23,
+          "line": 24,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -973,7 +985,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { Observable, Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  @Output()\n  handleFoodChoice = new EventEmitter<OrderedFoodChoice>()\n\n  menuItems$: Observable<MenuItem[] | undefined>\n  unsubscribe$ = new Subject<boolean>()\n\n  constructor(private service: FoodService) {}\n\n  ngOnInit(): void {\n    this.menuItems$ = this.service.getFood(environment.menuUrl).pipe(takeUntil(this.unsubscribe$))\n  }\n\n  menumItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  choiceTrackByFn(index: number, choice: Choice) {\n    return choice ? choice.id : index\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { Observable, Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  @Output()\n  handleFoodChoice = new EventEmitter<OrderedFoodChoice>()\n\n  menuItems$: Observable<MenuItem[] | undefined>\n  qtyMap$: Observable<Record<string, number> | undefined>\n  unsubscribe$ = new Subject<boolean>()\n\n  constructor(private service: FoodService) {}\n\n  ngOnInit(): void {\n    this.menuItems$ = this.service.getFood(environment.menuUrl).pipe(takeUntil(this.unsubscribe$))\n    this.qtyMap$ = this.service.quantityAvailableMap$\n  }\n\n  menumItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  choiceTrackByFn(index: number, choice: Choice) {\n    return choice ? choice.id : index\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -990,7 +1002,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 19,
+        "line": 20,
         "jsdoctags": [
           {
             "name": "service",
@@ -1004,7 +1016,7 @@
         ]
       },
       "implements": ["OnInit", "OnDestroy"],
-      "templateData": "<div class=\"container\" *ngIf=\"menuItems$ | async as menuItems; else notAvailable\">\n  <app-food-menu-card *ngFor=\"let menuItem of menuItems; index as i; trackBy: menumItemTrackByFn\">\n    <app-food-question [question]=\"menuItem.question\" head></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\" body>\n      <app-food-choice [choice]=\"choice\" (foodChoiceAdded)=\"handleFoodChoice.emit($event)\"></app-food-choice>\n    </ng-container>\n  </app-food-menu-card>\n</div>\n<ng-template #notAvailable>No menu</ng-template>\n"
+      "templateData": "<div\n  class=\"container\"\n  *ngIf=\"{ menuItems: menuItems$ | async, qtyMap: qtyMap$ | async } as observables; else notAvailable\"\n>\n  <app-food-menu-card *ngFor=\"let menuItem of observables.menuItems; index as i; trackBy: menumItemTrackByFn\">\n    <app-food-question [question]=\"menuItem.question\" head></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\" body>\n      <app-food-choice\n        [choice]=\"choice\"\n        [qtyMap]=\"observables.qtyMap\"\n        (foodChoiceAdded)=\"handleFoodChoice.emit($event)\"\n      ></app-food-choice>\n    </ng-container>\n  </app-food-menu-card>\n</div>\n<ng-template #notAvailable>No menu</ng-template>\n"
     },
     {
       "name": "FoodQuestionComponent",
@@ -1408,8 +1420,18 @@
         "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "object",
+        "type": "Choice",
         "defaultValue": "{\n  id: '1',\n  name: 'Vino Tinto xxxxxxxxxxxxxxx yyyyyyyyyyy ddffff adadasdasdas vvvvv ooo',\n  description: 'Red wine',\n  currency: 'USD',\n  price: 12.99,\n  quantity: 10,\n}"
+      },
+      {
+        "name": "DisableSubmit",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
       },
       {
         "name": "Empty",
@@ -1519,7 +1541,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "MenuItem[]",
-        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        available: true,\n        quantity: 10,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        available: true,\n        quantity: 10,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        available: true,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        available: true,\n        quantity: 10,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        available: true,\n        quantity: 10,\n      },\n    ],\n  },\n]"
+        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 10,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 10,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 10,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 10,\n      },\n    ],\n  },\n]"
       },
       {
         "name": "NoOrder",
@@ -1555,16 +1577,6 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "FoodMenuCardTemplate.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -1575,11 +1587,31 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuCardTemplate.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "qtyMap",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  '1': 10,\n  '2': 0,\n}"
       },
       {
         "name": "require",
@@ -1638,7 +1670,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "MenuItem[]",
-        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        available: false,\n        quantity: 0,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        available: false,\n        quantity: 0,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        available: true,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        available: false,\n        quantity: 0,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        available: true,\n        quantity: 10,\n      },\n    ],\n  },\n]"
+        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 0,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 0,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 0,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 10,\n      },\n    ],\n  },\n]"
       },
       {
         "name": "Template",
@@ -1664,6 +1696,16 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodChoiceFormComponent>",
+        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-menu/food-menu.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -1679,16 +1721,6 @@
         "deprecationMessage": "",
         "type": "Story<FoodQuestionComponent>",
         "defaultValue": "(args: FoodQuestionComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodChoiceFormComponent>",
-        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -1730,19 +1762,7 @@
         ]
       }
     ],
-    "typealiases": [
-      {
-        "name": "Quantity",
-        "ctype": "miscellaneous",
-        "subtype": "typealias",
-        "rawtype": "literal type",
-        "file": "src/app/food/interfaces/menu.interface.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "description": "",
-        "kind": 178
-      }
-    ],
+    "typealiases": [],
     "enumerations": [],
     "groupedVariables": {
       "src/test.ts": [
@@ -1818,7 +1838,7 @@
           "file": "src/app/food/food-choice/food-choice.stories.ts",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "object",
+          "type": "Choice",
           "defaultValue": "{\n  id: '1',\n  name: 'Vino Tinto xxxxxxxxxxxxxxx yyyyyyyyyyy ddffff adadasdasdas vvvvv ooo',\n  description: 'Red wine',\n  currency: 'USD',\n  price: 12.99,\n  quantity: 10,\n}"
         },
         {
@@ -1830,6 +1850,16 @@
           "deprecationMessage": "",
           "type": "",
           "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "qtyMap",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-choice/food-choice.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  '1': 10,\n  '2': 0,\n}"
         },
         {
           "name": "Soldout",
@@ -1850,6 +1880,38 @@
           "deprecationMessage": "",
           "type": "Story<FoodChoiceComponent>",
           "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
+        }
+      ],
+      "src/app/food/food-choice-form/food-choice-form.stories.ts": [
+        {
+          "name": "DisableSubmit",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Primary",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
+          "name": "Template",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<FoodChoiceFormComponent>",
+          "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
         }
       ],
       "src/app/food/food-menu/food-menu.stories.ts": [
@@ -2035,7 +2097,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "MenuItem[]",
-          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        available: true,\n        quantity: 10,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        available: true,\n        quantity: 10,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        available: true,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        available: true,\n        quantity: 10,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        available: true,\n        quantity: 10,\n      },\n    ],\n  },\n]"
+          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 10,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 10,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 10,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 10,\n      },\n    ],\n  },\n]"
         },
         {
           "name": "SoldoutMockData",
@@ -2045,7 +2107,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "MenuItem[]",
-          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        available: false,\n        quantity: 0,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        available: false,\n        quantity: 0,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        available: true,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        available: false,\n        quantity: 0,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        available: true,\n        quantity: 10,\n      },\n    ],\n  },\n]"
+          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 0,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 0,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 0,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 10,\n      },\n    ],\n  },\n]"
         }
       ],
       "src/app/food/food-total/food-total.stories.ts": [
@@ -2078,28 +2140,6 @@
           "deprecationMessage": "",
           "type": "Story<FoodTotalComponent>",
           "defaultValue": "(args: FoodTotalComponent) => ({\n  props: args,\n})"
-        }
-      ],
-      "src/app/food/food-choice-form/food-choice-form.stories.ts": [
-        {
-          "name": "Primary",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "defaultValue": "Template.bind({})"
-        },
-        {
-          "name": "Template",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story<FoodChoiceFormComponent>",
-          "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
         }
       ]
     },
@@ -2135,21 +2175,7 @@
       ]
     },
     "groupedEnumerations": {},
-    "groupedTypeAliases": {
-      "src/app/food/interfaces/menu.interface.ts": [
-        {
-          "name": "Quantity",
-          "ctype": "miscellaneous",
-          "subtype": "typealias",
-          "rawtype": "literal type",
-          "file": "src/app/food/interfaces/menu.interface.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "description": "",
-          "kind": 178
-        }
-      ]
-    }
+    "groupedTypeAliases": {}
   },
   "routes": {
     "name": "<root>",
@@ -2283,6 +2309,16 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
+        "name": "DisableSubmit",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
         "name": "Primary",
         "coveragePercent": 0,
         "coverageCount": "0/1",
@@ -2323,6 +2359,16 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Primary",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/food/food-choice/food-choice.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "qtyMap",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
@@ -2392,7 +2438,7 @@
         "linktype": "component",
         "name": "FoodMenuComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/9",
+        "coverageCount": "0/10",
         "status": "low"
       },
       {
@@ -2528,7 +2574,7 @@
         "linktype": "interface",
         "name": "Choice",
         "coveragePercent": 0,
-        "coverageCount": "0/8",
+        "coverageCount": "0/7",
         "status": "low"
       },
       {
@@ -2550,12 +2596,21 @@
         "status": "low"
       },
       {
-        "filePath": "src/app/food/interfaces/ordered-food-choice.interface.ts",
+        "filePath": "src/app/food/interfaces/menu.interface.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "Quantity",
+        "coveragePercent": 0,
+        "coverageCount": "0/2",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/food/interfaces/ordered-choice.interface.ts",
         "type": "interface",
         "linktype": "interface",
         "name": "OrderedFoodChoice",
         "coveragePercent": 0,
-        "coverageCount": "0/6",
+        "coverageCount": "0/7",
         "status": "low"
       },
       {

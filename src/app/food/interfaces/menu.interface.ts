@@ -4,7 +4,6 @@ export interface Choice {
   description: string
   currency: string
   price: number
-  available: boolean
   quantity: number
 }
 

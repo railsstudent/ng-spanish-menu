@@ -1,8 +1,15 @@
-<div class="container" *ngIf="menuItems$ | async as menuItems; else notAvailable">
-  <app-food-menu-card *ngFor="let menuItem of menuItems; index as i; trackBy: menumItemTrackByFn">
+<div
+  class="container"
+  *ngIf="{ menuItems: menuItems$ | async, qtyMap: qtyMap$ | async } as observables; else notAvailable"
+>
+  <app-food-menu-card *ngFor="let menuItem of observables.menuItems; index as i; trackBy: menumItemTrackByFn">
     <app-food-question [question]="menuItem.question" head></app-food-question>
     <ng-container *ngFor="let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn" body>
-      <app-food-choice [choice]="choice" (foodChoiceAdded)="handleFoodChoice.emit($event)"></app-food-choice>
+      <app-food-choice
+        [choice]="choice"
+        [qtyMap]="observables.qtyMap"
+        (foodChoiceAdded)="handleFoodChoice.emit($event)"
+      ></app-food-choice>
     </ng-container>
   </app-food-menu-card>
 </div>

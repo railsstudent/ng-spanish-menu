@@ -29,6 +29,7 @@ export const Primary = Template.bind({})
 Primary.args = {
   choices: [
     {
+      id: '1',
       name: 'Food 1',
       currency: 'USD',
       price: 1.99,
@@ -36,6 +37,7 @@ Primary.args = {
       quantity: 1,
     },
     {
+      id: '2',
       name: 'Food 2',
       currency: 'USD',
       price: 0.99,
@@ -43,6 +45,7 @@ Primary.args = {
       quantity: 5,
     },
     {
+      id: '3',
       name: 'Food 3',
       currency: 'USD',
       price: 2.99,

@@ -16,12 +16,14 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   handleFoodChoice = new EventEmitter<OrderedFoodChoice>()
 
   menuItems$: Observable<MenuItem[] | undefined>
+  qtyMap$: Observable<Record<string, number> | undefined>
   unsubscribe$ = new Subject<boolean>()
 
   constructor(private service: FoodService) {}
 
   ngOnInit(): void {
     this.menuItems$ = this.service.getFood(environment.menuUrl).pipe(takeUntil(this.unsubscribe$))
+    this.qtyMap$ = this.service.quantityAvailableMap$
   }
 
   menumItemTrackByFn(index: number, menuItem: MenuItem): string | number {
