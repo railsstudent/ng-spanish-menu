@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="remained$ | async as remained">
   <label name="name" class="item">
     <span class="field">Name:</span>
     <span class="field-text">{{ choice.name }}</span>
@@ -13,12 +13,12 @@
   </label>
   <label name="quantity" class="item">
     <span class="field">Quantity:</span>
-    <span class="field-text">{{ quantityRemained }}</span>
+    <span class="field-text">{{ remained.qty }}</span>
   </label>
-  <ng-container [ngSwitch]="quantityRemained > 0">
+  <ng-container [ngSwitch]="remained.qty > 0">
     <app-food-choice-form
       class="food-choice-form"
-      [quantityRemained]="quantityRemained"
+      [quantityRemained]="remained.qty"
       (foodChoiceSubmitted)="submitFoodChoice($event)"
       *ngSwitchCase="true"
     >

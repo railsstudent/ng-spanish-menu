@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
-import { Observable, of } from 'rxjs'
-import { catchError, pluck, share } from 'rxjs/operators'
+import { BehaviorSubject, Observable, of } from 'rxjs'
+import { catchError, pluck, share, tap } from 'rxjs/operators'
 
 import { Menu, MenuItem } from '../interfaces'
 
@@ -9,11 +9,23 @@ import { Menu, MenuItem } from '../interfaces'
   providedIn: 'root',
 })
 export class FoodService {
+  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)
+  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()
+
   constructor(private http: HttpClient) {}
 
   getFood(url: string): Observable<MenuItem[] | undefined> {
     return this.http.get<Menu>(url).pipe(
       pluck('menu'),
+      tap((menu) => {
+        const qtyMap = menu.reduce((acc, mi) => {
+          mi.choices.forEach(({ id, quantity }) => {
+            acc[id] = quantity
+          })
+          return acc
+        }, {} as Record<string, number>)
+        this.quantityAvailableSub$.next(qtyMap)
+      }),
       catchError((err: Error) => {
         console.error(err)
         return of(undefined)
@@ -30,5 +42,25 @@ export class FoodService {
     }, 0)
 
     return Math.round(unroundedTotal * cents) / cents
+  }
+
+  isEnoughQuantity(id: string, quantity: number) {
+    const qtyAvailableMap = this.quantityAvailableSub$.getValue()
+    if (!qtyAvailableMap) {
+      return false
+    }
+
+    const qtyAvailable = qtyAvailableMap[id] || 0
+    return qtyAvailable - quantity >= 0
+  }
+
+  updateQuatity(id: string, quantity: number) {
+    const qtyAvailableMap = this.quantityAvailableSub$.getValue()
+    if (qtyAvailableMap && qtyAvailableMap[id]) {
+      this.quantityAvailableSub$.next({
+        ...qtyAvailableMap,
+        id: qtyAvailableMap[id] - quantity,
+      })
+    }
   }
 }

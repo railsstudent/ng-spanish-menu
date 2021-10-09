@@ -1,6 +1,9 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { Observable } from 'rxjs'
+import { map } from 'rxjs/operators'
 
-import { Choice, OrderedFoodChoice } from '../interfaces'
+import { Choice, OrderedFoodChoice, Quantity } from '../interfaces'
+import { FoodService } from '../services'
 
 @Component({
   selector: 'app-food-choice',
@@ -15,17 +18,26 @@ export class FoodChoiceComponent implements OnInit {
   @Output()
   foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
 
-  quantityRemained = 0
+  remained$: Observable<Quantity>
+
+  constructor(private service: FoodService) {}
 
   ngOnInit(): void {
-    this.quantityRemained = this.choice.quantity
+    this.remained$ = this.service.quantityAvailableMap$.pipe(
+      map((quatityAvailableMap) => {
+        let qty = 0
+        if (quatityAvailableMap) {
+          qty = quatityAvailableMap[this.choice.id] || 0
+        }
+        return { qty }
+      }),
+    )
   }
 
   submitFoodChoice(quantity: number) {
-    const { name, description, price, currency } = this.choice
-    const nextQuantity = this.quantityRemained - quantity
-    if (nextQuantity >= 0) {
-      this.quantityRemained = nextQuantity
+    const { id, name, description, price, currency } = this.choice
+    if (this.service.isEnoughQuantity(id, quantity)) {
+      this.service.updateQuatity(id, quantity)
       this.foodChoiceAdded.emit({
         name,
         description,
