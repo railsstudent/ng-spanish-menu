@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/e6584d85-1560-49b0-9b14-9b91abbc3c40/deploy-status)](https://app.netlify.com/sites/mystifying-panini-99633b/deploys)
+
 # NgSpanishMenu
 
 The application shows a Spanish menu and customer has to choose dishes and beverages from it. After each selection, a card is created to display description and price dynamically. Finally, the application calculates the total price that customer has to play before leaving the restaurant.
@@ -9,6 +10,7 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - NPM 7
 
 ## Setup Netlify function
+
 - npm install netlify-cli -g
 - ntl dev
 - http://localhost:8888/.netlify/functions/menu to retrieve menu
@@ -42,9 +44,11 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - Taiga UI?
 
 ## Translation
+
 - Transloco
 
 ## PWA
+
 Should we convert the application to PWA?
 
 ## Storybook static app
@@ -57,9 +61,13 @@ Should we convert the application to PWA?
 
 - Note: The application is still a work in progress.
 
+## Netlify app
+
+`https://mystifying-panini-99633b.netlify.app/food`
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ntl dev` for a dev server. Navigate to `http://localhost:8888/`. The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 
