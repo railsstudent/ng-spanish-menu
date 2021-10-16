@@ -52,7 +52,7 @@ export class FoodService {
       if (nextQty >= 0) {
         this.quantityAvailableSub$.next({
           ...qtyAvailableMap,
-          id: nextQty,
+          [id]: nextQty,
         })
       }
     }
