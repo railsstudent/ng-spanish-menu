@@ -44,23 +44,17 @@ export class FoodService {
     return Math.round(unroundedTotal * cents) / cents
   }
 
-  isEnoughQuantity(id: string, quantity: number) {
+  updateQuantity(id: string, quantity: number) {
     const qtyAvailableMap = this.quantityAvailableSub$.getValue()
-    if (!qtyAvailableMap) {
-      return false
-    }
-
-    const qtyAvailable = qtyAvailableMap[id] || 0
-    return qtyAvailable - quantity >= 0
-  }
-
-  updateQuatity(id: string, quantity: number) {
-    const qtyAvailableMap = this.quantityAvailableSub$.getValue()
-    if (qtyAvailableMap && qtyAvailableMap[id]) {
-      this.quantityAvailableSub$.next({
-        ...qtyAvailableMap,
-        id: qtyAvailableMap[id] - quantity,
-      })
+    if (qtyAvailableMap) {
+      const oldQty = qtyAvailableMap[id]
+      const nextQty = oldQty - quantity
+      if (nextQty >= 0) {
+        this.quantityAvailableSub$.next({
+          ...qtyAvailableMap,
+          id: nextQty,
+        })
+      }
     }
   }
 }

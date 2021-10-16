@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
 import { Observable, Subject } from 'rxjs'
-import { takeUntil } from 'rxjs/operators'
+import { takeUntil, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 
 import { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'
@@ -13,17 +13,38 @@ import { FoodService } from '../services'
 })
 export class FoodMenuComponent implements OnInit, OnDestroy {
   @Output()
-  handleFoodChoice = new EventEmitter<OrderedFoodChoice>()
+  addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()
 
   menuItems$: Observable<MenuItem[] | undefined>
-  qtyMap$: Observable<Record<string, number> | undefined>
+  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()
   unsubscribe$ = new Subject<boolean>()
+
+  qtyMap: Record<string, number> | undefined
 
   constructor(private service: FoodService) {}
 
   ngOnInit(): void {
     this.menuItems$ = this.service.getFood(environment.menuUrl).pipe(takeUntil(this.unsubscribe$))
-    this.qtyMap$ = this.service.quantityAvailableMap$
+
+    this.service.quantityAvailableMap$.pipe(takeUntil(this.unsubscribe$)).subscribe((updatedQtyMap) => {
+      if (!updatedQtyMap) {
+        this.qtyMap = undefined
+      } else {
+        this.qtyMap = {
+          ...updatedQtyMap,
+        }
+      }
+    })
+
+    this.handleFoodChoiceSub$
+      .pipe(
+        tap((choice) => console.log(choice)),
+        tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),
+        takeUntil(this.unsubscribe$),
+      )
+      .subscribe((choice) => {
+        this.addDynamicFoodChoice.emit(choice)
+      })
   }
 
   menumItemTrackByFn(index: number, menuItem: MenuItem): string | number {

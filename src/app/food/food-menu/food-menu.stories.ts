@@ -6,9 +6,10 @@ import { Meta, Story } from '@storybook/angular/types-6-0'
 
 import { FoodChoiceComponent } from '../food-choice'
 import { FoodChoiceFormComponent } from '../food-choice-form'
+import { FoodMenuCardComponent } from '../food-menu-card/'
 import { FoodQuestionComponent } from '../food-question'
 import { FoodService } from '../services'
-import { foodServiceFactory, MockData, SoldoutMockData } from '../storybook-mock'
+import { MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodMenuComponent } from './food-menu.component'
 
 export default {
@@ -16,12 +17,12 @@ export default {
   component: FoodMenuComponent,
   decorators: [
     moduleMetadata({
-      declarations: [FoodChoiceComponent, FoodQuestionComponent, FoodChoiceFormComponent],
+      declarations: [FoodChoiceComponent, FoodQuestionComponent, FoodChoiceFormComponent, FoodMenuCardComponent],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
       providers: [
         {
           provide: FoodService,
-          useFactory: () => foodServiceFactory(MockData),
+          useFactory: () => new MockFoodService(MockData),
         },
       ],
     }),
@@ -41,7 +42,7 @@ SoldoutMenu.decorators = [
     providers: [
       {
         provide: FoodService,
-        useFactory: () => foodServiceFactory(SoldoutMockData),
+        useFactory: () => new MockFoodService(SoldOutMockData),
       },
     ],
   }),
@@ -53,7 +54,7 @@ Empty.decorators = [
     providers: [
       {
         provide: FoodService,
-        useFactory: () => foodServiceFactory(),
+        useFactory: () => new MockFoodService(),
       },
     ],
   }),

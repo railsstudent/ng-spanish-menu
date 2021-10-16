@@ -55,7 +55,7 @@ export const MockData: MenuItem[] = [
   },
 ]
 
-export const SoldoutMockData: MenuItem[] = [
+export const SoldOutMockData: MenuItem[] = [
   {
     id: '1',
     question: 'Which appetizer(s) do you wish to order?',
@@ -82,7 +82,7 @@ export const SoldoutMockData: MenuItem[] = [
         description: 'Oven Baked Zucchini Chips',
         currency: 'USD',
         price: 5.99,
-        quantity: 10,
+        quantity: 0,
       },
     ],
   },
@@ -104,7 +104,7 @@ export const SoldoutMockData: MenuItem[] = [
         description: 'Coffee Flavoured Dessert from Italy',
         currency: 'USD',
         price: 2.99,
-        quantity: 10,
+        quantity: 0,
       },
     ],
   },

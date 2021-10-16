@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+} from '@angular/core'
 
 import { Choice, OrderedFoodChoice } from '../interfaces'
 
@@ -8,7 +17,7 @@ import { Choice, OrderedFoodChoice } from '../interfaces'
   styleUrls: ['./food-choice.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FoodChoiceComponent implements OnInit {
+export class FoodChoiceComponent implements OnInit, OnChanges {
   @Input()
   choice: Choice
 
@@ -22,6 +31,14 @@ export class FoodChoiceComponent implements OnInit {
 
   ngOnInit(): void {
     this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const { qtyMap = null } = changes
+    const { currentValue = null } = qtyMap || {}
+    if (currentValue) {
+      this.remained = currentValue[this.choice.id]
+    }
   }
 
   submitFoodChoice(quantity: number) {
