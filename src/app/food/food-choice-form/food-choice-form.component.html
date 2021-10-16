@@ -3,7 +3,7 @@
     <span class="field">Quantity: </span>
     <input type="number" formControlName="quantity" class="spacer" [readonly]="quantityRemained <= 0" />
   </label>
-  <div *ngIf="quantity.invalid && (quantity.touched || quantity.dirty)" class="alert alert-danger">
+  <div *ngIf="quantity && quantity.invalid && (quantity.touched || quantity.dirty)" class="alert alert-danger">
     <div *ngIf="quantity.errors?.min" class="error">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>
     <div *ngIf="quantity.errors?.notEnoughQuantity" class="error">
       Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.

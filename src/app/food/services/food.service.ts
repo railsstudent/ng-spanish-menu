@@ -44,7 +44,7 @@ export class FoodService {
     return Math.round(unroundedTotal * cents) / cents
   }
 
-  updateQuantity(id: string, quantity: number) {
+  updateQuantity(id: string, quantity: number): void {
     const qtyAvailableMap = this.quantityAvailableSub$.getValue()
     if (qtyAvailableMap) {
       const oldQty = qtyAvailableMap[id]
@@ -56,5 +56,13 @@ export class FoodService {
         })
       }
     }
+  }
+
+  getQuantity(id: string): number {
+    const qtyAvailableMap = this.quantityAvailableSub$.getValue()
+    if (qtyAvailableMap) {
+      return qtyAvailableMap[id] || 0
+    }
+    return 0
   }
 }
