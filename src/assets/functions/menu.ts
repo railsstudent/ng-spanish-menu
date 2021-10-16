@@ -13,7 +13,7 @@ const data = {
           currency: 'USD',
           price: 4.99,
           available: true,
-          quantity: 10,
+          quantity: 25,
         },
         {
           id: 'd',
@@ -22,7 +22,7 @@ const data = {
           currency: 'USD',
           price: 6.99,
           available: true,
-          quantity: 10,
+          quantity: 30,
         },
         {
           id: 'e',
@@ -46,7 +46,7 @@ const data = {
           currency: 'USD',
           price: 5.99,
           available: true,
-          quantity: 10,
+          quantity: 30,
         },
         {
           id: 'c1',
@@ -55,7 +55,7 @@ const data = {
           currency: 'USD',
           price: 4.99,
           available: true,
-          quantity: 10,
+          quantity: 35,
         },
         {
           id: 'd1',
@@ -64,7 +64,7 @@ const data = {
           currency: 'USD',
           price: 6.99,
           available: true,
-          quantity: 10,
+          quantity: 40,
         },
       ],
     },
