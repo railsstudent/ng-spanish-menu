@@ -18,7 +18,7 @@
   <ng-container [ngSwitch]="remained > 0">
     <app-food-choice-form
       class="food-choice-form"
-      [quantityRemained]="remained"
+      [choice]="choice"
       (foodChoiceSubmitted)="submitFoodChoice($event)"
       *ngSwitchCase="true"
     >

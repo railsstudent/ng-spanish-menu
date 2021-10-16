@@ -3,7 +3,7 @@ import { moduleMetadata } from '@storybook/angular'
 import { Meta, Story } from '@storybook/angular/types-6-0'
 
 import { FoodService } from '../services'
-import { foodServiceFactory } from '../storybook-mock'
+import { MockFoodService } from './../storybook-mock'
 import { FoodTotalComponent } from './food-total.component'
 
 export default {
@@ -14,7 +14,7 @@ export default {
       providers: [
         {
           provide: FoodService,
-          useFactory: () => foodServiceFactory(),
+          useFactory: () => new MockFoodService(undefined),
         },
       ],
     }),

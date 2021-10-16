@@ -7,7 +7,6 @@ export function fulfillOrderValidator(choiceId: string, foodService: FoodService
     const quantity = (control as FormControl).value || 0
     const quantityRemained = foodService.getQuantity(choiceId)
     const delta = quantityRemained - quantity
-    console.log('choiceId', choiceId, 'quantityRemained', quantityRemained, 'quantity', quantity, 'delta', delta)
     return delta >= 0
       ? null
       : {

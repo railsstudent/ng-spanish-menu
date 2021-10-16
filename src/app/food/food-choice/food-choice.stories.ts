@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http'
 // import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { moduleMetadata } from '@storybook/angular'
@@ -5,7 +6,9 @@ import { moduleMetadata } from '@storybook/angular'
 import { Meta, Story } from '@storybook/angular/types-6-0'
 
 import { FoodChoiceFormComponent } from '../food-choice-form'
-import { Choice } from '../interfaces'
+import { FoodService } from '../services'
+import { MockData, MockFoodService } from '../storybook-mock'
+import { SoldOutMockData } from './../storybook-mock/constants'
 import { FoodChoiceComponent } from './food-choice.component'
 
 export default {
@@ -13,8 +16,14 @@ export default {
   component: FoodChoiceComponent,
   decorators: [
     moduleMetadata({
-      imports: [FormsModule, ReactiveFormsModule],
+      imports: [FormsModule, ReactiveFormsModule, HttpClientModule],
       declarations: [FoodChoiceFormComponent],
+      providers: [
+        {
+          provide: FoodService,
+          useFactory: () => new MockFoodService(MockData),
+        },
+      ],
     }),
   ],
   argTypes: { onClick: { action: 'clicked' } },
@@ -24,24 +33,24 @@ const Template: Story<FoodChoiceComponent> = (args: FoodChoiceComponent) => ({
   props: args,
 })
 
-const defaultChoice: Choice = {
-  id: '1',
-  name: 'Vino Tinto xxxxxxxxxxxxxxx yyyyyyyyyyy ddffff adadasdasdas vvvvv ooo',
-  description: 'Red wine',
-  currency: 'USD',
-  price: 12.99,
-  quantity: 10,
-}
+// const defaultChoice: Choice = {
+//   id: '1',
+//   name: 'Vino Tinto xxxxxxxxxxxxxxx yyyyyyyyyyy ddffff adadasdasdas vvvvv ooo',
+//   description: 'Red wine',
+//   currency: 'USD',
+//   price: 12.99,
+//   quantity: 10,
+// }
 
 const qtyMap = {
-  '1': 10,
-  '2': 0,
+  [MockData[0].choices[0].id]: 10,
+  [SoldOutMockData[0].choices[1].id]: 0,
 }
 
 export const Primary = Template.bind({})
 Primary.args = {
   choice: {
-    ...defaultChoice,
+    ...MockData[0].choices[0],
   },
   qtyMap,
 }
@@ -49,9 +58,18 @@ Primary.args = {
 export const Soldout = Template.bind({})
 Soldout.args = {
   choice: {
-    ...defaultChoice,
+    ...SoldOutMockData[0].choices[1],
     quantity: 0,
-    id: '2',
   },
   qtyMap,
 }
+Soldout.decorators = [
+  moduleMetadata({
+    providers: [
+      {
+        provide: FoodService,
+        useFactory: () => new MockFoodService(SoldOutMockData),
+      },
+    ],
+  }),
+]

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { action } from '@storybook/addon-actions'
@@ -7,6 +8,8 @@ import { Meta, Story } from '@storybook/angular/types-6-0'
 import { FoodChoiceComponent } from '../food-choice'
 import { FoodChoiceFormComponent } from '../food-choice-form'
 import { FoodQuestionComponent } from '../food-question'
+import { FoodService } from '../services'
+import { MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodMenuCardComponent } from './food-menu-card.component'
 
 export default {
@@ -14,8 +17,14 @@ export default {
   component: FoodMenuCardComponent,
   decorators: [
     moduleMetadata({
-      imports: [ReactiveFormsModule, FormsModule],
+      imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
       declarations: [FoodQuestionComponent, FoodChoiceComponent, FoodChoiceFormComponent],
+      providers: [
+        {
+          provide: FoodService,
+          useFactory: () => new MockFoodService(MockData),
+        },
+      ],
     }),
   ],
 } as Meta
@@ -34,24 +43,18 @@ const FoodMenuCardTemplate: Story<FoodMenuCardComponent> = (args: FoodMenuCardCo
 })
 
 const qtyMap = {
-  d: 10,
-  a: 0,
+  [MockData[0].choices[1].id]: 10,
+  [SoldOutMockData[0].choices[1].id]: 0,
 }
 
 export const Primary = FoodMenuCardTemplate.bind({})
 Primary.args = {
   qtyMap,
   menuItem: {
-    id: '1',
-    question: 'Do you wish to order dessert?',
+    ...MockData[0],
     choices: [
       {
-        id: 'd',
-        name: 'Buffalo Chicken Wings',
-        description: 'Spicy chicken wings',
-        currency: 'USD',
-        price: 8.99,
-        available: true,
+        ...MockData[0].choices[0],
       },
     ],
   },
@@ -61,17 +64,17 @@ export const Soldout = FoodMenuCardTemplate.bind({})
 Soldout.args = {
   qtyMap,
   menuItem: {
-    id: '1',
-    question: 'Do you wish to order dessert?',
-    choices: [
-      {
-        id: 'a',
-        name: 'Egg salad',
-        description: 'Egg salad',
-        currency: 'USD',
-        price: 4.99,
-        available: false,
-      },
-    ],
+    ...SoldOutMockData[0],
+    choices: [{ ...SoldOutMockData[0].choices[1] }],
   },
 }
+Soldout.decorators = [
+  moduleMetadata({
+    providers: [
+      {
+        provide: FoodService,
+        useFactory: () => new MockFoodService(SoldOutMockData),
+      },
+    ],
+  }),
+]
