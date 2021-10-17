@@ -1,9 +1,6 @@
 import { HttpClientModule } from '@angular/common/http'
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { moduleMetadata } from '@storybook/angular'
-// also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
-import { Meta, Story } from '@storybook/angular/types-6-0'
+import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceFormComponent } from '../food-choice-form'
 import { FoodService } from '../services'
@@ -32,15 +29,6 @@ export default {
 const Template: Story<FoodChoiceComponent> = (args: FoodChoiceComponent) => ({
   props: args,
 })
-
-// const defaultChoice: Choice = {
-//   id: '1',
-//   name: 'Vino Tinto xxxxxxxxxxxxxxx yyyyyyyyyyy ddffff adadasdasdas vvvvv ooo',
-//   description: 'Red wine',
-//   currency: 'USD',
-//   price: 12.99,
-//   quantity: 10,
-// }
 
 const qtyMap = {
   [MockData[0].choices[0].id]: 10,

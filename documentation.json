@@ -66,7 +66,7 @@
         }
       ],
       "indexSignatures": [],
-      "kind": 163,
+      "kind": 164,
       "methods": []
     },
     {
@@ -89,7 +89,7 @@
         }
       ],
       "indexSignatures": [],
-      "kind": 163,
+      "kind": 164,
       "methods": []
     },
     {
@@ -130,7 +130,7 @@
         }
       ],
       "indexSignatures": [],
-      "kind": 163,
+      "kind": 164,
       "methods": []
     },
     {
@@ -198,7 +198,7 @@
         }
       ],
       "indexSignatures": [],
-      "kind": 163,
+      "kind": 164,
       "methods": []
     },
     {
@@ -221,7 +221,7 @@
         }
       ],
       "indexSignatures": [],
-      "kind": 163,
+      "kind": 164,
       "methods": []
     }
   ],
@@ -250,7 +250,7 @@
           "optional": false,
           "description": "",
           "line": 12,
-          "modifierKind": [120]
+          "modifierKind": [121]
         }
       ],
       "methods": [
@@ -475,7 +475,7 @@
           "optional": false,
           "description": "",
           "line": 6,
-          "modifierKind": [120]
+          "modifierKind": [121]
         }
       ],
       "methods": [
@@ -488,7 +488,7 @@
           "line": 11,
           "deprecated": false,
           "deprecationMessage": "",
-          "modifierKind": [120]
+          "modifierKind": [121]
         },
         {
           "name": "calculateTotal",
@@ -537,7 +537,7 @@
           "line": 53,
           "deprecated": false,
           "deprecationMessage": "",
-          "modifierKind": [120]
+          "modifierKind": [121]
         },
         {
           "name": "getQuantity",
@@ -1683,21 +1683,21 @@
         "name": "environment",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/environments/environment.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  production: false,\n  menuUrl: '/.netlify/functions/menu',\n}"
-      },
-      {
-        "name": "environment",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/environments/environment.prod.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
         "defaultValue": "{\n  production: true,\n  menuUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions/menu',\n}"
+      },
+      {
+        "name": "environment",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/environments/environment.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  production: false,\n  menuUrl: '/.netlify/functions/menu',\n}"
       },
       {
         "name": "FoodMenuCardTemplate",
@@ -1847,7 +1847,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
-        "defaultValue": "{\n  [MockData[0].choices[1].id]: 10,\n  [SoldOutMockData[0].choices[1].id]: 0,\n}"
+        "defaultValue": "{\n  [MockData[0].choices[0].id]: 10,\n  [SoldOutMockData[0].choices[1].id]: 0,\n}"
       },
       {
         "name": "require",
@@ -1981,11 +1981,13 @@
         "args": [
           {
             "name": "choiceId",
+            "type": "string",
             "deprecated": false,
             "deprecationMessage": ""
           },
           {
             "name": "foodService",
+            "type": "FoodService",
             "deprecated": false,
             "deprecationMessage": ""
           }
@@ -1994,6 +1996,7 @@
         "jsdoctags": [
           {
             "name": "choiceId",
+            "type": "string",
             "deprecated": false,
             "deprecationMessage": "",
             "tagName": {
@@ -2002,6 +2005,7 @@
           },
           {
             "name": "foodService",
+            "type": "FoodService",
             "deprecated": false,
             "deprecationMessage": "",
             "tagName": {
@@ -2153,18 +2157,6 @@
           "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
         }
       ],
-      "src/environments/environment.ts": [
-        {
-          "name": "environment",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/environments/environment.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  production: false,\n  menuUrl: '/.netlify/functions/menu',\n}"
-        }
-      ],
       "src/environments/environment.prod.ts": [
         {
           "name": "environment",
@@ -2175,6 +2167,18 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: true,\n  menuUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions/menu',\n}"
+        }
+      ],
+      "src/environments/environment.ts": [
+        {
+          "name": "environment",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/environments/environment.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  production: false,\n  menuUrl: '/.netlify/functions/menu',\n}"
         }
       ],
       "src/app/food/food-menu-card/food-menu-card.stories.ts": [
@@ -2206,7 +2210,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "object",
-          "defaultValue": "{\n  [MockData[0].choices[1].id]: 10,\n  [SoldOutMockData[0].choices[1].id]: 0,\n}"
+          "defaultValue": "{\n  [MockData[0].choices[0].id]: 10,\n  [SoldOutMockData[0].choices[1].id]: 0,\n}"
         },
         {
           "name": "Soldout",
@@ -2393,11 +2397,13 @@
           "args": [
             {
               "name": "choiceId",
+              "type": "string",
               "deprecated": false,
               "deprecationMessage": ""
             },
             {
               "name": "foodService",
+              "type": "FoodService",
               "deprecated": false,
               "deprecationMessage": ""
             }
@@ -2406,6 +2412,7 @@
           "jsdoctags": [
             {
               "name": "choiceId",
+              "type": "string",
               "deprecated": false,
               "deprecationMessage": "",
               "tagName": {
@@ -2414,6 +2421,7 @@
             },
             {
               "name": "foodService",
+              "type": "FoodService",
               "deprecated": false,
               "deprecationMessage": "",
               "tagName": {

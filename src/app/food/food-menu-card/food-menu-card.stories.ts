@@ -2,8 +2,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { action } from '@storybook/addon-actions'
-import { moduleMetadata } from '@storybook/angular'
-import { Meta, Story } from '@storybook/angular/types-6-0'
+import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceComponent } from '../food-choice'
 import { FoodChoiceFormComponent } from '../food-choice-form'
@@ -43,7 +42,7 @@ const FoodMenuCardTemplate: Story<FoodMenuCardComponent> = (args: FoodMenuCardCo
 })
 
 const qtyMap = {
-  [MockData[0].choices[1].id]: 10,
+  [MockData[0].choices[0].id]: 10,
   [SoldOutMockData[0].choices[1].id]: 0,
 }
 
