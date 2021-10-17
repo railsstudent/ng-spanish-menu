@@ -58,7 +58,7 @@
     "@webcomponents/custom-elements": "^1.5.0",
     "angular-cli-ghpages": "^1.0.0-rc.2",
     "babel-loader": "^8.2.2",
-    "chromatic": "^5.9.2",
+    "chromatic": "^6.0.4",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.24.2",
