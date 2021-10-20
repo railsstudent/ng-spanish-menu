@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.2](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.1...0.0.2) (2021-10-20)
+
+
+### Bug fixes
+
+* versionrc.json ([09cc781](https://github.com/railsstudent/ng-spanish-menu/commit/09cc78101dcb39d4aba5532b263a3672140fea18))
+
 ### 0.0.1 (2021-10-20)
 
 ### Features
