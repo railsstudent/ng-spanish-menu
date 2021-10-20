@@ -1,0 +1,9 @@
+{
+  "types": [
+    { "type": "feat", "section": "Features" },
+    { "type": "fix", "section": "Bug fixes" }
+  ],
+  "scripts": {
+    "postbump": "echo Version: $npm_package_version > VERSION"
+  }
+}
