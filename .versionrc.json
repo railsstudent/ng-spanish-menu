@@ -4,6 +4,7 @@
     { "type": "fix", "section": "Bug fixes" }
   ],
   "scripts": {
-    "postbump": "echo Version: $npm_package_version > VERSION"
+    "postbump": "echo Version: $npm_package_version > VERSION",
+    "postchangelog": "git add VERSION"
   }
 }
