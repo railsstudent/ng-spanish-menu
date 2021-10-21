@@ -38,7 +38,6 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
 
     this.handleFoodChoiceSub$
       .pipe(
-        tap((choice) => console.log(choice)),
         tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),
         takeUntil(this.unsubscribe$),
       )

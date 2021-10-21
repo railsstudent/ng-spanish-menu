@@ -15,7 +15,3 @@ export interface MenuItem {
   question: string
   choices: Choice[]
 }
-
-export interface Quantity {
-  qty: number
-}
