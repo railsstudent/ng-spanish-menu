@@ -2,9 +2,14 @@ import {
   ChangeDetectionStrategy,
   Component,
   ComponentFactoryResolver,
+  OnDestroy,
+  OnInit,
   ViewChild,
   ViewContainerRef,
 } from '@angular/core'
+import { Observable, Subject } from 'rxjs'
+import { takeUntil } from 'rxjs/operators'
+import { environment } from 'src/environments/environment'
 
 import { OrderedFoodChoice } from '../interfaces'
 import { FoodService } from '../services'
@@ -15,13 +20,20 @@ import { FoodService } from '../services'
   styleUrls: ['./food-shell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FoodShellComponent {
+export class FoodShellComponent implements OnInit, OnDestroy {
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
   orederedViewContainer: ViewContainerRef
 
   orderedFood: OrderedFoodChoice[] = []
+  tips$: Observable<number[]>
+  unsubscribe$ = new Subject<boolean>()
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private foodService: FoodService) {}
+
+  ngOnInit(): void {
+    const tipUrl = `${environment.baseUrl}/tips`
+    this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))
+  }
 
   async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {
     const lazyComponent = await import('../food-card/food-card.component')
@@ -36,5 +48,10 @@ export class FoodShellComponent {
 
     foodCardComponent.instance.total = total
     this.orderedFood = [...this.orderedFood, choice]
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next(true)
+    this.unsubscribe$.complete()
   }
 }

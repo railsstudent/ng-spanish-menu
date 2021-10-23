@@ -4,4 +4,6 @@
 <section class="ordered">
   <ng-container #viewContainerRef></ng-container>
 </section>
-<app-food-total [choices]="orderedFood"></app-food-total>
+<ng-container *ngIf="tips$ | async as tips">
+  <app-food-total [choices]="orderedFood" [tips]="tips"></app-food-total>
+</ng-container>
