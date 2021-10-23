@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodService } from '../services'
@@ -9,6 +10,7 @@ export default {
   component: FoodTotalComponent,
   decorators: [
     moduleMetadata({
+      imports: [ReactiveFormsModule, FormsModule],
       providers: [
         {
           provide: FoodService,
@@ -51,9 +53,11 @@ Primary.args = {
       quantity: 2,
     },
   ],
+  tips: [0, 5, 10, 20],
 }
 
 export const NoOrder = Template.bind({})
 NoOrder.args = {
+  ...Primary.args,
   choices: [],
 }

@@ -24,7 +24,8 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   constructor(private service: FoodService) {}
 
   ngOnInit(): void {
-    this.menuItems$ = this.service.getFood(environment.menuUrl).pipe(takeUntil(this.unsubscribe$))
+    const menuUrl = `${environment.baseUrl}/menu`
+    this.menuItems$ = this.service.getFood(menuUrl).pipe(takeUntil(this.unsubscribe$))
 
     this.service.quantityAvailableMap$.pipe(takeUntil(this.unsubscribe$)).subscribe((updatedQtyMap) => {
       if (!updatedQtyMap) {

@@ -27,11 +27,14 @@ export class FoodShellComponent {
     const lazyComponent = await import('../food-card/food-card.component')
     const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)
     const foodCardComponent = this.orederedViewContainer.createComponent(resolvedComponent)
+    const total = this.foodService.calculateTotal([choice])
+
+    console.log('choice', choice, 'total', total)
     foodCardComponent.instance.ordered = {
       ...choice,
     }
 
-    foodCardComponent.instance.total = this.foodService.calculateTotal([choice])
+    foodCardComponent.instance.total = total
     this.orderedFood = [...this.orderedFood, choice]
   }
 }

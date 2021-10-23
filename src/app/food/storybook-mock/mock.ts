@@ -26,14 +26,16 @@ export class MockFoodService {
     return of(this.menuItems)
   }
 
-  calculateTotal(food: { price: number; quantity: number }[]): number {
+  calculateTotal(food: { price: number; quantity: number }[], tip: number): number {
     const cents = 100
     const unroundedTotal = food.reduce((acc, choice) => {
       const { price, quantity } = choice
       return acc + price * quantity
     }, 0)
 
-    return Math.round(unroundedTotal * cents) / cents
+    console.log('tip', tip)
+    const totalAfterTip = unroundedTotal * (1 + tip)
+    return Math.round(totalAfterTip * cents) / cents
   }
 
   updateQuantity(id: string, quantity: number): void {

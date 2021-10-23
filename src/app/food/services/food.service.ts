@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of } from 'rxjs'
 import { catchError, pluck, share, tap } from 'rxjs/operators'
 
-import { Menu, MenuItem } from '../interfaces'
+import { Menu, MenuItem, Tip } from '../interfaces'
 
 @Injectable({
   providedIn: 'root',
@@ -34,14 +34,15 @@ export class FoodService {
     )
   }
 
-  calculateTotal(food: { price: number; quantity: number }[]): number {
+  calculateTotal(food: { price: number; quantity: number }[], tip = 0): number {
     const cents = 100
     const unroundedTotal = food.reduce((acc, choice) => {
       const { price, quantity } = choice
       return acc + price * quantity
     }, 0)
 
-    return Math.round(unroundedTotal * cents) / cents
+    const totalAfterTip = unroundedTotal * (1 + tip)
+    return Math.round(totalAfterTip * cents) / cents
   }
 
   updateQuantity(id: string, quantity: number): void {
@@ -64,5 +65,16 @@ export class FoodService {
       return qtyAvailableMap[id] || 0
     }
     return 0
+  }
+
+  getTips(url: string): Observable<number[]> {
+    return this.http.get<Tip>(url).pipe(
+      pluck('tips'),
+      catchError((err: Error) => {
+        console.error(err)
+        return of([0])
+      }),
+      share(),
+    )
   }
 }

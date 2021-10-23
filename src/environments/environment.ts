@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  menuUrl: '/.netlify/functions/menu',
+  baseUrl: '/.netlify/functions',
 }
 
 /*
