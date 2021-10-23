@@ -7,7 +7,7 @@ import {
 } from '@angular/core'
 
 import { OrderedFoodChoice } from '../interfaces'
-import { FoodService } from './../services/food.service'
+import { FoodService } from '../services'
 
 @Component({
   selector: 'app-food-shell',

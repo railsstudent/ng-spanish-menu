@@ -3,9 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { delay, map, takeUntil, tap } from 'rxjs/operators'
 
-import { fulfillOrderValidator } from '../directives'
 import { Choice } from '../interfaces'
 import { FoodService } from '../services'
+import { fulfillOrderValidator } from '../validators'
 
 @Component({
   selector: 'app-food-choice-form',
