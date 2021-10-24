@@ -1,7 +1,9 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   ComponentFactoryResolver,
+  ComponentRef,
   OnDestroy,
   OnInit,
   ViewChild,
@@ -11,6 +13,7 @@ import { Observable, Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 
+import { FoodCardComponent } from '../food-card'
 import { OrderedFoodChoice, TotalCost } from '../interfaces'
 import { FoodService } from '../services'
 
@@ -41,6 +44,7 @@ export class FoodShellComponent implements OnInit, OnDestroy {
 
   tips$: Observable<number[]>
   unsubscribe$ = new Subject<boolean>()
+  componentRefs: ComponentRef<FoodCardComponent>[] = []
 
   orderedFood: OrderedFoodChoice[] = []
   totalBreakdown: TotalCost = {
@@ -49,7 +53,11 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     total: 0,
   }
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private foodService: FoodService) {}
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private foodService: FoodService,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   ngOnInit(): void {
     const tipUrl = `${environment.baseUrl}/tips`
@@ -59,16 +67,20 @@ export class FoodShellComponent implements OnInit, OnDestroy {
   async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {
     const lazyComponent = await import('../food-card/food-card.component')
     const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)
-    const foodCardComponent = this.orederedViewContainer.createComponent(resolvedComponent)
+    const componentRef = this.orederedViewContainer.createComponent(resolvedComponent)
     const { total } = this.foodService.calculateTotal([choice])
 
     console.log('choice', choice, 'total', total)
-    foodCardComponent.instance.ordered = {
+    componentRef.instance.ordered = {
       ...choice,
     }
 
-    foodCardComponent.instance.total = total
+    componentRef.instance.total = total
+    console.log('instance', componentRef.instance)
+    this.componentRefs.push(componentRef)
+
     this.orderedFood = [...this.orderedFood, choice]
+    this.cdr.markForCheck()
   }
 
   calculate(tip: number) {
@@ -78,7 +90,17 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     }
   }
 
+  private destroyComponentRefs() {
+    for (const componentRef of this.componentRefs) {
+      componentRef.destroy()
+    }
+    if (this.orederedViewContainer) {
+      this.orederedViewContainer.clear()
+    }
+  }
+
   ngOnDestroy(): void {
+    this.destroyComponentRefs()
     this.unsubscribe$.next(true)
     this.unsubscribe$.complete()
   }
