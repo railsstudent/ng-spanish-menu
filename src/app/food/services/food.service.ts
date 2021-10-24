@@ -41,12 +41,13 @@ export class FoodService {
       return acc + price * quantity
     }, 0)
 
-    const totalAfterTip = unroundedTotal * (1 + tip)
-    const totalTip = unroundedTotal * tip
+    const subTotal = Math.round(unroundedTotal * cents) / cents
+    const totalTip = Math.round(unroundedTotal * tip * cents) / cents
+
     return {
-      totalBeforeTip: Math.round(unroundedTotal * cents) / cents,
-      totalTip: Math.round(totalTip * cents) / cents,
-      total: Math.round(totalAfterTip * cents) / cents,
+      subTotal,
+      totalTip,
+      total: Math.round((subTotal + totalTip) * cents) / cents,
     }
   }
 

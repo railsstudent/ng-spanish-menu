@@ -19,5 +19,5 @@ export interface MenuItem {
 export interface TotalCost {
   total: number
   totalTip: number
-  totalBeforeTip: number
+  subTotal: number
 }

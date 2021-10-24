@@ -1,8 +1,7 @@
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { action } from '@storybook/addon-actions'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
-import { FoodService } from '../services'
-import { MockFoodService } from './../storybook-mock'
 import { FoodTotalComponent } from './food-total.component'
 
 export default {
@@ -11,18 +10,15 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [ReactiveFormsModule, FormsModule],
-      providers: [
-        {
-          provide: FoodService,
-          useFactory: () => new MockFoodService(undefined),
-        },
-      ],
     }),
   ],
 } as Meta
 
 const Template: Story<FoodTotalComponent> = (args: FoodTotalComponent) => ({
-  props: args,
+  props: {
+    ...args,
+    getCheck: action('getCheck'),
+  },
 })
 
 export const Primary = Template.bind({})
@@ -53,11 +49,21 @@ Primary.args = {
       quantity: 2,
     },
   ],
-  tips: [0, 5, 10, 20],
+  totalBreakdown: {
+    subTotal: 10,
+    totalTip: 2.75,
+    total: 12.75,
+  },
+  tips: [0, 5, 10, 12.5, 15, 20],
 }
 
 export const NoOrder = Template.bind({})
 NoOrder.args = {
   ...Primary.args,
   choices: [],
+  totalBreakdown: {
+    subTotal: 0,
+    totalTip: 0,
+    total: 0,
+  },
 }

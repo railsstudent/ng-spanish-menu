@@ -1,15 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
-import { OrderedFoodChoice } from '../interfaces'
-import { FoodService } from '../services'
+import { OrderedFoodChoice, TotalCost } from '../interfaces'
 
 @Component({
   selector: 'app-food-total',
   template: `
     <div class="container">
       <div class="selection">
-        <button [disabled]="!choices || choices.length <= 0" (click)="calculate()">Give me the check</button>
+        <button [disabled]="!choices || choices.length <= 0" (click)="getCheck.emit(this.tip)">
+          Give me the check
+        </button>
         <p class="currency">Currency: {{ choices?.[0]?.currency || '' }}</p>
         <form class="form" [formGroup]="form">
           <label
@@ -21,9 +22,9 @@ import { FoodService } from '../services'
         </form>
       </div>
       <section class="total-section">
-        <p>Subtotal: {{ totalBeforeTip }}</p>
-        <p>Tip: {{ totalTip }}</p>
-        <p class="total">Total: {{ total }}</p>
+        <p>Subtotal: {{ totalBreakdown.subTotal }}</p>
+        <p>Tip: {{ totalBreakdown.totalTip }}</p>
+        <p class="total">Total: {{ totalBreakdown.total }}</p>
       </section>
     </div>
   `,
@@ -77,12 +78,15 @@ export class FoodTotalComponent implements OnInit {
   @Input()
   tips: number[]
 
-  form: FormGroup
-  total = 0
-  totalTip = 0
-  totalBeforeTip = 0
+  @Input()
+  totalBreakdown: TotalCost
 
-  constructor(private fb: FormBuilder, private foodService: FoodService) {}
+  @Output()
+  getCheck = new EventEmitter<number>()
+
+  form: FormGroup
+
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -98,12 +102,5 @@ export class FoodTotalComponent implements OnInit {
     }
 
     return (control.value as number) / cents
-  }
-
-  calculate(): void {
-    const { total, totalTip, totalBeforeTip } = this.foodService.calculateTotal(this.choices, this.tip)
-    this.totalBeforeTip = totalBeforeTip
-    this.totalTip = totalTip
-    this.total = total
   }
 }

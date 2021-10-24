@@ -11,7 +11,7 @@ import { Observable, Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 
-import { OrderedFoodChoice } from '../interfaces'
+import { OrderedFoodChoice, TotalCost } from '../interfaces'
 import { FoodService } from '../services'
 
 @Component({
@@ -24,7 +24,12 @@ import { FoodService } from '../services'
       <ng-container #viewContainerRef></ng-container>
     </section>
     <ng-container *ngIf="tips$ | async as tips">
-      <app-food-total [choices]="orderedFood" [tips]="tips"></app-food-total>
+      <app-food-total
+        [choices]="orderedFood"
+        [tips]="tips"
+        [totalBreakdown]="totalBreakdown"
+        (getCheck)="calculate($event)"
+      ></app-food-total>
     </ng-container>
   `,
   styleUrls: ['./food-shell.component.scss'],
@@ -34,9 +39,15 @@ export class FoodShellComponent implements OnInit, OnDestroy {
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
   orederedViewContainer: ViewContainerRef
 
-  orderedFood: OrderedFoodChoice[] = []
   tips$: Observable<number[]>
   unsubscribe$ = new Subject<boolean>()
+
+  orderedFood: OrderedFoodChoice[] = []
+  totalBreakdown: TotalCost = {
+    subTotal: 0,
+    totalTip: 0,
+    total: 0,
+  }
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private foodService: FoodService) {}
 
@@ -58,6 +69,13 @@ export class FoodShellComponent implements OnInit, OnDestroy {
 
     foodCardComponent.instance.total = total
     this.orderedFood = [...this.orderedFood, choice]
+  }
+
+  calculate(tip: number) {
+    const newTotal = this.foodService.calculateTotal(this.orderedFood, tip)
+    this.totalBreakdown = {
+      ...newTotal,
+    }
   }
 
   ngOnDestroy(): void {
