@@ -33,12 +33,13 @@ export class MockFoodService {
       return acc + price * quantity
     }, 0)
 
-    const totalAfterTip = unroundedTotal * (1 + tip)
     const totalTip = unroundedTotal * tip
+    const total = unroundedTotal + totalTip
+
     return {
-      totalBeforeTip: Math.round(unroundedTotal * cents) / cents,
+      subTotal: Math.round(unroundedTotal * cents) / cents,
       totalTip: Math.round(totalTip * cents) / cents,
-      total: Math.round(totalAfterTip * cents) / cents,
+      total: Math.round(total * cents) / cents,
     }
   }
 
