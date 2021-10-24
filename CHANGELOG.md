@@ -2,19 +2,32 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-### [0.0.3](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.2...0.0.3) (2021-10-20)
+### [0.0.4](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.3...0.0.4) (2021-10-24)
 
+### Features
+
+- create dynamic component ([538c4b5](https://github.com/railsstudent/ng-spanish-menu/commit/538c4b55b9791c708ec0501bf569e3c9690359ff))
+- pay tip to waiter ([f9c71f7](https://github.com/railsstudent/ng-spanish-menu/commit/f9c71f7cfb9e0f19e6cbedb2884999580f50e46b))
+- pay tip to waiter ([b89a5df](https://github.com/railsstudent/ng-spanish-menu/commit/b89a5dfb35428da3840b5d41c9f46a7d39d4cbb5))
+- pay tip to waiter ([36c2f90](https://github.com/railsstudent/ng-spanish-menu/commit/36c2f90d467ca49162cf8cf3574c7bbee5c863da))
+- pay tip to waiter ([7cf9946](https://github.com/railsstudent/ng-spanish-menu/commit/7cf9946b957a78f239ade4a506e9ef51e348450f))
 
 ### Bug fixes
 
-* versionrc.json to add postag ([161a875](https://github.com/railsstudent/ng-spanish-menu/commit/161a8759b269c2de74a906623d312d77afb0615c))
+- mock food service ([0fdf4b6](https://github.com/railsstudent/ng-spanish-menu/commit/0fdf4b6f63c8573d887f981438f0ff18a0d1e763))
+- use detectChanges so inputs are seen in dynamic component ([e0ccbe7](https://github.com/railsstudent/ng-spanish-menu/commit/e0ccbe7ac5b127a7a1b86d38bd4281fe50af6750))
+
+### [0.0.3](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.2...0.0.3) (2021-10-20)
+
+### Bug fixes
+
+- versionrc.json to add postag ([161a875](https://github.com/railsstudent/ng-spanish-menu/commit/161a8759b269c2de74a906623d312d77afb0615c))
 
 ### [0.0.2](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.1...0.0.2) (2021-10-20)
 
-
 ### Bug fixes
 
-* versionrc.json ([09cc781](https://github.com/railsstudent/ng-spanish-menu/commit/09cc78101dcb39d4aba5532b263a3672140fea18))
+- versionrc.json ([09cc781](https://github.com/railsstudent/ng-spanish-menu/commit/09cc78101dcb39d4aba5532b263a3672140fea18))
 
 ### 0.0.1 (2021-10-20)
 
