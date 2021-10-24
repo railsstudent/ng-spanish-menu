@@ -1,17 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
-import { OrderedFoodChoice, TotalCost } from '../interfaces'
+import { TotalCost } from '../interfaces'
 
 @Component({
   selector: 'app-food-total',
   template: `
     <div class="container">
       <div class="selection">
-        <button [disabled]="!choices || choices.length <= 0" (click)="getCheck.emit(this.tip)">
-          Give me the check
-        </button>
-        <p class="currency">Currency: {{ choices?.[0]?.currency || '' }}</p>
+        <button [disabled]="!isFoodOrdered" (click)="getCheck.emit(this.tip)">Give me the check</button>
+        <p class="currency">Currency: {{ currency || '' }}</p>
         <form class="form" [formGroup]="form">
           <label
             >Tip:
@@ -73,7 +71,10 @@ import { OrderedFoodChoice, TotalCost } from '../interfaces'
 })
 export class FoodTotalComponent implements OnInit {
   @Input()
-  choices: OrderedFoodChoice[] = []
+  isFoodOrdered: boolean
+
+  @Input()
+  currency: string
 
   @Input()
   tips: number[]

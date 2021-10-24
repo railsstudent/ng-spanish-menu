@@ -23,32 +23,8 @@ const Template: Story<FoodTotalComponent> = (args: FoodTotalComponent) => ({
 
 export const Primary = Template.bind({})
 Primary.args = {
-  choices: [
-    {
-      id: '1',
-      name: 'Food 1',
-      currency: 'USD',
-      price: 1.99,
-      description: 'Food 1 description',
-      quantity: 1,
-    },
-    {
-      id: '2',
-      name: 'Food 2',
-      currency: 'USD',
-      price: 0.99,
-      description: 'Food 2 description',
-      quantity: 5,
-    },
-    {
-      id: '3',
-      name: 'Food 3',
-      currency: 'USD',
-      price: 2.99,
-      description: 'Food 3 description',
-      quantity: 2,
-    },
-  ],
+  isFoodOrdered: true,
+  currency: 'USD',
   totalBreakdown: {
     subTotal: 10,
     totalTip: 2.75,
@@ -60,7 +36,7 @@ Primary.args = {
 export const NoOrder = Template.bind({})
 NoOrder.args = {
   ...Primary.args,
-  choices: [],
+  isFoodOrdered: false,
   totalBreakdown: {
     subTotal: 0,
     totalTip: 0,

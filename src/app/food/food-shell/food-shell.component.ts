@@ -28,7 +28,7 @@ import { FoodService } from '../services'
     </section>
     <ng-container *ngIf="tips$ | async as tips">
       <app-food-total
-        [choices]="orderedFood"
+        [isFoodOrdered]="orderedFood && orderedFood.length > 0"
         [tips]="tips"
         [totalBreakdown]="totalBreakdown"
         (getCheck)="calculate($event)"
