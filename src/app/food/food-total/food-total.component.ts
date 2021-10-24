@@ -18,7 +18,10 @@ import { FoodService } from '../services'
         </label>
       </form>
       <div>
-        <span>Total: {{ choices?.[0]?.currency || '' }} {{ total }}</span>
+        <span class="total">Currency: {{ choices?.[0]?.currency || '' }}</span>
+        <span class="total">Total before tip: {{ totalBeforeTip }}</span>
+        <span class="total">Tip: {{ totalTip }}</span>
+        <span class="total">Total: {{ total }}</span>
       </div>
     </div>
   `,
@@ -35,7 +38,8 @@ import { FoodService } from '../services'
         align-items: center;
       }
 
-      form.form {
+      form.form,
+      span.total {
         margin-right: 0.5rem;
       }
 
@@ -59,6 +63,8 @@ export class FoodTotalComponent implements OnInit {
 
   form: FormGroup
   total = 0
+  totalTip = 0
+  totalBeforeTip = 0
 
   constructor(private fb: FormBuilder, private foodService: FoodService) {}
 
@@ -79,6 +85,9 @@ export class FoodTotalComponent implements OnInit {
   }
 
   calculate(): void {
-    this.total = this.foodService.calculateTotal(this.choices, this.tip)
+    const { total, totalTip, totalBeforeTip } = this.foodService.calculateTotal(this.choices, this.tip)
+    this.totalBeforeTip = totalBeforeTip
+    this.totalTip = totalTip
+    this.total = total
   }
 }

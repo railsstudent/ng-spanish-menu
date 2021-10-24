@@ -16,7 +16,17 @@ import { FoodService } from '../services'
 
 @Component({
   selector: 'app-food-shell',
-  templateUrl: './food-shell.component.html',
+  template: `
+    <p>Angular Nation Special Menu</p>
+    <app-food-menu (addDynamicFoodChoice)="addDynamicFoodChoice($event)"></app-food-menu>
+    <p>Your order</p>
+    <section class="ordered">
+      <ng-container #viewContainerRef></ng-container>
+    </section>
+    <ng-container *ngIf="tips$ | async as tips">
+      <app-food-total [choices]="orderedFood" [tips]="tips"></app-food-total>
+    </ng-container>
+  `,
   styleUrls: ['./food-shell.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -39,7 +49,7 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     const lazyComponent = await import('../food-card/food-card.component')
     const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)
     const foodCardComponent = this.orederedViewContainer.createComponent(resolvedComponent)
-    const total = this.foodService.calculateTotal([choice])
+    const { total } = this.foodService.calculateTotal([choice])
 
     console.log('choice', choice, 'total', total)
     foodCardComponent.instance.ordered = {

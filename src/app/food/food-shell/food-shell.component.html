@@ -1,9 +1,0 @@
-<p>Angular Nation Special Menu</p>
-<app-food-menu (addDynamicFoodChoice)="addDynamicFoodChoice($event)"></app-food-menu>
-<p>Your order</p>
-<section class="ordered">
-  <ng-container #viewContainerRef></ng-container>
-</section>
-<ng-container *ngIf="tips$ | async as tips">
-  <app-food-total [choices]="orderedFood" [tips]="tips"></app-food-total>
-</ng-container>

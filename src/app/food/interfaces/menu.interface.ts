@@ -15,3 +15,9 @@ export interface MenuItem {
   question: string
   choices: Choice[]
 }
+
+export interface TotalCost {
+  total: number
+  totalTip: number
+  totalBeforeTip: number
+}

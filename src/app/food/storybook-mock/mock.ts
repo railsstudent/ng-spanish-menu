@@ -1,6 +1,6 @@
 import { BehaviorSubject, Observable, of } from 'rxjs'
 
-import { MenuItem } from '../interfaces'
+import { MenuItem, TotalCost } from '../interfaces'
 
 export class MockFoodService {
   private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)
@@ -26,16 +26,20 @@ export class MockFoodService {
     return of(this.menuItems)
   }
 
-  calculateTotal(food: { price: number; quantity: number }[], tip: number): number {
+  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {
     const cents = 100
     const unroundedTotal = food.reduce((acc, choice) => {
       const { price, quantity } = choice
       return acc + price * quantity
     }, 0)
 
-    console.log('tip', tip)
     const totalAfterTip = unroundedTotal * (1 + tip)
-    return Math.round(totalAfterTip * cents) / cents
+    const totalTip = unroundedTotal * tip
+    return {
+      totalBeforeTip: Math.round(unroundedTotal * cents) / cents,
+      totalTip: Math.round(totalTip * cents) / cents,
+      total: Math.round(totalAfterTip * cents) / cents,
+    }
   }
 
   updateQuantity(id: string, quantity: number): void {
