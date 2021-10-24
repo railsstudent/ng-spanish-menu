@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnChanges, SimpleChanges } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 
 import { OrderedFoodChoice } from '../interfaces'
 
@@ -8,14 +8,10 @@ import { OrderedFoodChoice } from '../interfaces'
   styleUrls: ['./food-card.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FoodCardComponent implements OnChanges {
+export class FoodCardComponent {
   @Input()
   ordered: OrderedFoodChoice
 
   @Input()
   total: number
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes', changes)
-  }
 }
