@@ -70,7 +70,6 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     const componentRef = this.orederedViewContainer.createComponent(resolvedComponent)
     const { total } = this.foodService.calculateTotal([choice])
 
-    console.log('choice', choice, 'total', total)
     componentRef.instance.ordered = {
       ...choice,
     }
@@ -80,7 +79,7 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     this.componentRefs.push(componentRef)
 
     this.orderedFood = [...this.orderedFood, choice]
-    this.cdr.markForCheck()
+    this.cdr.detectChanges()
   }
 
   calculate(tip: number) {
@@ -90,7 +89,7 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     }
   }
 
-  private destroyComponentRefs() {
+  private destroyComponents() {
     for (const componentRef of this.componentRefs) {
       componentRef.destroy()
     }
@@ -100,7 +99,7 @@ export class FoodShellComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.destroyComponentRefs()
+    this.destroyComponents()
     this.unsubscribe$.next(true)
     this.unsubscribe$.complete()
   }
