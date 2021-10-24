@@ -8,7 +8,7 @@ export const handler: Handler = async (event) => {
         'Access-Control-Allow-Origin': '*',
       },
       body: JSON.stringify({
-        tips: [0, 2.5, 5, 7.5, 10, 12.5, 15, 17.5, 20],
+        tips: [0, 5, 7.5, 10, 12.5, 15, 20],
       }),
     }
   }

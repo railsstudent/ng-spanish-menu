@@ -8,21 +8,23 @@ import { FoodService } from '../services'
   selector: 'app-food-total',
   template: `
     <div class="container">
-      <button [disabled]="!choices || choices.length <= 0" (click)="calculate()">Give me the check</button>
-      <form class="form" [formGroup]="form">
-        <label
-          >Tip:
-          <select name="tips" formControlName="tip">
-            <option *ngFor="let tip of tips" [value]="tip">{{ tip }}%</option>
-          </select>
-        </label>
-      </form>
-      <div>
-        <span class="total">Currency: {{ choices?.[0]?.currency || '' }}</span>
-        <span class="total">Total before tip: {{ totalBeforeTip }}</span>
-        <span class="total">Tip: {{ totalTip }}</span>
-        <span class="total">Total: {{ total }}</span>
+      <div class="selection">
+        <button [disabled]="!choices || choices.length <= 0" (click)="calculate()">Give me the check</button>
+        <p class="currency">Currency: {{ choices?.[0]?.currency || '' }}</p>
+        <form class="form" [formGroup]="form">
+          <label
+            >Tip:
+            <select name="tips" formControlName="tip">
+              <option *ngFor="let tip of tips" [value]="tip">{{ tip }}%</option>
+            </select>
+          </label>
+        </form>
       </div>
+      <section class="total-section">
+        <p>Subtotal: {{ totalBeforeTip }}</p>
+        <p>Tip: {{ totalTip }}</p>
+        <p class="total">Total: {{ total }}</p>
+      </section>
     </div>
   `,
   styles: [
@@ -35,21 +37,35 @@ import { FoodService } from '../services'
         padding: 0.5rem;
         border: 1px solid black;
         display: flex;
-        align-items: center;
+        flex-direction: column;
       }
 
       form.form,
-      span.total {
-        margin-right: 0.5rem;
+      p.currency {
+        display: inline;
       }
 
       form.form select {
         padding: 0.25rem;
       }
 
-      button {
+      p.currency {
         margin-right: 0.5rem;
-        margin-bottom: 0.25rem;
+      }
+
+      button {
+        padding: 0.25rem;
+        margin-right: 0.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .total-section p {
+        display: inline;
+        margin-right: 0.5rem;
+      }
+
+      .total-section p.total {
+        font-weight: bold;
       }
     `,
   ],
