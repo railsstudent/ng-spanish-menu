@@ -73,4 +73,8 @@ export class MockFoodService {
     }
     return 0
   }
+
+  getTips(): Observable<number[]> {
+    return of([0, 5, 10, 15, 20])
+  }
 }
