@@ -59,15 +59,15 @@ Primary.args = {
   },
 }
 
-export const Soldout = FoodMenuCardTemplate.bind({})
-Soldout.args = {
+export const SoldOut = FoodMenuCardTemplate.bind({})
+SoldOut.args = {
   qtyMap,
   menuItem: {
     ...SoldOutMockData[0],
     choices: [{ ...SoldOutMockData[0].choices[1] }],
   },
 }
-Soldout.decorators = [
+SoldOut.decorators = [
   moduleMetadata({
     providers: [
       {

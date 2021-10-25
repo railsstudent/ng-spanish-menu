@@ -47,7 +47,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
       })
   }
 
-  menumItemTrackByFn(index: number, menuItem: MenuItem): string | number {
+  menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {
     return menuItem ? menuItem.id : index
   }
 

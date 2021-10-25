@@ -34,8 +34,8 @@ const Template: Story<FoodMenuComponent> = (args: FoodMenuComponent) => ({
 
 export const Menu = Template.bind({})
 
-export const SoldoutMenu = Template.bind({})
-SoldoutMenu.decorators = [
+export const SoldOutMenu = Template.bind({})
+SoldOutMenu.decorators = [
   moduleMetadata({
     providers: [
       {

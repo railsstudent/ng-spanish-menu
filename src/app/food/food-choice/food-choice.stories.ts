@@ -43,15 +43,15 @@ Primary.args = {
   qtyMap,
 }
 
-export const Soldout = Template.bind({})
-Soldout.args = {
+export const SoldOut = Template.bind({})
+SoldOut.args = {
   choice: {
     ...SoldOutMockData[0].choices[1],
     quantity: 0,
   },
   qtyMap,
 }
-Soldout.decorators = [
+SoldOut.decorators = [
   moduleMetadata({
     providers: [
       {

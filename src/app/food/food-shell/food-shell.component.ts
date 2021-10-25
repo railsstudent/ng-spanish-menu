@@ -40,7 +40,7 @@ import { FoodService } from '../services'
 })
 export class FoodShellComponent implements OnInit, OnDestroy {
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
-  orederedViewContainer: ViewContainerRef
+  orderedViewContainer: ViewContainerRef
 
   tips$: Observable<number[]>
   unsubscribe$ = new Subject<boolean>()
@@ -67,7 +67,7 @@ export class FoodShellComponent implements OnInit, OnDestroy {
   async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {
     const lazyComponent = await import('../food-card/food-card.component')
     const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)
-    const componentRef = this.orederedViewContainer.createComponent(resolvedComponent)
+    const componentRef = this.orderedViewContainer.createComponent(resolvedComponent)
     const { total } = this.foodService.calculateTotal([choice])
 
     componentRef.instance.ordered = {
@@ -93,8 +93,8 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     for (const componentRef of this.componentRefs) {
       componentRef.destroy()
     }
-    if (this.orederedViewContainer) {
-      this.orederedViewContainer.clear()
+    if (this.orderedViewContainer) {
+      this.orderedViewContainer.clear()
     }
   }
 
