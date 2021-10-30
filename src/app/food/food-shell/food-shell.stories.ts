@@ -10,6 +10,7 @@ import { FoodTotalComponent } from '../food-total'
 import { FoodService } from '../services'
 import { MockData, MockFoodService } from '../storybook-mock'
 import { FoodMenuComponent } from './../food-menu/food-menu.component'
+import { FoodMenuOptionComponent } from './../food-menu-option/food-menu-option.component'
 import { FoodShellComponent } from './food-shell.component'
 
 export default {
@@ -24,6 +25,7 @@ export default {
         FoodQuestionComponent,
         FoodChoiceFormComponent,
         FoodMenuCardComponent,
+        FoodMenuOptionComponent,
       ],
       imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
       providers: [

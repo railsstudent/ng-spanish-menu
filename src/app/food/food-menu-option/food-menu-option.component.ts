@@ -15,10 +15,6 @@ import { MenuOptions } from '../enums'
           <option value="available">Show available only</option>
         </select>
       </form>
-      <pre>
-      {{ form.value | json }}
-    </pre
-      >
     </section>
   `,
   styles: [

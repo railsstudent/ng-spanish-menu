@@ -1,4 +1,5 @@
 <div class="container" *ngIf="menuItems$ | async as menuItems; else notAvailable">
+  <app-food-menu-option (menuOptionSelected)="menuOptionSub$.next($event)"></app-food-menu-option>
   <app-food-menu-card *ngFor="let menuItem of menuItems; index as i; trackBy: menuItemTrackByFn">
     <app-food-question [question]="menuItem.question" head></app-food-question>
     <ng-container *ngFor="let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn" body>
@@ -9,8 +10,5 @@
       ></app-food-choice>
     </ng-container>
   </app-food-menu-card>
-  <!-- <pre>
-    {{ qtyMap | json }}
-  </pre> -->
 </div>
 <ng-template #notAvailable>No menu</ng-template>
