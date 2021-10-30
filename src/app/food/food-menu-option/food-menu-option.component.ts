@@ -13,6 +13,7 @@ import { MenuOptions } from '../enums'
         <select name="option" formControlName="option">
           <option value="all">Show all</option>
           <option value="available">Show available only</option>
+          <option value="soldOut">Show sold out</option>
         </select>
       </form>
     </section>
@@ -48,7 +49,7 @@ export class FoodMenuOptionComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      option: new FormControl(MenuOptions.All),
+      option: new FormControl(MenuOptions.all),
     })
 
     this.form.controls['option'].valueChanges

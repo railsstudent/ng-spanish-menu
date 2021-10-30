@@ -1,4 +1,5 @@
 export enum MenuOptions {
-  All = 'all',
-  Available = 'available',
+  all = 'all',
+  available = 'available',
+  soldOut = 'soldOut',
 }

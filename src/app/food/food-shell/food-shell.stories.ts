@@ -4,13 +4,13 @@ import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceComponent } from '../food-choice'
 import { FoodChoiceFormComponent } from '../food-choice-form'
+import { FoodMenuComponent } from '../food-menu/food-menu.component'
 import { FoodMenuCardComponent } from '../food-menu-card'
+import { FoodMenuOptionComponent } from '../food-menu-option'
 import { FoodQuestionComponent } from '../food-question'
 import { FoodTotalComponent } from '../food-total'
 import { FoodService } from '../services'
 import { MockData, MockFoodService } from '../storybook-mock'
-import { FoodMenuComponent } from './../food-menu/food-menu.component'
-import { FoodMenuOptionComponent } from './../food-menu-option/food-menu-option.component'
 import { FoodShellComponent } from './food-shell.component'
 
 export default {

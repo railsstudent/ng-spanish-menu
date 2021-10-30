@@ -18,7 +18,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
 
   menuItems$: Observable<MenuItem[] | undefined>
   handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()
-  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.All)
+  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)
   unsubscribe$ = new Subject<boolean>()
 
   qtyMap: Record<string, number> | undefined
@@ -39,26 +39,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
           option,
         }
       }),
-      map(({ menuItems, option }) => {
-        if (!menuItems) {
-          return undefined
-        }
-        if (option === MenuOptions.All) {
-          return menuItems
-        }
-        return menuItems.reduce((acc, menuItem) => {
-          // menuItem.choices.
-          const availableChoices = menuItem.choices.filter((choice) => this.qtyMap && this.qtyMap[choice.id] > 0)
-          if (availableChoices.length > 0) {
-            const selectableMenuItem: MenuItem = {
-              ...menuItem,
-              choices: availableChoices,
-            }
-            return acc.concat(selectableMenuItem)
-          }
-          return acc
-        }, [] as MenuItem[])
-      }),
+      map(({ menuItems, option }) => this.findMatchedMenuItems(menuItems, option)),
       takeUntil(this.unsubscribe$),
     )
 
@@ -86,6 +67,33 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
 
   choiceTrackByFn(index: number, choice: Choice) {
     return choice ? choice.id : index
+  }
+
+  findMatchedMenuItems(menuItems: MenuItem[] | undefined, option: string) {
+    if (!menuItems || option === 'all') {
+      return menuItems
+    }
+
+    const typedOptionString = option as keyof typeof MenuOptions
+    const typedOption = MenuOptions[typedOptionString]
+
+    const filterFuncMap = {
+      [MenuOptions.all]: () => true,
+      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] > 0,
+      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] <= 0,
+    }
+
+    const filterFunc = filterFuncMap[typedOption]
+    return menuItems.reduce((acc, menuItem) => {
+      const matchedChoices = menuItem.choices.filter(filterFunc)
+      if (matchedChoices.length > 0) {
+        return acc.concat({
+          ...menuItem,
+          choices: matchedChoices,
+        })
+      }
+      return acc
+    }, [] as MenuItem[])
   }
 
   ngOnDestroy(): void {
