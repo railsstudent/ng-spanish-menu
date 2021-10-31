@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.5](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.4...0.0.5) (2021-10-31)
+
+### Features
+
+- add sold out option ([720adf9](https://github.com/railsstudent/ng-spanish-menu/commit/720adf900652720936317f5079c461b92446f649))
+- food menu option to filter out food out that is sold out ([b118bf7](https://github.com/railsstudent/ng-spanish-menu/commit/b118bf736982868024f9040d961854c7b68b47cd))
+- menu option ([aee2f84](https://github.com/railsstudent/ng-spanish-menu/commit/aee2f849cc29f8047e60645d13175371bff203bf))
+
 ### [0.0.4](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.3...0.0.4) (2021-10-24)
 
 ### Features
