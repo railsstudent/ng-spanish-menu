@@ -76,7 +76,6 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     }
 
     componentRef.instance.total = total
-    console.log('instance', componentRef.instance)
     this.componentRefs.push(componentRef)
 
     this.orderedFood = [...this.orderedFood, choice]
