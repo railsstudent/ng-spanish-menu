@@ -18,7 +18,8 @@
     "release": "standard-version -t '' -a",
     "release:patch:dryrun": "npm run release  -- --dry-run --release-as patch",
     "release:patch": "npm run release  -- --release-as patch",
-    "cspell": "cspell"
+    "cspell": "cspell",
+    "cz": "cz"
   },
   "dependencies": {
     "@angular/animations": "~12.2.0",
@@ -47,7 +48,8 @@
     "@babel/core": "^7.15.0",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-angular": "^13.1.0",
-    "@commitlint/config-conventional": "^13.1.0",
+    "@commitlint/config-conventional": "^13.2.0",
+    "@commitlint/prompt": "^14.1.0",
     "@compodoc/compodoc": "^1.1.15",
     "@storybook/addon-actions": "^6.3.12",
     "@storybook/addon-essentials": "^6.3.12",
@@ -63,6 +65,7 @@
     "angular-cli-ghpages": "^1.0.0-rc.2",
     "babel-loader": "^8.2.2",
     "chromatic": "^6.0.4",
+    "commitizen": "^4.2.4",
     "cspell": "^5.12.3",
     "eslint": "^7.26.0",
     "eslint-config-prettier": "^8.3.0",

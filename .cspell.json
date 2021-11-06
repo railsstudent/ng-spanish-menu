@@ -1,6 +1,6 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": ["UNPATCHED", "Dimsum", "Gulab", "Jamun", "Lamingtons"],
+  "words": ["UNPATCHED", "Dimsum", "Gulab", "Jamun", "Lamingtons", "commitlint"],
   "flagWords": []
 }
