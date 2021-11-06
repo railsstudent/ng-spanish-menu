@@ -3,12 +3,12 @@
   "interfaces": [
     {
       "name": "Choice",
-      "id": "interface-Choice-03a9becf54c60cad691ed80fe6e3c761",
+      "id": "interface-Choice-17915a284a520a60d0f5a8dd65fac1b9",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport interface TotalCost {\n  total: number\n  totalTip: number\n  subTotal: number\n}\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\n",
       "properties": [
         {
           "name": "currency",
@@ -71,12 +71,12 @@
     },
     {
       "name": "Menu",
-      "id": "interface-Menu-03a9becf54c60cad691ed80fe6e3c761",
+      "id": "interface-Menu-17915a284a520a60d0f5a8dd65fac1b9",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport interface TotalCost {\n  total: number\n  totalTip: number\n  subTotal: number\n}\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\n",
       "properties": [
         {
           "name": "menu",
@@ -94,12 +94,12 @@
     },
     {
       "name": "MenuItem",
-      "id": "interface-MenuItem-03a9becf54c60cad691ed80fe6e3c761",
+      "id": "interface-MenuItem-17915a284a520a60d0f5a8dd65fac1b9",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport interface TotalCost {\n  total: number\n  totalTip: number\n  subTotal: number\n}\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\n",
       "properties": [
         {
           "name": "choices",
@@ -226,48 +226,7 @@
     },
     {
       "name": "TotalCost",
-      "id": "interface-TotalCost-03a9becf54c60cad691ed80fe6e3c761",
-      "file": "src/app/food/interfaces/menu.interface.ts",
-      "deprecated": false,
-      "deprecationMessage": "",
-      "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\nexport interface TotalCost {\n  total: number\n  totalTip: number\n  subTotal: number\n}\n",
-      "properties": [
-        {
-          "name": "subTotal",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "optional": false,
-          "description": "",
-          "line": 22
-        },
-        {
-          "name": "total",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "optional": false,
-          "description": "",
-          "line": 20
-        },
-        {
-          "name": "totalTip",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "optional": false,
-          "description": "",
-          "line": 21
-        }
-      ],
-      "indexSignatures": [],
-      "kind": 164,
-      "methods": []
-    },
-    {
-      "name": "TotalCost",
-      "id": "interface-TotalCost-301f55f8b9aecb46f0a7baa4668d4889-1",
+      "id": "interface-TotalCost-301f55f8b9aecb46f0a7baa4668d4889",
       "file": "src/app/food/interfaces/total.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
@@ -304,10 +263,7 @@
       ],
       "indexSignatures": [],
       "kind": 164,
-      "methods": [],
-      "isDuplicate": true,
-      "duplicateId": 1,
-      "duplicateName": "TotalCost-1"
+      "methods": []
     }
   ],
   "injectables": [
@@ -854,7 +810,7 @@
       "assetsDirs": [],
       "styleUrlsData": [
         {
-          "data": ":host {\n  display: block;\n}\n\n.container {\n  display: flex;\n  flex-direction: column;\n  width: 300px;\n  border: 1px solid black;\n\n  .item {\n    padding: 0.5rem 0.75rem;\n    margin-bottom: 0.5rem;\n    font-size: 1rem;\n  }\n}\n",
+          "data": ":host {\n  display: block;\n}\n\n.container {\n  display: flex;\n  flex-direction: column;\n  width: 300px;\n  border: 1px solid black;\n  margin-right: 0.5rem;\n\n  .item {\n    padding: 0.5rem 0.75rem;\n    margin-bottom: 0.5rem;\n    font-size: 1rem;\n  }\n}\n",
           "styleUrl": "./food-card.component.scss"
         }
       ],
@@ -1209,7 +1165,7 @@
     },
     {
       "name": "FoodMenuComponent",
-      "id": "component-FoodMenuComponent-0bab71eada07bf7c5388c2e90a45212f",
+      "id": "component-FoodMenuComponent-62b929b9d6506163c4ee20b1908926c4",
       "file": "src/app/food/food-menu/food-menu.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1255,7 +1211,7 @@
         },
         {
           "name": "menuOptionSub$",
-          "defaultValue": "new BehaviorSubject<string>(MenuOptions.All)",
+          "defaultValue": "new BehaviorSubject<string>(MenuOptions.all)",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
@@ -1303,7 +1259,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 87,
+          "line": 68,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1319,6 +1275,49 @@
             {
               "name": "choice",
               "type": "Choice",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "findMatchedMenuItems",
+          "args": [
+            {
+              "name": "menuItems",
+              "type": "MenuItem[] | undefined",
+              "deprecated": false,
+              "deprecationMessage": ""
+            },
+            {
+              "name": "option",
+              "type": "string",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "any",
+          "typeParameters": [],
+          "line": 72,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "jsdoctags": [
+            {
+              "name": "menuItems",
+              "type": "MenuItem[] | undefined",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "option",
+              "type": "string",
               "deprecated": false,
               "deprecationMessage": "",
               "tagName": {
@@ -1346,7 +1345,7 @@
           "optional": false,
           "returnType": "string | number",
           "typeParameters": [],
-          "line": 83,
+          "line": 64,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1376,7 +1375,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 91,
+          "line": 99,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -1398,7 +1397,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs'\nimport { map, takeUntil, tap } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  @Output()\n  addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n\n  menuItems$: Observable<MenuItem[] | undefined>\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.All)\n  unsubscribe$ = new Subject<boolean>()\n\n  qtyMap: Record<string, number> | undefined\n\n  constructor(private service: FoodService) {}\n\n  ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => {\n        return {\n          menuItems,\n          option,\n        }\n      }),\n      map(({ menuItems, option }) => {\n        if (!menuItems) {\n          return undefined\n        }\n        if (option === MenuOptions.All) {\n          return menuItems\n        }\n        return menuItems.reduce((acc, menuItem) => {\n          // menuItem.choices.\n          const availableChoices = menuItem.choices.filter((choice) => this.qtyMap && this.qtyMap[choice.id] > 0)\n          if (availableChoices.length > 0) {\n            const selectableMenuItem: MenuItem = {\n              ...menuItem,\n              choices: availableChoices,\n            }\n            return acc.concat(selectableMenuItem)\n          }\n          return acc\n        }, [] as MenuItem[])\n      }),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.service.quantityAvailableMap$.pipe(takeUntil(this.unsubscribe$)).subscribe((updatedQtyMap) => {\n      if (!updatedQtyMap) {\n        this.qtyMap = undefined\n      } else {\n        this.qtyMap = {\n          ...updatedQtyMap,\n        }\n      }\n    })\n\n    this.handleFoodChoiceSub$\n      .pipe(\n        tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))\n  }\n\n  menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  choiceTrackByFn(index: number, choice: Choice) {\n    return choice ? choice.id : index\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs'\nimport { map, takeUntil, tap } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  @Output()\n  addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n\n  menuItems$: Observable<MenuItem[] | undefined>\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)\n  unsubscribe$ = new Subject<boolean>()\n\n  qtyMap: Record<string, number> | undefined\n\n  constructor(private service: FoodService) {}\n\n  ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => {\n        return {\n          menuItems,\n          option,\n        }\n      }),\n      map(({ menuItems, option }) => this.findMatchedMenuItems(menuItems, option)),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.service.quantityAvailableMap$.pipe(takeUntil(this.unsubscribe$)).subscribe((updatedQtyMap) => {\n      if (!updatedQtyMap) {\n        this.qtyMap = undefined\n      } else {\n        this.qtyMap = {\n          ...updatedQtyMap,\n        }\n      }\n    })\n\n    this.handleFoodChoiceSub$\n      .pipe(\n        tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))\n  }\n\n  menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  choiceTrackByFn(index: number, choice: Choice) {\n    return choice ? choice.id : index\n  }\n\n  findMatchedMenuItems(menuItems: MenuItem[] | undefined, option: string) {\n    if (!menuItems || option === 'all') {\n      return menuItems\n    }\n\n    const typedOptionString = option as keyof typeof MenuOptions\n    const typedOption = MenuOptions[typedOptionString]\n\n    const filterFuncMap = {\n      [MenuOptions.all]: () => true,\n      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] > 0,\n      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] <= 0,\n    }\n\n    const filterFunc = filterFuncMap[typedOption]\n    return menuItems.reduce((acc, menuItem) => {\n      const matchedChoices = menuItem.choices.filter(filterFunc)\n      if (matchedChoices.length > 0) {\n        return acc.concat({\n          ...menuItem,\n          choices: matchedChoices,\n        })\n      }\n      return acc\n    }, [] as MenuItem[])\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -1433,7 +1432,7 @@
     },
     {
       "name": "FoodMenuOptionComponent",
-      "id": "component-FoodMenuOptionComponent-f0e251e53ee60523b0cba0ab6e6c7976",
+      "id": "component-FoodMenuOptionComponent-ae10826560444767854fdf5017c98a7c",
       "file": "src/app/food/food-menu-option/food-menu-option.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1510,7 +1509,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"option\">\n      <form [formGroup]=\"form\">\n        <select name=\"option\" formControlName=\"option\">\n          <option value=\"all\">Show all</option>\n          <option value=\"available\">Show available only</option>\n          <option value=\"soldOut\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      section.option {\n        display: flex;\n        justify-content: flex-end;\n        padding: 0.75rem;\n      }\n\n      section select {\n        padding: 0.25rem;\n        font-size: 1rem;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionComponent implements OnInit, OnDestroy {\n  @Output()\n  menuOptionSelected = new EventEmitter<string>()\n\n  form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  constructor(private fb: FormBuilder) {}\n\n  ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(MenuOptions.All),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value) => this.menuOptionSelected.emit(value))\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"option\">\n      <form [formGroup]=\"form\">\n        <select name=\"option\" formControlName=\"option\">\n          <option value=\"all\">Show all</option>\n          <option value=\"available\">Show available only</option>\n          <option value=\"soldOut\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      section.option {\n        display: flex;\n        justify-content: flex-end;\n        padding: 0.75rem;\n      }\n\n      section select {\n        padding: 0.25rem;\n        font-size: 1rem;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionComponent implements OnInit, OnDestroy {\n  @Output()\n  menuOptionSelected = new EventEmitter<string>()\n\n  form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  constructor(private fb: FormBuilder) {}\n\n  ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(MenuOptions.all),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value) => this.menuOptionSelected.emit(value))\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n\n      section.option {\n        display: flex;\n        justify-content: flex-end;\n        padding: 0.75rem;\n      }\n\n      section select {\n        padding: 0.25rem;\n        font-size: 1rem;\n      }\n    \n",
@@ -1589,7 +1588,7 @@
     },
     {
       "name": "FoodShellComponent",
-      "id": "component-FoodShellComponent-d72bf1180ed094561c3cd3bc80b1947d",
+      "id": "component-FoodShellComponent-229bcc4f74cb67d6d7ceb0e2a1df8a28",
       "file": "src/app/food/food-shell/food-shell.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1600,7 +1599,7 @@
       "selector": "app-food-shell",
       "styleUrls": ["./food-shell.component.scss"],
       "styles": [],
-      "template": "<p>Angular Nation Special Menu</p>\n<app-food-menu (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n<p>Your order</p>\n<section class=\"ordered\">\n  <ng-container #viewContainerRef></ng-container>\n</section>\n<ng-container *ngIf=\"tips$ | async as tips\">\n  <app-food-total\n    [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n    [tips]=\"tips\"\n    [totalBreakdown]=\"totalBreakdown\"\n    (getCheck)=\"calculate($event)\"\n  ></app-food-total>\n</ng-container>\n",
+      "template": "<p>Angular Nation Special Menu</p>\n<app-food-menu (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n<p>Your order</p>\n<section class=\"ordered\">\n  <ng-container #viewContainerRef></ng-container>\n</section>\n<ng-container *ngIf=\"tips$ | async as tips\">\n  <app-food-total\n    [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n    [currency]=\"orderedFood?.[0]?.currency || ''\"\n    [tips]=\"tips\"\n    [totalBreakdown]=\"totalBreakdown\"\n    (getCheck)=\"calculate($event)\"\n  ></app-food-total>\n</ng-container>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [],
@@ -1614,7 +1613,7 @@
           "type": "ComponentRef<FoodCardComponent>[]",
           "optional": false,
           "description": "",
-          "line": 47
+          "line": 48
         },
         {
           "name": "orderedFood",
@@ -1624,7 +1623,7 @@
           "type": "OrderedFoodChoice[]",
           "optional": false,
           "description": "",
-          "line": 49
+          "line": 50
         },
         {
           "name": "orderedViewContainer",
@@ -1633,7 +1632,7 @@
           "type": "ViewContainerRef",
           "optional": false,
           "description": "",
-          "line": 43,
+          "line": 44,
           "decorators": [
             {
               "name": "ViewChild",
@@ -1648,7 +1647,7 @@
           "type": "Observable<number[]>",
           "optional": false,
           "description": "",
-          "line": 45
+          "line": 46
         },
         {
           "name": "totalBreakdown",
@@ -1658,7 +1657,7 @@
           "type": "TotalCost",
           "optional": false,
           "description": "",
-          "line": 50
+          "line": 51
         },
         {
           "name": "unsubscribe$",
@@ -1668,7 +1667,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 46
+          "line": 47
         }
       ],
       "methodsClass": [
@@ -1685,7 +1684,7 @@
           "optional": false,
           "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 67,
+          "line": 68,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [130],
@@ -1756,7 +1755,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 62,
+          "line": 63,
           "deprecated": false,
           "deprecationMessage": ""
         }
@@ -1768,7 +1767,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  OnDestroy,\n  OnInit,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { Observable, Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { FoodCardComponent } from '../food-card'\nimport { OrderedFoodChoice, TotalCost } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-shell',\n  template: `\n    <p>Angular Nation Special Menu</p>\n    <app-food-menu (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n    <p>Your order</p>\n    <section class=\"ordered\">\n      <ng-container #viewContainerRef></ng-container>\n    </section>\n    <ng-container *ngIf=\"tips$ | async as tips\">\n      <app-food-total\n        [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n        [tips]=\"tips\"\n        [totalBreakdown]=\"totalBreakdown\"\n        (getCheck)=\"calculate($event)\"\n      ></app-food-total>\n    </ng-container>\n  `,\n  styleUrls: ['./food-shell.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodShellComponent implements OnInit, OnDestroy {\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  orderedViewContainer: ViewContainerRef\n\n  tips$: Observable<number[]>\n  unsubscribe$ = new Subject<boolean>()\n  componentRefs: ComponentRef<FoodCardComponent>[] = []\n\n  orderedFood: OrderedFoodChoice[] = []\n  totalBreakdown: TotalCost = {\n    subTotal: 0,\n    totalTip: 0,\n    total: 0,\n  }\n\n  constructor(\n    private componentFactoryResolver: ComponentFactoryResolver,\n    private foodService: FoodService,\n    private cdr: ChangeDetectorRef,\n  ) {}\n\n  ngOnInit(): void {\n    const tipUrl = `${environment.baseUrl}/tips`\n    this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))\n  }\n\n  async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {\n    const lazyComponent = await import('../food-card/food-card.component')\n    const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)\n    const componentRef = this.orderedViewContainer.createComponent(resolvedComponent)\n    const { total } = this.foodService.calculateTotal([choice])\n\n    componentRef.instance.ordered = {\n      ...choice,\n    }\n\n    componentRef.instance.total = total\n    console.log('instance', componentRef.instance)\n    this.componentRefs.push(componentRef)\n\n    this.orderedFood = [...this.orderedFood, choice]\n    this.cdr.detectChanges()\n  }\n\n  calculate(tip: number) {\n    const newTotal = this.foodService.calculateTotal(this.orderedFood, tip)\n    this.totalBreakdown = {\n      ...newTotal,\n    }\n  }\n\n  private destroyComponents() {\n    for (const componentRef of this.componentRefs) {\n      componentRef.destroy()\n    }\n    if (this.orderedViewContainer) {\n      this.orderedViewContainer.clear()\n    }\n  }\n\n  ngOnDestroy(): void {\n    this.destroyComponents()\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  OnDestroy,\n  OnInit,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { Observable, Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { FoodCardComponent } from '../food-card'\nimport { OrderedFoodChoice, TotalCost } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-shell',\n  template: `\n    <p>Angular Nation Special Menu</p>\n    <app-food-menu (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n    <p>Your order</p>\n    <section class=\"ordered\">\n      <ng-container #viewContainerRef></ng-container>\n    </section>\n    <ng-container *ngIf=\"tips$ | async as tips\">\n      <app-food-total\n        [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n        [currency]=\"orderedFood?.[0]?.currency || ''\"\n        [tips]=\"tips\"\n        [totalBreakdown]=\"totalBreakdown\"\n        (getCheck)=\"calculate($event)\"\n      ></app-food-total>\n    </ng-container>\n  `,\n  styleUrls: ['./food-shell.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodShellComponent implements OnInit, OnDestroy {\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  orderedViewContainer: ViewContainerRef\n\n  tips$: Observable<number[]>\n  unsubscribe$ = new Subject<boolean>()\n  componentRefs: ComponentRef<FoodCardComponent>[] = []\n\n  orderedFood: OrderedFoodChoice[] = []\n  totalBreakdown: TotalCost = {\n    subTotal: 0,\n    totalTip: 0,\n    total: 0,\n  }\n\n  constructor(\n    private componentFactoryResolver: ComponentFactoryResolver,\n    private foodService: FoodService,\n    private cdr: ChangeDetectorRef,\n  ) {}\n\n  ngOnInit(): void {\n    const tipUrl = `${environment.baseUrl}/tips`\n    this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))\n  }\n\n  async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {\n    const lazyComponent = await import('../food-card/food-card.component')\n    const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)\n    const componentRef = this.orderedViewContainer.createComponent(resolvedComponent)\n    const { total } = this.foodService.calculateTotal([choice])\n\n    componentRef.instance.ordered = {\n      ...choice,\n    }\n\n    componentRef.instance.total = total\n    this.componentRefs.push(componentRef)\n\n    this.orderedFood = [...this.orderedFood, choice]\n    this.cdr.detectChanges()\n  }\n\n  calculate(tip: number) {\n    const newTotal = this.foodService.calculateTotal(this.orderedFood, tip)\n    this.totalBreakdown = {\n      ...newTotal,\n    }\n  }\n\n  private destroyComponents() {\n    for (const componentRef of this.componentRefs) {\n      componentRef.destroy()\n    }\n    if (this.orderedViewContainer) {\n      this.orderedViewContainer.clear()\n    }\n  }\n\n  ngOnDestroy(): void {\n    this.destroyComponents()\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -1802,7 +1801,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 54,
+        "line": 55,
         "jsdoctags": [
           {
             "name": "componentFactoryResolver",
@@ -2494,16 +2493,6 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu/food-menu.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodMenuComponent>",
-        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-question/food-question.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2519,6 +2508,16 @@
         "deprecationMessage": "",
         "type": "Story<FoodShellComponent>",
         "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu/food-menu.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodMenuComponent>",
+        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -2583,19 +2582,19 @@
         "name": "MenuOptions",
         "childs": [
           {
-            "name": "All",
+            "name": "all",
             "deprecated": false,
             "deprecationMessage": "",
             "value": "all"
           },
           {
-            "name": "Available",
+            "name": "available",
             "deprecated": false,
             "deprecationMessage": "",
             "value": "available"
           },
           {
-            "name": "SoldOut",
+            "name": "soldOut",
             "deprecated": false,
             "deprecationMessage": "",
             "value": "soldOut"
@@ -3064,19 +3063,19 @@
           "name": "MenuOptions",
           "childs": [
             {
-              "name": "All",
+              "name": "all",
               "deprecated": false,
               "deprecationMessage": "",
               "value": "all"
             },
             {
-              "name": "Available",
+              "name": "available",
               "deprecated": false,
               "deprecationMessage": "",
               "value": "available"
             },
             {
-              "name": "SoldOut",
+              "name": "soldOut",
               "deprecated": false,
               "deprecationMessage": "",
               "value": "soldOut"
@@ -3353,7 +3352,7 @@
         "linktype": "component",
         "name": "FoodMenuComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/12",
+        "coverageCount": "0/13",
         "status": "low"
       },
       {
@@ -3526,15 +3525,6 @@
         "type": "interface",
         "linktype": "interface",
         "name": "MenuItem",
-        "coveragePercent": 0,
-        "coverageCount": "0/4",
-        "status": "low"
-      },
-      {
-        "filePath": "src/app/food/interfaces/menu.interface.ts",
-        "type": "interface",
-        "linktype": "interface",
-        "name": "TotalCost",
         "coveragePercent": 0,
         "coverageCount": "0/4",
         "status": "low"
