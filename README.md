@@ -17,7 +17,7 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - ntl dev
 - http://localhost:8888/.netlify/functions/menu to retrieve menu
 
-## commit message with commitzen
+## Commit message with Commitzen
 
 - git add .
 - npm run commit
