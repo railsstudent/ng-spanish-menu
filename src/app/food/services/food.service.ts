@@ -34,20 +34,26 @@ export class FoodService {
     )
   }
 
-  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {
+  private roundAmount(amount: number): number {
     const cents = 100
+
+    return Math.round(amount * cents) / cents
+  }
+
+  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {
     const unroundedTotal = food.reduce((acc, choice) => {
       const { price, quantity } = choice
       return acc + price * quantity
     }, 0)
 
-    const subTotal = Math.round(unroundedTotal * cents) / cents
-    const totalTip = Math.round(unroundedTotal * tip * cents) / cents
+    const subTotal = this.roundAmount(unroundedTotal)
+    const totalTip = this.roundAmount(unroundedTotal * tip)
+    const total = this.roundAmount(subTotal + totalTip)
 
     return {
       subTotal,
       totalTip,
-      total: Math.round((subTotal + totalTip) * cents) / cents,
+      total,
     }
   }
 

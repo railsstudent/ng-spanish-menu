@@ -26,20 +26,26 @@ export class MockFoodService {
     return of(this.menuItems)
   }
 
-  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {
+  private roundAmount(amount: number): number {
     const cents = 100
+
+    return Math.round(amount * cents) / cents
+  }
+
+  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {
     const unroundedTotal = food.reduce((acc, choice) => {
       const { price, quantity } = choice
       return acc + price * quantity
     }, 0)
 
-    const totalTip = unroundedTotal * tip
-    const total = unroundedTotal + totalTip
+    const subTotal = this.roundAmount(unroundedTotal)
+    const totalTip = this.roundAmount(unroundedTotal * tip)
+    const total = this.roundAmount(unroundedTotal + totalTip)
 
     return {
-      subTotal: Math.round(unroundedTotal * cents) / cents,
-      totalTip: Math.round(totalTip * cents) / cents,
-      total: Math.round(total * cents) / cents,
+      subTotal,
+      totalTip,
+      total,
     }
   }
 
