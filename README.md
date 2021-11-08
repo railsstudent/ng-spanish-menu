@@ -45,9 +45,7 @@ Should we convert the application to PWA?
 
 ## Articles
 
-###
-
-Angular and Storybook
+### Angular and Storybook
 
 <ol>
   <li>First item</li>
@@ -56,9 +54,7 @@ Angular and Storybook
   <li>Fourth item</li>
 </ol>
 
-###
-
-Best coding practices
+### Best coding practices
 
 <ol>
   <li>First item</li>
