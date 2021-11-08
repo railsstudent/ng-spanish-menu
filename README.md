@@ -24,24 +24,9 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 
 ## Todo
 
-- ~~Create a card to display description, quantity and price for now~~
-- ~~Create Menu item component that displays description and price. Customer edits quality and clicks add button to order (done)~~
 - Create shell component to host smart and dumb components (Nati)
-- ~~Create Menu component that iterate food and drink choices to render menu items (Connie)~~
-- ~~Create Menu card component to content project food question and food choices~~
-- Test components with Storybook
-- Someone who is good at UX (Not me!!!!) will design the application layout
-- ~~Create npm script to deploy the project to github page by angular-cli-ghpages (Connie)~~
-- ~~Create github action to deploy the project to github page (stuck, PR submutted)~~
-- ~~Build storybook as a standalone application (Connie)~~
-- ~~Create github action to deploy storybook to chromium~~
-
-## Data
-
-- ~~Should food menu be hardcoded data in the component?~~
-- ~~Should food menu loaded from static JSON file through http service? Http service retrieves data from static json file~~
-- ~~Should food menu loaded from backend API that we create?~~
-- ~~Want to explore Netlify function to return food menu (Connie)~~
+- Translation
+- Include ingredients in the food and beverages
 
 ## CSS and UI libraries
 
@@ -57,6 +42,30 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 ## PWA
 
 Should we convert the application to PWA?
+
+## Articles
+
+###
+
+Angular and Storybook
+
+<ol>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+  <li>Fourth item</li>
+</ol>
+
+###
+
+Best coding practices
+
+<ol>
+  <li>First item</li>
+  <li>Second item</li>
+  <li>Third item</li>
+  <li>Fourth item</li>
+</ol>
 
 ## Storybook static app
 
