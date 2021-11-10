@@ -31,7 +31,16 @@
         "simple-import-sort/exports": "error",
         "import/first": "error",
         "import/newline-after-import": "error",
-        "import/no-duplicates": "error"
+        "import/no-duplicates": "error",
+        "import/no-self-import rule": "error",
+        "import/no-useless-path-segments": [
+          "error",
+          {
+            "noUselessIndex": true
+          }
+        ],
+        "import/no-relative-parent-imports": "error",
+        "import/no-unassigned-import": "error"
       }
     },
     {
