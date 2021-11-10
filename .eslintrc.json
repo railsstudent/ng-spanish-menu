@@ -1,7 +1,7 @@
 {
   "root": true,
   "ignorePatterns": ["projects/**/*"],
-  "plugins": ["simple-import-sort", "import"],
+  "plugins": ["simple-import-sort", "import", "prettier"],
   "overrides": [
     {
       "files": ["*.ts"],
@@ -9,7 +9,11 @@
         "project": ["tsconfig.json"],
         "createDefaultProgram": true
       },
-      "extends": ["plugin:@angular-eslint/recommended", "plugin:@angular-eslint/template/process-inline-templates"],
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
       "rules": {
         "@angular-eslint/directive-selector": [
           "error",
@@ -40,7 +44,11 @@
           }
         ],
         "import/no-relative-parent-imports": "error",
-        "import/no-unassigned-import": "error"
+        "import/no-unassigned-import": "error",
+        "prettier/prettier": [
+          "error",
+          { "singleQuote": true, "trailingComma": "all", "semi": false, "printWidth": 120 }
+        ]
       }
     },
     {

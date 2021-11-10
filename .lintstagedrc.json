@@ -1,5 +1,5 @@
 {
-  "*.{ts,js}": ["cspell 'src/**/*.ts'", "eslint --fix --max-warnings 0", "prettier --write"],
+  "*.{ts,js}": ["cspell 'src/**/*.ts'", "eslint --fix --max-warnings 0"],
   "*.scss": ["stylelint --syntax=scss", "prettier --write"],
   "*.{md,json,html}": "prettier --write"
 }
