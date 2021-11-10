@@ -48,19 +48,23 @@ Should we convert the application to PWA?
 ### Angular and Storybook
 
 <ol>
-  <li>First item</li>
-  <li>Second item</li>
-  <li>Third item</li>
-  <li>Fourth item</li>
+  <li><a href="http://www.blueskyconnie.com/?p=2255" target="_blank" rel="noreferrer noopener">Angular and Storybook – Simple Component</a></li>
+  <li><a href="http://www.blueskyconnie.com/?p=2302" target="_blank" rel="noreferrer noopener">Angular and Storybook – Simple Component with inputs and actions</a></li>
+  <li><a href="http://www.blueskyconnie.com/?p=2342" target="_blank" rel="noreferrer noopener">Angular and Storybook – Component with content projection</a></li>
+  <li><a href="http://www.blueskyconnie.com/?p=2537" target="_blank" rel="noreferrer noopener">Angular and Storybook – Publish to Chromatic</a></li>
+</ol>
+
+### Angular and Netlify
+
+<ol>
+  <li><a href="http://www.blueskyconnie.com/?p=2389" target="_blank" rel="noreferrer noopener">Build Angular app with Netlify function</a></li>
+  <li><a href="http://www.blueskyconnie.com/?p=2470" target="_blank" rel="noreferrer noopener">How Angular calls CORS enabled Netlify Function</a></li>
 </ol>
 
 ### Best coding practices
 
 <ol>
-  <li>First item</li>
-  <li>Second item</li>
-  <li>Third item</li>
-  <li>Fourth item</li>
+  <li><a href="http://www.blueskyconnie.com/?p=2593" target="_blank" rel="noreferrer noopener">Add value to commit message in Angular application</a></li>
 </ol>
 
 ## Storybook static app
