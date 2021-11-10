@@ -36,7 +36,7 @@
         "import/first": "error",
         "import/newline-after-import": "error",
         "import/no-duplicates": "error",
-        "import/no-self-import rule": "error",
+        "import/no-self-import": "error",
         "import/no-useless-path-segments": [
           "error",
           {

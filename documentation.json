@@ -3,12 +3,12 @@
   "interfaces": [
     {
       "name": "Choice",
-      "id": "interface-Choice-17915a284a520a60d0f5a8dd65fac1b9",
+      "id": "interface-Choice-3f756fe137f0c2e73a00ce10eb01f88c",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n",
       "properties": [
         {
           "name": "currency",
@@ -71,12 +71,12 @@
     },
     {
       "name": "Menu",
-      "id": "interface-Menu-17915a284a520a60d0f5a8dd65fac1b9",
+      "id": "interface-Menu-3f756fe137f0c2e73a00ce10eb01f88c",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n",
       "properties": [
         {
           "name": "menu",
@@ -94,12 +94,12 @@
     },
     {
       "name": "MenuItem",
-      "id": "interface-MenuItem-17915a284a520a60d0f5a8dd65fac1b9",
+      "id": "interface-MenuItem-3f756fe137f0c2e73a00ce10eb01f88c",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n",
       "properties": [
         {
           "name": "choices",
@@ -269,7 +269,7 @@
   "injectables": [
     {
       "name": "FoodService",
-      "id": "injectable-FoodService-70b0c089c094c669a785760359506291",
+      "id": "injectable-FoodService-72b4e620bec65d1d8d698785930a8d8b",
       "file": "src/app/food/services/food.service.ts",
       "properties": [
         {
@@ -315,7 +315,7 @@
           "optional": false,
           "returnType": "TotalCost",
           "typeParameters": [],
-          "line": 37,
+          "line": 43,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -381,7 +381,7 @@
           "optional": false,
           "returnType": "number",
           "typeParameters": [],
-          "line": 68,
+          "line": 74,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -409,13 +409,42 @@
           "optional": false,
           "returnType": "Observable<number[]>",
           "typeParameters": [],
-          "line": 76,
+          "line": 82,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
             {
               "name": "url",
               "type": "string",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
+        },
+        {
+          "name": "roundAmount",
+          "args": [
+            {
+              "name": "amount",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "number",
+          "typeParameters": [],
+          "line": 37,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [121],
+          "jsdoctags": [
+            {
+              "name": "amount",
+              "type": "number",
               "deprecated": false,
               "deprecationMessage": "",
               "tagName": {
@@ -443,7 +472,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 54,
+          "line": 60,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -472,7 +501,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { BehaviorSubject, Observable, of } from 'rxjs'\nimport { catchError, pluck, share, tap } from 'rxjs/operators'\n\nimport { Menu, MenuItem, Tip, TotalCost } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService {\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  constructor(private http: HttpClient) {}\n\n  getFood(url: string): Observable<MenuItem[] | undefined> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      tap((menu) => {\n        const qtyMap = menu.reduce((acc, mi) => {\n          mi.choices.forEach(({ id, quantity }) => {\n            acc[id] = quantity\n          })\n          return acc\n        }, {} as Record<string, number>)\n        this.quantityAvailableSub$.next(qtyMap)\n      }),\n      catchError((err: Error) => {\n        console.error(err)\n        return of(undefined)\n      }),\n      share(),\n    )\n  }\n\n  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {\n    const cents = 100\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    const subTotal = Math.round(unroundedTotal * cents) / cents\n    const totalTip = Math.round(unroundedTotal * tip * cents) / cents\n\n    return {\n      subTotal,\n      totalTip,\n      total: Math.round((subTotal + totalTip) * cents) / cents,\n    }\n  }\n\n  updateQuantity(id: string, quantity: number): void {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      const oldQty = qtyAvailableMap[id]\n      const nextQty = oldQty - quantity\n      if (nextQty >= 0) {\n        this.quantityAvailableSub$.next({\n          ...qtyAvailableMap,\n          [id]: nextQty,\n        })\n      }\n    }\n  }\n\n  getQuantity(id: string): number {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      return qtyAvailableMap[id] || 0\n    }\n    return 0\n  }\n\n  getTips(url: string): Observable<number[]> {\n    return this.http.get<Tip>(url).pipe(\n      pluck('tips'),\n      catchError((err: Error) => {\n        console.error(err)\n        return of([0])\n      }),\n      share(),\n    )\n  }\n}\n",
+      "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { BehaviorSubject, Observable, of } from 'rxjs'\nimport { catchError, pluck, share, tap } from 'rxjs/operators'\n\nimport { Menu, MenuItem, Tip, TotalCost } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService {\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  constructor(private http: HttpClient) {}\n\n  getFood(url: string): Observable<MenuItem[] | undefined> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      tap((menu) => {\n        const qtyMap = menu.reduce((acc, mi) => {\n          mi.choices.forEach(({ id, quantity }) => {\n            acc[id] = quantity\n          })\n          return acc\n        }, {} as Record<string, number>)\n        this.quantityAvailableSub$.next(qtyMap)\n      }),\n      catchError((err: Error) => {\n        console.error(err)\n        return of(undefined)\n      }),\n      share(),\n    )\n  }\n\n  private roundAmount(amount: number): number {\n    const cents = 100\n\n    return Math.round(amount * cents) / cents\n  }\n\n  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    const subTotal = this.roundAmount(unroundedTotal)\n    const totalTip = this.roundAmount(unroundedTotal * tip)\n    const total = this.roundAmount(subTotal + totalTip)\n\n    return {\n      subTotal,\n      totalTip,\n      total,\n    }\n  }\n\n  updateQuantity(id: string, quantity: number): void {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      const oldQty = qtyAvailableMap[id]\n      const nextQty = oldQty - quantity\n      if (nextQty >= 0) {\n        this.quantityAvailableSub$.next({\n          ...qtyAvailableMap,\n          [id]: nextQty,\n        })\n      }\n    }\n  }\n\n  getQuantity(id: string): number {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      return qtyAvailableMap[id] || 0\n    }\n    return 0\n  }\n\n  getTips(url: string): Observable<number[]> {\n    return this.http.get<Tip>(url).pipe(\n      pluck('tips'),\n      catchError((err: Error) => {\n        console.error(err)\n        return of([0])\n      }),\n      share(),\n    )\n  }\n}\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -507,12 +536,12 @@
   "classes": [
     {
       "name": "MockFoodService",
-      "id": "class-MockFoodService-39d4df3f10b48db1c49b235946d264dc",
+      "id": "class-MockFoodService-c482d5aaca91913ca72ac5de23d98269",
       "file": "src/app/food/storybook-mock/mock.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "class",
-      "sourceCode": "import { BehaviorSubject, Observable, of } from 'rxjs'\n\nimport { MenuItem, TotalCost } from '../interfaces'\n\nexport class MockFoodService {\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  constructor(private menuItems?: MenuItem[]) {}\n\n  private buildQtyMap(): Record<string, number> | undefined {\n    if (!this.menuItems) {\n      return undefined\n    }\n    return this.menuItems.reduce((acc, mi) => {\n      mi.choices.forEach(({ id, quantity }) => {\n        acc[id] = quantity\n      })\n      return acc\n    }, {} as Record<string, number>)\n  }\n\n  getFood(): Observable<MenuItem[] | undefined> {\n    const qtyMap = this.buildQtyMap()\n    this.quantityAvailableSub$.next(qtyMap)\n    return of(this.menuItems)\n  }\n\n  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {\n    const cents = 100\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    const totalTip = unroundedTotal * tip\n    const total = unroundedTotal + totalTip\n\n    return {\n      subTotal: Math.round(unroundedTotal * cents) / cents,\n      totalTip: Math.round(totalTip * cents) / cents,\n      total: Math.round(total * cents) / cents,\n    }\n  }\n\n  updateQuantity(id: string, quantity: number): void {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      const oldQty = qtyAvailableMap[id]\n      const nextQty = oldQty - quantity\n      if (nextQty >= 0) {\n        this.quantityAvailableSub$.next({\n          ...qtyAvailableMap,\n          [id]: nextQty,\n        })\n      }\n    }\n  }\n\n  private getLatestQtyMap() {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (!qtyAvailableMap) {\n      const qtyMap = this.buildQtyMap()\n      this.quantityAvailableSub$.next(qtyMap)\n    }\n    return this.quantityAvailableSub$.getValue()\n  }\n\n  getQuantity(id: string): number {\n    const qtyAvailableMap = this.getLatestQtyMap()\n    if (qtyAvailableMap) {\n      return qtyAvailableMap[id] || 0\n    }\n    return 0\n  }\n\n  getTips(): Observable<number[]> {\n    return of([0, 5, 10, 15, 20])\n  }\n}\n",
+      "sourceCode": "import { BehaviorSubject, Observable, of } from 'rxjs'\n\nimport { MenuItem, TotalCost } from '../interfaces'\n\nexport class MockFoodService {\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  constructor(private menuItems?: MenuItem[]) {}\n\n  private buildQtyMap(): Record<string, number> | undefined {\n    if (!this.menuItems) {\n      return undefined\n    }\n    return this.menuItems.reduce((acc, mi) => {\n      mi.choices.forEach(({ id, quantity }) => {\n        acc[id] = quantity\n      })\n      return acc\n    }, {} as Record<string, number>)\n  }\n\n  getFood(): Observable<MenuItem[] | undefined> {\n    const qtyMap = this.buildQtyMap()\n    this.quantityAvailableSub$.next(qtyMap)\n    return of(this.menuItems)\n  }\n\n  private roundAmount(amount: number): number {\n    const cents = 100\n\n    return Math.round(amount * cents) / cents\n  }\n\n  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    const subTotal = this.roundAmount(unroundedTotal)\n    const totalTip = this.roundAmount(unroundedTotal * tip)\n    const total = this.roundAmount(unroundedTotal + totalTip)\n\n    return {\n      subTotal,\n      totalTip,\n      total,\n    }\n  }\n\n  updateQuantity(id: string, quantity: number): void {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      const oldQty = qtyAvailableMap[id]\n      const nextQty = oldQty - quantity\n      if (nextQty >= 0) {\n        this.quantityAvailableSub$.next({\n          ...qtyAvailableMap,\n          [id]: nextQty,\n        })\n      }\n    }\n  }\n\n  private getLatestQtyMap() {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (!qtyAvailableMap) {\n      const qtyMap = this.buildQtyMap()\n      this.quantityAvailableSub$.next(qtyMap)\n    }\n    return this.quantityAvailableSub$.getValue()\n  }\n\n  getQuantity(id: string): number {\n    const qtyAvailableMap = this.getLatestQtyMap()\n    if (qtyAvailableMap) {\n      return qtyAvailableMap[id] || 0\n    }\n    return 0\n  }\n\n  getTips(): Observable<number[]> {\n    return of([0, 5, 10, 15, 20])\n  }\n}\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -596,7 +625,7 @@
           "optional": false,
           "returnType": "TotalCost",
           "typeParameters": [],
-          "line": 29,
+          "line": 35,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -637,7 +666,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 60,
+          "line": 66,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
@@ -655,7 +684,7 @@
           "optional": false,
           "returnType": "number",
           "typeParameters": [],
-          "line": 69,
+          "line": 75,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -676,9 +705,38 @@
           "optional": false,
           "returnType": "Observable<number[]>",
           "typeParameters": [],
-          "line": 77,
+          "line": 83,
           "deprecated": false,
           "deprecationMessage": ""
+        },
+        {
+          "name": "roundAmount",
+          "args": [
+            {
+              "name": "amount",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": ""
+            }
+          ],
+          "optional": false,
+          "returnType": "number",
+          "typeParameters": [],
+          "line": 29,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [121],
+          "jsdoctags": [
+            {
+              "name": "amount",
+              "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            }
+          ]
         },
         {
           "name": "updateQuantity",
@@ -699,7 +757,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 46,
+          "line": 52,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -2493,6 +2551,16 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-menu/food-menu.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodMenuComponent>",
+        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-question/food-question.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2508,16 +2576,6 @@
         "deprecationMessage": "",
         "type": "Story<FoodShellComponent>",
         "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-menu/food-menu.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodMenuComponent>",
-        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3562,7 +3620,7 @@
         "linktype": "injectable",
         "name": "FoodService",
         "coveragePercent": 0,
-        "coverageCount": "0/9",
+        "coverageCount": "0/10",
         "status": "low"
       },
       {
@@ -3591,7 +3649,7 @@
         "linktype": "classe",
         "name": "MockFoodService",
         "coveragePercent": 0,
-        "coverageCount": "0/11",
+        "coverageCount": "0/12",
         "status": "low"
       },
       {
