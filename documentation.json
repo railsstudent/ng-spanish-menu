@@ -1005,13 +1005,13 @@
       "assetsDirs": [],
       "styleUrlsData": [
         {
-          "data": "$danger-color: #a94442;\n\n:host {\n  display: block;\n}\n\n.container {\n  display: flex;\n  justify-content: flex-start;\n  flex-wrap: wrap;\n  border: 1px solid black;\n  padding: 0.5rem;\n\n  .item {\n    flex: 1 1 calc(100% / 5 - 0.75rem * 2 - 0.5rem * 2);\n    padding: 0.5rem 0.75rem;\n    font-size: 1rem;\n  }\n\n  .sold-out {\n    color: $danger-color;\n    display: inline;\n  }\n\n  .food-choice-form {\n    margin-left: 0.75rem;\n    margin-right: 0.75rem;\n  }\n}\n",
+          "data": "$danger-color: #a94442;\n\n:host {\n  display: block;\n}\n\n.container {\n  display: flex;\n  flex-direction: column;\n  // justify-content: flex-start;\n  // flex-wrap: wrap;\n  border: 1px solid black;\n  padding: 0.5rem;\n\n  .item {\n    flex: 1 1 calc(100% / 5 - 0.75rem * 2 - 0.5rem * 2);\n    padding: 0.5rem 0.75rem;\n    font-size: 1rem;\n  }\n\n  .sold-out {\n    color: $danger-color;\n    display: inline;\n  }\n\n  .food-choice-form {\n    margin-left: 0.75rem;\n    margin-right: 0.75rem;\n  }\n}\n",
           "styleUrl": "./food-choice.component.scss"
         }
       ],
       "stylesData": "",
       "implements": ["OnInit", "OnChanges"],
-      "templateData": "<div class=\"container\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"field-text\">{{ choice.name }}</span>\n  </label>\n  <label name=\"description\" class=\"item\">\n    <span class=\"field\">Description:</span>\n    <span class=\"field-text\">{{ choice.description }}</span>\n  </label>\n  <label name=\"price\" class=\"item\">\n    <span class=\"field\">Price:</span>\n    <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n  </label>\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"field-text\">{{ remained }}</span>\n  </label>\n  <ng-container [ngSwitch]=\"remained > 0\">\n    <app-food-choice-form\n      class=\"food-choice-form\"\n      [choice]=\"choice\"\n      (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n      *ngSwitchCase=\"true\"\n    >\n    </app-food-choice-form>\n    <ng-container *ngSwitchDefault>\n      <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n    </ng-container>\n  </ng-container>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item sold-out\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
+      "templateData": "<div class=\"container\">\n  <div>\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div>\n    <label name=\"ingredient\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <ng-container [ngSwitch]=\"remained > 0\">\n    <app-food-choice-form\n      class=\"food-choice-form\"\n      [choice]=\"choice\"\n      (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n      *ngSwitchCase=\"true\"\n    >\n    </app-food-choice-form>\n    <ng-container *ngSwitchDefault>\n      <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n    </ng-container>\n  </ng-container>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item sold-out\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
     },
     {
       "name": "FoodChoiceFormComponent",
@@ -2372,16 +2372,6 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "Template.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-card/food-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2393,6 +2383,16 @@
         "ctype": "miscellaneous",
         "subtype": "variable",
         "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2422,7 +2422,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2432,7 +2432,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-total/food-total.stories.ts",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2521,16 +2521,6 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodChoiceComponent>",
-        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-card/food-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2561,6 +2551,16 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodChoiceComponent>",
+        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-question/food-question.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2571,21 +2571,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodShellComponent>",
-        "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<FoodTotalComponent>",
         "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodShellComponent>",
+        "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
       }
     ],
     "functions": [

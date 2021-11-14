@@ -1,5 +1,5 @@
 <div class="container">
-  <div>
+  <div class="row">
     <label name="name" class="item">
       <span class="field">Name:</span>
       <span class="field-text">{{ choice.name }}</span>
@@ -17,24 +17,26 @@
       <span class="field-text">{{ remained }}</span>
     </label>
   </div>
-  <div>
-    <label name="ingredient">
+  <div class="row">
+    <label name="ingredient" class="item">
       <span class="field">Ingredients:</span>
       <span class="field-text">{{ remained }}</span>
     </label>
   </div>
-  <ng-container [ngSwitch]="remained > 0">
-    <app-food-choice-form
-      class="food-choice-form"
-      [choice]="choice"
-      (foodChoiceSubmitted)="submitFoodChoice($event)"
-      *ngSwitchCase="true"
-    >
-    </app-food-choice-form>
-    <ng-container *ngSwitchDefault>
-      <ng-container *ngTemplateOutlet="soldout; context: { choice: choice }"> </ng-container>
+  <div>
+    <ng-container [ngSwitch]="remained > 0">
+      <app-food-choice-form
+        class="food-choice-form"
+        [choice]="choice"
+        (foodChoiceSubmitted)="submitFoodChoice($event)"
+        *ngSwitchCase="true"
+      >
+      </app-food-choice-form>
+      <ng-container *ngSwitchDefault>
+        <ng-container *ngTemplateOutlet="soldout; context: { choice: choice }"> </ng-container>
+      </ng-container>
     </ng-container>
-  </ng-container>
+  </div>
   <ng-template #soldout let-choice="choice">
     <span class="item sold-out">Sorry, {{ choice.name }} is sold out</span>
   </ng-template>

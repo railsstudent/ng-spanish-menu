@@ -4,8 +4,7 @@ import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceFormComponent } from '../food-choice-form'
 import { FoodService } from '../services'
-import { MockData, MockFoodService } from '../storybook-mock'
-import { SoldOutMockData } from './../storybook-mock/constants'
+import { MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodChoiceComponent } from './food-choice.component'
 
 export default {
