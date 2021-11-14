@@ -12,6 +12,8 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 4.99,
         quantity: 10,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
       {
         id: 'd',
@@ -20,6 +22,8 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 8.99,
         quantity: 10,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
       {
         id: 'b',
@@ -28,6 +32,8 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 5.99,
         quantity: 10,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
     ],
   },
@@ -42,6 +48,8 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 1.99,
         quantity: 10,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
       {
         id: 'b1',
@@ -50,6 +58,8 @@ export const MockData: MenuItem[] = [
         currency: 'USD',
         price: 2.99,
         quantity: 10,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
     ],
   },
@@ -67,6 +77,8 @@ export const SoldOutMockData: MenuItem[] = [
         currency: 'USD',
         price: 4.99,
         quantity: 0,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
       {
         id: 'd',
@@ -75,6 +87,8 @@ export const SoldOutMockData: MenuItem[] = [
         currency: 'USD',
         price: 8.99,
         quantity: 0,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
       {
         id: 'b',
@@ -83,6 +97,8 @@ export const SoldOutMockData: MenuItem[] = [
         currency: 'USD',
         price: 5.99,
         quantity: 0,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
     ],
   },
@@ -97,6 +113,8 @@ export const SoldOutMockData: MenuItem[] = [
         currency: 'USD',
         price: 1.99,
         quantity: 0,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
       {
         id: 'b1',
@@ -105,6 +123,8 @@ export const SoldOutMockData: MenuItem[] = [
         currency: 'USD',
         price: 2.99,
         quantity: 0,
+        ingredient:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
       },
     ],
   },

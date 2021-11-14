@@ -4,7 +4,7 @@ import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceComponent } from '../food-choice'
 import { FoodChoiceFormComponent } from '../food-choice-form'
-import { FoodMenuCardComponent } from '../food-menu-card/'
+import { FoodMenuCardComponent } from '../food-menu-card'
 import { FoodMenuOptionComponent } from '../food-menu-option'
 import { FoodQuestionComponent } from '../food-question'
 import { FoodService } from '../services'

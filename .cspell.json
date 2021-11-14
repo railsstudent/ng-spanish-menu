@@ -1,6 +1,32 @@
 {
   "version": "0.2",
   "language": "en",
-  "words": ["UNPATCHED", "Dimsum", "Gulab", "Jamun", "Lamingtons", "commitlint"],
+  "words": [
+    "UNPATCHED",
+    "Dimsum",
+    "Gulab",
+    "Jamun",
+    "Lamingtons",
+    "commitlint",
+    "Lorem",
+    "ipsum",
+    "dolor",
+    "sit",
+    "amet",
+    "consectetur",
+    "adipiscing",
+    "elit",
+    "Fusce",
+    "efficitur",
+    "dui",
+    "posuere",
+    "eu",
+    "condimentum",
+    "urna",
+    "fringilla",
+    "Donec",
+    "cursus",
+    "sapien"
+  ],
   "flagWords": []
 }
