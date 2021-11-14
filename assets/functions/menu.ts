@@ -14,6 +14,8 @@ const data = {
           price: 4.99,
           available: true,
           quantity: 25,
+          ingredients:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
         },
         {
           id: 'd',
@@ -23,6 +25,8 @@ const data = {
           price: 6.99,
           available: true,
           quantity: 30,
+          ingredients:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
         },
         {
           id: 'e',
@@ -32,6 +36,8 @@ const data = {
           price: 3.99,
           available: true,
           quantity: 10,
+          ingredients:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
         },
       ],
     },
@@ -47,6 +53,8 @@ const data = {
           price: 5.99,
           available: true,
           quantity: 30,
+          ingredients:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
         },
         {
           id: 'c1',
@@ -56,6 +64,8 @@ const data = {
           price: 4.99,
           available: true,
           quantity: 35,
+          ingredients:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
         },
         {
           id: 'd1',
@@ -65,6 +75,8 @@ const data = {
           price: 6.99,
           available: true,
           quantity: 40,
+          ingredients:
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',
         },
       ],
     },
