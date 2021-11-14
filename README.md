@@ -26,7 +26,7 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 
 - Create shell component to host smart and dumb components (Nati)
 - Translation
-- Include ingredients in the food and beverages
+- ~~Include ingredients in the food and beverages~~
 
 ## CSS and UI libraries
 
