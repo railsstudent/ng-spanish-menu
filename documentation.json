@@ -3,12 +3,12 @@
   "interfaces": [
     {
       "name": "Choice",
-      "id": "interface-Choice-3f756fe137f0c2e73a00ce10eb01f88c",
+      "id": "interface-Choice-5230c52ba5b645f9fe0c7173e6042a00",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n  ingredients: string\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n",
       "properties": [
         {
           "name": "currency",
@@ -36,6 +36,15 @@
           "optional": false,
           "description": "",
           "line": 2
+        },
+        {
+          "name": "ingredients",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "string",
+          "optional": false,
+          "description": "",
+          "line": 8
         },
         {
           "name": "name",
@@ -71,12 +80,12 @@
     },
     {
       "name": "Menu",
-      "id": "interface-Menu-3f756fe137f0c2e73a00ce10eb01f88c",
+      "id": "interface-Menu-5230c52ba5b645f9fe0c7173e6042a00",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n  ingredients: string\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n",
       "properties": [
         {
           "name": "menu",
@@ -85,7 +94,7 @@
           "type": "MenuItem[]",
           "optional": false,
           "description": "",
-          "line": 11
+          "line": 12
         }
       ],
       "indexSignatures": [],
@@ -94,12 +103,12 @@
     },
     {
       "name": "MenuItem",
-      "id": "interface-MenuItem-3f756fe137f0c2e73a00ce10eb01f88c",
+      "id": "interface-MenuItem-5230c52ba5b645f9fe0c7173e6042a00",
       "file": "src/app/food/interfaces/menu.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n",
+      "sourceCode": "export interface Choice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n  ingredients: string\n}\n\nexport interface Menu {\n  menu: MenuItem[]\n}\nexport interface MenuItem {\n  id: string\n  question: string\n  choices: Choice[]\n}\n",
       "properties": [
         {
           "name": "choices",
@@ -108,7 +117,7 @@
           "type": "Choice[]",
           "optional": false,
           "description": "",
-          "line": 16
+          "line": 17
         },
         {
           "name": "id",
@@ -117,7 +126,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 14
+          "line": 15
         },
         {
           "name": "question",
@@ -126,7 +135,7 @@
           "type": "string",
           "optional": false,
           "description": "",
-          "line": 15
+          "line": 16
         }
       ],
       "indexSignatures": [],
@@ -1005,13 +1014,13 @@
       "assetsDirs": [],
       "styleUrlsData": [
         {
-          "data": "$danger-color: #a94442;\n\n:host {\n  display: block;\n}\n\n.container {\n  display: flex;\n  flex-direction: column;\n  // justify-content: flex-start;\n  // flex-wrap: wrap;\n  border: 1px solid black;\n  padding: 0.5rem;\n\n  .item {\n    flex: 1 1 calc(100% / 5 - 0.75rem * 2 - 0.5rem * 2);\n    padding: 0.5rem 0.75rem;\n    font-size: 1rem;\n  }\n\n  .sold-out {\n    color: $danger-color;\n    display: inline;\n  }\n\n  .food-choice-form {\n    margin-left: 0.75rem;\n    margin-right: 0.75rem;\n  }\n}\n",
+          "data": "$danger-color: #a94442;\n\n:host {\n  display: block;\n}\n\n.container {\n  display: flex;\n  flex-direction: column;\n  border: 1px solid black;\n  padding: 0.5rem;\n\n  .row {\n    display: flex;\n    justify-content: flex-start;\n    flex-wrap: wrap;\n  }\n\n  .item {\n    flex: 1 1 calc(100% / 4 - 0.75rem * 2 - 0.5rem * 2);\n    padding: 0.5rem 0.75rem;\n    font-size: 1rem;\n  }\n\n  .sold-out {\n    color: $danger-color;\n    display: inline;\n  }\n\n  .food-choice-form {\n    margin-left: 0.75rem;\n    margin-right: 0.75rem;\n  }\n}\n",
           "styleUrl": "./food-choice.component.scss"
         }
       ],
       "stylesData": "",
       "implements": ["OnInit", "OnChanges"],
-      "templateData": "<div class=\"container\">\n  <div>\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div>\n    <label name=\"ingredient\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <ng-container [ngSwitch]=\"remained > 0\">\n    <app-food-choice-form\n      class=\"food-choice-form\"\n      [choice]=\"choice\"\n      (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n      *ngSwitchCase=\"true\"\n    >\n    </app-food-choice-form>\n    <ng-container *ngSwitchDefault>\n      <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n    </ng-container>\n  </ng-container>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item sold-out\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
+      "templateData": "<div class=\"container\">\n  <div class=\"row\">\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div class=\"row\">\n    <label name=\"ingredient\" class=\"item\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text\">{{ choice.ingredients }}</span>\n    </label>\n  </div>\n  <div>\n    <ng-container [ngSwitch]=\"remained > 0\">\n      <app-food-choice-form\n        class=\"food-choice-form\"\n        [choice]=\"choice\"\n        (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n        *ngSwitchCase=\"true\"\n      >\n      </app-food-choice-form>\n      <ng-container *ngSwitchDefault>\n        <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n      </ng-container>\n    </ng-container>\n  </div>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item sold-out\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
     },
     {
       "name": "FoodChoiceFormComponent",
@@ -2236,7 +2245,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
-        "defaultValue": "{\n  menu: [\n    {\n      id: '1',\n      question: 'Which appetizer(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b',\n          name: 'Tomato salad',\n          description: 'Tomato salad',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 25,\n        },\n        {\n          id: 'd',\n          name: 'Buffalo Chicken Wings',\n          description: 'Spicy chicken wings',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 30,\n        },\n        {\n          id: 'e',\n          name: 'Siu Mei',\n          description: 'Chinese Dimsum',\n          currency: 'USD',\n          price: 3.99,\n          available: true,\n          quantity: 10,\n        },\n      ],\n    },\n    {\n      id: '2',\n      question: 'Which dessert(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b1',\n          name: 'Tiramisu',\n          description: 'Coffee Flavoured Dessert from Italy',\n          currency: 'USD',\n          price: 5.99,\n          available: true,\n          quantity: 30,\n        },\n        {\n          id: 'c1',\n          name: 'Gulab Jamun',\n          description: 'Deep-fried sweets from India',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 35,\n        },\n        {\n          id: 'd1',\n          name: 'Lamingtons',\n          description: 'square sponge cakes from Australia',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 40,\n        },\n      ],\n    },\n  ],\n}"
+        "defaultValue": "{\n  menu: [\n    {\n      id: '1',\n      question: 'Which appetizer(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b',\n          name: 'Tomato salad',\n          description: 'Tomato salad',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 25,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n        {\n          id: 'd',\n          name: 'Buffalo Chicken Wings',\n          description: 'Spicy chicken wings',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 30,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n        {\n          id: 'e',\n          name: 'Siu Mei',\n          description: 'Chinese Dimsum',\n          currency: 'USD',\n          price: 3.99,\n          available: true,\n          quantity: 10,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n      ],\n    },\n    {\n      id: '2',\n      question: 'Which dessert(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b1',\n          name: 'Tiramisu',\n          description: 'Coffee Flavoured Dessert from Italy',\n          currency: 'USD',\n          price: 5.99,\n          available: true,\n          quantity: 30,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n        {\n          id: 'c1',\n          name: 'Gulab Jamun',\n          description: 'Deep-fried sweets from India',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 35,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n        {\n          id: 'd1',\n          name: 'Lamingtons',\n          description: 'square sponge cakes from Australia',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 40,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n      ],\n    },\n  ],\n}"
       },
       {
         "name": "DisableSubmit",
@@ -2302,21 +2311,21 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/menu.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: {\n        'Access-Control-Allow-Origin': '*',\n      },\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: {\n        'Access-Control-Allow-Origin': '*',\n      },\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/assets/functions/menu.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: {\n        'Access-Control-Allow-Origin': '*',\n      },\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "LongDescription",
@@ -2356,7 +2365,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "MenuItem[]",
-        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 10,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 10,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 10,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 10,\n      },\n    ],\n  },\n]"
+        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n    ],\n  },\n]"
       },
       {
         "name": "NoOrder",
@@ -2382,16 +2391,6 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "Template.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2402,11 +2401,11 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "FoodMenuCardTemplate.bind({})"
+        "defaultValue": "Template.bind({})"
       },
       {
         "name": "Primary",
@@ -2417,6 +2416,16 @@
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "FoodMenuOptionTemplate.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuCardTemplate.bind({})"
       },
       {
         "name": "Primary",
@@ -2515,7 +2524,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "MenuItem[]",
-        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 0,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 0,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 0,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 0,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 0,\n      },\n    ],\n  },\n]"
+        "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n    ],\n  },\n]"
       },
       {
         "name": "Template",
@@ -2526,6 +2535,16 @@
         "deprecationMessage": "",
         "type": "Story<FoodCardComponent>",
         "defaultValue": "(args: FoodCardComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodChoiceComponent>",
+        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -2546,16 +2565,6 @@
         "deprecationMessage": "",
         "type": "Story<FoodMenuComponent>",
         "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodChoiceComponent>",
-        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -2697,7 +2706,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "object",
-          "defaultValue": "{\n  menu: [\n    {\n      id: '1',\n      question: 'Which appetizer(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b',\n          name: 'Tomato salad',\n          description: 'Tomato salad',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 25,\n        },\n        {\n          id: 'd',\n          name: 'Buffalo Chicken Wings',\n          description: 'Spicy chicken wings',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 30,\n        },\n        {\n          id: 'e',\n          name: 'Siu Mei',\n          description: 'Chinese Dimsum',\n          currency: 'USD',\n          price: 3.99,\n          available: true,\n          quantity: 10,\n        },\n      ],\n    },\n    {\n      id: '2',\n      question: 'Which dessert(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b1',\n          name: 'Tiramisu',\n          description: 'Coffee Flavoured Dessert from Italy',\n          currency: 'USD',\n          price: 5.99,\n          available: true,\n          quantity: 30,\n        },\n        {\n          id: 'c1',\n          name: 'Gulab Jamun',\n          description: 'Deep-fried sweets from India',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 35,\n        },\n        {\n          id: 'd1',\n          name: 'Lamingtons',\n          description: 'square sponge cakes from Australia',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 40,\n        },\n      ],\n    },\n  ],\n}"
+          "defaultValue": "{\n  menu: [\n    {\n      id: '1',\n      question: 'Which appetizer(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b',\n          name: 'Tomato salad',\n          description: 'Tomato salad',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 25,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n        {\n          id: 'd',\n          name: 'Buffalo Chicken Wings',\n          description: 'Spicy chicken wings',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 30,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n        {\n          id: 'e',\n          name: 'Siu Mei',\n          description: 'Chinese Dimsum',\n          currency: 'USD',\n          price: 3.99,\n          available: true,\n          quantity: 10,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n      ],\n    },\n    {\n      id: '2',\n      question: 'Which dessert(s) do you wish to order?',\n      choices: [\n        {\n          id: 'b1',\n          name: 'Tiramisu',\n          description: 'Coffee Flavoured Dessert from Italy',\n          currency: 'USD',\n          price: 5.99,\n          available: true,\n          quantity: 30,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n        {\n          id: 'c1',\n          name: 'Gulab Jamun',\n          description: 'Deep-fried sweets from India',\n          currency: 'USD',\n          price: 4.99,\n          available: true,\n          quantity: 35,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n        {\n          id: 'd1',\n          name: 'Lamingtons',\n          description: 'square sponge cakes from Australia',\n          currency: 'USD',\n          price: 6.99,\n          available: true,\n          quantity: 40,\n          ingredients:\n            'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n        },\n      ],\n    },\n  ],\n}"
         },
         {
           "name": "handler",
@@ -2957,7 +2966,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "MenuItem[]",
-          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 10,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 10,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 10,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 10,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 10,\n      },\n    ],\n  },\n]"
+          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 10,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n    ],\n  },\n]"
         },
         {
           "name": "SoldOutMockData",
@@ -2967,7 +2976,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "MenuItem[]",
-          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 0,\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 0,\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 0,\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 0,\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 0,\n      },\n    ],\n  },\n]"
+          "defaultValue": "[\n  {\n    id: '1',\n    question: 'Which appetizer(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a',\n        name: 'Egg salad',\n        description: 'Egg salad',\n        currency: 'USD',\n        price: 4.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'd',\n        name: 'Buffalo Chicken Wings',\n        description: 'Spicy chicken wings',\n        currency: 'USD',\n        price: 8.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'b',\n        name: 'Oven Baked Zucchini Chips',\n        description: 'Oven Baked Zucchini Chips',\n        currency: 'USD',\n        price: 5.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n    ],\n  },\n  {\n    id: '2',\n    question: 'Which dessert(s) do you wish to order?',\n    choices: [\n      {\n        id: 'a1',\n        name: 'Ice cream',\n        description: 'Ice cream',\n        currency: 'USD',\n        price: 1.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n      {\n        id: 'b1',\n        name: 'Tiramisu',\n        description: 'Coffee Flavoured Dessert from Italy',\n        currency: 'USD',\n        price: 2.99,\n        quantity: 0,\n        ingredients:\n          'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur dui in sapien posuere, eu condimentum urna fringilla. Donec cursus.',\n      },\n    ],\n  },\n]"
         }
       ],
       "src/app/food/food-total/food-total.stories.ts": [
@@ -3566,7 +3575,7 @@
         "linktype": "interface",
         "name": "Choice",
         "coveragePercent": 0,
-        "coverageCount": "0/7",
+        "coverageCount": "0/8",
         "status": "low"
       },
       {

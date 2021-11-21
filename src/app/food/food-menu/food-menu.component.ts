@@ -65,11 +65,11 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
     return menuItem ? menuItem.id : index
   }
 
-  choiceTrackByFn(index: number, choice: Choice) {
+  choiceTrackByFn(index: number, choice: Choice): string | number {
     return choice ? choice.id : index
   }
 
-  findMatchedMenuItems(menuItems: MenuItem[] | undefined, option: string) {
+  findMatchedMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {
     if (!menuItems || option === 'all') {
       return menuItems
     }
