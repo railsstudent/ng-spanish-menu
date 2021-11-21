@@ -33,13 +33,11 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
       this.menuOptionSub$,
       this.service.quantityAvailableMap$,
     ]).pipe(
-      map(([menuItems, option]) => {
-        return {
-          menuItems,
-          option,
-        }
-      }),
-      map(({ menuItems, option }) => this.findMatchedMenuItems(menuItems, option)),
+      map(([menuItems, option]) => ({
+        menuItems,
+        option,
+      })),
+      map(({ menuItems, option }) => this.filterMenuItems(menuItems, option)),
       takeUntil(this.unsubscribe$),
     )
 
@@ -69,7 +67,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
     return choice ? choice.id : index
   }
 
-  findMatchedMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {
+  filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {
     if (!menuItems || option === 'all') {
       return menuItems
     }
