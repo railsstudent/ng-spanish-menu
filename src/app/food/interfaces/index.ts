@@ -1,4 +1,6 @@
+export * from './food-service.interface'
 export * from './menu.interface'
 export * from './ordered-choice.interface'
+export * from './price-quantity.interface'
 export * from './tip.interface'
 export * from './total.interface'

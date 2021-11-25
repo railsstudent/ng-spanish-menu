@@ -79,6 +79,18 @@
       "methods": []
     },
     {
+      "name": "FoodServiceInverface",
+      "id": "interface-FoodServiceInverface-31f9e6e44fc3fd7445eae93b1124cbe4",
+      "file": "src/app/food/interfaces/food-service.interface.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "export interface FoodServiceInverface {\n    \n}",
+      "properties": [],
+      "indexSignatures": [],
+      "methods": []
+    },
+    {
       "name": "Menu",
       "id": "interface-Menu-5230c52ba5b645f9fe0c7173e6042a00",
       "file": "src/app/food/interfaces/menu.interface.ts",
@@ -1232,7 +1244,7 @@
     },
     {
       "name": "FoodMenuComponent",
-      "id": "component-FoodMenuComponent-62b929b9d6506163c4ee20b1908926c4",
+      "id": "component-FoodMenuComponent-6cdf4364238b7443c97db3f36f75f447",
       "file": "src/app/food/food-menu/food-menu.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1324,9 +1336,9 @@
             }
           ],
           "optional": false,
-          "returnType": "any",
+          "returnType": "string | number",
           "typeParameters": [],
-          "line": 68,
+          "line": 66,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1351,7 +1363,7 @@
           ]
         },
         {
-          "name": "findMatchedMenuItems",
+          "name": "filterMenuItems",
           "args": [
             {
               "name": "menuItems",
@@ -1367,9 +1379,9 @@
             }
           ],
           "optional": false,
-          "returnType": "any",
+          "returnType": "[] | undefined",
           "typeParameters": [],
-          "line": 72,
+          "line": 70,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1412,7 +1424,7 @@
           "optional": false,
           "returnType": "string | number",
           "typeParameters": [],
-          "line": 64,
+          "line": 62,
           "deprecated": false,
           "deprecationMessage": "",
           "jsdoctags": [
@@ -1442,7 +1454,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 99,
+          "line": 97,
           "deprecated": false,
           "deprecationMessage": ""
         },
@@ -1464,7 +1476,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs'\nimport { map, takeUntil, tap } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  @Output()\n  addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n\n  menuItems$: Observable<MenuItem[] | undefined>\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)\n  unsubscribe$ = new Subject<boolean>()\n\n  qtyMap: Record<string, number> | undefined\n\n  constructor(private service: FoodService) {}\n\n  ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => {\n        return {\n          menuItems,\n          option,\n        }\n      }),\n      map(({ menuItems, option }) => this.findMatchedMenuItems(menuItems, option)),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.service.quantityAvailableMap$.pipe(takeUntil(this.unsubscribe$)).subscribe((updatedQtyMap) => {\n      if (!updatedQtyMap) {\n        this.qtyMap = undefined\n      } else {\n        this.qtyMap = {\n          ...updatedQtyMap,\n        }\n      }\n    })\n\n    this.handleFoodChoiceSub$\n      .pipe(\n        tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))\n  }\n\n  menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  choiceTrackByFn(index: number, choice: Choice) {\n    return choice ? choice.id : index\n  }\n\n  findMatchedMenuItems(menuItems: MenuItem[] | undefined, option: string) {\n    if (!menuItems || option === 'all') {\n      return menuItems\n    }\n\n    const typedOptionString = option as keyof typeof MenuOptions\n    const typedOption = MenuOptions[typedOptionString]\n\n    const filterFuncMap = {\n      [MenuOptions.all]: () => true,\n      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] > 0,\n      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] <= 0,\n    }\n\n    const filterFunc = filterFuncMap[typedOption]\n    return menuItems.reduce((acc, menuItem) => {\n      const matchedChoices = menuItem.choices.filter(filterFunc)\n      if (matchedChoices.length > 0) {\n        return acc.concat({\n          ...menuItem,\n          choices: matchedChoices,\n        })\n      }\n      return acc\n    }, [] as MenuItem[])\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs'\nimport { map, takeUntil, tap } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  @Output()\n  addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n\n  menuItems$: Observable<MenuItem[] | undefined>\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)\n  unsubscribe$ = new Subject<boolean>()\n\n  qtyMap: Record<string, number> | undefined\n\n  constructor(private service: FoodService) {}\n\n  ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => ({\n        menuItems,\n        option,\n      })),\n      map(({ menuItems, option }) => this.filterMenuItems(menuItems, option)),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.service.quantityAvailableMap$.pipe(takeUntil(this.unsubscribe$)).subscribe((updatedQtyMap) => {\n      if (!updatedQtyMap) {\n        this.qtyMap = undefined\n      } else {\n        this.qtyMap = {\n          ...updatedQtyMap,\n        }\n      }\n    })\n\n    this.handleFoodChoiceSub$\n      .pipe(\n        tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))\n  }\n\n  menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  choiceTrackByFn(index: number, choice: Choice): string | number {\n    return choice ? choice.id : index\n  }\n\n  filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {\n    if (!menuItems || option === 'all') {\n      return menuItems\n    }\n\n    const typedOptionString = option as keyof typeof MenuOptions\n    const typedOption = MenuOptions[typedOptionString]\n\n    const filterFuncMap = {\n      [MenuOptions.all]: () => true,\n      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] > 0,\n      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] <= 0,\n    }\n\n    const filterFunc = filterFuncMap[typedOption]\n    return menuItems.reduce((acc, menuItem) => {\n      const matchedChoices = menuItem.choices.filter(filterFunc)\n      if (matchedChoices.length > 0) {\n        return acc.concat({\n          ...menuItem,\n          choices: matchedChoices,\n        })\n      }\n      return acc\n    }, [] as MenuItem[])\n  }\n\n  ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -2311,21 +2323,21 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/tips.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: {\n        'Access-Control-Allow-Origin': '*',\n      },\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: {\n        'Access-Control-Allow-Origin': '*',\n      },\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/assets/functions/tips.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: {\n        'Access-Control-Allow-Origin': '*',\n      },\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "LongDescription",
@@ -2411,16 +2423,6 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-option/food-menu-option.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "FoodMenuOptionTemplate.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2431,7 +2433,17 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-total/food-total.stories.ts",
+        "file": "src/app/food/food-menu-option/food-menu-option.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuOptionTemplate.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2441,7 +2453,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2580,21 +2592,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-total/food-total.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodTotalComponent>",
-        "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<FoodShellComponent>",
         "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-total/food-total.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodTotalComponent>",
+        "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
       }
     ],
     "functions": [
@@ -3565,6 +3577,15 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Template",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/food/interfaces/food-service.interface.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "FoodServiceInverface",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

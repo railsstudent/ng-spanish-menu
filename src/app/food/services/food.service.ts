@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of } from 'rxjs'
 import { catchError, pluck, share, tap } from 'rxjs/operators'
 
-import { Menu, MenuItem, Tip, TotalCost } from '../interfaces'
+import { FoodServiceInterface, Menu, MenuItem, PriceQuantity, Tip, TotalCost } from '../interfaces'
 
 @Injectable({
   providedIn: 'root',
 })
-export class FoodService {
+export class FoodService implements FoodServiceInterface {
   private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)
   quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()
 
@@ -40,7 +40,7 @@ export class FoodService {
     return Math.round(amount * cents) / cents
   }
 
-  calculateTotal(food: { price: number; quantity: number }[], tip = 0): TotalCost {
+  calculateTotal(food: PriceQuantity[], tip = 0): TotalCost {
     const unroundedTotal = food.reduce((acc, choice) => {
       const { price, quantity } = choice
       return acc + price * quantity
