@@ -52,6 +52,7 @@ Should we convert the application to PWA?
   <li><a href="http://www.blueskyconnie.com/?p=2302" target="_blank" rel="noreferrer noopener">Angular and Storybook – Simple Component with inputs and actions</a></li>
   <li><a href="http://www.blueskyconnie.com/?p=2342" target="_blank" rel="noreferrer noopener">Angular and Storybook – Component with content projection</a></li>
   <li><a href="http://www.blueskyconnie.com/?p=2537" target="_blank" rel="noreferrer noopener">Angular and Storybook – Publish to Chromatic</a></li>
+  <li><a href="http://www.blueskyconnie.com/?p=2640" target="_blank" rel="noreferrer noopener">Angular and Storybook – Mock Data in Container Component</a></li>
 </ol>
 
 ### Angular and Netlify
