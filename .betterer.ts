@@ -1,3 +1,10 @@
+import { angular } from '@betterer/angular'
+import { eslint } from '@betterer/eslint'
+
 export default {
-  // Add tests here ☀️
+  'no more await in loop': () => eslint({ 'no-await-in-loop': 'error' }).include('src/**/*.ts'),
+  'stricter template compilation': () =>
+    angular('./tsconfig.json', {
+      strictTemplates: true,
+    }).include('src/**/*.ts', 'src/**/*.html'),
 }

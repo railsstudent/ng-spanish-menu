@@ -47,7 +47,7 @@
     "@angular/compiler-cli": "~12.2.0",
     "@angular/elements": "^12.2.10",
     "@babel/core": "^7.15.0",
-    "@betterer/betterer": "^5.1.2",
+    "@betterer/angular": "^5.1.2",
     "@betterer/cli": "^5.1.2",
     "@betterer/eslint": "^5.1.2",
     "@commitlint/cli": "^14.1.0",
