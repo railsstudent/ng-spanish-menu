@@ -13,7 +13,9 @@
         "plugin:@angular-eslint/recommended",
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:prettier/recommended",
-        "plugin:eslint-comments/recommended"
+        "plugin:eslint-comments/recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
@@ -50,7 +52,8 @@
           "error",
           { "singleQuote": true, "trailingComma": "all", "semi": false, "printWidth": 120 }
         ],
-        "no-await-in-loop": "error"
+        "no-await-in-loop": "error",
+        "eslint-comments/no-use": "error"
       }
     },
     {

@@ -60,7 +60,7 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
   ) {}
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     const tipUrl = `${environment.baseUrl}/tips`
     this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))
   }
@@ -82,7 +82,7 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges()
   }
 
-  calculate(tip: number) {
+  calculate(tip: number): void {
     const newTotal = this.foodService.calculateTotal(this.orderedFood, tip)
     this.totalBreakdown = {
       ...newTotal,
