@@ -3,15 +3,6 @@
 // If this file contains merge conflicts, use `betterer merge` to automatically resolve them:
 // https://phenomnomnominal.github.io/betterer/docs/results-file/#merge
 //
-exports[`no more await in loop`] = {
-  value: `{
-    "src/app/food/food-shell/food-shell.component.ts:3745418189": [
-      [69, 18, 20, "Unexpected \`await\` inside a loop.", "2896235502"],
-      [70, 18, 18, "Unexpected \`await\` inside a loop.", "1892254238"]
-    ]
-  }`
-};
-
 exports[`stricter template compilation`] = {
   value: `{
     "node_modules/@storybook/api/dist/ts3.9/lib/stories.d.ts:659577004": [

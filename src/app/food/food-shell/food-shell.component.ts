@@ -66,10 +66,11 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     const tipUrl = `${environment.baseUrl}/tips`
     this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))
 
-    for (let i = 1; i <= 4; i++) {
-      this.sum += await this.square(i)
-      this.sum += await this.cube(i)
-    }
+    const sumAndCubePromises = await Promise.all(
+      [1, 2, 3, 4].map(async (i) => (await this.square(i)) + (await this.cube(i))),
+    )
+
+    this.sum = sumAndCubePromises.reduce((acc, value) => acc + value)
   }
 
   private async square(num: number): Promise<number> {
