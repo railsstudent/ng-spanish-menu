@@ -7,4 +7,5 @@ export default {
     angular('./tsconfig.json', {
       strictTemplates: true,
     }).include('src/**/*.ts', 'src/**/*.html'),
+  'no more eslint-disable': () => eslint({ 'eslint-comments/no-use': 'error' }).include('src/**/*.ts'),
 }

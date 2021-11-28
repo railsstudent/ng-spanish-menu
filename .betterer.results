@@ -10,3 +10,11 @@ exports[`stricter template compilation`] = {
     ]
   }`
 };
+
+exports[`no more eslint-disable`] = {
+  value: `{
+    "src/app/food/food-shell/food-shell.component.ts:3323106000": [
+      [69, -1, 2140, "Unexpected ESLint directive comment.", "1199523316"]
+    ]
+  }`
+};
