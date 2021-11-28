@@ -1,6 +1,6 @@
 import { Handler } from '@netlify/functions'
 
-export const handler: Handler = async (event) => {
+export const handler: Handler = (event) => {
   if (event.httpMethod === 'GET') {
     return {
       statusCode: 200,

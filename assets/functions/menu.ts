@@ -83,7 +83,7 @@ const data = {
   ],
 }
 
-const handler: Handler = async (event) => {
+const handler: Handler = (event) => {
   if (event.httpMethod === 'GET') {
     return {
       statusCode: 200,
