@@ -66,6 +66,11 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     const tipUrl = `${environment.baseUrl}/tips`
     this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))
 
+    for (let i = 0; i < 4; i++) {
+      /* eslint-disable-next-line no-await-in-loop */
+      this.sum = (await this.square(i)) + (await this.cube(i))
+    }
+
     const sumAndCubePromises = await Promise.all(
       [1, 2, 3, 4].map(async (i) => (await this.square(i)) + (await this.cube(i))),
     )
