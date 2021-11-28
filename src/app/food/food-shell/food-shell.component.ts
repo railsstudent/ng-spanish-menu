@@ -21,7 +21,6 @@ import { FoodService } from '../services'
   selector: 'app-food-shell',
   template: `
     <p>Angular Nation Special Menu</p>
-    <p>Async/await sum: {{ sum }}</p>
     <app-food-menu (addDynamicFoodChoice)="addDynamicFoodChoice($event)"></app-food-menu>
     <p>Your order</p>
     <section class="ordered">
@@ -47,7 +46,6 @@ export class FoodShellComponent implements OnInit, OnDestroy {
   tips$: Observable<number[]>
   unsubscribe$ = new Subject<boolean>()
   componentRefs: ComponentRef<FoodCardComponent>[] = []
-  sum = 0
 
   orderedFood: OrderedFoodChoice[] = []
   totalBreakdown: TotalCost = {
@@ -65,20 +63,6 @@ export class FoodShellComponent implements OnInit, OnDestroy {
   async ngOnInit(): Promise<void> {
     const tipUrl = `${environment.baseUrl}/tips`
     this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))
-
-    const sumAndCubePromises = await Promise.all(
-      [1, 2, 3, 4].map(async (i) => (await this.square(i)) + (await this.cube(i))),
-    )
-
-    this.sum = sumAndCubePromises.reduce((acc, value) => acc + value)
-  }
-
-  private async square(num: number): Promise<number> {
-    return Promise.resolve(num * num)
-  }
-
-  private async cube(num: number): Promise<number> {
-    return Promise.resolve(num * num * num)
   }
 
   async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {
