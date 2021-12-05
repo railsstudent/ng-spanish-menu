@@ -20,7 +20,9 @@
     "release:patch": "npm run release  -- --release-as patch",
     "cspell": "cspell",
     "commit": "git-cz",
-    "betterer": "betterer"
+    "betterer": "betterer --cache",
+    "betterer:precommit": "betterer precommit --cache",
+    "betterer:merge": "betterer merge"
   },
   "dependencies": {
     "@angular/animations": "~12.2.0",
