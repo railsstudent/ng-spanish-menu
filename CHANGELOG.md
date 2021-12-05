@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.6](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.5...0.0.6) (2021-12-05)
+
+### Features
+
+- add ingredients ([958d18a](https://github.com/railsstudent/ng-spanish-menu/commit/958d18a492bd46273c82b1e4237b3b84fc26b356))
+- betterer ([76b3b2c](https://github.com/railsstudent/ng-spanish-menu/commit/76b3b2c9363a83f2ff62c0fafc8597b84e1ebc07))
+- **ingredient:** add ingredients to mock data ([5ad3f40](https://github.com/railsstudent/ng-spanish-menu/commit/5ad3f4010aa46043843f5213104f8e0be140edc4))
+- **ingredient:** add ingredients to Netlify function ([70a4691](https://github.com/railsstudent/ng-spanish-menu/commit/70a4691e92cba38d68b6d7b1f6f79eec4c24225f))
+- update styling of the choice ([3128497](https://github.com/railsstudent/ng-spanish-menu/commit/3128497c81b9468a1ebbbdd5ea6c4db136bef0e8))
+
+### Bug fixes
+
+- **eslintrc:** no-self-import rule ([bd2538e](https://github.com/railsstudent/ng-spanish-menu/commit/bd2538e65384b853e1dd661f2acd28ecd885dee6))
+
 ### [0.0.5](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.4...0.0.5) (2021-10-31)
 
 ### Features
