@@ -86,6 +86,8 @@ const data = {
 const CORS_HEADERS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+  'Access-Control-Allow-Methods': 'OPTIONS, GET',
+  'Content-Type': 'application/json',
 }
 
 const handler: Handler = (event) => {
@@ -99,10 +101,7 @@ const handler: Handler = (event) => {
   if (event.httpMethod === 'GET') {
     return {
       statusCode: 200,
-      headers: {
-        ...CORS_HEADERS,
-        'Content-Type': 'application/json',
-      },
+      headers: CORS_HEADERS,
       body: JSON.stringify(data),
     }
   }
