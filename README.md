@@ -17,6 +17,10 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 - ntl dev
 - http://localhost:8888/.netlify/functions/menu to retrieve menu
 
+## Manually deploy Netlify function to production
+
+Run `ntl deploy --prod`
+
 ## Commit message with Commitzen
 
 - git add .
