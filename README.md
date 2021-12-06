@@ -19,9 +19,9 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 
 ## Manually deploy Netlify function to production
 
-Run `ntl build` to build netify contents
-Run `ntl deploy` to deploy to preview site
-Run `ntl deploy --prod` to deploy to production site when satisifed
+- Run `ntl build` to build netify contents
+- Run `ntl deploy` to deploy to preview site
+- Run `ntl deploy --prod` to deploy to production site when satisifed
 
 ## Commit message with Commitzen
 
