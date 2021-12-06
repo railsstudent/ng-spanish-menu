@@ -7,7 +7,8 @@ const CORS_HEADERS = {
   'Content-Type': 'application/json',
 }
 
-export const handler: Handler = (event) => {
+// eslint-disable-next-line @typescript-eslint/require-await
+export const handler: Handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
     return {
       statusCode: 204,

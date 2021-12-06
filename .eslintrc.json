@@ -53,7 +53,7 @@
           { "singleQuote": true, "trailingComma": "all", "semi": false, "printWidth": 120 }
         ],
         "no-await-in-loop": "error",
-        "eslint-comments/no-use": "error"
+        "eslint-comments/no-use": ["error", { "allow": ["eslint-disable-next-line"] }]
       }
     },
     {
