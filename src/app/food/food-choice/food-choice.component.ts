@@ -11,6 +11,11 @@ import {
 
 import { Choice, OrderedFoodChoice } from '../interfaces'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function isCurrentValueObjectLiteral(currentValue: any): currentValue is { [key: string]: number } {
+  return currentValue && typeof currentValue === 'object' && !(currentValue instanceof Array)
+}
+
 @Component({
   selector: 'app-food-choice',
   templateUrl: './food-choice.component.html',
@@ -36,7 +41,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     const { qtyMap = null } = changes
     const { currentValue = null } = qtyMap || {}
-    if (currentValue) {
+    if (isCurrentValueObjectLiteral(currentValue)) {
       this.remained = currentValue[this.choice.id]
     }
   }
