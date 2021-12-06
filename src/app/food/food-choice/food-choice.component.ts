@@ -41,7 +41,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges {
     }
   }
 
-  submitFoodChoice(quantity: number) {
+  submitFoodChoice(quantity: number): void {
     const { id, name, description, price, currency } = this.choice
     if (this.remained - quantity >= 0) {
       this.foodChoiceAdded.emit({

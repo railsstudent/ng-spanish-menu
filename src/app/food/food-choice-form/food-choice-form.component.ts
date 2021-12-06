@@ -44,7 +44,7 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
           this.processing = true
         }),
         delay(1000),
-        map(() => this.form.value),
+        map(() => this.form.value as { quantity: number }),
         map(({ quantity }) => +quantity),
         tap(() => (this.processing = false)),
         takeUntil(this.unsubscribe$),

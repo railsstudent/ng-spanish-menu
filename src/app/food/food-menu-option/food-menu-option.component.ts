@@ -54,7 +54,7 @@ export class FoodMenuOptionComponent implements OnInit, OnDestroy {
 
     this.form.controls['option'].valueChanges
       .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((value) => this.menuOptionSelected.emit(value))
+      .subscribe((value: string) => this.menuOptionSelected.emit(value))
   }
 
   ngOnDestroy(): void {
