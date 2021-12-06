@@ -23,10 +23,6 @@ exports[`typescript/eslint`] = {
     ],
     "src/app/food/food-total/food-total.component.ts:1377909651": [
       [93, 56, 19, "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.\\nIf your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.", "2980563503"]
-    ],
-    "src/app/food/validators/fulfill-order-validator.ts:2600820876": [
-      [6, 10, 46, "Unsafe assignment of an \`any\` value.", "168029011"],
-      [14, 12, 8, "Unsafe assignment of an \`any\` value.", "1014043998"]
     ]
   }`
 };
