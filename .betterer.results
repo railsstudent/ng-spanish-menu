@@ -10,3 +10,27 @@ exports[`stricter template compilation`] = {
     ]
   }`
 };
+
+exports[`typescript/eslint`] = {
+  value: `{
+    "src/app/food/food-choice-form/food-choice-form.component.ts:1907490244": [
+      [33, 21, 19, "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.\\nIf your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.", "2980563503"],
+      [46, 18, 15, "Unsafe return of an \`any\` typed value.", "3356189630"]
+    ],
+    "src/app/food/food-choice/food-choice.component.ts:239749867": [
+      [37, 12, 19, "Unsafe array destructuring of a tuple element with an \`any\` value.", "1006326337"],
+      [39, 6, 44, "Unsafe assignment of an \`any\` value.", "1575677833"],
+      [39, 22, 28, "Unsafe member access [this.choice.id] on an \`any\` value.", "2939717441"]
+    ],
+    "src/app/food/food-menu-option/food-menu-option.component.ts:3717861145": [
+      [56, 57, 5, "Unsafe argument of type \`any\` assigned to a parameter of type \`string | undefined\`.", "189936718"]
+    ],
+    "src/app/food/food-total/food-total.component.ts:1377909651": [
+      [93, 56, 19, "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.\\nIf your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.", "2980563503"]
+    ],
+    "src/app/food/validators/fulfill-order-validator.ts:2600820876": [
+      [6, 10, 46, "Unsafe assignment of an \`any\` value.", "168029011"],
+      [14, 12, 8, "Unsafe assignment of an \`any\` value.", "1014043998"]
+    ]
+  }`
+};
