@@ -5,7 +5,7 @@
 //
 exports[`stricter template compilation`] = {
   value: `{
-    "node_modules/@storybook/api/dist/ts3.9/lib/stories.d.ts:3648676275": [
+    "node_modules/@storybook/api/dist/ts3.9/lib/stories.d.ts:659577004": [
       [0, 7, 5, "Module \'\\"ng-spanish-menu/node_modules/@types/react/index\\"\' can only be default-imported using the \'allowSyntheticDefaultImports\' flag", "229961444"]
     ]
   }`

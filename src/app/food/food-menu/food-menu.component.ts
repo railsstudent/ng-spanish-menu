@@ -69,8 +69,10 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.unsubscribe$.next(true)
-    this.unsubscribe$.unsubscribe()
+    if (this.unsubscribe$ && this.unsubscribe$.next && this.unsubscribe$.unsubscribe) {
+      this.unsubscribe$.next(true)
+      this.unsubscribe$.unsubscribe()
+    }
   }
 
   public ngOnInit(): void {
