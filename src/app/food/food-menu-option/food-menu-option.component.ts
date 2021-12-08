@@ -39,15 +39,30 @@ import { MenuOptions } from '../enums'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodMenuOptionComponent implements OnInit, OnDestroy {
-  @Output()
-  menuOptionSelected = new EventEmitter<string>()
+  // #region Properties (3)
 
-  form: FormGroup
+  @Output()
+  public menuOptionSelected = new EventEmitter<string>()
+
+  public form: FormGroup
   unsubscribe$ = new Subject<boolean>()
+
+  // #endregion Properties (3)
+
+  // #region Constructors (1)
 
   constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {
+  // #endregion Constructors (1)
+
+  // #region Public Methods (2)
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next(true)
+    this.unsubscribe$.complete()
+  }
+
+  public ngOnInit(): void {
     this.form = this.fb.group({
       option: new FormControl(MenuOptions.all),
     })
@@ -57,8 +72,5 @@ export class FoodMenuOptionComponent implements OnInit, OnDestroy {
       .subscribe((value: string) => this.menuOptionSelected.emit(value))
   }
 
-  ngOnDestroy(): void {
-    this.unsubscribe$.next(true)
-    this.unsubscribe$.complete()
-  }
+  // #endregion Public Methods (2)
 }

@@ -14,21 +14,48 @@ import { fulfillOrderValidator } from '../validators'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodChoiceFormComponent implements OnInit, OnDestroy {
+  // #region Properties (6)
+
   @Input()
-  choice: Choice
-
+  public choice: Choice
   @Output()
-  foodChoiceSubmitted = new EventEmitter<number>()
-
+  public foodChoiceSubmitted = new EventEmitter<number>()
+  public form: FormGroup
+  public processing = false
   submitChoice$ = new Subject<Event>()
   unsubscribe$ = new Subject<boolean>()
-  processing = false
 
-  form: FormGroup
+  // #endregion Properties (6)
+
+  // #region Constructors (1)
 
   constructor(private fb: FormBuilder, private foodService: FoodService) {}
 
-  ngOnInit(): void {
+  // #endregion Constructors (1)
+
+  // #region Public Accessors (2)
+
+  public get quantity(): FormControl | undefined {
+    if (!this.form) {
+      return undefined
+    }
+    return this.form.get('quantity') as FormControl
+  }
+
+  public get quantityRemained(): number {
+    return this.foodService.getQuantity(this.choice.id)
+  }
+
+  // #endregion Public Accessors (2)
+
+  // #region Public Methods (2)
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next(true)
+    this.unsubscribe$.complete()
+  }
+
+  public ngOnInit(): void {
     this.form = this.fb.group({
       quantity: new FormControl(1, {
         validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.choice.id, this.foodService)],
@@ -52,19 +79,5 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
       .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))
   }
 
-  get quantity(): FormControl | undefined {
-    if (!this.form) {
-      return undefined
-    }
-    return this.form.get('quantity') as FormControl
-  }
-
-  get quantityRemained(): number {
-    return this.foodService.getQuantity(this.choice.id)
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next(true)
-    this.unsubscribe$.complete()
-  }
+  // #endregion Public Methods (2)
 }

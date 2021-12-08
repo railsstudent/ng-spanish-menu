@@ -7,6 +7,10 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodQuestionComponent {
+  // #region Properties (1)
+
   @Input()
-  question: string
+  public question: string
+
+  // #endregion Properties (1)
 }

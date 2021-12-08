@@ -3,36 +3,24 @@ import { BehaviorSubject, Observable, of } from 'rxjs'
 import { FoodServiceInterface, MenuItem, PriceQuantity, TotalCost } from '../interfaces'
 
 export class MockFoodService implements FoodServiceInterface {
+  // #region Properties (2)
+
   private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)
+
+  // eslint-disable-next-line @typescript-eslint/member-ordering
   quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()
+
+  // #endregion Properties (2)
+
+  // #region Constructors (1)
 
   constructor(private menuItems?: MenuItem[]) {}
 
-  private buildQtyMap(): Record<string, number> | undefined {
-    if (!this.menuItems) {
-      return undefined
-    }
-    return this.menuItems.reduce((acc, mi) => {
-      mi.choices.forEach(({ id, quantity }) => {
-        acc[id] = quantity
-      })
-      return acc
-    }, {} as Record<string, number>)
-  }
+  // #endregion Constructors (1)
 
-  getFood(): Observable<MenuItem[] | undefined> {
-    const qtyMap = this.buildQtyMap()
-    this.quantityAvailableSub$.next(qtyMap)
-    return of(this.menuItems)
-  }
+  // #region Public Methods (5)
 
-  private roundAmount(amount: number): number {
-    const cents = 100
-
-    return Math.round(amount * cents) / cents
-  }
-
-  calculateTotal(food: PriceQuantity[], tip = 0): TotalCost {
+  public calculateTotal(food: PriceQuantity[], tip = 0): TotalCost {
     const unroundedTotal = food.reduce((acc, choice) => {
       const { price, quantity } = choice
       return acc + price * quantity
@@ -49,7 +37,25 @@ export class MockFoodService implements FoodServiceInterface {
     }
   }
 
-  updateQuantity(id: string, quantity: number): void {
+  public getFood(): Observable<MenuItem[] | undefined> {
+    const qtyMap = this.buildQtyMap()
+    this.quantityAvailableSub$.next(qtyMap)
+    return of(this.menuItems)
+  }
+
+  public getQuantity(id: string): number {
+    const qtyAvailableMap = this.getLatestQtyMap()
+    if (qtyAvailableMap) {
+      return qtyAvailableMap[id] || 0
+    }
+    return 0
+  }
+
+  public getTips(): Observable<number[]> {
+    return of([0, 5, 10, 15, 20])
+  }
+
+  public updateQuantity(id: string, quantity: number): void {
     const qtyAvailableMap = this.quantityAvailableSub$.getValue()
     if (qtyAvailableMap) {
       const oldQty = qtyAvailableMap[id]
@@ -63,6 +69,22 @@ export class MockFoodService implements FoodServiceInterface {
     }
   }
 
+  // #endregion Public Methods (5)
+
+  // #region Private Methods (3)
+
+  private buildQtyMap(): Record<string, number> | undefined {
+    if (!this.menuItems) {
+      return undefined
+    }
+    return this.menuItems.reduce((acc, mi) => {
+      mi.choices.forEach(({ id, quantity }) => {
+        acc[id] = quantity
+      })
+      return acc
+    }, {} as Record<string, number>)
+  }
+
   private getLatestQtyMap() {
     const qtyAvailableMap = this.quantityAvailableSub$.getValue()
     if (!qtyAvailableMap) {
@@ -72,15 +94,11 @@ export class MockFoodService implements FoodServiceInterface {
     return this.quantityAvailableSub$.getValue()
   }
 
-  getQuantity(id: string): number {
-    const qtyAvailableMap = this.getLatestQtyMap()
-    if (qtyAvailableMap) {
-      return qtyAvailableMap[id] || 0
-    }
-    return 0
+  private roundAmount(amount: number): number {
+    const cents = 100
+
+    return Math.round(amount * cents) / cents
   }
 
-  getTips(): Observable<number[]> {
-    return of([0, 5, 10, 15, 20])
-  }
+  // #endregion Private Methods (3)
 }

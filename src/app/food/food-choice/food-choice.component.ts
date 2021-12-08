@@ -13,7 +13,7 @@ import { Choice, OrderedFoodChoice } from '../interfaces'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function isCurrentValueObjectLiteral(currentValue: any): currentValue is { [key: string]: number } {
-  return currentValue && typeof currentValue === 'object' && !(currentValue instanceof Array)
+  return currentValue !== undefined && typeof currentValue === 'object' && !(currentValue instanceof Array)
 }
 
 @Component({
@@ -23,22 +23,21 @@ function isCurrentValueObjectLiteral(currentValue: any): currentValue is { [key:
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodChoiceComponent implements OnInit, OnChanges {
-  @Input()
-  choice: Choice
+  // #region Properties (4)
 
   @Input()
-  qtyMap: Record<string, number> | undefined | null
-
+  public choice: Choice
   @Output()
-  foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
+  public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
+  @Input()
+  public qtyMap: Record<string, number> | undefined | null
+  public remained: number
 
-  remained: number
+  // #endregion Properties (4)
 
-  ngOnInit(): void {
-    this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0
-  }
+  // #region Public Methods (3)
 
-  ngOnChanges(changes: SimpleChanges): void {
+  public ngOnChanges(changes: SimpleChanges): void {
     const { qtyMap = null } = changes
     const { currentValue = null } = qtyMap || {}
     if (isCurrentValueObjectLiteral(currentValue)) {
@@ -46,7 +45,11 @@ export class FoodChoiceComponent implements OnInit, OnChanges {
     }
   }
 
-  submitFoodChoice(quantity: number): void {
+  public ngOnInit(): void {
+    this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0
+  }
+
+  public submitFoodChoice(quantity: number): void {
     const { id, name, description, price, currency } = this.choice
     if (this.remained - quantity >= 0) {
       this.foodChoiceAdded.emit({
@@ -59,4 +62,6 @@ export class FoodChoiceComponent implements OnInit, OnChanges {
       })
     }
   }
+
+  // #endregion Public Methods (3)
 }

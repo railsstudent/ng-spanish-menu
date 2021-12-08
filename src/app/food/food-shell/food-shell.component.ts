@@ -40,19 +40,26 @@ import { FoodService } from '../services'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodShellComponent implements OnInit, OnDestroy {
+  // #region Properties (6)
+
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
-  orderedViewContainer: ViewContainerRef
+  public orderedViewContainer: ViewContainerRef
 
+  public componentRefs: ComponentRef<FoodCardComponent>[] = []
+  public orderedFood: OrderedFoodChoice[] = []
   tips$: Observable<number[]>
-  unsubscribe$ = new Subject<boolean>()
-  componentRefs: ComponentRef<FoodCardComponent>[] = []
 
-  orderedFood: OrderedFoodChoice[] = []
-  totalBreakdown: TotalCost = {
+  public totalBreakdown: TotalCost = {
     subTotal: 0,
     totalTip: 0,
     total: 0,
   }
+
+  unsubscribe$ = new Subject<boolean>()
+
+  // #endregion Properties (6)
+
+  // #region Constructors (1)
 
   constructor(
     private componentFactoryResolver: ComponentFactoryResolver,
@@ -60,12 +67,11 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     private cdr: ChangeDetectorRef,
   ) {}
 
-  ngOnInit(): void {
-    const tipUrl = `${environment.baseUrl}/tips`
-    this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))
-  }
+  // #endregion Constructors (1)
 
-  async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {
+  // #region Public Methods (4)
+
+  public async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {
     const lazyComponent = await import('../food-card/food-card.component')
     const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)
     const componentRef = this.orderedViewContainer.createComponent(resolvedComponent)
@@ -82,12 +88,27 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges()
   }
 
-  calculate(tip: number): void {
+  public calculate(tip: number): void {
     const newTotal = this.foodService.calculateTotal(this.orderedFood, tip)
     this.totalBreakdown = {
       ...newTotal,
     }
   }
+
+  public ngOnDestroy(): void {
+    this.destroyComponents()
+    this.unsubscribe$.next(true)
+    this.unsubscribe$.complete()
+  }
+
+  public ngOnInit(): void {
+    const tipUrl = `${environment.baseUrl}/tips`
+    this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))
+  }
+
+  // #endregion Public Methods (4)
+
+  // #region Private Methods (1)
 
   private destroyComponents() {
     for (const componentRef of this.componentRefs) {
@@ -98,9 +119,5 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    this.destroyComponents()
-    this.unsubscribe$.next(true)
-    this.unsubscribe$.complete()
-  }
+  // #endregion Private Methods (1)
 }

@@ -13,19 +13,67 @@ import { FoodService } from '../services'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodMenuComponent implements OnInit, OnDestroy {
-  @Output()
-  addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()
+  // #region Properties (6)
 
-  menuItems$: Observable<MenuItem[] | undefined>
+  @Output()
+  public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()
   handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()
+  menuItems$: Observable<MenuItem[] | undefined>
   menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)
+  public qtyMap: Record<string, number> | undefined
   unsubscribe$ = new Subject<boolean>()
 
-  qtyMap: Record<string, number> | undefined
+  // #endregion Properties (6)
+
+  // #region Constructors (1)
 
   constructor(private service: FoodService) {}
 
-  ngOnInit(): void {
+  // #endregion Constructors (1)
+
+  // #region Public Methods (5)
+
+  public choiceTrackByFn(index: number, choice: Choice): string | number {
+    return choice ? choice.id : index
+  }
+
+  public filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {
+    if (!menuItems || option === 'all') {
+      return menuItems
+    }
+
+    const typedOptionString = option as keyof typeof MenuOptions
+    const typedOption = MenuOptions[typedOptionString]
+
+    const filterFuncMap = {
+      [MenuOptions.all]: () => true,
+      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] > 0,
+      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] <= 0,
+    }
+
+    const filterFunc = filterFuncMap[typedOption]
+    return menuItems.reduce((acc, menuItem) => {
+      const matchedChoices = menuItem.choices.filter(filterFunc)
+      if (matchedChoices.length > 0) {
+        return acc.concat({
+          ...menuItem,
+          choices: matchedChoices,
+        })
+      }
+      return acc
+    }, [] as MenuItem[])
+  }
+
+  public menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {
+    return menuItem ? menuItem.id : index
+  }
+
+  public ngOnDestroy(): void {
+    this.unsubscribe$.next(true)
+    this.unsubscribe$.unsubscribe()
+  }
+
+  public ngOnInit(): void {
     const menuUrl = `${environment.baseUrl}/menu`
 
     this.menuItems$ = combineLatest([
@@ -59,43 +107,5 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
       .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))
   }
 
-  menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {
-    return menuItem ? menuItem.id : index
-  }
-
-  choiceTrackByFn(index: number, choice: Choice): string | number {
-    return choice ? choice.id : index
-  }
-
-  filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {
-    if (!menuItems || option === 'all') {
-      return menuItems
-    }
-
-    const typedOptionString = option as keyof typeof MenuOptions
-    const typedOption = MenuOptions[typedOptionString]
-
-    const filterFuncMap = {
-      [MenuOptions.all]: () => true,
-      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] > 0,
-      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] <= 0,
-    }
-
-    const filterFunc = filterFuncMap[typedOption]
-    return menuItems.reduce((acc, menuItem) => {
-      const matchedChoices = menuItem.choices.filter(filterFunc)
-      if (matchedChoices.length > 0) {
-        return acc.concat({
-          ...menuItem,
-          choices: matchedChoices,
-        })
-      }
-      return acc
-    }, [] as MenuItem[])
-  }
-
-  ngOnDestroy(): void {
-    this.unsubscribe$.next(true)
-    this.unsubscribe$.unsubscribe()
-  }
+  // #endregion Public Methods (5)
 }

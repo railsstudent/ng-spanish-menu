@@ -16,8 +16,8 @@ exports[`typescript/eslint`] = {
     "src/app/food/food-choice-form/food-choice-form.component.ts:1050121746": [
       [33, 21, 19, "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.\\nIf your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.", "2980563503"]
     ],
-    "src/app/food/food-choice/food-choice.component.ts:16514545": [
-      [43, 12, 19, "Unsafe array destructuring of a tuple element with an \`any\` value.", "1006326337"]
+    "src/app/food/food-choice/food-choice.component.ts:4065003450": [
+      [41, 12, 19, "Unsafe array destructuring of a tuple element with an \`any\` value.", "1006326337"]
     ],
     "src/app/food/food-total/food-total.component.ts:1377909651": [
       [93, 56, 19, "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.\\nIf your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.", "2980563503"]

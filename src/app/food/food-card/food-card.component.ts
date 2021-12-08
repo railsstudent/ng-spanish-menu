@@ -32,9 +32,12 @@ import { OrderedFoodChoice } from '../interfaces'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodCardComponent {
-  @Input()
-  ordered: OrderedFoodChoice
+  // #region Properties (2)
 
   @Input()
-  total: number
+  public ordered: OrderedFoodChoice
+  @Input()
+  public total: number
+
+  // #endregion Properties (2)
 }
