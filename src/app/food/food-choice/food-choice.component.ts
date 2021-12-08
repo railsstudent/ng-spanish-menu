@@ -6,16 +6,21 @@ import {
   OnChanges,
   OnInit,
   Output,
+  SimpleChange,
   SimpleChanges,
 } from '@angular/core'
 
-import { Choice, OrderedFoodChoice } from '../interfaces'
+import { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function isCurrentValueObjectLiteral(currentValue: any): currentValue is { [key: string]: number } {
-  return currentValue !== undefined && typeof currentValue === 'object' && !(currentValue instanceof Array)
+function isQtyMapCurrentValueObjectLiteral(qtyMap: SimpleChange): qtyMap is SimpleChangeQuantityMap {
+  return (
+    qtyMap !== undefined &&
+    typeof qtyMap.firstChange === 'boolean' &&
+    qtyMap.currentValue !== undefined &&
+    typeof qtyMap.currentValue === 'object' &&
+    !(qtyMap.currentValue instanceof Array)
+  )
 }
-
 @Component({
   selector: 'app-food-choice',
   templateUrl: './food-choice.component.html',
@@ -38,10 +43,11 @@ export class FoodChoiceComponent implements OnInit, OnChanges {
   // #region Public Methods (3)
 
   public ngOnChanges(changes: SimpleChanges): void {
-    const { qtyMap = null } = changes
-    const { currentValue = null } = qtyMap || {}
-    if (isCurrentValueObjectLiteral(currentValue)) {
-      this.remained = currentValue[this.choice.id]
+    const { qtyMap } = changes
+    if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {
+      this.remained = qtyMap.currentValue[this.choice.id]
+    } else {
+      this.remained = 0
     }
   }
 

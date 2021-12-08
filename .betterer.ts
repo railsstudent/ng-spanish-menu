@@ -25,5 +25,7 @@ export default {
       '@typescript-eslint/restrict-template-expressions': 'error',
       '@typescript-eslint/unbound-method': 'error',
       '@typescript-eslint/member-ordering': 'error',
-    }).include('./src/**/*.ts'),
+    })
+      .include('./src/**/*.ts')
+      .exclude([new RegExp('test.ts')]),
 }
