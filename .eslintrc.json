@@ -14,7 +14,8 @@
         "plugin:@angular-eslint/template/process-inline-templates",
         "plugin:prettier/recommended",
         "plugin:eslint-comments/recommended",
-        "plugin:@typescript-eslint/recommended"
+        "plugin:@typescript-eslint/recommended",
+        "plugin:storybook/recommended"
       ],
       "rules": {
         "@angular-eslint/directive-selector": [
