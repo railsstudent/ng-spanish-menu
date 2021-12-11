@@ -5,7 +5,7 @@ import { OrderedFoodChoice } from '../interfaces'
 @Component({
   selector: 'app-food-card',
   template: `
-    <div class="container">
+    <div class="container rounded-lg">
       <label name="name" class="item">
         <span class="field">Name:</span>
         <span>{{ ordered.name }}</span>
