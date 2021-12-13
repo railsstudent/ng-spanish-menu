@@ -10,7 +10,17 @@ import { fulfillOrderValidator } from '../validators'
 @Component({
   selector: 'app-food-choice-form',
   templateUrl: './food-choice-form.component.html',
-  styleUrls: ['./food-choice-form.component.scss'],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+
+      .ng-invalid:not(form) {
+        border-left: 5px solid #a94442;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodChoiceFormComponent implements OnInit, OnDestroy {

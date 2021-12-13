@@ -1112,7 +1112,7 @@
     },
     {
       "name": "FoodCardComponent",
-      "id": "component-FoodCardComponent-9877b5c177bb866c5d8618a8d2a6bda0",
+      "id": "component-FoodCardComponent-c424804f311f9f691b1c2c79b83e627c",
       "file": "src/app/food/food-card/food-card.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1123,7 +1123,7 @@
       "selector": "app-food-card",
       "styleUrls": ["./food-card.component.scss"],
       "styles": [],
-      "template": "<div class=\"container\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span>{{ ordered.name }}</span>\n  </label>\n  <label class=\"item\" name=\"description\">\n    <span class=\"field\">Description:</span>\n    <span>{{ ordered.description }}</span>\n  </label>\n  <label class=\"item\" name=\"price\">\n    <span class=\"field\">Price:</span>\n    <span>{{ ordered.price }}</span>\n  </label>\n  <label class=\"item\" name=\"quantity\">\n    <span class=\"field\">Quantity:</span>\n    <span>{{ ordered.quantity }}</span>\n  </label>\n  <label class=\"item\" name=\"total\">\n    <span class=\"field\">Total:</span>\n    <span>{{ ordered.currency }} {{ total }}</span>\n  </label>\n</div>\n",
+      "template": "<div class=\"flex flex-col w-[300px] rounded-xl border-4 border-indigo-400 shadow-md shadow-indigo-500/50 mr-2\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n  </label>\n  <label class=\"item\" name=\"description\">\n    <span class=\"field\">Description:</span>\n    <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n  </label>\n  <label class=\"item\" name=\"price\">\n    <span class=\"field\">Price:</span>\n    <span class=\"hover:font-bold\">{{ ordered.price }}</span>\n  </label>\n  <label class=\"item\" name=\"quantity\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n  </label>\n  <label class=\"item\" name=\"total\">\n    <span class=\"field\">Total:</span>\n    <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n  </label>\n</div>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
@@ -1152,11 +1152,11 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\nimport { OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-card',\n  template: `\n    <div class=\"container\">\n      <label name=\"name\" class=\"item\">\n        <span class=\"field\">Name:</span>\n        <span>{{ ordered.name }}</span>\n      </label>\n      <label class=\"item\" name=\"description\">\n        <span class=\"field\">Description:</span>\n        <span>{{ ordered.description }}</span>\n      </label>\n      <label class=\"item\" name=\"price\">\n        <span class=\"field\">Price:</span>\n        <span>{{ ordered.price }}</span>\n      </label>\n      <label class=\"item\" name=\"quantity\">\n        <span class=\"field\">Quantity:</span>\n        <span>{{ ordered.quantity }}</span>\n      </label>\n      <label class=\"item\" name=\"total\">\n        <span class=\"field\">Total:</span>\n        <span>{{ ordered.currency }} {{ total }}</span>\n      </label>\n    </div>\n  `,\n  styleUrls: ['./food-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodCardComponent {\n  // #region Properties (2)\n\n  @Input()\n  public ordered: OrderedFoodChoice\n  @Input()\n  public total: number\n\n  // #endregion Properties (2)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\nimport { OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-card',\n  template: `\n    <div class=\"flex flex-col w-[300px] rounded-xl border-4 border-indigo-400 shadow-md shadow-indigo-500/50 mr-2\">\n      <label name=\"name\" class=\"item\">\n        <span class=\"field\">Name:</span>\n        <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n      </label>\n      <label class=\"item\" name=\"description\">\n        <span class=\"field\">Description:</span>\n        <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n      </label>\n      <label class=\"item\" name=\"price\">\n        <span class=\"field\">Price:</span>\n        <span class=\"hover:font-bold\">{{ ordered.price }}</span>\n      </label>\n      <label class=\"item\" name=\"quantity\">\n        <span class=\"field\">Quantity:</span>\n        <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n      </label>\n      <label class=\"item\" name=\"total\">\n        <span class=\"field\">Total:</span>\n        <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n      </label>\n    </div>\n  `,\n  styleUrls: ['./food-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodCardComponent {\n  // #region Properties (2)\n\n  @Input()\n  public ordered: OrderedFoodChoice\n  @Input()\n  public total: number\n\n  // #endregion Properties (2)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
-          "data": ":host {\n  display: block;\n}\n\n.container {\n  display: flex;\n  flex-direction: column;\n  width: 300px;\n  border: 1px solid black;\n  margin-right: 0.5rem;\n\n  .item {\n    padding: 0.5rem 0.75rem;\n    margin-bottom: 0.5rem;\n    font-size: 1rem;\n  }\n}\n",
+          "data": ":host {\n  @apply block;\n}\n\n.item {\n  @apply px-3 py-2 text-base mb-2;\n}\n",
           "styleUrl": "./food-card.component.scss"
         }
       ],
@@ -2566,7 +2566,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -2576,7 +2576,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -2686,21 +2686,21 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "LongDescription",
@@ -3184,6 +3184,28 @@
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
+      "dist/ng-spanish-menu/assets/functions/tips.ts": [
+        {
+          "name": "CORS_HEADERS",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
+        },
+        {
+          "name": "handler",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Handler",
+          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+        }
+      ],
       "dist/ng-spanish-menu/assets/functions/menu.ts": [
         {
           "name": "CORS_HEADERS",
@@ -3214,28 +3236,6 @@
           "deprecationMessage": "",
           "type": "Handler",
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-        }
-      ],
-      "dist/ng-spanish-menu/assets/functions/tips.ts": [
-        {
-          "name": "CORS_HEADERS",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
-        },
-        {
-          "name": "handler",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Handler",
-          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
       "src/app/food/food-choice-form/food-choice-form.stories.ts": [

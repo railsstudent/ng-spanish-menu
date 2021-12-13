@@ -1,16 +1,24 @@
-<form class="container" [formGroup]="form" (ngSubmit)="submitChoice$.next($event)">
+<form class="py-2 px-0" [formGroup]="form" (ngSubmit)="submitChoice$.next($event)">
   <label name="quantity" class="item">
     <span class="field">Quantity: </span>
-    <input type="number" formControlName="quantity" class="spacer" [readonly]="quantityRemained <= 0" />
+    <input type="number" formControlName="quantity" class="mr-2" [readonly]="quantityRemained <= 0" />
   </label>
-  <div *ngIf="quantity && quantity.invalid && (quantity.touched || quantity.dirty)" class="alert alert-danger">
-    <div *ngIf="quantity.errors?.min" class="error">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>
-    <div *ngIf="quantity.errors?.notEnoughQuantity" class="error">
+  <div *ngIf="quantity && quantity.invalid && (quantity.touched || quantity.dirty)" class="inline text-[#a94442]">
+    <div *ngIf="quantity.errors?.min" class="inline mr-2">
+      Quantity must be at least {{ quantity.errors?.min?.min }}.
+    </div>
+    <div *ngIf="quantity.errors?.notEnoughQuantity" class="inline mr-2">
       Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.
     </div>
   </div>
-  <div *ngIf="processing" class="alert">
-    <div class="processing">Loading...</div>
+  <div *ngIf="processing" class="inline">
+    <div class="inline mr-2 text-[#a94442]">Loading...</div>
   </div>
-  <button type="submit" [disabled]="processing || form.invalid || quantityRemained <= 0">Submit</button>
+  <button
+    type="submit"
+    [disabled]="processing || form.invalid || quantityRemained <= 0"
+    class="rounded-md p-2 bg-indigo-500 hover:bg-indigo-400 text-white"
+  >
+    Submit
+  </button>
 </form>
