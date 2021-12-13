@@ -1,17 +1,7 @@
 :host {
-  display: block;
+  @apply block;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  border: 1px solid black;
-  margin-right: 0.5rem;
-
-  .item {
-    padding: 0.5rem 0.75rem;
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-  }
+.item {
+  @apply px-3 py-2 text-base mb-2;
 }
