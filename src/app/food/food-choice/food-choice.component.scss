@@ -1,34 +1,14 @@
-$danger-color: #a94442;
-
 :host {
-  display: block;
+  @apply block;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  padding: 0.5rem;
-
+.food-choice {
   .row {
-    display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
+    @apply flex flex-wrap justify-start;
   }
 
   .item {
     flex: 1 1 calc(100% / 4 - 0.75rem * 2 - 0.5rem * 2);
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
-  }
-
-  .sold-out {
-    color: $danger-color;
-    display: inline;
-  }
-
-  .food-choice-form {
-    margin-left: 0.75rem;
-    margin-right: 0.75rem;
+    @apply px-3 py-2 text-base;
   }
 }

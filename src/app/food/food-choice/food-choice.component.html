@@ -1,4 +1,4 @@
-<div class="container">
+<div class="food-choice flex flex-col p-2 border-2 border-indigo-400">
   <div class="row">
     <label name="name" class="item">
       <span class="field">Name:</span>
@@ -26,7 +26,7 @@
   <div>
     <ng-container [ngSwitch]="remained > 0">
       <app-food-choice-form
-        class="food-choice-form"
+        class="mx-3"
         [choice]="choice"
         (foodChoiceSubmitted)="submitFoodChoice($event)"
         *ngSwitchCase="true"
@@ -38,6 +38,6 @@
     </ng-container>
   </div>
   <ng-template #soldout let-choice="choice">
-    <span class="item sold-out">Sorry, {{ choice.name }} is sold out</span>
+    <span class="item text-[#a94442] inline">Sorry, {{ choice.name }} is sold out</span>
   </ng-template>
 </div>

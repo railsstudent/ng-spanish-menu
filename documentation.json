@@ -1112,7 +1112,7 @@
     },
     {
       "name": "FoodCardComponent",
-      "id": "component-FoodCardComponent-c424804f311f9f691b1c2c79b83e627c",
+      "id": "component-FoodCardComponent-bf7a4b803a05d2155e31440c6003787e",
       "file": "src/app/food/food-card/food-card.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1123,7 +1123,7 @@
       "selector": "app-food-card",
       "styleUrls": ["./food-card.component.scss"],
       "styles": [],
-      "template": "<div class=\"flex flex-col w-[300px] rounded-xl border-4 border-indigo-400 shadow-md shadow-indigo-500/50 mr-2\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n  </label>\n  <label class=\"item\" name=\"description\">\n    <span class=\"field\">Description:</span>\n    <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n  </label>\n  <label class=\"item\" name=\"price\">\n    <span class=\"field\">Price:</span>\n    <span class=\"hover:font-bold\">{{ ordered.price }}</span>\n  </label>\n  <label class=\"item\" name=\"quantity\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n  </label>\n  <label class=\"item\" name=\"total\">\n    <span class=\"field\">Total:</span>\n    <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n  </label>\n</div>\n",
+      "template": "<div class=\"flex flex-col w-[300px] rounded-xl border-4 border-indigo-400 shadow-md shadow-indigo-500/50 mr-2\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n  </label>\n  <label class=\"item\" name=\"description\">\n    <span class=\"field\">Description:</span>\n    <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n  </label>\n  <label class=\"item\" name=\"price\">\n    <span class=\"field\">Price:</span>\n    <span class=\"hover:font-bold\">{{ ordered.currency }} {{ ordered.price }}</span>\n  </label>\n  <label class=\"item\" name=\"quantity\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n  </label>\n  <label class=\"item\" name=\"total\">\n    <span class=\"field\">Total:</span>\n    <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n  </label>\n</div>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
@@ -1152,7 +1152,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\nimport { OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-card',\n  template: `\n    <div class=\"flex flex-col w-[300px] rounded-xl border-4 border-indigo-400 shadow-md shadow-indigo-500/50 mr-2\">\n      <label name=\"name\" class=\"item\">\n        <span class=\"field\">Name:</span>\n        <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n      </label>\n      <label class=\"item\" name=\"description\">\n        <span class=\"field\">Description:</span>\n        <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n      </label>\n      <label class=\"item\" name=\"price\">\n        <span class=\"field\">Price:</span>\n        <span class=\"hover:font-bold\">{{ ordered.price }}</span>\n      </label>\n      <label class=\"item\" name=\"quantity\">\n        <span class=\"field\">Quantity:</span>\n        <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n      </label>\n      <label class=\"item\" name=\"total\">\n        <span class=\"field\">Total:</span>\n        <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n      </label>\n    </div>\n  `,\n  styleUrls: ['./food-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodCardComponent {\n  // #region Properties (2)\n\n  @Input()\n  public ordered: OrderedFoodChoice\n  @Input()\n  public total: number\n\n  // #endregion Properties (2)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\nimport { OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-card',\n  template: `\n    <div class=\"flex flex-col w-[300px] rounded-xl border-4 border-indigo-400 shadow-md shadow-indigo-500/50 mr-2\">\n      <label name=\"name\" class=\"item\">\n        <span class=\"field\">Name:</span>\n        <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n      </label>\n      <label class=\"item\" name=\"description\">\n        <span class=\"field\">Description:</span>\n        <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n      </label>\n      <label class=\"item\" name=\"price\">\n        <span class=\"field\">Price:</span>\n        <span class=\"hover:font-bold\">{{ ordered.currency }} {{ ordered.price }}</span>\n      </label>\n      <label class=\"item\" name=\"quantity\">\n        <span class=\"field\">Quantity:</span>\n        <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n      </label>\n      <label class=\"item\" name=\"total\">\n        <span class=\"field\">Total:</span>\n        <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n      </label>\n    </div>\n  `,\n  styleUrls: ['./food-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodCardComponent {\n  // #region Properties (2)\n\n  @Input()\n  public ordered: OrderedFoodChoice\n  @Input()\n  public total: number\n\n  // #endregion Properties (2)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -1307,7 +1307,7 @@
     },
     {
       "name": "FoodChoiceFormComponent",
-      "id": "component-FoodChoiceFormComponent-731ac5f7eea5ebae510276660aa5e9f8",
+      "id": "component-FoodChoiceFormComponent-1c5f4d639a94c953507f89055daa99ae",
       "file": "src/app/food/food-choice-form/food-choice-form.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1316,8 +1316,10 @@
       "outputs": [],
       "providers": [],
       "selector": "app-food-choice-form",
-      "styleUrls": ["./food-choice-form.component.scss"],
-      "styles": [],
+      "styleUrls": [],
+      "styles": [
+        "\n      :host {\n        display: block;\n      }\n\n      .ng-invalid:not(form) {\n        border-left: 5px solid #a94442;\n      }\n    "
+      ],
       "templateUrl": ["./food-choice-form.component.html"],
       "viewProviders": [],
       "inputsClass": [
@@ -1325,7 +1327,7 @@
           "name": "choice",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 20,
+          "line": 30,
           "type": "Choice"
         }
       ],
@@ -1335,7 +1337,7 @@
           "defaultValue": "new EventEmitter<number>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 22,
+          "line": 32,
           "type": "EventEmitter"
         }
       ],
@@ -1347,7 +1349,7 @@
           "type": "FormGroup",
           "optional": false,
           "description": "",
-          "line": 23,
+          "line": 33,
           "modifierKind": [123]
         },
         {
@@ -1358,7 +1360,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 24,
+          "line": 34,
           "modifierKind": [123]
         },
         {
@@ -1369,7 +1371,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 25
+          "line": 35
         },
         {
           "name": "unsubscribe$",
@@ -1379,7 +1381,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 26
+          "line": 36
         }
       ],
       "methodsClass": [
@@ -1389,7 +1391,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 53,
+          "line": 63,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -1400,7 +1402,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 58,
+          "line": 68,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -1413,15 +1415,10 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, takeUntil, tap } from 'rxjs/operators'\n\nimport { Choice } from '../interfaces'\nimport { FoodService } from '../services'\nimport { fulfillOrderValidator } from '../validators'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styleUrls: ['./food-choice-form.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceSubmitted = new EventEmitter<number>()\n  public form: FormGroup\n  public processing = false\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder, private foodService: FoodService) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (2)\n\n  public get quantity(): FormControl | undefined {\n    if (!this.form) {\n      return undefined\n    }\n    return this.form.get('quantity') as FormControl\n  }\n\n  public get quantityRemained(): number {\n    return this.foodService.getQuantity(this.choice.id)\n  }\n\n  // #endregion Public Accessors (2)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      quantity: new FormControl(1, {\n        validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.choice.id, this.foodService)],\n        updateOn: 'blur',\n      }),\n    })\n\n    this.submitChoice$\n      .pipe(\n        tap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n        }),\n        delay(1000),\n        map(() => this.form.value as { quantity: number }),\n        map(({ quantity }) => +quantity),\n        tap(() => (this.processing = false)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, takeUntil, tap } from 'rxjs/operators'\n\nimport { Choice } from '../interfaces'\nimport { FoodService } from '../services'\nimport { fulfillOrderValidator } from '../validators'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      .ng-invalid:not(form) {\n        border-left: 5px solid #a94442;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceSubmitted = new EventEmitter<number>()\n  public form: FormGroup\n  public processing = false\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder, private foodService: FoodService) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (2)\n\n  public get quantity(): FormControl | undefined {\n    if (!this.form) {\n      return undefined\n    }\n    return this.form.get('quantity') as FormControl\n  }\n\n  public get quantityRemained(): number {\n    return this.foodService.getQuantity(this.choice.id)\n  }\n\n  // #endregion Public Accessors (2)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      quantity: new FormControl(1, {\n        validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.choice.id, this.foodService)],\n        updateOn: 'blur',\n      }),\n    })\n\n    this.submitChoice$\n      .pipe(\n        tap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n        }),\n        delay(1000),\n        map(() => this.form.value as { quantity: number }),\n        map(({ quantity }) => +quantity),\n        tap(() => (this.processing = false)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
       "assetsDirs": [],
-      "styleUrlsData": [
-        {
-          "data": "$danger-color: #a94442;\n\n:host {\n  display: block;\n}\n\n.container {\n  padding: 0.5rem 0;\n\n  .ng-invalid:not(form) {\n    border-left: 5px solid $danger-color;\n  }\n\n  .alert {\n    display: inline;\n    &-danger {\n      color: $danger-color;\n      .error {\n        display: inline;\n        margin-right: 0.5rem;\n      }\n    }\n  }\n\n  .processing {\n    color: $danger-color;\n    display: inline;\n    margin-right: 0.5rem;\n  }\n\n  .item .spacer {\n    margin-right: 0.5rem;\n  }\n}\n",
-          "styleUrl": "./food-choice-form.component.scss"
-        }
-      ],
-      "stylesData": "",
+      "styleUrlsData": "",
+      "stylesData": "\n      :host {\n        display: block;\n      }\n\n      .ng-invalid:not(form) {\n        border-left: 5px solid #a94442;\n      }\n    \n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -1441,7 +1438,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 26,
+        "line": 36,
         "jsdoctags": [
           {
             "name": "fb",
@@ -1471,7 +1468,7 @@
             "name": "quantity",
             "type": "",
             "returnType": "FormControl | undefined",
-            "line": 38
+            "line": 48
           }
         },
         "quantityRemained": {
@@ -1480,11 +1477,11 @@
             "name": "quantityRemained",
             "type": "number",
             "returnType": "number",
-            "line": 45
+            "line": 55
           }
         }
       },
-      "templateData": "<form class=\"container\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"spacer\" [readonly]=\"quantityRemained <= 0\" />\n  </label>\n  <div *ngIf=\"quantity && quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"alert alert-danger\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"error\">Quantity must be at least {{ quantity.errors?.min?.min }}.</div>\n    <div *ngIf=\"quantity.errors?.notEnoughQuantity\" class=\"error\">\n      Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.\n    </div>\n  </div>\n  <div *ngIf=\"processing\" class=\"alert\">\n    <div class=\"processing\">Loading...</div>\n  </div>\n  <button type=\"submit\" [disabled]=\"processing || form.invalid || quantityRemained <= 0\">Submit</button>\n</form>\n"
+      "templateData": "<form class=\"py-2 px-0\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"mr-2\" [readonly]=\"quantityRemained <= 0\" />\n  </label>\n  <div *ngIf=\"quantity && quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"inline text-[#a94442]\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"inline mr-2\">\n      Quantity must be at least {{ quantity.errors?.min?.min }}.\n    </div>\n    <div *ngIf=\"quantity.errors?.notEnoughQuantity\" class=\"inline mr-2\">\n      Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.\n    </div>\n  </div>\n  <div *ngIf=\"processing\" class=\"inline\">\n    <div class=\"inline mr-2 text-[#a94442]\">Loading...</div>\n  </div>\n  <button\n    type=\"submit\"\n    [disabled]=\"processing || form.invalid || quantityRemained <= 0\"\n    class=\"rounded-md p-2 bg-indigo-500 hover:bg-indigo-400 text-white\"\n  >\n    Submit\n  </button>\n</form>\n"
     },
     {
       "name": "FoodMenuCardComponent",
@@ -2566,7 +2563,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -2576,7 +2573,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -2686,21 +2683,21 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "LongDescription",
@@ -2806,7 +2803,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2816,7 +2813,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-total/food-total.stories.ts",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2955,21 +2952,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodShellComponent>",
-        "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<FoodTotalComponent>",
         "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodShellComponent>",
+        "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
       }
     ],
     "functions": [
@@ -3184,28 +3181,6 @@
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
-      "dist/ng-spanish-menu/assets/functions/tips.ts": [
-        {
-          "name": "CORS_HEADERS",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
-        },
-        {
-          "name": "handler",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Handler",
-          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-        }
-      ],
       "dist/ng-spanish-menu/assets/functions/menu.ts": [
         {
           "name": "CORS_HEADERS",
@@ -3236,6 +3211,28 @@
           "deprecationMessage": "",
           "type": "Handler",
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+        }
+      ],
+      "dist/ng-spanish-menu/assets/functions/tips.ts": [
+        {
+          "name": "CORS_HEADERS",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
+        },
+        {
+          "name": "handler",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Handler",
+          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
       "src/app/food/food-choice-form/food-choice-form.stories.ts": [
