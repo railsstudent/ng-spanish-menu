@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.7](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.6...0.0.7) (2021-12-14)
+
+
+### Features
+
+* use tailwind css of food card component ([50204a1](https://github.com/railsstudent/ng-spanish-menu/commit/50204a1f6c400866e664a77bb569fede98588641))
+* use tailwind css of food choice component ([6605b24](https://github.com/railsstudent/ng-spanish-menu/commit/6605b249315c592dc5e1c25109ed3e0fce4937e2))
+* use tailwind css of food choice component ([d130faf](https://github.com/railsstudent/ng-spanish-menu/commit/d130fafacaea85b269c597ed9466c704cbb65a6f))
+* use tailwind css of food question component ([34086d7](https://github.com/railsstudent/ng-spanish-menu/commit/34086d7e75bc9725014a61b6731b82e80b40e4c1))
+* use tailwind css of food question component ([4ae4556](https://github.com/railsstudent/ng-spanish-menu/commit/4ae4556fcb734f98cd98fb64e66c32464dc78f03))
+
+
+### Bug fixes
+
+* add async keyword back to netlify functions ([7d83c74](https://github.com/railsstudent/ng-spanish-menu/commit/7d83c74b797c00ca5cb06b83969c26fa7258f644))
+* configure release script to bypass verification in git commit ([f1e1035](https://github.com/railsstudent/ng-spanish-menu/commit/f1e10353857e4e3bef2e1019d3df5efd330ec201))
+* test subject in destroy phase ([38f7652](https://github.com/railsstudent/ng-spanish-menu/commit/38f7652db9c0db026b74d8beffccd9c83d23c7cf))
+
 ### [0.0.6](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.5...0.0.6) (2021-12-05)
 
 ### Features
