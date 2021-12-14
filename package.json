@@ -17,7 +17,7 @@
     "chromatic": "npx chromatic --project-token=2d2f648cf09b",
     "release": "standard-version -t '' -a",
     "release:patch:dryrun": "npm run release  -- --dry-run --release-as patch",
-    "release:patch": "npm run release  -- --release-as patch",
+    "release:patch": "npm run release -- --no-verify --release-as patch",
     "cspell": "cspell",
     "commit": "git-cz",
     "betterer": "betterer --cache",

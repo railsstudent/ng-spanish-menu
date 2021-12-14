@@ -4,6 +4,6 @@
     { "type": "fix", "section": "Bug fixes" }
   ],
   "scripts": {
-    "posttag": "git push --follow-tags"
+    "posttag": "git push --follow-tags --force"
   }
 }
