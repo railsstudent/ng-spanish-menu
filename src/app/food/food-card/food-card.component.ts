@@ -5,7 +5,7 @@ import { OrderedFoodChoice } from '../interfaces'
 @Component({
   selector: 'app-food-card',
   template: `
-    <div class="flex flex-col w-[300px] rounded-xl border-4 border-indigo-400 shadow-md shadow-indigo-500/50 mr-2">
+    <div class="flex flex-col w-[300px] rounded-xl box-border-indigo shadow-md shadow-indigo-500/50 mr-2">
       <label name="name" class="item">
         <span class="field">Name:</span>
         <span class="hover:font-bold">{{ ordered.name }}</span>

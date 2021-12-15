@@ -6,23 +6,25 @@ import { TotalCost } from '../interfaces'
 @Component({
   selector: 'app-food-total',
   template: `
-    <div class="container">
+    <div class="flex flex-col p-2 box-border-indigo">
       <div class="selection">
-        <button [disabled]="!isFoodOrdered" (click)="getCheck.emit(this.tip)">Give me the check</button>
-        <p class="currency">Currency: {{ currency || '' }}</p>
-        <form class="form" [formGroup]="form">
+        <button class="btn-indigo mr-2 mb-2" [disabled]="!isFoodOrdered" (click)="getCheck.emit(this.tip)">
+          Give me the check
+        </button>
+        <p class="inline mr-2">Currency: {{ currency || '' }}</p>
+        <form class="inline" [formGroup]="form">
           <label
             >Tip:
-            <select name="tips" formControlName="tip">
+            <select class="px-4 py-1" name="tips" formControlName="tip">
               <option *ngFor="let tip of tips" [value]="tip">{{ tip }}%</option>
             </select>
           </label>
         </form>
       </div>
       <section class="total-section">
-        <p>Subtotal: {{ totalBreakdown.subTotal }}</p>
-        <p>Tip: {{ totalBreakdown.totalTip }}</p>
-        <p class="total">Total: {{ totalBreakdown.total }}</p>
+        <p class="inline mr-2">Subtotal: {{ totalBreakdown.subTotal }}</p>
+        <p class="inline mr-2">Tip: {{ totalBreakdown.totalTip }}</p>
+        <p class="inline mr-2 font-bold">Total: {{ totalBreakdown.total }}</p>
       </section>
     </div>
   `,
@@ -30,41 +32,6 @@ import { TotalCost } from '../interfaces'
     `
       :host {
         display: block;
-      }
-
-      .container {
-        padding: 0.5rem;
-        border: 1px solid black;
-        display: flex;
-        flex-direction: column;
-      }
-
-      form.form,
-      p.currency {
-        display: inline;
-      }
-
-      form.form select {
-        padding: 0.25rem;
-      }
-
-      p.currency {
-        margin-right: 0.5rem;
-      }
-
-      button {
-        padding: 0.25rem;
-        margin-right: 0.5rem;
-        margin-bottom: 0.5rem;
-      }
-
-      .total-section p {
-        display: inline;
-        margin-right: 0.5rem;
-      }
-
-      .total-section p.total {
-        font-weight: bold;
       }
     `,
   ],

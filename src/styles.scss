@@ -12,3 +12,11 @@ label.item {
     margin-right: 0.5rem;
   }
 }
+
+.btn-indigo {
+  @apply rounded-md p-2 bg-indigo-500 hover:bg-indigo-400 text-white;
+}
+
+.box-border-indigo {
+  @apply border-2 border-indigo-400;
+}

@@ -14,11 +14,7 @@
   <div *ngIf="processing" class="inline">
     <div class="inline mr-2 text-[#a94442]">Loading...</div>
   </div>
-  <button
-    type="submit"
-    [disabled]="processing || form.invalid || quantityRemained <= 0"
-    class="rounded-md p-2 bg-indigo-500 hover:bg-indigo-400 text-white"
-  >
+  <button type="submit" [disabled]="processing || form.invalid || quantityRemained <= 0" class="btn-indigo">
     Submit
   </button>
 </form>
