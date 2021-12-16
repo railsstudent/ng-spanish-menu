@@ -3,13 +3,21 @@
 @tailwind components;
 @tailwind utilities;
 
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 $label-color: #585656;
 
 label.item {
   font-size: 1rem;
   .field {
     color: $label-color;
-    margin-right: 0.5rem;
+    @apply mr-2;
   }
 }
 
