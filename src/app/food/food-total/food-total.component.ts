@@ -15,7 +15,7 @@ import { TotalCost } from '../interfaces'
         <form class="inline" [formGroup]="form">
           <label
             >Tip:
-            <select class="px-4 py-1" name="tips" formControlName="tip">
+            <select class="pl-2 pr-8 py-1" name="tips" formControlName="tip">
               <option *ngFor="let tip of tips" [value]="tip">{{ tip }}%</option>
             </select>
           </label>

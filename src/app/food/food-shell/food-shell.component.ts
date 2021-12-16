@@ -21,9 +21,9 @@ import { FoodService } from '../services'
   selector: 'app-food-shell',
   template: `
     <p>Angular Nation Special Menu</p>
-    <app-food-menu (addDynamicFoodChoice)="addDynamicFoodChoice($event)"></app-food-menu>
+    <app-food-menu class="block mb-2" (addDynamicFoodChoice)="addDynamicFoodChoice($event)"></app-food-menu>
     <p>Your order</p>
-    <section class="ordered">
+    <section class="flex flex-wrap items-stretch p-2 mb-1">
       <ng-container #viewContainerRef></ng-container>
     </section>
     <ng-container *ngIf="tips$ | async as tips">
@@ -36,7 +36,13 @@ import { FoodService } from '../services'
       ></app-food-total>
     </ng-container>
   `,
-  styleUrls: ['./food-shell.component.scss'],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodShellComponent implements OnInit, OnDestroy {
