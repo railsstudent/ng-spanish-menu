@@ -1,4 +1,4 @@
-<div class="container" *ngIf="menuItems$ | async as menuItems; else notAvailable">
+<div class="food-menu" *ngIf="menuItems$ | async as menuItems; else notAvailable">
   <app-food-menu-option (menuOptionSelected)="menuOptionSub$.next($event)"></app-food-menu-option>
   <app-food-menu-card *ngFor="let menuItem of menuItems; index as i; trackBy: menuItemTrackByFn">
     <app-food-question [question]="menuItem.question" head></app-food-question>
