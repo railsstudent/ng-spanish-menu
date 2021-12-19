@@ -1112,7 +1112,7 @@
     },
     {
       "name": "FoodCardComponent",
-      "id": "component-FoodCardComponent-48976f058c61f851275c43d61c732540",
+      "id": "component-FoodCardComponent-3705dacd79e9af63b816c0468ca6ee69",
       "file": "src/app/food/food-card/food-card.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1123,7 +1123,7 @@
       "selector": "app-food-card",
       "styleUrls": ["./food-card.component.scss"],
       "styles": [],
-      "template": "<div class=\"flex flex-col w-[300px] rounded-xl border-2 border-indigo-400 shadow-md shadow-indigo-500/50 mr-2\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n  </label>\n  <label class=\"item\" name=\"description\">\n    <span class=\"field\">Description:</span>\n    <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n  </label>\n  <label class=\"item\" name=\"price\">\n    <span class=\"field\">Price:</span>\n    <span class=\"hover:font-bold\">{{ ordered.currency }} {{ ordered.price }}</span>\n  </label>\n  <label class=\"item\" name=\"quantity\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n  </label>\n  <label class=\"item\" name=\"total\">\n    <span class=\"field\">Total:</span>\n    <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n  </label>\n</div>\n",
+      "template": "<div class=\"flex flex-col w-[300px] rounded-xl box-border-indigo shadow-md shadow-indigo-500/50 mr-2\">\n  <label name=\"name\" class=\"item\">\n    <span class=\"field\">Name:</span>\n    <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n  </label>\n  <label class=\"item\" name=\"description\">\n    <span class=\"field\">Description:</span>\n    <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n  </label>\n  <label class=\"item\" name=\"price\">\n    <span class=\"field\">Price:</span>\n    <span class=\"hover:font-bold\">{{ ordered.currency }} {{ ordered.price }}</span>\n  </label>\n  <label class=\"item\" name=\"quantity\">\n    <span class=\"field\">Quantity:</span>\n    <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n  </label>\n  <label class=\"item\" name=\"total\">\n    <span class=\"field\">Total:</span>\n    <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n  </label>\n</div>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
@@ -1152,7 +1152,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\nimport { OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-card',\n  template: `\n    <div class=\"flex flex-col w-[300px] rounded-xl border-2 border-indigo-400 shadow-md shadow-indigo-500/50 mr-2\">\n      <label name=\"name\" class=\"item\">\n        <span class=\"field\">Name:</span>\n        <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n      </label>\n      <label class=\"item\" name=\"description\">\n        <span class=\"field\">Description:</span>\n        <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n      </label>\n      <label class=\"item\" name=\"price\">\n        <span class=\"field\">Price:</span>\n        <span class=\"hover:font-bold\">{{ ordered.currency }} {{ ordered.price }}</span>\n      </label>\n      <label class=\"item\" name=\"quantity\">\n        <span class=\"field\">Quantity:</span>\n        <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n      </label>\n      <label class=\"item\" name=\"total\">\n        <span class=\"field\">Total:</span>\n        <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n      </label>\n    </div>\n  `,\n  styleUrls: ['./food-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodCardComponent {\n  // #region Properties (2)\n\n  @Input()\n  public ordered: OrderedFoodChoice\n  @Input()\n  public total: number\n\n  // #endregion Properties (2)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\nimport { OrderedFoodChoice } from '../interfaces'\n\n@Component({\n  selector: 'app-food-card',\n  template: `\n    <div class=\"flex flex-col w-[300px] rounded-xl box-border-indigo shadow-md shadow-indigo-500/50 mr-2\">\n      <label name=\"name\" class=\"item\">\n        <span class=\"field\">Name:</span>\n        <span class=\"hover:font-bold\">{{ ordered.name }}</span>\n      </label>\n      <label class=\"item\" name=\"description\">\n        <span class=\"field\">Description:</span>\n        <span class=\"hover:font-bold\">{{ ordered.description }}</span>\n      </label>\n      <label class=\"item\" name=\"price\">\n        <span class=\"field\">Price:</span>\n        <span class=\"hover:font-bold\">{{ ordered.currency }} {{ ordered.price }}</span>\n      </label>\n      <label class=\"item\" name=\"quantity\">\n        <span class=\"field\">Quantity:</span>\n        <span class=\"hover:font-bold\">{{ ordered.quantity }}</span>\n      </label>\n      <label class=\"item\" name=\"total\">\n        <span class=\"field\">Total:</span>\n        <span class=\"hover:font-bold\">{{ ordered.currency }} {{ total }}</span>\n      </label>\n    </div>\n  `,\n  styleUrls: ['./food-card.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodCardComponent {\n  // #region Properties (2)\n\n  @Input()\n  public ordered: OrderedFoodChoice\n  @Input()\n  public total: number\n\n  // #endregion Properties (2)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -1303,7 +1303,7 @@
       ],
       "stylesData": "",
       "implements": ["OnInit", "OnChanges"],
-      "templateData": "<div class=\"food-choice flex flex-col p-2 border-2 border-indigo-400\">\n  <div class=\"row\">\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div class=\"row\">\n    <label name=\"ingredient\" class=\"item\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text\">{{ choice.ingredients }}</span>\n    </label>\n  </div>\n  <div>\n    <ng-container [ngSwitch]=\"remained > 0\">\n      <app-food-choice-form\n        class=\"mx-3\"\n        [choice]=\"choice\"\n        (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n        *ngSwitchCase=\"true\"\n      >\n      </app-food-choice-form>\n      <ng-container *ngSwitchDefault>\n        <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n      </ng-container>\n    </ng-container>\n  </div>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item text-[#a94442] inline\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
+      "templateData": "<div class=\"food-choice flex flex-col p-2 box-border-indigo\">\n  <div class=\"row\">\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div class=\"row\">\n    <label name=\"ingredient\" class=\"item\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text italic\">{{ choice.ingredients }}</span>\n    </label>\n  </div>\n  <div>\n    <ng-container [ngSwitch]=\"remained > 0\">\n      <app-food-choice-form\n        class=\"mx-3\"\n        [choice]=\"choice\"\n        (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n        *ngSwitchCase=\"true\"\n      >\n      </app-food-choice-form>\n      <ng-container *ngSwitchDefault>\n        <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n      </ng-container>\n    </ng-container>\n  </div>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item text-[#a94442] inline\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
     },
     {
       "name": "FoodChoiceFormComponent",
@@ -1481,7 +1481,7 @@
           }
         }
       },
-      "templateData": "<form class=\"py-2 px-0\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"mr-2\" [readonly]=\"quantityRemained <= 0\" />\n  </label>\n  <div *ngIf=\"quantity && quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"inline text-[#a94442]\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"inline mr-2\">\n      Quantity must be at least {{ quantity.errors?.min?.min }}.\n    </div>\n    <div *ngIf=\"quantity.errors?.notEnoughQuantity\" class=\"inline mr-2\">\n      Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.\n    </div>\n  </div>\n  <div *ngIf=\"processing\" class=\"inline\">\n    <div class=\"inline mr-2 text-[#a94442]\">Loading...</div>\n  </div>\n  <button\n    type=\"submit\"\n    [disabled]=\"processing || form.invalid || quantityRemained <= 0\"\n    class=\"btn-indigo\"\n  >\n    Submit\n  </button>\n</form>\n"
+      "templateData": "<form class=\"py-2 px-0\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"mr-2\" [readonly]=\"quantityRemained <= 0\" />\n  </label>\n  <div *ngIf=\"quantity && quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"inline text-[#a94442]\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"inline mr-2\">\n      Quantity must be at least {{ quantity.errors?.min?.min }}.\n    </div>\n    <div *ngIf=\"quantity.errors?.notEnoughQuantity\" class=\"inline mr-2\">\n      Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.\n    </div>\n  </div>\n  <div *ngIf=\"processing\" class=\"inline\">\n    <div class=\"inline mr-2 text-[#a94442]\">Loading...</div>\n  </div>\n  <button type=\"submit\" [disabled]=\"processing || form.invalid || quantityRemained <= 0\" class=\"btn-indigo\">\n    Submit\n  </button>\n</form>\n"
     },
     {
       "name": "FoodMenuCardComponent",
@@ -1789,7 +1789,7 @@
     },
     {
       "name": "FoodMenuOptionComponent",
-      "id": "component-FoodMenuOptionComponent-da3d839034cd4deb9eaf405be4ffb164",
+      "id": "component-FoodMenuOptionComponent-323af578d18d06f1fa4454881b00fdcd",
       "file": "src/app/food/food-menu-option/food-menu-option.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1799,10 +1799,8 @@
       "providers": [],
       "selector": "app-food-menu-option",
       "styleUrls": [],
-      "styles": [
-        "\n      :host {\n        display: block;\n      }\n\n      section.option {\n        display: flex;\n        justify-content: flex-end;\n        padding: 0.75rem;\n      }\n\n      section select {\n        padding: 0.25rem;\n        font-size: 1rem;\n      }\n    "
-      ],
-      "template": "<section class=\"option\">\n  <form [formGroup]=\"form\">\n    <select name=\"option\" formControlName=\"option\">\n      <option value=\"all\">Show all</option>\n      <option value=\"available\">Show available only</option>\n      <option value=\"soldOut\">Show sold out</option>\n    </select>\n  </form>\n</section>\n",
+      "styles": ["\n      :host {\n        display: block;\n      }\n    "],
+      "template": "<section class=\"flex justify-end p-3\">\n  <form [formGroup]=\"form\">\n    <select class=\"px-6 text-base\" name=\"option\" formControlName=\"option\">\n      <option value=\"all\">Show all</option>\n      <option value=\"available\">Show available only</option>\n      <option value=\"soldOut\">Show sold out</option>\n    </select>\n  </form>\n</section>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [],
@@ -1812,7 +1810,7 @@
           "defaultValue": "new EventEmitter<string>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 45,
+          "line": 34,
           "type": "EventEmitter"
         }
       ],
@@ -1824,7 +1822,7 @@
           "type": "FormGroup",
           "optional": false,
           "description": "",
-          "line": 47,
+          "line": 36,
           "modifierKind": [123]
         },
         {
@@ -1835,7 +1833,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 48
+          "line": 37
         }
       ],
       "methodsClass": [
@@ -1845,7 +1843,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 60,
+          "line": 49,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -1856,7 +1854,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 65,
+          "line": 54,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -1869,10 +1867,10 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"option\">\n      <form [formGroup]=\"form\">\n        <select name=\"option\" formControlName=\"option\">\n          <option value=\"all\">Show all</option>\n          <option value=\"available\">Show available only</option>\n          <option value=\"soldOut\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      section.option {\n        display: flex;\n        justify-content: flex-end;\n        padding: 0.75rem;\n      }\n\n      section select {\n        padding: 0.25rem;\n        font-size: 1rem;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionComponent implements OnInit, OnDestroy {\n  // #region Properties (3)\n\n  @Output()\n  public menuOptionSelected = new EventEmitter<string>()\n\n  public form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (3)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(MenuOptions.all),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value: string) => this.menuOptionSelected.emit(value))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"flex justify-end p-3\">\n      <form [formGroup]=\"form\">\n        <select class=\"px-6 text-base\" name=\"option\" formControlName=\"option\">\n          <option value=\"all\">Show all</option>\n          <option value=\"available\">Show available only</option>\n          <option value=\"soldOut\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionComponent implements OnInit, OnDestroy {\n  // #region Properties (3)\n\n  @Output()\n  public menuOptionSelected = new EventEmitter<string>()\n\n  public form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (3)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(MenuOptions.all),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value: string) => this.menuOptionSelected.emit(value))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
-      "stylesData": "\n      :host {\n        display: block;\n      }\n\n      section.option {\n        display: flex;\n        justify-content: flex-end;\n        padding: 0.75rem;\n      }\n\n      section select {\n        padding: 0.25rem;\n        font-size: 1rem;\n      }\n    \n",
+      "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -1886,7 +1884,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 48,
+        "line": 37,
         "jsdoctags": [
           {
             "name": "fb",
@@ -1943,7 +1941,7 @@
     },
     {
       "name": "FoodShellComponent",
-      "id": "component-FoodShellComponent-2a4f8e4c53c9879fcc5974239bc5821d",
+      "id": "component-FoodShellComponent-326e7395f5b9dec18915a8d669d50d06",
       "file": "src/app/food/food-shell/food-shell.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1952,9 +1950,9 @@
       "outputs": [],
       "providers": [],
       "selector": "app-food-shell",
-      "styleUrls": ["./food-shell.component.scss"],
-      "styles": [],
-      "template": "<p>Angular Nation Special Menu</p>\n<app-food-menu (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n<p>Your order</p>\n<section class=\"ordered\">\n  <ng-container #viewContainerRef></ng-container>\n</section>\n<ng-container *ngIf=\"tips$ | async as tips\">\n  <app-food-total\n    [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n    [currency]=\"orderedFood?.[0]?.currency || ''\"\n    [tips]=\"tips\"\n    [totalBreakdown]=\"totalBreakdown\"\n    (getCheck)=\"calculate($event)\"\n  ></app-food-total>\n</ng-container>\n",
+      "styleUrls": [],
+      "styles": ["\n      :host {\n        display: block;\n      }\n    "],
+      "template": "<p>Angular Nation Special Menu</p>\n<app-food-menu class=\"block mb-2\" (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n<p>Your order</p>\n<section class=\"flex flex-wrap items-stretch p-2 mb-1\">\n  <ng-container #viewContainerRef></ng-container>\n</section>\n<ng-container *ngIf=\"tips$ | async as tips\">\n  <app-food-total\n    [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n    [currency]=\"orderedFood?.[0]?.currency || ''\"\n    [tips]=\"tips\"\n    [totalBreakdown]=\"totalBreakdown\"\n    (getCheck)=\"calculate($event)\"\n  ></app-food-total>\n</ng-container>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [],
@@ -1968,7 +1966,7 @@
           "type": "ComponentRef<FoodCardComponent>[]",
           "optional": false,
           "description": "",
-          "line": 48,
+          "line": 54,
           "modifierKind": [123]
         },
         {
@@ -1979,7 +1977,7 @@
           "type": "OrderedFoodChoice[]",
           "optional": false,
           "description": "",
-          "line": 49,
+          "line": 55,
           "modifierKind": [123]
         },
         {
@@ -1989,7 +1987,7 @@
           "type": "ViewContainerRef",
           "optional": false,
           "description": "",
-          "line": 46,
+          "line": 52,
           "decorators": [
             {
               "name": "ViewChild",
@@ -2005,7 +2003,7 @@
           "type": "Observable<number[]>",
           "optional": false,
           "description": "",
-          "line": 50
+          "line": 56
         },
         {
           "name": "totalBreakdown",
@@ -2015,7 +2013,7 @@
           "type": "TotalCost",
           "optional": false,
           "description": "",
-          "line": 52,
+          "line": 58,
           "modifierKind": [123]
         },
         {
@@ -2026,7 +2024,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 58
+          "line": 64
         }
       ],
       "methodsClass": [
@@ -2043,7 +2041,7 @@
           "optional": false,
           "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 74,
+          "line": 80,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123, 130],
@@ -2072,7 +2070,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 91,
+          "line": 97,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -2094,7 +2092,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 113,
+          "line": 119,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
@@ -2105,7 +2103,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 98,
+          "line": 104,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2116,7 +2114,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 104,
+          "line": 110,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2129,15 +2127,10 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  OnDestroy,\n  OnInit,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { Observable, Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { FoodCardComponent } from '../food-card'\nimport { OrderedFoodChoice, TotalCost } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-shell',\n  template: `\n    <p>Angular Nation Special Menu</p>\n    <app-food-menu (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n    <p>Your order</p>\n    <section class=\"ordered\">\n      <ng-container #viewContainerRef></ng-container>\n    </section>\n    <ng-container *ngIf=\"tips$ | async as tips\">\n      <app-food-total\n        [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n        [currency]=\"orderedFood?.[0]?.currency || ''\"\n        [tips]=\"tips\"\n        [totalBreakdown]=\"totalBreakdown\"\n        (getCheck)=\"calculate($event)\"\n      ></app-food-total>\n    </ng-container>\n  `,\n  styleUrls: ['./food-shell.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodShellComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public orderedViewContainer: ViewContainerRef\n\n  public componentRefs: ComponentRef<FoodCardComponent>[] = []\n  public orderedFood: OrderedFoodChoice[] = []\n  tips$: Observable<number[]>\n\n  public totalBreakdown: TotalCost = {\n    subTotal: 0,\n    totalTip: 0,\n    total: 0,\n  }\n\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(\n    private componentFactoryResolver: ComponentFactoryResolver,\n    private foodService: FoodService,\n    private cdr: ChangeDetectorRef,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (4)\n\n  public async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {\n    const lazyComponent = await import('../food-card/food-card.component')\n    const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)\n    const componentRef = this.orderedViewContainer.createComponent(resolvedComponent)\n    const { total } = this.foodService.calculateTotal([choice])\n\n    componentRef.instance.ordered = {\n      ...choice,\n    }\n\n    componentRef.instance.total = total\n    this.componentRefs.push(componentRef)\n\n    this.orderedFood = [...this.orderedFood, choice]\n    this.cdr.detectChanges()\n  }\n\n  public calculate(tip: number): void {\n    const newTotal = this.foodService.calculateTotal(this.orderedFood, tip)\n    this.totalBreakdown = {\n      ...newTotal,\n    }\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    const tipUrl = `${environment.baseUrl}/tips`\n    this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))\n  }\n\n  // #endregion Public Methods (4)\n\n  // #region Private Methods (1)\n\n  private destroyComponents() {\n    for (const componentRef of this.componentRefs) {\n      componentRef.destroy()\n    }\n    if (this.orderedViewContainer) {\n      this.orderedViewContainer.clear()\n    }\n  }\n\n  // #endregion Private Methods (1)\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  OnDestroy,\n  OnInit,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { Observable, Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { FoodCardComponent } from '../food-card'\nimport { OrderedFoodChoice, TotalCost } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-shell',\n  template: `\n    <p>Angular Nation Special Menu</p>\n    <app-food-menu class=\"block mb-2\" (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n    <p>Your order</p>\n    <section class=\"flex flex-wrap items-stretch p-2 mb-1\">\n      <ng-container #viewContainerRef></ng-container>\n    </section>\n    <ng-container *ngIf=\"tips$ | async as tips\">\n      <app-food-total\n        [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n        [currency]=\"orderedFood?.[0]?.currency || ''\"\n        [tips]=\"tips\"\n        [totalBreakdown]=\"totalBreakdown\"\n        (getCheck)=\"calculate($event)\"\n      ></app-food-total>\n    </ng-container>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodShellComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public orderedViewContainer: ViewContainerRef\n\n  public componentRefs: ComponentRef<FoodCardComponent>[] = []\n  public orderedFood: OrderedFoodChoice[] = []\n  tips$: Observable<number[]>\n\n  public totalBreakdown: TotalCost = {\n    subTotal: 0,\n    totalTip: 0,\n    total: 0,\n  }\n\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(\n    private componentFactoryResolver: ComponentFactoryResolver,\n    private foodService: FoodService,\n    private cdr: ChangeDetectorRef,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (4)\n\n  public async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {\n    const lazyComponent = await import('../food-card/food-card.component')\n    const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)\n    const componentRef = this.orderedViewContainer.createComponent(resolvedComponent)\n    const { total } = this.foodService.calculateTotal([choice])\n\n    componentRef.instance.ordered = {\n      ...choice,\n    }\n\n    componentRef.instance.total = total\n    this.componentRefs.push(componentRef)\n\n    this.orderedFood = [...this.orderedFood, choice]\n    this.cdr.detectChanges()\n  }\n\n  public calculate(tip: number): void {\n    const newTotal = this.foodService.calculateTotal(this.orderedFood, tip)\n    this.totalBreakdown = {\n      ...newTotal,\n    }\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    const tipUrl = `${environment.baseUrl}/tips`\n    this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))\n  }\n\n  // #endregion Public Methods (4)\n\n  // #region Private Methods (1)\n\n  private destroyComponents() {\n    for (const componentRef of this.componentRefs) {\n      componentRef.destroy()\n    }\n    if (this.orderedViewContainer) {\n      this.orderedViewContainer.clear()\n    }\n  }\n\n  // #endregion Private Methods (1)\n}\n",
       "assetsDirs": [],
-      "styleUrlsData": [
-        {
-          "data": ":host {\n  display: block;\n}\n\nsection.ordered {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: stretch;\n\n  padding: 0.5rem;\n  margin-bottom: 0.25rem;\n}\n",
-          "styleUrl": "./food-shell.component.scss"
-        }
-      ],
-      "stylesData": "",
+      "styleUrlsData": "",
+      "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -2163,7 +2156,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 58,
+        "line": 64,
         "jsdoctags": [
           {
             "name": "componentFactoryResolver",
@@ -2198,7 +2191,7 @@
     },
     {
       "name": "FoodTotalComponent",
-      "id": "component-FoodTotalComponent-2f903c6b6ada9e0d03ac50f0320b30c0",
+      "id": "component-FoodTotalComponent-9d2f8e3b27ae61188ebcf95a8bdbc8a6",
       "file": "src/app/food/food-total/food-total.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -2208,7 +2201,7 @@
       "selector": "app-food-total",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button class=\"btn-indigo mr-2 mb-2\" [disabled]=\"!isFoodOrdered\" (click)=\"getCheck.emit(this.tip)\">\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label\n        >Tip:\n        <select class=\"px-4 py-1\" name=\"tips\" formControlName=\"tip\">\n          <option *ngFor=\"let tip of tips\" [value]=\"tip\">{{ tip }}%</option>\n        </select>\n      </label>\n    </form>\n  </div>\n  <section class=\"total-section\">\n    <p class=\"inline mr-2\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n    <p class=\"inline mr-2\">Tip: {{ totalBreakdown.totalTip }}</p>\n    <p class=\"inline mr-2 font-bold\">Total: {{ totalBreakdown.total }}</p>\n  </section>\n</div>\n",
+      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button class=\"btn-indigo mr-2 mb-2\" [disabled]=\"!isFoodOrdered\" (click)=\"getCheck.emit(this.tip)\">\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label\n        >Tip:\n        <select class=\"pl-2 pr-8 py-1\" name=\"tips\" formControlName=\"tip\">\n          <option *ngFor=\"let tip of tips\" [value]=\"tip\">{{ tip }}%</option>\n        </select>\n      </label>\n    </form>\n  </div>\n  <section class=\"total-section\">\n    <p class=\"inline mr-2\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n    <p class=\"inline mr-2\">Tip: {{ totalBreakdown.totalTip }}</p>\n    <p class=\"inline mr-2 font-bold\">Total: {{ totalBreakdown.total }}</p>\n  </section>\n</div>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
@@ -2283,7 +2276,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button class=\"btn-indigo mr-2 mb-2\" [disabled]=\"!isFoodOrdered\" (click)=\"getCheck.emit(this.tip)\">\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label\n            >Tip:\n            <select class=\"px-4 py-1\" name=\"tips\" formControlName=\"tip\">\n              <option *ngFor=\"let tip of tips\" [value]=\"tip\">{{ tip }}%</option>\n            </select>\n          </label>\n        </form>\n      </div>\n      <section class=\"total-section\">\n        <p class=\"inline mr-2\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n        <p class=\"inline mr-2\">Tip: {{ totalBreakdown.totalTip }}</p>\n        <p class=\"inline mr-2 font-bold\">Total: {{ totalBreakdown.total }}</p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent implements OnInit {\n  // #region Properties (6)\n\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (1)\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  // #endregion Public Accessors (1)\n\n  // #region Public Methods (1)\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n\n  // #endregion Public Methods (1)\n}\n",
+      "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button class=\"btn-indigo mr-2 mb-2\" [disabled]=\"!isFoodOrdered\" (click)=\"getCheck.emit(this.tip)\">\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label\n            >Tip:\n            <select class=\"pl-2 pr-8 py-1\" name=\"tips\" formControlName=\"tip\">\n              <option *ngFor=\"let tip of tips\" [value]=\"tip\">{{ tip }}%</option>\n            </select>\n          </label>\n        </form>\n      </div>\n      <section class=\"total-section\">\n        <p class=\"inline mr-2\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n        <p class=\"inline mr-2\">Tip: {{ totalBreakdown.totalTip }}</p>\n        <p class=\"inline mr-2 font-bold\">Total: {{ totalBreakdown.total }}</p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent implements OnInit {\n  // #region Properties (6)\n\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (1)\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  // #endregion Public Accessors (1)\n\n  // #region Public Methods (1)\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n\n  // #endregion Public Methods (1)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
@@ -2536,16 +2529,6 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/menu.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
-      },
-      {
-        "name": "CORS_HEADERS",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2556,7 +2539,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "file": "src/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -2567,6 +2550,16 @@
         "ctype": "miscellaneous",
         "subtype": "variable",
         "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
+      },
+      {
+        "name": "CORS_HEADERS",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -2616,21 +2609,21 @@
         "name": "environment",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/environments/environment.prod.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
-      },
-      {
-        "name": "environment",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/environments/environment.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
         "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n}"
+      },
+      {
+        "name": "environment",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/environments/environment.prod.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
       },
       {
         "name": "FoodMenuCardTemplate",
@@ -2656,16 +2649,6 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/menu.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2676,7 +2659,7 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "file": "src/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
@@ -2691,6 +2674,16 @@
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "LongDescription",
@@ -2756,7 +2749,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2766,7 +2759,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2905,6 +2898,16 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodChoiceFormComponent>",
+        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2920,16 +2923,6 @@
         "deprecationMessage": "",
         "type": "Story<FoodMenuComponent>",
         "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodChoiceFormComponent>",
-        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3120,6 +3113,28 @@
           "type": "literal type"
         }
       ],
+      "src/assets/functions/tips.ts": [
+        {
+          "name": "CORS_HEADERS",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
+        },
+        {
+          "name": "handler",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Handler",
+          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+        }
+      ],
       "src/assets/functions/menu.ts": [
         {
           "name": "CORS_HEADERS",
@@ -3152,12 +3167,12 @@
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
-      "src/assets/functions/tips.ts": [
+      "dist/ng-spanish-menu/assets/functions/tips.ts": [
         {
           "name": "CORS_HEADERS",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/assets/functions/tips.ts",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "object",
@@ -3167,7 +3182,7 @@
           "name": "handler",
           "ctype": "miscellaneous",
           "subtype": "variable",
-          "file": "src/assets/functions/tips.ts",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Handler",
@@ -3204,28 +3219,6 @@
           "deprecationMessage": "",
           "type": "Handler",
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-        }
-      ],
-      "dist/ng-spanish-menu/assets/functions/tips.ts": [
-        {
-          "name": "CORS_HEADERS",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
-        },
-        {
-          "name": "handler",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Handler",
-          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
       "src/app/food/food-choice-form/food-choice-form.stories.ts": [
@@ -3302,18 +3295,6 @@
           "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
         }
       ],
-      "src/environments/environment.prod.ts": [
-        {
-          "name": "environment",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/environments/environment.prod.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
-        }
-      ],
       "src/environments/environment.ts": [
         {
           "name": "environment",
@@ -3324,6 +3305,18 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n}"
+        }
+      ],
+      "src/environments/environment.prod.ts": [
+        {
+          "name": "environment",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/environments/environment.prod.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
         }
       ],
       "src/app/food/food-menu-card/food-menu-card.stories.ts": [
