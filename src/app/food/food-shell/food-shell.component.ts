@@ -20,21 +20,23 @@ import { FoodService } from '../services'
 @Component({
   selector: 'app-food-shell',
   template: `
-    <p class="text-center text-2xl text-indigo-500 underline">Angular Nation Spanish Food Menu</p>
-    <app-food-menu class="block mb-2" (addDynamicFoodChoice)="addDynamicFoodChoice($event)"></app-food-menu>
-    <p>Your order</p>
-    <section class="flex flex-wrap items-stretch p-2 mb-1">
-      <ng-container #viewContainerRef></ng-container>
-    </section>
-    <ng-container *ngIf="tips$ | async as tips">
-      <app-food-total
-        [isFoodOrdered]="orderedFood && orderedFood.length > 0"
-        [currency]="orderedFood?.[0]?.currency || ''"
-        [tips]="tips"
-        [totalBreakdown]="totalBreakdown"
-        (getCheck)="calculate($event)"
-      ></app-food-total>
-    </ng-container>
+    <div class="p-6">
+      <p class="text-center text-2xl text-indigo-500 underline">Angular Nation Spanish Food Menu</p>
+      <app-food-menu class="block mb-2" (addDynamicFoodChoice)="addDynamicFoodChoice($event)"></app-food-menu>
+      <p>Your order</p>
+      <section class="flex flex-wrap items-stretch p-2 mb-1">
+        <ng-container #viewContainerRef></ng-container>
+      </section>
+      <ng-container *ngIf="tips$ | async as tips">
+        <app-food-total
+          [isFoodOrdered]="orderedFood && orderedFood.length > 0"
+          [currency]="orderedFood?.[0]?.currency || ''"
+          [tips]="tips"
+          [totalBreakdown]="totalBreakdown"
+          (getCheck)="calculate($event)"
+        ></app-food-total>
+      </ng-container>
+    </div>
   `,
   styles: [
     `

@@ -2549,7 +2549,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -2559,7 +2559,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -2669,21 +2669,21 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "LongDescription",
@@ -2749,6 +2749,16 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2759,7 +2769,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -2784,16 +2794,6 @@
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "FoodMenuOptionTemplate.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "Template.bind({})"
       },
       {
         "name": "Primary",
@@ -2898,11 +2898,11 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "file": "src/app/food/food-menu/food-menu.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Story<FoodChoiceComponent>",
-        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
+        "type": "Story<FoodMenuComponent>",
+        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -2918,21 +2918,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu/food-menu.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodMenuComponent>",
-        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-question/food-question.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<FoodQuestionComponent>",
         "defaultValue": "(args: FoodQuestionComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodChoiceComponent>",
+        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3167,6 +3167,28 @@
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
+      "dist/ng-spanish-menu/assets/functions/tips.ts": [
+        {
+          "name": "CORS_HEADERS",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
+        },
+        {
+          "name": "handler",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Handler",
+          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+        }
+      ],
       "dist/ng-spanish-menu/assets/functions/menu.ts": [
         {
           "name": "CORS_HEADERS",
@@ -3197,28 +3219,6 @@
           "deprecationMessage": "",
           "type": "Handler",
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-        }
-      ],
-      "dist/ng-spanish-menu/assets/functions/tips.ts": [
-        {
-          "name": "CORS_HEADERS",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
-        },
-        {
-          "name": "handler",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Handler",
-          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
       "src/app/food/food-choice-form/food-choice-form.stories.ts": [
