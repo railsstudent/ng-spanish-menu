@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.8](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.7...0.0.8) (2021-12-22)
+
+
+### Features
+
+* apply tailwind on option menu ([18bf0d6](https://github.com/railsstudent/ng-spanish-menu/commit/18bf0d6b02056f66c15c5a428ecc8a5183df14ba))
+* apply tailwind on option menu ([8b3a415](https://github.com/railsstudent/ng-spanish-menu/commit/8b3a415f5e4384867f9fa59182b3e0c92cd4f1cd))
+* center and change the text color of title ([f91fd48](https://github.com/railsstudent/ng-spanish-menu/commit/f91fd48298a3749d2dd324f4b13e4dffc08473cf))
+* remove right padding of option menu ([cb6e3fc](https://github.com/railsstudent/ng-spanish-menu/commit/cb6e3fc79ef57f4f4544d422abea88afb7fc2336))
+* remove right padding of option menu ([44be6e7](https://github.com/railsstudent/ng-spanish-menu/commit/44be6e7603d0a8e255c2c398d11cdfe7d5cc2ad2))
+* use tailwind css on components ([b1b62b0](https://github.com/railsstudent/ng-spanish-menu/commit/b1b62b0869b3e794fb7258596a9844aac245677c))
+* use tailwind on food total and food shell components ([c1feca4](https://github.com/railsstudent/ng-spanish-menu/commit/c1feca47eefe65a870064fc042ad8ac9a5cf81f0))
+
+
+### Bug fixes
+
+* add padding to the shell component ([3e9a116](https://github.com/railsstudent/ng-spanish-menu/commit/3e9a11681120c0c9592bdbacf2ec64d8f1b30f58))
+* remove container class ([fd36ee3](https://github.com/railsstudent/ng-spanish-menu/commit/fd36ee357b65fc9fb3f4b4f75bb530bbdd66633c))
+
 ### [0.0.7](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.6...0.0.7) (2021-12-14)
 
 
