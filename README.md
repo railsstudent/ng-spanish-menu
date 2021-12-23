@@ -72,6 +72,8 @@ Should we convert the application to PWA?
 
 <ol>
   <li><a href="http://www.blueskyconnie.com/?p=2593" target="_blank" rel="noreferrer noopener">Add value to commit message in Angular application</a></li>
+  <li><a href="http://www.blueskyconnie.com/?p=2759" target="_blank" rel="noreferrer noopener">Improve Angular code with Betterer</a></li>
+  <li><a href="http://www.blueskyconnie.com/?p=2907" target="_blank" rel="noreferrer noopener">Automate release management in Angular</a></li>
 </ol>
 
 ## Storybook static app
