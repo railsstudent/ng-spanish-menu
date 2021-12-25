@@ -16,15 +16,15 @@ import { OrderedFoodChoice } from '../interfaces'
       </label>
       <label class="item card-row" name="price">
         <span class="field">Price:</span>
-        <span class="hover:font-bold">{{ ordered.currency }} {{ ordered.price }}</span>
+        <span class="hover:font-bold field-text">{{ ordered.currency }} {{ ordered.price }}</span>
       </label>
       <label class="item card-row" name="quantity">
         <span class="field">Quantity:</span>
-        <span class="hover:font-bold">{{ ordered.quantity }}</span>
+        <span class="hover:font-bold field-text">{{ ordered.quantity }}</span>
       </label>
       <label class="item card-row" name="total">
         <span class="field">Total:</span>
-        <span class="hover:font-bold">{{ ordered.currency }} {{ total }}</span>
+        <span class="hover:font-bold field-text">{{ ordered.currency }} {{ total }}</span>
       </label>
     </div>
   `,
