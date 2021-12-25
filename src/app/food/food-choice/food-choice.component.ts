@@ -55,16 +55,12 @@ export class FoodChoiceComponent implements OnInit, OnChanges {
     this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0
   }
 
-  public submitFoodChoice(quantity: number): void {
-    const { id, name, description, price, currency } = this.choice
-    if (this.remained - quantity >= 0) {
+  public submitFoodChoice(newQuantity: number): void {
+    const { ingredients, quantity, ...rest } = this.choice
+    if (this.remained - newQuantity >= 0) {
       this.foodChoiceAdded.emit({
-        id,
-        name,
-        description,
-        price,
-        currency,
-        quantity,
+        ...rest,
+        quantity: newQuantity,
       })
     }
   }

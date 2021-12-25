@@ -30,16 +30,12 @@ The application shows a Spanish menu and customer has to choose dishes and bever
 
 ## Todo
 
-- Create shell component to host smart and dumb components (Nati)
 - Translation
-- ~~Include ingredients in the food and beverages~~
+- GraphQL API inHasura
 
 ## CSS and UI libraries
 
-- Angular Material?
-- Bootstrap?
-- TailwindCSS?
-- Taiga UI?
+- TailwindCSS
 
 ## Translation
 
