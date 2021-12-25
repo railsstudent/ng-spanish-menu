@@ -18,6 +18,10 @@ label.item {
   .field {
     color: $label-color;
     @apply mr-2;
+
+    &-text {
+      @apply text-neutral-800;
+    }
   }
 }
 

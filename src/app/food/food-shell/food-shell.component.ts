@@ -20,7 +20,7 @@ import { FoodService } from '../services'
 @Component({
   selector: 'app-food-shell',
   template: `
-    <div class="p-6">
+    <div class="p-[1.125rem]">
       <p class="text-center text-2xl text-indigo-500 underline">Angular Nation Spanish Food Menu</p>
       <app-food-menu class="block mb-2" (addDynamicFoodChoice)="addDynamicFoodChoice($event)"></app-food-menu>
       <p>Your order</p>
