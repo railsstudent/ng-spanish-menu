@@ -8,7 +8,7 @@ import { FoodMenuComponent } from '../food-menu/food-menu.component'
 import { FoodMenuCardComponent } from '../food-menu-card'
 import { FoodMenuOptionComponent } from '../food-menu-option'
 import { FoodQuestionComponent } from '../food-question'
-import { FoodTotalComponent } from '../food-total'
+import { FoodTotalModule } from '../food-total'
 import { FoodService } from '../services'
 import { MockData, MockFoodService } from '../storybook-mock'
 import { FoodShellComponent } from './food-shell.component'
@@ -19,7 +19,6 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [
-        FoodTotalComponent,
         FoodMenuComponent,
         FoodChoiceComponent,
         FoodQuestionComponent,
@@ -27,7 +26,7 @@ export default {
         FoodMenuCardComponent,
         FoodMenuOptionComponent,
       ],
-      imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
+      imports: [ReactiveFormsModule, FormsModule, HttpClientModule, FoodTotalModule],
       providers: [
         {
           provide: FoodService,

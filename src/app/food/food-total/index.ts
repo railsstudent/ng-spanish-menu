@@ -1,1 +1,1 @@
-export * from './food-total.component'
+export * from './food-total.module'
