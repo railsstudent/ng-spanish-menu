@@ -4,7 +4,7 @@ import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceModule } from '../food-choice'
 import { FoodMenuComponent } from '../food-menu/food-menu.component'
-import { FoodMenuCardComponent } from '../food-menu-card'
+import { FoodMenuCardModule } from '../food-menu-card'
 import { FoodMenuOptionsModule } from '../food-menu-options'
 import { FoodQuestionModule } from '../food-question'
 import { FoodTotalModule } from '../food-total'
@@ -17,7 +17,7 @@ export default {
   component: FoodShellComponent,
   decorators: [
     moduleMetadata({
-      declarations: [FoodMenuComponent, FoodMenuCardComponent],
+      declarations: [FoodMenuComponent],
       imports: [
         ReactiveFormsModule,
         FormsModule,
@@ -26,6 +26,7 @@ export default {
         FoodMenuOptionsModule,
         FoodQuestionModule,
         FoodChoiceModule,
+        FoodMenuCardModule,
       ],
       providers: [
         {
