@@ -1,33 +1,18 @@
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
-import { FoodChoiceModule } from '../food-choice'
-import { FoodMenuComponent } from '../food-menu/food-menu.component'
-import { FoodMenuCardModule } from '../food-menu-card'
-import { FoodMenuOptionsModule } from '../food-menu-options'
-import { FoodQuestionModule } from '../food-question'
-import { FoodTotalModule } from '../food-total'
 import { FoodService } from '../services'
 import { MockData, MockFoodService } from '../storybook-mock'
 import { FoodShellComponent } from './food-shell.component'
+import { FoodShellModule } from './food-shell.module'
 
 export default {
   title: 'Food Shell',
   component: FoodShellComponent,
   decorators: [
     moduleMetadata({
-      declarations: [FoodMenuComponent],
-      imports: [
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
-        FoodTotalModule,
-        FoodMenuOptionsModule,
-        FoodQuestionModule,
-        FoodChoiceModule,
-        FoodMenuCardModule,
-      ],
+      declarations: [],
+      imports: [HttpClientModule, FoodShellModule],
       providers: [
         {
           provide: FoodService,
