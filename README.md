@@ -57,11 +57,12 @@ Should we convert the application to PWA?
   <li><a href="http://www.blueskyconnie.com/?p=2640" target="_blank" rel="noreferrer noopener">Angular and Storybook – Mock Data in Container Component</a></li>
 </ol>
 
-### Angular and Netlify
+### Angular and other open source libraries
 
 <ol>
   <li><a href="http://www.blueskyconnie.com/?p=2389" target="_blank" rel="noreferrer noopener">Build Angular app with Netlify function</a></li>
   <li><a href="http://www.blueskyconnie.com/?p=2470" target="_blank" rel="noreferrer noopener">How Angular calls CORS enabled Netlify Function</a></li>
+  <li><a href="http://www.blueskyconnie.com/?p=3127" target="_blank" rel="noreferrer noopener">Tailwind CSS in JIT mode with Angular</a></li>
 </ol>
 
 ### Best coding practices
