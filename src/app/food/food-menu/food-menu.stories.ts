@@ -3,7 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceComponent } from '../food-choice'
-import { FoodChoiceFormComponent } from '../food-choice-form'
+import { FoodChoiceFormModule } from '../food-choice-form'
 import { FoodMenuCardComponent } from '../food-menu-card'
 import { FoodMenuOptionsModule } from '../food-menu-options'
 import { FoodQuestionModule } from '../food-question'
@@ -16,8 +16,15 @@ export default {
   component: FoodMenuComponent,
   decorators: [
     moduleMetadata({
-      declarations: [FoodChoiceComponent, FoodChoiceFormComponent, FoodMenuCardComponent],
-      imports: [ReactiveFormsModule, FormsModule, HttpClientModule, FoodMenuOptionsModule, FoodQuestionModule],
+      declarations: [FoodChoiceComponent, FoodMenuCardComponent],
+      imports: [
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        FoodMenuOptionsModule,
+        FoodQuestionModule,
+        FoodChoiceFormModule,
+      ],
       providers: [
         {
           provide: FoodService,
