@@ -8,14 +8,13 @@ import { FoodChoiceFormComponent } from './food-choice-form'
 import { FoodMenuComponent } from './food-menu'
 import { FoodMenuCardComponent } from './food-menu-card'
 import { FoodMenuOptionsModule } from './food-menu-options'
-import { FoodQuestionComponent } from './food-question'
+import { FoodQuestionModule } from './food-question'
 import { FoodRoutingModule } from './food-routing.module'
 import { FoodShellComponent } from './food-shell'
 import { FoodTotalModule } from './food-total'
 
 @NgModule({
   declarations: [
-    FoodQuestionComponent,
     FoodChoiceComponent,
     FoodMenuComponent,
     FoodMenuCardComponent,
@@ -30,6 +29,7 @@ import { FoodTotalModule } from './food-total'
     FoodTotalModule,
     FoodCardModule,
     FoodMenuOptionsModule,
+    FoodQuestionModule,
   ],
 })
 export class FoodModule {}

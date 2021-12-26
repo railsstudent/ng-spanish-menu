@@ -1,1 +1,1 @@
-export * from './food-question.component'
+export * from './food-question.module'

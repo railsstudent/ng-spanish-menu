@@ -7,7 +7,7 @@ import { FoodChoiceFormComponent } from '../food-choice-form'
 import { FoodMenuComponent } from '../food-menu/food-menu.component'
 import { FoodMenuCardComponent } from '../food-menu-card'
 import { FoodMenuOptionsModule } from '../food-menu-options'
-import { FoodQuestionComponent } from '../food-question'
+import { FoodQuestionModule } from '../food-question'
 import { FoodTotalModule } from '../food-total'
 import { FoodService } from '../services'
 import { MockData, MockFoodService } from '../storybook-mock'
@@ -18,14 +18,15 @@ export default {
   component: FoodShellComponent,
   decorators: [
     moduleMetadata({
-      declarations: [
-        FoodMenuComponent,
-        FoodChoiceComponent,
-        FoodQuestionComponent,
-        FoodChoiceFormComponent,
-        FoodMenuCardComponent,
+      declarations: [FoodMenuComponent, FoodChoiceComponent, FoodChoiceFormComponent, FoodMenuCardComponent],
+      imports: [
+        ReactiveFormsModule,
+        FormsModule,
+        HttpClientModule,
+        FoodTotalModule,
+        FoodMenuOptionsModule,
+        FoodQuestionModule,
       ],
-      imports: [ReactiveFormsModule, FormsModule, HttpClientModule, FoodTotalModule, FoodMenuOptionsModule],
       providers: [
         {
           provide: FoodService,

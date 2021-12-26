@@ -6,7 +6,7 @@ import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceComponent } from '../food-choice'
 import { FoodChoiceFormComponent } from '../food-choice-form'
-import { FoodQuestionComponent } from '../food-question'
+import { FoodQuestionModule } from '../food-question'
 import { FoodService } from '../services'
 import { MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodMenuCardComponent } from './food-menu-card.component'
@@ -16,8 +16,8 @@ export default {
   component: FoodMenuCardComponent,
   decorators: [
     moduleMetadata({
-      imports: [ReactiveFormsModule, FormsModule, HttpClientModule],
-      declarations: [FoodQuestionComponent, FoodChoiceComponent, FoodChoiceFormComponent],
+      imports: [ReactiveFormsModule, FormsModule, HttpClientModule, FoodQuestionModule],
+      declarations: [FoodChoiceComponent, FoodChoiceFormComponent],
       providers: [
         {
           provide: FoodService,
