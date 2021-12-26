@@ -1898,7 +1898,7 @@
     },
     {
       "name": "FoodQuestionComponent",
-      "id": "component-FoodQuestionComponent-f43776ea5fb4a8767d3a5151dedf8a27",
+      "id": "component-FoodQuestionComponent-326980342cc5f7e3b9f1376cc3c2bd40",
       "file": "src/app/food/food-question/food-question.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1909,14 +1909,15 @@
       "selector": "app-food-question",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "templateUrl": ["./food-question.component.html"],
+      "template": "  <div class=\"food-question flex flex-col border-2 border-indigo-400\">\n  <label name=\"question\" class=\"item flex px-2 py-3\">\n    <span class=\"field\">Question:</span>\n    <span class=\"flex-auto field-text\">{{ question }}</span>\n  </label>\n</div>\n\n",
+      "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
         {
           "name": "question",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 19,
+          "line": 29,
           "type": "string"
         }
       ],
@@ -1930,11 +1931,10 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\n@Component({\n  selector: 'app-food-question',\n  templateUrl: './food-question.component.html',\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodQuestionComponent {\n  // #region Properties (1)\n\n  @Input()\n  public question: string\n\n  // #endregion Properties (1)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\n@Component({\n  selector: 'app-food-question',\n  // templateUrl: './food-question.component.html',\n  template:\n    `\n  <div class=\"food-question flex flex-col border-2 border-indigo-400\">\n  <label name=\"question\" class=\"item flex px-2 py-3\">\n    <span class=\"field\">Question:</span>\n    <span class=\"flex-auto field-text\">{{ question }}</span>\n  </label>\n</div>\n\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodQuestionComponent {\n  // #region Properties (1)\n\n  @Input()\n  public question: string\n\n  // #endregion Properties (1)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
-      "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
-      "templateData": "<div class=\"food-question flex flex-col border-2 border-indigo-400\">\n  <label name=\"question\" class=\"item flex px-2 py-3\">\n    <span class=\"field\">Question:</span>\n    <span class=\"flex-auto field-text\">{{ question }}</span>\n  </label>\n</div>\n"
+      "stylesData": "\n      :host {\n        display: block;\n      }\n    \n"
     },
     {
       "name": "FoodShellComponent",
@@ -2450,6 +2450,199 @@
       ]
     },
     {
+      "name": "FoodChoiceFormModule",
+      "id": "module-FoodChoiceFormModule-6d78372c4ca4b0214d3141c868df2463",
+      "description": "",
+      "deprecationMessage": "",
+      "deprecated": false,
+      "file": "src/app/food/food-choice-form/food-choice-form.module.ts",
+      "methods": [],
+      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms'\n\nimport { FoodChoiceFormComponent } from './food-choice-form.component'\n\n@NgModule({\n  declarations: [FoodChoiceFormComponent],\n  imports: [CommonModule, FormsModule, ReactiveFormsModule],\n  exports: [FoodChoiceFormComponent],\n})\nexport class FoodChoiceFormModule {}\n",
+      "children": [
+        {
+          "type": "providers",
+          "elements": []
+        },
+        {
+          "type": "declarations",
+          "elements": [
+            {
+              "name": "FoodChoiceFormComponent"
+            }
+          ]
+        },
+        {
+          "type": "imports",
+          "elements": []
+        },
+        {
+          "type": "exports",
+          "elements": [
+            {
+              "name": "FoodChoiceFormComponent"
+            }
+          ]
+        },
+        {
+          "type": "bootstrap",
+          "elements": []
+        },
+        {
+          "type": "classes",
+          "elements": []
+        }
+      ]
+    },
+    {
+      "name": "FoodChoiceModule",
+      "id": "module-FoodChoiceModule-7e7cade862eb01cc30c6382e7d556ed6",
+      "description": "",
+      "deprecationMessage": "",
+      "deprecated": false,
+      "file": "src/app/food/food-choice/food-choice.module.ts",
+      "methods": [],
+      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\n\nimport { FoodChoiceFormModule } from '../food-choice-form'\nimport { FoodChoiceComponent } from './food-choice.component'\n\n@NgModule({\n  declarations: [FoodChoiceComponent],\n  imports: [CommonModule, FoodChoiceFormModule],\n  exports: [FoodChoiceComponent],\n})\nexport class FoodChoiceModule {}\n",
+      "children": [
+        {
+          "type": "providers",
+          "elements": []
+        },
+        {
+          "type": "declarations",
+          "elements": [
+            {
+              "name": "FoodChoiceComponent"
+            }
+          ]
+        },
+        {
+          "type": "imports",
+          "elements": [
+            {
+              "name": "FoodChoiceFormModule"
+            }
+          ]
+        },
+        {
+          "type": "exports",
+          "elements": [
+            {
+              "name": "FoodChoiceComponent"
+            }
+          ]
+        },
+        {
+          "type": "bootstrap",
+          "elements": []
+        },
+        {
+          "type": "classes",
+          "elements": []
+        }
+      ]
+    },
+    {
+      "name": "FoodMenuCardModule",
+      "id": "module-FoodMenuCardModule-f984dca8fada0938f6789e98a7afbbf1",
+      "description": "",
+      "deprecationMessage": "",
+      "deprecated": false,
+      "file": "src/app/food/food-menu-card/food-menu-card.module.ts",
+      "methods": [],
+      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\n\nimport { FoodMenuCardComponent } from './food-menu-card.component'\n\n@NgModule({\n  declarations: [FoodMenuCardComponent],\n  imports: [CommonModule],\n  exports: [FoodMenuCardComponent],\n})\nexport class FoodMenuCardModule {}\n",
+      "children": [
+        {
+          "type": "providers",
+          "elements": []
+        },
+        {
+          "type": "declarations",
+          "elements": [
+            {
+              "name": "FoodMenuCardComponent"
+            }
+          ]
+        },
+        {
+          "type": "imports",
+          "elements": []
+        },
+        {
+          "type": "exports",
+          "elements": [
+            {
+              "name": "FoodMenuCardComponent"
+            }
+          ]
+        },
+        {
+          "type": "bootstrap",
+          "elements": []
+        },
+        {
+          "type": "classes",
+          "elements": []
+        }
+      ]
+    },
+    {
+      "name": "FoodMenuModule",
+      "id": "module-FoodMenuModule-0c3fe3824d4cb64f71618c2d0203e5f0",
+      "description": "",
+      "deprecationMessage": "",
+      "deprecated": false,
+      "file": "src/app/food/food-menu/food-menu.module.ts",
+      "methods": [],
+      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\n\nimport { FoodChoiceModule } from '../food-choice'\nimport { FoodMenuCardModule } from '../food-menu-card'\nimport { FoodMenuOptionsModule } from '../food-menu-options'\nimport { FoodQuestionModule } from '../food-question'\nimport { FoodMenuComponent } from './food-menu.component'\n\n@NgModule({\n  declarations: [FoodMenuComponent],\n  imports: [CommonModule, FoodQuestionModule, FoodMenuCardModule, FoodMenuOptionsModule, FoodChoiceModule],\n  exports: [FoodMenuComponent],\n})\nexport class FoodMenuModule {}\n",
+      "children": [
+        {
+          "type": "providers",
+          "elements": []
+        },
+        {
+          "type": "declarations",
+          "elements": [
+            {
+              "name": "FoodMenuComponent"
+            }
+          ]
+        },
+        {
+          "type": "imports",
+          "elements": [
+            {
+              "name": "FoodChoiceModule"
+            },
+            {
+              "name": "FoodMenuCardModule"
+            },
+            {
+              "name": "FoodMenuOptionsModule"
+            },
+            {
+              "name": "FoodQuestionModule"
+            }
+          ]
+        },
+        {
+          "type": "exports",
+          "elements": [
+            {
+              "name": "FoodMenuComponent"
+            }
+          ]
+        },
+        {
+          "type": "bootstrap",
+          "elements": []
+        },
+        {
+          "type": "classes",
+          "elements": []
+        }
+      ]
+    },
+    {
       "name": "FoodMenuOptionsModule",
       "id": "module-FoodMenuOptionsModule-bac01f2b59c2bd81cba79d5b3a84c71a",
       "description": "",
@@ -2495,13 +2688,13 @@
     },
     {
       "name": "FoodModule",
-      "id": "module-FoodModule-5916435d63c3ef96b8b9228d25ee49ad",
+      "id": "module-FoodModule-6ece60feddfe5af87fae84af256650ab",
       "description": "",
       "deprecationMessage": "",
       "deprecated": false,
       "file": "src/app/food/food.module.ts",
       "methods": [],
-      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms'\n\nimport { FoodCardModule } from './food-card'\nimport { FoodChoiceComponent } from './food-choice'\nimport { FoodChoiceFormComponent } from './food-choice-form'\nimport { FoodMenuComponent } from './food-menu'\nimport { FoodMenuCardComponent } from './food-menu-card'\nimport { FoodMenuOptionsModule } from './food-menu-options'\nimport { FoodQuestionComponent } from './food-question'\nimport { FoodRoutingModule } from './food-routing.module'\nimport { FoodShellComponent } from './food-shell'\nimport { FoodTotalModule } from './food-total'\n\n@NgModule({\n  declarations: [\n    FoodQuestionComponent,\n    FoodChoiceComponent,\n    FoodMenuComponent,\n    FoodMenuCardComponent,\n    FoodChoiceFormComponent,\n    FoodShellComponent,\n  ],\n  imports: [\n    CommonModule,\n    FormsModule,\n    ReactiveFormsModule,\n    FoodRoutingModule,\n    FoodTotalModule,\n    FoodCardModule,\n    FoodMenuOptionsModule,\n  ],\n})\nexport class FoodModule {}\n",
+      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms'\n\nimport { FoodCardModule } from './food-card'\nimport { FoodChoiceModule } from './food-choice'\nimport { FoodChoiceFormModule } from './food-choice-form'\nimport { FoodMenuModule } from './food-menu'\nimport { FoodMenuCardModule } from './food-menu-card'\nimport { FoodMenuOptionsModule } from './food-menu-options'\nimport { FoodQuestionModule } from './food-question'\nimport { FoodRoutingModule } from './food-routing.module'\nimport { FoodShellModule } from './food-shell'\nimport { FoodTotalModule } from './food-total'\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule,\n    FormsModule,\n    ReactiveFormsModule,\n    FoodRoutingModule,\n    FoodTotalModule,\n    FoodCardModule,\n    FoodMenuOptionsModule,\n    FoodQuestionModule,\n    FoodChoiceFormModule,\n    FoodChoiceModule,\n    FoodMenuCardModule,\n    FoodMenuModule,\n    FoodShellModule,\n  ],\n})\nexport class FoodModule {}\n",
       "children": [
         {
           "type": "providers",
@@ -2509,26 +2702,7 @@
         },
         {
           "type": "declarations",
-          "elements": [
-            {
-              "name": "FoodChoiceComponent"
-            },
-            {
-              "name": "FoodChoiceFormComponent"
-            },
-            {
-              "name": "FoodMenuCardComponent"
-            },
-            {
-              "name": "FoodMenuComponent"
-            },
-            {
-              "name": "FoodQuestionComponent"
-            },
-            {
-              "name": "FoodShellComponent"
-            }
-          ]
+          "elements": []
         },
         {
           "type": "imports",
@@ -2537,10 +2711,28 @@
               "name": "FoodCardModule"
             },
             {
+              "name": "FoodChoiceFormModule"
+            },
+            {
+              "name": "FoodChoiceModule"
+            },
+            {
+              "name": "FoodMenuCardModule"
+            },
+            {
+              "name": "FoodMenuModule"
+            },
+            {
               "name": "FoodMenuOptionsModule"
             },
             {
+              "name": "FoodQuestionModule"
+            },
+            {
               "name": "FoodRoutingModule"
+            },
+            {
+              "name": "FoodShellModule"
             },
             {
               "name": "FoodTotalModule"
@@ -2550,6 +2742,50 @@
         {
           "type": "exports",
           "elements": []
+        },
+        {
+          "type": "bootstrap",
+          "elements": []
+        },
+        {
+          "type": "classes",
+          "elements": []
+        }
+      ]
+    },
+    {
+      "name": "FoodQuestionModule",
+      "id": "module-FoodQuestionModule-149db26327d178c1b246a2eb2fc3ec33",
+      "description": "",
+      "deprecationMessage": "",
+      "deprecated": false,
+      "file": "src/app/food/food-question/food-question.module.ts",
+      "methods": [],
+      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\n\nimport { FoodQuestionComponent } from './food-question.component'\n\n@NgModule({\n  declarations: [FoodQuestionComponent],\n  imports: [CommonModule],\n  exports: [FoodQuestionComponent],\n})\nexport class FoodQuestionModule {}\n",
+      "children": [
+        {
+          "type": "providers",
+          "elements": []
+        },
+        {
+          "type": "declarations",
+          "elements": [
+            {
+              "name": "FoodQuestionComponent"
+            }
+          ]
+        },
+        {
+          "type": "imports",
+          "elements": []
+        },
+        {
+          "type": "exports",
+          "elements": [
+            {
+              "name": "FoodQuestionComponent"
+            }
+          ]
         },
         {
           "type": "bootstrap",
@@ -2586,6 +2822,57 @@
         {
           "type": "exports",
           "elements": []
+        },
+        {
+          "type": "bootstrap",
+          "elements": []
+        },
+        {
+          "type": "classes",
+          "elements": []
+        }
+      ]
+    },
+    {
+      "name": "FoodShellModule",
+      "id": "module-FoodShellModule-27ebcafac35e2b25fbf551b8bb1564dc",
+      "description": "",
+      "deprecationMessage": "",
+      "deprecated": false,
+      "file": "src/app/food/food-shell/food-shell.module.ts",
+      "methods": [],
+      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\n\nimport { FoodMenuModule } from '../food-menu'\nimport { FoodTotalModule } from '../food-total'\nimport { FoodShellComponent } from './food-shell.component'\n\n@NgModule({\n  declarations: [FoodShellComponent],\n  imports: [CommonModule, FoodTotalModule, FoodMenuModule],\n  exports: [FoodShellComponent],\n})\nexport class FoodShellModule {}\n",
+      "children": [
+        {
+          "type": "providers",
+          "elements": []
+        },
+        {
+          "type": "declarations",
+          "elements": [
+            {
+              "name": "FoodShellComponent"
+            }
+          ]
+        },
+        {
+          "type": "imports",
+          "elements": [
+            {
+              "name": "FoodMenuModule"
+            },
+            {
+              "name": "FoodTotalModule"
+            }
+          ]
+        },
+        {
+          "type": "exports",
+          "elements": [
+            {
+              "name": "FoodShellComponent"
+            }
+          ]
         },
         {
           "type": "bootstrap",
@@ -2738,21 +3025,21 @@
         "name": "environment",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/environments/environment.prod.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
-      },
-      {
-        "name": "environment",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/environments/environment.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
         "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n}"
+      },
+      {
+        "name": "environment",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/environments/environment.prod.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
       },
       {
         "name": "FoodMenuCardTemplate",
@@ -2868,6 +3155,16 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-card/food-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -2879,16 +3176,6 @@
         "ctype": "miscellaneous",
         "subtype": "variable",
         "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "Template.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3017,6 +3304,16 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodChoiceComponent>",
+        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-card/food-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3032,16 +3329,6 @@
         "deprecationMessage": "",
         "type": "Story<FoodChoiceFormComponent>",
         "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodChoiceComponent>",
-        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3424,18 +3711,6 @@
           "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
         }
       ],
-      "src/environments/environment.prod.ts": [
-        {
-          "name": "environment",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/environments/environment.prod.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
-        }
-      ],
       "src/environments/environment.ts": [
         {
           "name": "environment",
@@ -3446,6 +3721,18 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n}"
+        }
+      ],
+      "src/environments/environment.prod.ts": [
+        {
+          "name": "environment",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/environments/environment.prod.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
         }
       ],
       "src/app/food/food-menu-card/food-menu-card.stories.ts": [
