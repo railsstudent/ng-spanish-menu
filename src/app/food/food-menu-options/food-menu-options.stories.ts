@@ -2,11 +2,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
-import { FoodMenuOptionComponent } from './food-menu-option.component'
+import { FoodMenuOptionsComponent } from './food-menu-options.component'
 
 export default {
-  title: 'Food Menu Option',
-  component: FoodMenuOptionComponent,
+  title: 'Food Menu Options',
+  component: FoodMenuOptionsComponent,
   decorators: [
     moduleMetadata({
       imports: [ReactiveFormsModule, FormsModule],
@@ -14,8 +14,8 @@ export default {
   ],
 } as Meta
 
-const FoodMenuOptionTemplate: Story<FoodMenuOptionComponent> = (args: FoodMenuOptionComponent) => ({
+const FoodMenuOptionsTemplate: Story<FoodMenuOptionsComponent> = (args: FoodMenuOptionsComponent) => ({
   props: args,
 })
 
-export const Primary = FoodMenuOptionTemplate.bind({})
+export const Primary = FoodMenuOptionsTemplate.bind({})

@@ -27,7 +27,7 @@ import { MenuOptions } from '../enums'
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FoodMenuOptionComponent implements OnInit, OnDestroy {
+export class FoodMenuOptionsComponent implements OnInit, OnDestroy {
   // #region Properties (3)
 
   @Output()

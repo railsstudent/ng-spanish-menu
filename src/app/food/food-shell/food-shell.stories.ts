@@ -6,7 +6,7 @@ import { FoodChoiceComponent } from '../food-choice'
 import { FoodChoiceFormComponent } from '../food-choice-form'
 import { FoodMenuComponent } from '../food-menu/food-menu.component'
 import { FoodMenuCardComponent } from '../food-menu-card'
-import { FoodMenuOptionComponent } from '../food-menu-option'
+import { FoodMenuOptionsModule } from '../food-menu-options'
 import { FoodQuestionComponent } from '../food-question'
 import { FoodTotalModule } from '../food-total'
 import { FoodService } from '../services'
@@ -24,9 +24,8 @@ export default {
         FoodQuestionComponent,
         FoodChoiceFormComponent,
         FoodMenuCardComponent,
-        FoodMenuOptionComponent,
       ],
-      imports: [ReactiveFormsModule, FormsModule, HttpClientModule, FoodTotalModule],
+      imports: [ReactiveFormsModule, FormsModule, HttpClientModule, FoodTotalModule, FoodMenuOptionsModule],
       providers: [
         {
           provide: FoodService,
