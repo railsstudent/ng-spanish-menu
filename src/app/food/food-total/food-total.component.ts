@@ -8,7 +8,11 @@ import { TotalCost } from '../interfaces'
   template: `
     <div class="flex flex-col p-2 box-border-indigo">
       <div class="selection">
-        <button class="btn-indigo mr-2 mb-2" [disabled]="!isFoodOrdered" (click)="getCheck.emit(this.tip)">
+        <button
+          class="btn-indigo mr-2 mb-2 disabled:opacity-75"
+          [disabled]="!isFoodOrdered"
+          (click)="getCheck.emit(this.tip)"
+        >
           Give me the check
         </button>
         <p class="inline mr-2">Currency: {{ currency || '' }}</p>

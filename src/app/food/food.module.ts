@@ -11,7 +11,7 @@ import { FoodMenuOptionComponent } from './food-menu-option'
 import { FoodQuestionComponent } from './food-question'
 import { FoodRoutingModule } from './food-routing.module'
 import { FoodShellComponent } from './food-shell'
-import { FoodTotalComponent } from './food-total'
+import { FoodTotalModule } from './food-total/food-total.module'
 
 @NgModule({
   declarations: [
@@ -20,11 +20,10 @@ import { FoodTotalComponent } from './food-total'
     FoodChoiceComponent,
     FoodMenuComponent,
     FoodMenuCardComponent,
-    FoodTotalComponent,
     FoodChoiceFormComponent,
     FoodShellComponent,
     FoodMenuOptionComponent,
   ],
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, FoodRoutingModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, FoodRoutingModule, FoodTotalModule],
 })
 export class FoodModule {}
