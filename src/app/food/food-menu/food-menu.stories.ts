@@ -2,13 +2,10 @@ import { HttpClientModule } from '@angular/common/http'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
-import { FoodChoiceModule } from '../food-choice'
-import { FoodMenuCardModule } from '../food-menu-card'
-import { FoodMenuOptionsModule } from '../food-menu-options'
-import { FoodQuestionModule } from '../food-question'
 import { FoodService } from '../services'
 import { MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodMenuComponent } from './food-menu.component'
+import { FoodMenuModule } from './food-menu.module'
 
 export default {
   title: 'Food Menu',
@@ -16,15 +13,7 @@ export default {
   decorators: [
     moduleMetadata({
       declarations: [],
-      imports: [
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule,
-        FoodMenuOptionsModule,
-        FoodQuestionModule,
-        FoodChoiceModule,
-        FoodMenuCardModule,
-      ],
+      imports: [ReactiveFormsModule, FormsModule, HttpClientModule, FoodMenuModule],
       providers: [
         {
           provide: FoodService,
