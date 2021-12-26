@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { FoodCardModule } from './food-card'
-import { FoodChoiceComponent } from './food-choice'
+import { FoodChoiceModule } from './food-choice'
 import { FoodChoiceFormModule } from './food-choice-form'
 import { FoodMenuComponent } from './food-menu'
 import { FoodMenuCardComponent } from './food-menu-card'
@@ -14,7 +14,7 @@ import { FoodShellComponent } from './food-shell'
 import { FoodTotalModule } from './food-total'
 
 @NgModule({
-  declarations: [FoodChoiceComponent, FoodMenuComponent, FoodMenuCardComponent, FoodShellComponent],
+  declarations: [FoodMenuComponent, FoodMenuCardComponent, FoodShellComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,6 +25,7 @@ import { FoodTotalModule } from './food-total'
     FoodMenuOptionsModule,
     FoodQuestionModule,
     FoodChoiceFormModule,
+    FoodChoiceModule,
   ],
 })
 export class FoodModule {}
