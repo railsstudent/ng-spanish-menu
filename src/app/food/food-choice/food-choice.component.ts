@@ -15,7 +15,6 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core'
-// import { FaIconComponent } from '@fortawesome/angular-fontawesome'
 import { environment } from 'src/environments/environment'
 
 import { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'
