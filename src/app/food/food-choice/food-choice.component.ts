@@ -1,15 +1,21 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
+  ComponentFactoryResolver,
+  ComponentRef,
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
   OnInit,
   Output,
   SimpleChange,
   SimpleChanges,
+  ViewChild,
+  ViewContainerRef,
 } from '@angular/core'
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { FaIconComponent } from '@fortawesome/angular-fontawesome'
 import { environment } from 'src/environments/environment'
 
 import { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'
@@ -29,36 +35,51 @@ function isQtyMapCurrentValueObjectLiteral(qtyMap: SimpleChange): qtyMap is Simp
   styleUrls: ['./food-choice.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FoodChoiceComponent implements OnInit, OnChanges {
-  // #region Properties (4)
+export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
+  // #region Properties (8)
 
   @Input()
   public choice: Choice
   @Output()
   public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
+  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
+  public iconContainer: ViewContainerRef
   @Input()
   public qtyMap: Record<string, number> | undefined | null
   public remained: number
-  minimumSupply: number
+  public componentRefs: ComponentRef<FaIconComponent>[] = []
+  public minimumSupply: number
 
-  faExclamationTriangle = faExclamationTriangle
+  // #endregion Properties (8)
 
-  // #endregion Properties (4)
+  // #region Constructors (1)
 
-  // #region Public Methods (3)
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) {}
 
-  public ngOnChanges(changes: SimpleChanges): void {
+  // #endregion Constructors (1)
+
+  // #region Public Methods (4)
+
+  public async ngOnChanges(changes: SimpleChanges): Promise<void> {
     const { qtyMap } = changes
     if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {
       this.remained = qtyMap.currentValue[this.choice.id]
     } else {
       this.remained = 0
     }
+
+    await this.handleLowSupply()
   }
 
-  public ngOnInit(): void {
+  public ngOnDestroy(): void {
+    this.destroyComponents()
+  }
+
+  public async ngOnInit(): Promise<void> {
     this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0
     this.minimumSupply = Math.ceil(this.remained * environment.lowSupplyPercentage)
+
+    await this.handleLowSupply()
   }
 
   public submitFoodChoice(newQuantity: number): void {
@@ -71,5 +92,40 @@ export class FoodChoiceComponent implements OnInit, OnChanges {
     }
   }
 
-  // #endregion Public Methods (3)
+  // #endregion Public Methods (4)
+
+  // #region Private Methods (3)
+
+  private destroyComponents() {
+    for (const componentRef of this.componentRefs) {
+      componentRef.destroy()
+    }
+    if (this.iconContainer) {
+      this.iconContainer.clear()
+    }
+  }
+
+  private async displayLowSupplyIcon() {
+    if (this.componentRefs && this.componentRefs.length <= 0) {
+      const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle
+      const resolvedFaIconComponent = this.componentFactoryResolver.resolveComponentFactory(FaIconComponent)
+      const componentRef = this.iconContainer.createComponent(resolvedFaIconComponent)
+      componentRef.instance.icon = faExclamationTriangle
+      componentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']
+      componentRef.instance.render()
+
+      this.componentRefs.push(componentRef)
+      this.cdr.detectChanges()
+    }
+  }
+
+  private async handleLowSupply() {
+    if (this.remained <= 0) {
+      this.destroyComponents()
+    } else if (this.remained > 0 && this.remained <= this.minimumSupply) {
+      await this.displayLowSupplyIcon()
+    }
+  }
+
+  // #endregion Private Methods (3)
 }
