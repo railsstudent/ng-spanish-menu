@@ -1161,7 +1161,7 @@
     },
     {
       "name": "FoodChoiceComponent",
-      "id": "component-FoodChoiceComponent-83f3a20946fd1789cc86051127a0b1b0",
+      "id": "component-FoodChoiceComponent-18dad7feed1f44bcc6443740cacb05e7",
       "file": "src/app/food/food-choice/food-choice.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1179,14 +1179,14 @@
           "name": "choice",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 47,
+          "line": 42,
           "type": "Choice"
         },
         {
           "name": "qtyMap",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 51,
+          "line": 48,
           "type": "Record<string | number> | undefined | null"
         }
       ],
@@ -1196,7 +1196,7 @@
           "defaultValue": "new EventEmitter<OrderedFoodChoice>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 49,
+          "line": 44,
           "type": "EventEmitter"
         }
       ],
@@ -1209,16 +1209,8 @@
           "type": "ComponentRef<FaIconComponent>[]",
           "optional": false,
           "description": "",
-          "line": 56
-        },
-        {
-          "name": "faExclamationTriangle",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "IconDefinition",
-          "optional": false,
-          "description": "",
-          "line": 55
+          "line": 50,
+          "modifierKind": [123]
         },
         {
           "name": "iconContainer",
@@ -1227,7 +1219,7 @@
           "type": "ViewContainerRef",
           "optional": false,
           "description": "",
-          "line": 44,
+          "line": 46,
           "decorators": [
             {
               "name": "ViewChild",
@@ -1243,7 +1235,8 @@
           "type": "number",
           "optional": false,
           "description": "",
-          "line": 53
+          "line": 51,
+          "modifierKind": [123]
         },
         {
           "name": "remained",
@@ -1252,7 +1245,7 @@
           "type": "number",
           "optional": false,
           "description": "",
-          "line": 52,
+          "line": 49,
           "modifierKind": [123]
         }
       ],
@@ -1263,10 +1256,32 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 106,
+          "line": 99,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
+        },
+        {
+          "name": "displayLowSupplyIcon",
+          "args": [],
+          "optional": false,
+          "returnType": "any",
+          "typeParameters": [],
+          "line": 108,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [121, 130]
+        },
+        {
+          "name": "handleLowSupply",
+          "args": [],
+          "optional": false,
+          "returnType": "any",
+          "typeParameters": [],
+          "line": 121,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [121, 130]
         },
         {
           "name": "ngOnChanges",
@@ -1279,12 +1294,12 @@
             }
           ],
           "optional": false,
-          "returnType": "void",
+          "returnType": "Promise<void>",
           "typeParameters": [],
           "line": 63,
           "deprecated": false,
           "deprecationMessage": "",
-          "modifierKind": [123],
+          "modifierKind": [123, 130],
           "jsdoctags": [
             {
               "name": "changes",
@@ -1303,9 +1318,10 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 115,
+          "line": 74,
           "deprecated": false,
-          "deprecationMessage": ""
+          "deprecationMessage": "",
+          "modifierKind": [123]
         },
         {
           "name": "ngOnInit",
@@ -1313,7 +1329,7 @@
           "optional": false,
           "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 72,
+          "line": 78,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123, 130]
@@ -1331,7 +1347,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 96,
+          "line": 85,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -1355,7 +1371,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  SimpleChange,\n  SimpleChanges,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { FaIconComponent } from '@fortawesome/angular-fontawesome'\nimport { IconDefinition } from '@fortawesome/free-solid-svg-icons'\n// import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'\n\nfunction isQtyMapCurrentValueObjectLiteral(qtyMap: SimpleChange): qtyMap is SimpleChangeQuantityMap {\n  return (\n    qtyMap !== undefined &&\n    typeof qtyMap.firstChange === 'boolean' &&\n    qtyMap.currentValue !== undefined &&\n    typeof qtyMap.currentValue === 'object' &&\n    !(qtyMap.currentValue instanceof Array)\n  )\n}\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {\n  // #region Properties (4)\n\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public iconContainer: ViewContainerRef\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n  @Input()\n  public qtyMap: Record<string, number> | undefined | null\n  public remained: number\n  minimumSupply: number\n\n  faExclamationTriangle: IconDefinition\n  componentRefs: ComponentRef<FaIconComponent>[] = []\n\n  // #endregion Properties (4)\n\n  // #region Public Methods (3)\n  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef,) {}\n\n  public ngOnChanges(changes: SimpleChanges): void {\n    const { qtyMap } = changes\n    if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {\n      this.remained = qtyMap.currentValue[this.choice.id]\n    } else {\n      this.remained = 0\n    }\n  }\n\n  public async ngOnInit(): Promise<void> {\n    this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0\n    this.minimumSupply = Math.ceil(this.remained * environment.lowSupplyPercentage)\n\n    const freeSolidSvgIcons = await import('@fortawesome/free-solid-svg-icons')\n    this.faExclamationTriangle = freeSolidSvgIcons.faExclamationTriangle\n\n    const angularFontAwesomeImport = await import('@fortawesome/angular-fontawesome')\n    // const faIconComponent = angularFontAwesomeImport.FaIconComponent\n    const resolvedFaIconComponent = this.componentFactoryResolver.resolveComponentFactory(\n      angularFontAwesomeImport.FaIconComponent,\n    )\n\n    const componentRef = this.iconContainer.createComponent(resolvedFaIconComponent)\n    componentRef.instance.icon = this.faExclamationTriangle\n    componentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']\n\n    this.componentRefs.push(componentRef)\n    this.cdr.detectChanges()\n\n    // console.log('faExclamationTriangle', this.faExclamationTriangle)\n    // console.log('resolvedFaIconComponent', resolvedFaIconComponent)\n  }\n\n  public submitFoodChoice(newQuantity: number): void {\n    const { ingredients, quantity, ...rest } = this.choice\n    if (this.remained - newQuantity >= 0) {\n      this.foodChoiceAdded.emit({\n        ...rest,\n        quantity: newQuantity,\n      })\n    }\n  }\n\n  private destroyComponents() {\n    for (const componentRef of this.componentRefs) {\n      componentRef.destroy()\n    }\n    if (this.iconContainer) {\n      this.iconContainer.clear()\n    }\n  }\n\n  ngOnDestroy(): void {\n    this.destroyComponents()\n  }\n  // #endregion Public Methods (3)\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  SimpleChange,\n  SimpleChanges,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { FaIconComponent } from '@fortawesome/angular-fontawesome'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'\n\nfunction isQtyMapCurrentValueObjectLiteral(qtyMap: SimpleChange): qtyMap is SimpleChangeQuantityMap {\n  return (\n    qtyMap !== undefined &&\n    typeof qtyMap.firstChange === 'boolean' &&\n    qtyMap.currentValue !== undefined &&\n    typeof qtyMap.currentValue === 'object' &&\n    !(qtyMap.currentValue instanceof Array)\n  )\n}\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {\n  // #region Properties (8)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public iconContainer: ViewContainerRef\n  @Input()\n  public qtyMap: Record<string, number> | undefined | null\n  public remained: number\n  public componentRefs: ComponentRef<FaIconComponent>[] = []\n  public minimumSupply: number\n\n  // #endregion Properties (8)\n\n  // #region Constructors (1)\n\n  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (4)\n\n  public async ngOnChanges(changes: SimpleChanges): Promise<void> {\n    const { qtyMap } = changes\n    if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {\n      this.remained = qtyMap.currentValue[this.choice.id]\n    } else {\n      this.remained = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n  }\n\n  public async ngOnInit(): Promise<void> {\n    this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0\n    this.minimumSupply = Math.ceil(this.remained * environment.lowSupplyPercentage)\n\n    await this.handleLowSupply()\n  }\n\n  public submitFoodChoice(newQuantity: number): void {\n    const { ingredients, quantity, ...rest } = this.choice\n    if (this.remained - newQuantity >= 0) {\n      this.foodChoiceAdded.emit({\n        ...rest,\n        quantity: newQuantity,\n      })\n    }\n  }\n\n  // #endregion Public Methods (4)\n\n  // #region Private Methods (3)\n\n  private destroyComponents() {\n    for (const componentRef of this.componentRefs) {\n      componentRef.destroy()\n    }\n    if (this.iconContainer) {\n      this.iconContainer.clear()\n    }\n  }\n\n  private async displayLowSupplyIcon() {\n    if (this.componentRefs && this.componentRefs.length <= 0) {\n      const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle\n      const resolvedFaIconComponent = this.componentFactoryResolver.resolveComponentFactory(FaIconComponent)\n      const faIconComponentRef = this.iconContainer.createComponent(resolvedFaIconComponent)\n      faIconComponentRef.instance.icon = faExclamationTriangle\n      faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']\n      faIconComponentRef.instance.render()\n      this.componentRefs.push(faIconComponentRef)\n      this.cdr.detectChanges()\n    }\n  }\n\n  private async handleLowSupply() {\n    if (this.remained <= 0) {\n      this.destroyComponents()\n    } else if (this.remained > 0 && this.remained <= this.minimumSupply) {\n      await this.displayLowSupplyIcon()\n    }\n  }\n\n  // #endregion Private Methods (3)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -1383,7 +1399,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 56,
+        "line": 51,
         "jsdoctags": [
           {
             "name": "componentFactoryResolver",
@@ -1406,7 +1422,7 @@
         ]
       },
       "implements": ["OnInit", "OnChanges", "OnDestroy"],
-      "templateData": "<div class=\"food-choice flex flex-col p-2 box-border-indigo\">\n  <div class=\"row\">\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div class=\"row\">\n    <label name=\"ingredient\" class=\"item\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text italic\">{{ choice.ingredients }}</span>\n    </label>\n  </div>\n  <div>\n    <ng-container [ngSwitch]=\"remained > 0\">\n      <div class=\"flex\">\n        <app-food-choice-form\n          class=\"mx-3 inline\"\n          [choice]=\"choice\"\n          (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n          *ngSwitchCase=\"true\"\n        >\n        </app-food-choice-form>\n        <div class=\"flex items-center\" *ngIf=\"remained > 0 && remained <= minimumSupply\">\n          <fa-icon [icon]=\"faExclamationTriangle\" class=\"text-red-500 text-[1.35rem] mr-2\"></fa-icon>\n          <span class=\"text-red-500 text-xl\">Low supply</span>\n          <ng-container #viewContainerRef></ng-container>\n        </div>\n      </div>\n\n      <ng-container *ngSwitchDefault>\n        <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n      </ng-container>\n    </ng-container>\n  </div>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item text-[#a94442] inline\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
+      "templateData": "<div class=\"food-choice flex flex-col p-2 box-border-indigo\">\n  <div class=\"row\">\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div class=\"row\">\n    <label name=\"ingredient\" class=\"item\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text italic\">{{ choice.ingredients }}</span>\n    </label>\n  </div>\n  <div>\n    <ng-container [ngSwitch]=\"remained > 0\">\n      <div class=\"flex\">\n        <app-food-choice-form\n          class=\"mx-3 inline\"\n          [choice]=\"choice\"\n          (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n          *ngSwitchCase=\"true\"\n        >\n        </app-food-choice-form>\n        <div class=\"flex items-center\">\n          <!-- <fa-icon [icon]=\"faExclamationTriangle\" class=\"text-red-500 text-[1.35rem] mr-2\"></fa-icon> -->\n          <!-- <span class=\"text-red-500 text-xl\">Low supply</span> -->\n          <ng-container #viewContainerRef></ng-container>\n        </div>\n      </div>\n\n      <ng-container *ngSwitchDefault>\n        <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n      </ng-container>\n    </ng-container>\n  </div>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item text-[#a94442] inline\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
     },
     {
       "name": "FoodChoiceFormComponent",
@@ -3027,7 +3043,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/menu.ts",
+        "file": "src/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -3037,7 +3053,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/tips.ts",
+        "file": "src/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -3107,21 +3123,21 @@
         "name": "environment",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/environments/environment.prod.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
-      },
-      {
-        "name": "environment",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/environments/environment.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
         "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
+      },
+      {
+        "name": "environment",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/environments/environment.prod.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
       },
       {
         "name": "FoodMenuCardTemplate",
@@ -3147,21 +3163,21 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/menu.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/assets/functions/menu.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "handler",
@@ -3267,21 +3283,21 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
+        "defaultValue": "FoodMenuCardTemplate.bind({})"
       },
       {
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "Template.bind({})"
+        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
       },
       {
         "name": "Primary",
@@ -3297,11 +3313,11 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
-        "defaultValue": "FoodMenuCardTemplate.bind({})"
+        "defaultValue": "Template.bind({})"
       },
       {
         "name": "qtyMap",
@@ -3436,21 +3452,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodShellComponent>",
-        "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<FoodTotalComponent>",
         "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodShellComponent>",
+        "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
       }
     ],
     "functions": [
@@ -3611,6 +3627,28 @@
           "type": "literal type"
         }
       ],
+      "src/assets/functions/tips.ts": [
+        {
+          "name": "CORS_HEADERS",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
+        },
+        {
+          "name": "handler",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Handler",
+          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+        }
+      ],
       "src/assets/functions/menu.ts": [
         {
           "name": "CORS_HEADERS",
@@ -3641,28 +3679,6 @@
           "deprecationMessage": "",
           "type": "Handler",
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-        }
-      ],
-      "src/assets/functions/tips.ts": [
-        {
-          "name": "CORS_HEADERS",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
-        },
-        {
-          "name": "handler",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Handler",
-          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
       "dist/ng-spanish-menu/assets/functions/menu.ts": [
@@ -3793,18 +3809,6 @@
           "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
         }
       ],
-      "src/environments/environment.prod.ts": [
-        {
-          "name": "environment",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/environments/environment.prod.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
-        }
-      ],
       "src/environments/environment.ts": [
         {
           "name": "environment",
@@ -3815,6 +3819,18 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
+        }
+      ],
+      "src/environments/environment.prod.ts": [
+        {
+          "name": "environment",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/environments/environment.prod.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
         }
       ],
       "src/app/food/food-menu-card/food-menu-card.stories.ts": [
@@ -4390,7 +4406,7 @@
         "linktype": "component",
         "name": "FoodChoiceComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/15",
+        "coverageCount": "0/16",
         "status": "low"
       },
       {

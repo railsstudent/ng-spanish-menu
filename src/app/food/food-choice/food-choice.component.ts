@@ -15,7 +15,7 @@ import {
   ViewChild,
   ViewContainerRef,
 } from '@angular/core'
-import { FaIconComponent } from '@fortawesome/angular-fontawesome'
+// import { FaIconComponent } from '@fortawesome/angular-fontawesome'
 import { environment } from 'src/environments/environment'
 
 import { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'
@@ -47,7 +47,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   public qtyMap: Record<string, number> | undefined | null
   public remained: number
-  public componentRefs: ComponentRef<FaIconComponent>[] = []
+  public componentRefs: ComponentRef<unknown>[] = []
   public minimumSupply: number
 
   // #endregion Properties (8)
@@ -108,13 +108,13 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   private async displayLowSupplyIcon() {
     if (this.componentRefs && this.componentRefs.length <= 0) {
       const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle
+      const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
       const resolvedFaIconComponent = this.componentFactoryResolver.resolveComponentFactory(FaIconComponent)
-      const componentRef = this.iconContainer.createComponent(resolvedFaIconComponent)
-      componentRef.instance.icon = faExclamationTriangle
-      componentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']
-      componentRef.instance.render()
-
-      this.componentRefs.push(componentRef)
+      const faIconComponentRef = this.iconContainer.createComponent(resolvedFaIconComponent)
+      faIconComponentRef.instance.icon = faExclamationTriangle
+      faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']
+      faIconComponentRef.instance.render()
+      this.componentRefs.push(faIconComponentRef)
       this.cdr.detectChanges()
     }
   }

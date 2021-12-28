@@ -17,13 +17,13 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",
-    "module": "es2020",
+    "module": "esnext",
     "lib": ["es2018", "dom"],
     "paths": {
       "@/food": ["src/app/food/index.ts"]
     },
     "noUnusedParameters": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": true
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
