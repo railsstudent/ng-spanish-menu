@@ -1478,7 +1478,7 @@
           }
         }
       },
-      "templateData": "<form class=\"py-2 px-0\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"mr-2\" [readonly]=\"quantityRemained <= 0\" />\n  </label>\n  <div *ngIf=\"quantity && quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"inline text-[#a94442]\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"inline mr-2\">\n      Quantity must be at least {{ quantity.errors?.min?.min }}.\n    </div>\n    <div *ngIf=\"quantity.errors?.notEnoughQuantity\" class=\"inline mr-2\">\n      Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.\n    </div>\n  </div>\n  <div *ngIf=\"processing\" class=\"inline\">\n    <div class=\"inline mr-2 text-[#a94442]\">Loading...</div>\n  </div>\n  <button type=\"submit\" [disabled]=\"processing || form.invalid || quantityRemained <= 0\" class=\"btn-indigo\">\n    Submit\n  </button>\n</form>\n"
+      "templateData": "<form class=\"py-2 px-0\" [formGroup]=\"form\" (ngSubmit)=\"submitChoice$.next($event)\">\n  <label name=\"quantity\" class=\"item\">\n    <span class=\"field\">Quantity: </span>\n    <input type=\"number\" formControlName=\"quantity\" class=\"mr-2\" [readonly]=\"quantityRemained <= 0\" />\n  </label>\n  <div *ngIf=\"quantity && quantity.invalid && (quantity.touched || quantity.dirty)\" class=\"inline text-[#a94442]\">\n    <div *ngIf=\"quantity.errors?.min\" class=\"inline mr-2\">\n      Quantity must be at least {{ quantity.errors?.min?.min }}.\n    </div>\n    <div *ngIf=\"quantity.errors?.notEnoughQuantity\" class=\"inline mr-2\">\n      Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.\n    </div>\n  </div>\n  <div *ngIf=\"processing\" class=\"inline\">\n    <div class=\"inline mr-2 text-[#a94442]\">Loading...</div>\n  </div>\n  <button\n    type=\"submit\"\n    [disabled]=\"processing || form.invalid || quantityRemained <= 0\"\n    class=\"btn-indigo disabled:opacity-75\"\n  >\n    Submit\n  </button>\n</form>\n"
     },
     {
       "name": "FoodMenuCardComponent",
@@ -1898,7 +1898,7 @@
     },
     {
       "name": "FoodQuestionComponent",
-      "id": "component-FoodQuestionComponent-326980342cc5f7e3b9f1376cc3c2bd40",
+      "id": "component-FoodQuestionComponent-d40d853baa36f5659bbdd04180968a5d",
       "file": "src/app/food/food-question/food-question.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1909,7 +1909,7 @@
       "selector": "app-food-question",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "template": "  <div class=\"food-question flex flex-col border-2 border-indigo-400\">\n  <label name=\"question\" class=\"item flex px-2 py-3\">\n    <span class=\"field\">Question:</span>\n    <span class=\"flex-auto field-text\">{{ question }}</span>\n  </label>\n</div>\n\n",
+      "template": "<div class=\"food-question flex flex-col border-2 border-indigo-400\">\n  <label name=\"question\" class=\"item flex px-2 py-3\">\n    <span class=\"field\">Question:</span>\n    <span class=\"flex-auto field-text\">{{ question }}</span>\n  </label>\n</div>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
@@ -1917,7 +1917,7 @@
           "name": "question",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 29,
+          "line": 27,
           "type": "string"
         }
       ],
@@ -1931,7 +1931,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\n@Component({\n  selector: 'app-food-question',\n  // templateUrl: './food-question.component.html',\n  template:\n    `\n  <div class=\"food-question flex flex-col border-2 border-indigo-400\">\n  <label name=\"question\" class=\"item flex px-2 py-3\">\n    <span class=\"field\">Question:</span>\n    <span class=\"flex-auto field-text\">{{ question }}</span>\n  </label>\n</div>\n\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodQuestionComponent {\n  // #region Properties (1)\n\n  @Input()\n  public question: string\n\n  // #endregion Properties (1)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, Input } from '@angular/core'\n\n@Component({\n  selector: 'app-food-question',\n  // templateUrl: './food-question.component.html',\n  template: `\n    <div class=\"food-question flex flex-col border-2 border-indigo-400\">\n      <label name=\"question\" class=\"item flex px-2 py-3\">\n        <span class=\"field\">Question:</span>\n        <span class=\"flex-auto field-text\">{{ question }}</span>\n      </label>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodQuestionComponent {\n  // #region Properties (1)\n\n  @Input()\n  public question: string\n\n  // #endregion Properties (1)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n"
@@ -2320,13 +2320,13 @@
   "modules": [
     {
       "name": "AppModule",
-      "id": "module-AppModule-3b6b71dee5182dd2b0f81203cd65e5e1",
+      "id": "module-AppModule-886f115cb76e67de85d998880740adf1",
       "description": "",
       "deprecationMessage": "",
       "deprecated": false,
       "file": "src/app/app.module.ts",
       "methods": [],
-      "sourceCode": "import { HttpClientModule } from '@angular/common/http'\nimport { NgModule } from '@angular/core'\nimport { BrowserModule } from '@angular/platform-browser'\n\nimport { AppComponent } from './app.component'\nimport { AppRoutingModule } from './app-routing.module'\nimport { FoodModule } from './food'\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FoodModule],\n  providers: [],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
+      "sourceCode": "import { HttpClientModule } from '@angular/common/http'\nimport { NgModule } from '@angular/core'\nimport { BrowserModule } from '@angular/platform-browser'\n\nimport { AppComponent } from './app.component'\nimport { AppRoutingModule } from './app-routing.module'\nimport { FoodModule } from './food';\nimport { FontAwesomeModule } from '@fortawesome/angular-fontawesome'\n\n@NgModule({\n  declarations: [AppComponent],\n  imports: [BrowserModule, HttpClientModule, AppRoutingModule, FoodModule, FontAwesomeModule],\n  providers: [],\n  bootstrap: [AppComponent],\n})\nexport class AppModule {}\n",
       "children": [
         {
           "type": "providers",
@@ -2688,13 +2688,13 @@
     },
     {
       "name": "FoodModule",
-      "id": "module-FoodModule-6ece60feddfe5af87fae84af256650ab",
+      "id": "module-FoodModule-0d4266819f356e690e5c613a9baf30bf",
       "description": "",
       "deprecationMessage": "",
       "deprecated": false,
       "file": "src/app/food/food.module.ts",
       "methods": [],
-      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\nimport { FormsModule, ReactiveFormsModule } from '@angular/forms'\n\nimport { FoodCardModule } from './food-card'\nimport { FoodChoiceModule } from './food-choice'\nimport { FoodChoiceFormModule } from './food-choice-form'\nimport { FoodMenuModule } from './food-menu'\nimport { FoodMenuCardModule } from './food-menu-card'\nimport { FoodMenuOptionsModule } from './food-menu-options'\nimport { FoodQuestionModule } from './food-question'\nimport { FoodRoutingModule } from './food-routing.module'\nimport { FoodShellModule } from './food-shell'\nimport { FoodTotalModule } from './food-total'\n\n@NgModule({\n  declarations: [],\n  imports: [\n    CommonModule,\n    FormsModule,\n    ReactiveFormsModule,\n    FoodRoutingModule,\n    FoodTotalModule,\n    FoodCardModule,\n    FoodMenuOptionsModule,\n    FoodQuestionModule,\n    FoodChoiceFormModule,\n    FoodChoiceModule,\n    FoodMenuCardModule,\n    FoodMenuModule,\n    FoodShellModule,\n  ],\n})\nexport class FoodModule {}\n",
+      "sourceCode": "import { CommonModule } from '@angular/common'\nimport { NgModule } from '@angular/core'\n\nimport { FoodRoutingModule } from './food-routing.module'\nimport { FoodShellModule } from './food-shell'\n\n@NgModule({\n  declarations: [],\n  imports: [CommonModule, FoodRoutingModule, FoodShellModule],\n})\nexport class FoodModule {}\n",
       "children": [
         {
           "type": "providers",
@@ -2708,34 +2708,10 @@
           "type": "imports",
           "elements": [
             {
-              "name": "FoodCardModule"
-            },
-            {
-              "name": "FoodChoiceFormModule"
-            },
-            {
-              "name": "FoodChoiceModule"
-            },
-            {
-              "name": "FoodMenuCardModule"
-            },
-            {
-              "name": "FoodMenuModule"
-            },
-            {
-              "name": "FoodMenuOptionsModule"
-            },
-            {
-              "name": "FoodQuestionModule"
-            },
-            {
               "name": "FoodRoutingModule"
             },
             {
               "name": "FoodShellModule"
-            },
-            {
-              "name": "FoodTotalModule"
             }
           ]
         },
@@ -2965,7 +2941,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -2975,7 +2951,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -3025,21 +3001,21 @@
         "name": "environment",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/environments/environment.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n}"
-      },
-      {
-        "name": "environment",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/environments/environment.prod.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
         "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
+      },
+      {
+        "name": "environment",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/environments/environment.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n}"
       },
       {
         "name": "FoodMenuCardTemplate",
@@ -3085,21 +3061,21 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "dist/ng-spanish-menu/assets/functions/menu.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "LongDescription",
@@ -3185,26 +3161,6 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "FoodMenuCardTemplate.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3220,6 +3176,26 @@
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuCardTemplate.bind({})"
       },
       {
         "name": "qtyMap",
@@ -3334,16 +3310,6 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu/food-menu.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodMenuComponent>",
-        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-question/food-question.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3369,6 +3335,16 @@
         "deprecationMessage": "",
         "type": "Story<FoodTotalComponent>",
         "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu/food-menu.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodMenuComponent>",
+        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
       }
     ],
     "functions": [
@@ -3583,6 +3559,28 @@
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
+      "dist/ng-spanish-menu/assets/functions/tips.ts": [
+        {
+          "name": "CORS_HEADERS",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
+        },
+        {
+          "name": "handler",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Handler",
+          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+        }
+      ],
       "dist/ng-spanish-menu/assets/functions/menu.ts": [
         {
           "name": "CORS_HEADERS",
@@ -3613,28 +3611,6 @@
           "deprecationMessage": "",
           "type": "Handler",
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-        }
-      ],
-      "dist/ng-spanish-menu/assets/functions/tips.ts": [
-        {
-          "name": "CORS_HEADERS",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
-        },
-        {
-          "name": "handler",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "dist/ng-spanish-menu/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Handler",
-          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
       "src/app/food/food-choice-form/food-choice-form.stories.ts": [
@@ -3711,18 +3687,6 @@
           "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
         }
       ],
-      "src/environments/environment.ts": [
-        {
-          "name": "environment",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/environments/environment.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n}"
-        }
-      ],
       "src/environments/environment.prod.ts": [
         {
           "name": "environment",
@@ -3733,6 +3697,18 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n}"
+        }
+      ],
+      "src/environments/environment.ts": [
+        {
+          "name": "environment",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/environments/environment.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n}"
         }
       ],
       "src/app/food/food-menu-card/food-menu-card.stories.ts": [

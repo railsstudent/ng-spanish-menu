@@ -9,6 +9,8 @@ import {
   SimpleChange,
   SimpleChanges,
 } from '@angular/core'
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import { environment } from 'src/environments/environment'
 
 import { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'
 
@@ -37,6 +39,9 @@ export class FoodChoiceComponent implements OnInit, OnChanges {
   @Input()
   public qtyMap: Record<string, number> | undefined | null
   public remained: number
+  minimumSupply: number
+
+  faExclamationTriangle = faExclamationTriangle
 
   // #endregion Properties (4)
 
@@ -53,6 +58,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges {
 
   public ngOnInit(): void {
     this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0
+    this.minimumSupply = Math.ceil(this.remained * environment.lowSupplyPercentage)
   }
 
   public submitFoodChoice(newQuantity: number): void {

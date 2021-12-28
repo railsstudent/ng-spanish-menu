@@ -25,13 +25,20 @@
   </div>
   <div>
     <ng-container [ngSwitch]="remained > 0">
-      <app-food-choice-form
-        class="mx-3"
-        [choice]="choice"
-        (foodChoiceSubmitted)="submitFoodChoice($event)"
-        *ngSwitchCase="true"
-      >
-      </app-food-choice-form>
+      <div class="flex">
+        <app-food-choice-form
+          class="mx-3 inline"
+          [choice]="choice"
+          (foodChoiceSubmitted)="submitFoodChoice($event)"
+          *ngSwitchCase="true"
+        >
+        </app-food-choice-form>
+        <div class="flex items-center" *ngIf="remained > 0 && remained <= minimumSupply">
+          <fa-icon [icon]="faExclamationTriangle" class="text-red-500 text-[1.35rem] mr-2"></fa-icon>
+          <span class="text-red-500 text-xl">Low supply</span>
+        </div>
+      </div>
+
       <ng-container *ngSwitchDefault>
         <ng-container *ngTemplateOutlet="soldout; context: { choice: choice }"> </ng-container>
       </ng-container>

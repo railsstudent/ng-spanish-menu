@@ -29,7 +29,9 @@
     "sapien",
     "betterer",
     "endregion",
-    "tailwindcss"
+    "tailwindcss",
+    "fontawesome",
+    "fortawesome"
   ],
   "flagWords": []
 }

@@ -1,4 +1,5 @@
 import { HttpClientModule } from '@angular/common/http'
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceFormModule } from '../food-choice-form'
@@ -11,7 +12,7 @@ export default {
   component: FoodChoiceComponent,
   decorators: [
     moduleMetadata({
-      imports: [HttpClientModule, FoodChoiceFormModule],
+      imports: [HttpClientModule, FoodChoiceFormModule, FontAwesomeModule],
       declarations: [],
       providers: [
         {

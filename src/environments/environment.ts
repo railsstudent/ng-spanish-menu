@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   baseUrl: '/.netlify/functions',
+  lowSupplyPercentage: 0.4,
 }
 
 /*
