@@ -4,7 +4,7 @@ import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceFormModule } from '../food-choice-form'
 import { FoodService } from '../services'
-import { MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
+import { LowSupplyMockData, MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodChoiceComponent } from './food-choice.component'
 
 export default {
@@ -32,6 +32,7 @@ const Template: Story<FoodChoiceComponent> = (args: FoodChoiceComponent) => ({
 const qtyMap = {
   [MockData[0].choices[0].id]: 10,
   [SoldOutMockData[0].choices[1].id]: 0,
+  [LowSupplyMockData[0].choices[2].id]: 1,
 }
 
 export const Primary = Template.bind({})
@@ -61,19 +62,13 @@ SoldOut.decorators = [
   }),
 ]
 
-const LowSupplyMockData = [...SoldOutMockData]
-LowSupplyMockData[0].choices[1].quantity = 1
-
 export const LowSupply = Template.bind({})
 LowSupply.args = {
   choice: {
-    ...LowSupplyMockData[0].choices[1],
+    ...LowSupplyMockData[0].choices[2],
     quantity: 1,
   },
-  qtyMap: {
-    ...qtyMap,
-    [LowSupplyMockData[0].choices[1].id]: 1,
-  },
+  qtyMap,
 }
 LowSupply.decorators = [
   moduleMetadata({
