@@ -112,6 +112,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
       this.iconContainer.clear()
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
     Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {
       this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)
     })
