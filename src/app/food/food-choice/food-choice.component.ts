@@ -4,12 +4,14 @@ import {
   Component,
   ComponentFactoryResolver,
   ComponentRef,
+  ElementRef,
   EventEmitter,
   Input,
   OnChanges,
   OnDestroy,
   OnInit,
   Output,
+  Renderer2,
   SimpleChange,
   SimpleChanges,
   ViewChild,
@@ -28,6 +30,7 @@ function isQtyMapCurrentValueObjectLiteral(qtyMap: SimpleChange): qtyMap is Simp
     !(qtyMap.currentValue instanceof Array)
   )
 }
+
 @Component({
   selector: 'app-food-choice',
   templateUrl: './food-choice.component.html',
@@ -43,6 +46,8 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
   public iconContainer: ViewContainerRef
+  @ViewChild('lowSupplyRef', { read: ElementRef, static: true })
+  public lowSupplierRef: ElementRef
   @Input()
   public qtyMap: Record<string, number> | undefined | null
   public remained: number
@@ -53,7 +58,11 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
 
   // #region Constructors (1)
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdr: ChangeDetectorRef) {}
+  constructor(
+    private componentFactoryResolver: ComponentFactoryResolver,
+    private cdr: ChangeDetectorRef,
+    private renderer: Renderer2,
+  ) {}
 
   // #endregion Constructors (1)
 
@@ -102,6 +111,10 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
     if (this.iconContainer) {
       this.iconContainer.clear()
     }
+
+    Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {
+      this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)
+    })
   }
 
   private async displayLowSupplyIcon() {
@@ -114,6 +127,14 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
       faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']
       faIconComponentRef.instance.render()
       this.componentRefs.push(faIconComponentRef)
+
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+      const lowSupplySpanElement = this.renderer.createElement('span')
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      lowSupplySpanElement.classList.add('text-red-500', 'text-xl')
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+      lowSupplySpanElement.innerText = 'Low Supply'
+      this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)
       this.cdr.detectChanges()
     }
   }

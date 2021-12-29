@@ -23,7 +23,7 @@
     "betterer": "betterer --cache",
     "betterer:precommit": "betterer precommit --cache",
     "betterer:merge": "betterer merge",
-    "betterer:update": "betterer update"
+    "betterer:update": "betterer --update"
   },
   "dependencies": {
     "@angular/animations": "~12.2.0",

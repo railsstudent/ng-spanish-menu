@@ -16,6 +16,10 @@ exports[`typescript/eslint`] = {
     "src/app/food/food-choice-form/food-choice-form.component.ts:1636179219": [
       [70, 21, 19, "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.\\nIf your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.", "2980563503"]
     ],
+    "src/app/food/food-choice/food-choice.component.ts:1843598565": [
+      [114, 15, 42, "Unsafe argument of type \`any\` assigned to a parameter of type \`Iterable<unknown> | ArrayLike<unknown>\`.", "436566384"],
+      [114, 15, 42, "Unsafe member access .children on an \`any\` value.", "436566384"]
+    ],
     "src/app/food/food-total/food-total.component.ts:3244290771": [
       [84, 56, 19, "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.\\nIf your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.", "2980563503"]
     ]
