@@ -60,3 +60,28 @@ SoldOut.decorators = [
     ],
   }),
 ]
+
+const LowSupplyMockData = [...SoldOutMockData]
+LowSupplyMockData[0].choices[1].quantity = 1
+
+export const LowSupply = Template.bind({})
+LowSupply.args = {
+  choice: {
+    ...LowSupplyMockData[0].choices[1],
+    quantity: 1,
+  },
+  qtyMap: {
+    ...qtyMap,
+    [LowSupplyMockData[0].choices[1].id]: 1,
+  },
+}
+LowSupply.decorators = [
+  moduleMetadata({
+    providers: [
+      {
+        provide: FoodService,
+        useFactory: () => new MockFoodService(LowSupplyMockData),
+      },
+    ],
+  }),
+]

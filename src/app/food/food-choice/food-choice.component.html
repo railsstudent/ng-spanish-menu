@@ -27,15 +27,13 @@
     <ng-container [ngSwitch]="remained > 0">
       <div class="flex">
         <app-food-choice-form
-          class="mx-3 inline"
+          class="mx-3 inline grow"
           [choice]="choice"
           (foodChoiceSubmitted)="submitFoodChoice($event)"
           *ngSwitchCase="true"
         >
         </app-food-choice-form>
-        <div class="flex items-center" #lowSupplyRef>
-          <!-- <fa-icon [icon]="faExclamationTriangle" class="text-red-500 text-[1.35rem] mr-2"></fa-icon> -->
-          <!-- <span class="text-red-500 text-xl">Low supply</span> -->
+        <div class="flex items-center grow" #lowSupplyRef>
           <ng-container #viewContainerRef></ng-container>
         </div>
       </div>
