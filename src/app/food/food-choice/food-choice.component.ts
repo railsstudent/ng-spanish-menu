@@ -59,7 +59,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   // #region Constructors (1)
 
   constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
+    private factoryResolver: ComponentFactoryResolver,
     private cdr: ChangeDetectorRef,
     private renderer: Renderer2,
   ) {}
@@ -118,33 +118,42 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
     })
   }
 
-  private async displayLowSupplyIcon() {
+  private async displayLowSupplyComponent() {
     if (!this.componentRef) {
-      const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle
-      const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
-      const resolvedFaIconComponent = this.componentFactoryResolver.resolveComponentFactory(FaIconComponent)
-      const faIconComponentRef = this.iconContainer.createComponent(resolvedFaIconComponent)
-      faIconComponentRef.instance.icon = faExclamationTriangle
-      faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']
-      faIconComponentRef.instance.render()
-      this.componentRef = faIconComponentRef
+      await this.displayLowSupplyIcon()
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      const lowSupplySpanElement = this.renderer.createElement('span')
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      lowSupplySpanElement.classList.add('text-red-500', 'text-xl')
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
-      lowSupplySpanElement.innerText = 'Low Supply'
-      this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)
+      this.renderLowSupplyText()
       this.cdr.detectChanges()
     }
+  }
+
+  private async displayLowSupplyIcon() {
+    const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle
+    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
+    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)
+    const faIconComponentRef = this.iconContainer.createComponent(resolvedFaIconComponent)
+    faIconComponentRef.instance.icon = faExclamationTriangle
+    faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']
+    faIconComponentRef.instance.render()
+    this.componentRef = faIconComponentRef
+  }
+
+  private renderLowSupplyText() {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+    const lowSupplySpanElement = this.renderer.createElement('span')
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    lowSupplySpanElement.classList.add('text-red-500', 'text-xl')
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    lowSupplySpanElement.innerText = 'Low Supply'
+    this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)
   }
 
   private async handleLowSupply() {
     if (this.remained <= 0) {
       this.destroyComponents()
     } else if (this.remained > 0 && this.remained <= this.minimumSupply) {
-      await this.displayLowSupplyIcon()
+      await this.displayLowSupplyComponent()
     }
   }
 
