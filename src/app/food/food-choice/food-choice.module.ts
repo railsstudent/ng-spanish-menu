@@ -3,11 +3,10 @@ import { NgModule } from '@angular/core'
 
 import { FoodChoiceFormModule } from '../food-choice-form'
 import { FoodChoiceComponent } from './food-choice.component'
-// import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 
 @NgModule({
   declarations: [FoodChoiceComponent],
-  imports: [CommonModule, FoodChoiceFormModule /*FontAwesomeModule*/],
+  imports: [CommonModule, FoodChoiceFormModule],
   exports: [FoodChoiceComponent],
 })
 export class FoodChoiceModule {}
