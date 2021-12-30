@@ -45,7 +45,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   @Output()
   public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
-  public iconContainer: ViewContainerRef
+  public viewContainerRef: ViewContainerRef
   @ViewChild('lowSupplyRef', { read: ElementRef, static: true })
   public lowSupplierRef: ElementRef
   @Input()
@@ -108,8 +108,8 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
     if (this.componentRef) {
       this.componentRef.destroy()
     }
-    if (this.iconContainer) {
-      this.iconContainer.clear()
+    if (this.viewContainerRef) {
+      this.viewContainerRef.clear()
     }
 
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
@@ -122,7 +122,6 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
     if (!this.componentRef) {
       await this.displayLowSupplyIcon()
 
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       this.renderLowSupplyText()
       this.cdr.detectChanges()
     }
@@ -132,7 +131,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
     const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle
     const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
     const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)
-    const faIconComponentRef = this.iconContainer.createComponent(resolvedFaIconComponent)
+    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)
     faIconComponentRef.instance.icon = faExclamationTriangle
     faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']
     faIconComponentRef.instance.render()
