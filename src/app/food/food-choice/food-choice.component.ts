@@ -51,7 +51,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   public qtyMap: Record<string, number> | undefined | null
   public remained: number
-  public componentRefs: ComponentRef<unknown>[] = []
+  public componentRef: ComponentRef<unknown> | null = null
   public minimumSupply: number
 
   // #endregion Properties (8)
@@ -105,8 +105,8 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   // #region Private Methods (3)
 
   private destroyComponents() {
-    for (const componentRef of this.componentRefs) {
-      componentRef.destroy()
+    if (this.componentRef) {
+      this.componentRef.destroy()
     }
     if (this.iconContainer) {
       this.iconContainer.clear()
@@ -119,7 +119,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private async displayLowSupplyIcon() {
-    if (this.componentRefs && this.componentRefs.length <= 0) {
+    if (!this.componentRef) {
       const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle
       const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
       const resolvedFaIconComponent = this.componentFactoryResolver.resolveComponentFactory(FaIconComponent)
@@ -127,7 +127,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
       faIconComponentRef.instance.icon = faExclamationTriangle
       faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']
       faIconComponentRef.instance.render()
-      this.componentRefs.push(faIconComponentRef)
+      this.componentRef = faIconComponentRef
 
       // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
       const lowSupplySpanElement = this.renderer.createElement('span')
