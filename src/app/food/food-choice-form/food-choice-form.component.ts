@@ -1,4 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  ComponentFactoryResolver,
+  ComponentRef,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+  ViewContainerRef,
+} from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { delay, map, takeUntil, tap } from 'rxjs/operators'
@@ -30,8 +43,11 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   public choice: Choice
   @Output()
   public foodChoiceSubmitted = new EventEmitter<number>()
+  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
+  viewContainerRef: ViewContainerRef
   public form: FormGroup
   public processing = false
+  componentRef: ComponentRef<unknown> | null = null
   submitChoice$ = new Subject<Event>()
   unsubscribe$ = new Subject<boolean>()
 
@@ -39,7 +55,12 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
 
   // #region Constructors (1)
 
-  constructor(private fb: FormBuilder, private foodService: FoodService) {}
+  constructor(
+    private fb: FormBuilder,
+    private foodService: FoodService,
+    private factoryResolver: ComponentFactoryResolver,
+    private cdr: ChangeDetectorRef,
+  ) {}
 
   // #endregion Constructors (1)
 
@@ -61,6 +82,8 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   // #region Public Methods (2)
 
   public ngOnDestroy(): void {
+    this.destroyComponents()
+
     this.unsubscribe$.next(true)
     this.unsubscribe$.complete()
   }
@@ -79,15 +102,41 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
           $event.preventDefault()
           $event.stopPropagation()
           this.processing = true
+          this.displaySpinnerIcon()
         }),
-        delay(1000),
+        delay(1500),
         map(() => this.form.value as { quantity: number }),
         map(({ quantity }) => +quantity),
-        tap(() => (this.processing = false)),
+        tap(() => {
+          this.destroyComponents()
+          this.processing = false
+        }),
         takeUntil(this.unsubscribe$),
       )
       .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))
   }
 
   // #endregion Public Methods (2)
+
+  private async displaySpinnerIcon() {
+    const faSpinner = (await import('@fortawesome/free-solid-svg-icons')).faSpinner
+    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
+    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)
+    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)
+    faIconComponentRef.instance.icon = faSpinner
+    faIconComponentRef.instance.pulse = true
+    faIconComponentRef.instance.render()
+    this.componentRef = faIconComponentRef
+    this.cdr.detectChanges()
+  }
+
+  private destroyComponents() {
+    if (this.componentRef) {
+      this.componentRef.destroy()
+    }
+
+    if (this.viewContainerRef) {
+      this.viewContainerRef.clear()
+    }
+  }
 }

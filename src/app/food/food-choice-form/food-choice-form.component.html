@@ -11,14 +11,12 @@
       Cannot order more than {{ quantity.errors?.notEnoughQuantity.quantityRemained }}.
     </div>
   </div>
-  <div *ngIf="processing" class="inline">
-    <div class="inline mr-2 text-[#a94442]">Loading...</div>
-  </div>
   <button
     type="submit"
     [disabled]="processing || form.invalid || quantityRemained <= 0"
     class="btn-indigo disabled:opacity-75"
   >
-    Submit
+    <span class="mr-2">Submit</span>
+    <ng-container #viewContainerRef></ng-container>
   </button>
 </form>

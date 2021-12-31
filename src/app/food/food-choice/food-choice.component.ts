@@ -108,6 +108,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
     if (this.componentRef) {
       this.componentRef.destroy()
     }
+
     if (this.viewContainerRef) {
       this.viewContainerRef.clear()
     }
