@@ -1161,7 +1161,7 @@
     },
     {
       "name": "FoodChoiceComponent",
-      "id": "component-FoodChoiceComponent-b5c3b9a1403c26ed992858c13365c357",
+      "id": "component-FoodChoiceComponent-5d9b99f22b5c8f50a91d4ea386911ff9",
       "file": "src/app/food/food-choice/food-choice.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1213,22 +1213,6 @@
           "modifierKind": [123]
         },
         {
-          "name": "iconContainer",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "ViewContainerRef",
-          "optional": false,
-          "description": "",
-          "line": 48,
-          "decorators": [
-            {
-              "name": "ViewChild",
-              "stringifiedArguments": "'viewContainerRef', {read: ViewContainerRef, static: true}"
-            }
-          ],
-          "modifierKind": [123]
-        },
-        {
           "name": "lowSupplierRef",
           "deprecated": false,
           "deprecationMessage": "",
@@ -1263,6 +1247,22 @@
           "description": "",
           "line": 53,
           "modifierKind": [123]
+        },
+        {
+          "name": "viewContainerRef",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "ViewContainerRef",
+          "optional": false,
+          "description": "",
+          "line": 48,
+          "decorators": [
+            {
+              "name": "ViewChild",
+              "stringifiedArguments": "'viewContainerRef', {read: ViewContainerRef, static: true}"
+            }
+          ],
+          "modifierKind": [123]
         }
       ],
       "methodsClass": [
@@ -1278,7 +1278,7 @@
           "modifierKind": [121]
         },
         {
-          "name": "displayLowSupplyIcon",
+          "name": "displayLowSupplyComponent",
           "args": [],
           "optional": false,
           "returnType": "any",
@@ -1289,12 +1289,23 @@
           "modifierKind": [121, 130]
         },
         {
+          "name": "displayLowSupplyIcon",
+          "args": [],
+          "optional": false,
+          "returnType": "any",
+          "typeParameters": [],
+          "line": 130,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [121, 130]
+        },
+        {
           "name": "handleLowSupply",
           "args": [],
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 143,
+          "line": 149,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121, 130]
@@ -1351,6 +1362,17 @@
           "modifierKind": [123, 130]
         },
         {
+          "name": "renderLowSupplyText",
+          "args": [],
+          "optional": false,
+          "returnType": "void",
+          "typeParameters": [],
+          "line": 141,
+          "deprecated": false,
+          "deprecationMessage": "",
+          "modifierKind": [121]
+        },
+        {
           "name": "submitFoodChoice",
           "args": [
             {
@@ -1387,7 +1409,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  Renderer2,\n  SimpleChange,\n  SimpleChanges,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'\n\nfunction isQtyMapCurrentValueObjectLiteral(qtyMap: SimpleChange): qtyMap is SimpleChangeQuantityMap {\n  return (\n    qtyMap !== undefined &&\n    typeof qtyMap.firstChange === 'boolean' &&\n    qtyMap.currentValue !== undefined &&\n    typeof qtyMap.currentValue === 'object' &&\n    !(qtyMap.currentValue instanceof Array)\n  )\n}\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {\n  // #region Properties (8)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public iconContainer: ViewContainerRef\n  @ViewChild('lowSupplyRef', { read: ElementRef, static: true })\n  public lowSupplierRef: ElementRef\n  @Input()\n  public qtyMap: Record<string, number> | undefined | null\n  public remained: number\n  public componentRef: ComponentRef<unknown> | null = null\n  public minimumSupply: number\n\n  // #endregion Properties (8)\n\n  // #region Constructors (1)\n\n  constructor(\n    private componentFactoryResolver: ComponentFactoryResolver,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (4)\n\n  public async ngOnChanges(changes: SimpleChanges): Promise<void> {\n    const { qtyMap } = changes\n    if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {\n      this.remained = qtyMap.currentValue[this.choice.id]\n    } else {\n      this.remained = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n  }\n\n  public async ngOnInit(): Promise<void> {\n    this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0\n    this.minimumSupply = Math.ceil(this.remained * environment.lowSupplyPercentage)\n\n    await this.handleLowSupply()\n  }\n\n  public submitFoodChoice(newQuantity: number): void {\n    const { ingredients, quantity, ...rest } = this.choice\n    if (this.remained - newQuantity >= 0) {\n      this.foodChoiceAdded.emit({\n        ...rest,\n        quantity: newQuantity,\n      })\n    }\n  }\n\n  // #endregion Public Methods (4)\n\n  // #region Private Methods (3)\n\n  private destroyComponents() {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n    if (this.iconContainer) {\n      this.iconContainer.clear()\n    }\n\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access\n    Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {\n      this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)\n    })\n  }\n\n  private async displayLowSupplyIcon() {\n    if (!this.componentRef) {\n      const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle\n      const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n      const resolvedFaIconComponent = this.componentFactoryResolver.resolveComponentFactory(FaIconComponent)\n      const faIconComponentRef = this.iconContainer.createComponent(resolvedFaIconComponent)\n      faIconComponentRef.instance.icon = faExclamationTriangle\n      faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']\n      faIconComponentRef.instance.render()\n      this.componentRef = faIconComponentRef\n\n      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment\n      const lowSupplySpanElement = this.renderer.createElement('span')\n      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access\n      lowSupplySpanElement.classList.add('text-red-500', 'text-xl')\n      // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access\n      lowSupplySpanElement.innerText = 'Low Supply'\n      this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)\n      this.cdr.detectChanges()\n    }\n  }\n\n  private async handleLowSupply() {\n    if (this.remained <= 0) {\n      this.destroyComponents()\n    } else if (this.remained > 0 && this.remained <= this.minimumSupply) {\n      await this.displayLowSupplyIcon()\n    }\n  }\n\n  // #endregion Private Methods (3)\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  Renderer2,\n  SimpleChange,\n  SimpleChanges,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'\n\nfunction isQtyMapCurrentValueObjectLiteral(qtyMap: SimpleChange): qtyMap is SimpleChangeQuantityMap {\n  return (\n    qtyMap !== undefined &&\n    typeof qtyMap.firstChange === 'boolean' &&\n    qtyMap.currentValue !== undefined &&\n    typeof qtyMap.currentValue === 'object' &&\n    !(qtyMap.currentValue instanceof Array)\n  )\n}\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {\n  // #region Properties (8)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public viewContainerRef: ViewContainerRef\n  @ViewChild('lowSupplyRef', { read: ElementRef, static: true })\n  public lowSupplierRef: ElementRef\n  @Input()\n  public qtyMap: Record<string, number> | undefined | null\n  public remained: number\n  public componentRef: ComponentRef<unknown> | null = null\n  public minimumSupply: number\n\n  // #endregion Properties (8)\n\n  // #region Constructors (1)\n\n  constructor(\n    private factoryResolver: ComponentFactoryResolver,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (4)\n\n  public async ngOnChanges(changes: SimpleChanges): Promise<void> {\n    const { qtyMap } = changes\n    if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {\n      this.remained = qtyMap.currentValue[this.choice.id]\n    } else {\n      this.remained = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n  }\n\n  public async ngOnInit(): Promise<void> {\n    this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0\n    this.minimumSupply = Math.ceil(this.remained * environment.lowSupplyPercentage)\n\n    await this.handleLowSupply()\n  }\n\n  public submitFoodChoice(newQuantity: number): void {\n    const { ingredients, quantity, ...rest } = this.choice\n    if (this.remained - newQuantity >= 0) {\n      this.foodChoiceAdded.emit({\n        ...rest,\n        quantity: newQuantity,\n      })\n    }\n  }\n\n  // #endregion Public Methods (4)\n\n  // #region Private Methods (3)\n\n  private destroyComponents() {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n    if (this.viewContainerRef) {\n      this.viewContainerRef.clear()\n    }\n\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access\n    Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {\n      this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)\n    })\n  }\n\n  private async displayLowSupplyComponent() {\n    if (!this.componentRef) {\n      await this.displayLowSupplyIcon()\n\n      this.renderLowSupplyText()\n      this.cdr.detectChanges()\n    }\n  }\n\n  private async displayLowSupplyIcon() {\n    const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle\n    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)\n    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)\n    faIconComponentRef.instance.icon = faExclamationTriangle\n    faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']\n    faIconComponentRef.instance.render()\n    this.componentRef = faIconComponentRef\n  }\n\n  private renderLowSupplyText() {\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment\n    const lowSupplySpanElement = this.renderer.createElement('span') as HTMLSpanElement\n    lowSupplySpanElement.classList.add('text-red-500', 'text-xl')\n    lowSupplySpanElement.innerText = 'Low Supply'\n    this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)\n  }\n\n  private async handleLowSupply() {\n    if (this.remained <= 0) {\n      this.destroyComponents()\n    } else if (this.remained > 0 && this.remained <= this.minimumSupply) {\n      await this.displayLowSupplyComponent()\n    }\n  }\n\n  // #endregion Private Methods (3)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -1403,7 +1425,7 @@
         "deprecationMessage": "",
         "args": [
           {
-            "name": "componentFactoryResolver",
+            "name": "factoryResolver",
             "type": "ComponentFactoryResolver",
             "deprecated": false,
             "deprecationMessage": ""
@@ -1424,7 +1446,7 @@
         "line": 55,
         "jsdoctags": [
           {
-            "name": "componentFactoryResolver",
+            "name": "factoryResolver",
             "type": "ComponentFactoryResolver",
             "deprecated": false,
             "deprecationMessage": "",
@@ -4477,7 +4499,7 @@
         "linktype": "component",
         "name": "FoodChoiceComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/17",
+        "coverageCount": "0/19",
         "status": "low"
       },
       {

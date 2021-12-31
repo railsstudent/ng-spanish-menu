@@ -140,10 +140,8 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
 
   private renderLowSupplyText() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const lowSupplySpanElement = this.renderer.createElement('span')
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
+    const lowSupplySpanElement = this.renderer.createElement('span') as HTMLSpanElement
     lowSupplySpanElement.classList.add('text-red-500', 'text-xl')
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-call, @typescript-eslint/no-unsafe-member-access
     lowSupplySpanElement.innerText = 'Low Supply'
     this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)
   }
