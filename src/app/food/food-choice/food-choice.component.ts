@@ -12,7 +12,6 @@ import {
   OnInit,
   Output,
   Renderer2,
-  SimpleChange,
   SimpleChanges,
   ViewChild,
   ViewContainerRef,
@@ -20,17 +19,7 @@ import {
 import { environment } from 'src/environments/environment'
 
 import { Choice, OrderedFoodChoice } from '../interfaces'
-import { SimpleChangeQuantityMap } from './simple-change.interface'
-
-function isQtyMapCurrentValueObjectLiteral(qtyMap: SimpleChange): qtyMap is SimpleChangeQuantityMap {
-  return (
-    qtyMap !== undefined &&
-    typeof qtyMap.firstChange === 'boolean' &&
-    qtyMap.currentValue !== undefined &&
-    typeof qtyMap.currentValue === 'object' &&
-    !(qtyMap.currentValue instanceof Array)
-  )
-}
+import { isQtyMapCurrentValueObjectLiteral } from './food-choice.type-guard'
 
 @Component({
   selector: 'app-food-choice',

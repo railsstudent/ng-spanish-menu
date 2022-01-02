@@ -14,11 +14,12 @@ import {
 } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
-import { concatMap, delay, map, takeUntil, tap } from 'rxjs/operators'
+import { delay, map, switchMap, takeUntil, tap } from 'rxjs/operators'
 
 import { Choice } from '../interfaces'
 import { FoodService } from '../services'
 import { fulfillOrderValidator } from '../validators'
+import { isFormValueQuantity } from './food-choice-form.type-guard'
 
 @Component({
   selector: 'app-food-choice-form',
@@ -98,16 +99,14 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
 
     this.submitChoice$
       .pipe(
-        tap(($event) => {
+        switchMap(($event) => {
           $event.preventDefault()
           $event.stopPropagation()
           this.processing = true
-          // this.displaySpinnerIcon()
+          return this.displaySpinnerIcon()
         }),
-        concatMap(() => this.displaySpinnerIcon()),
-        delay(1500),
-        map(() => this.form.value as { quantity: number }),
-        map(({ quantity }) => +quantity),
+        delay(1000),
+        map(() => (isFormValueQuantity(this.form) ? this.form.value.quantity : 0)),
         tap(() => {
           this.destroyComponents()
           this.processing = false
