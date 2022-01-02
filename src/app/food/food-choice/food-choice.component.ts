@@ -19,7 +19,8 @@ import {
 } from '@angular/core'
 import { environment } from 'src/environments/environment'
 
-import { Choice, OrderedFoodChoice, SimpleChangeQuantityMap } from '../interfaces'
+import { Choice, OrderedFoodChoice } from '../interfaces'
+import { SimpleChangeQuantityMap } from './simple-change.interface'
 
 function isQtyMapCurrentValueObjectLiteral(qtyMap: SimpleChange): qtyMap is SimpleChangeQuantityMap {
   return (

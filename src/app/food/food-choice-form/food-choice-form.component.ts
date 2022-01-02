@@ -14,7 +14,7 @@ import {
 } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subject } from 'rxjs'
-import { delay, map, takeUntil, tap } from 'rxjs/operators'
+import { concatMap, delay, map, takeUntil, tap } from 'rxjs/operators'
 
 import { Choice } from '../interfaces'
 import { FoodService } from '../services'
@@ -102,8 +102,9 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
           $event.preventDefault()
           $event.stopPropagation()
           this.processing = true
-          this.displaySpinnerIcon()
+          // this.displaySpinnerIcon()
         }),
+        concatMap(() => this.displaySpinnerIcon()),
         delay(1500),
         map(() => this.form.value as { quantity: number }),
         map(({ quantity }) => +quantity),

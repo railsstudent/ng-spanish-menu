@@ -1,5 +1,4 @@
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { action } from '@storybook/addon-actions'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
@@ -15,7 +14,7 @@ export default {
   component: FoodMenuCardComponent,
   decorators: [
     moduleMetadata({
-      imports: [ReactiveFormsModule, FormsModule, HttpClientModule, FoodQuestionModule, FoodChoiceModule],
+      imports: [HttpClientModule, FoodQuestionModule, FoodChoiceModule],
       declarations: [],
       providers: [
         {

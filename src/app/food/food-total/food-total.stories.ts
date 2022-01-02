@@ -1,15 +1,15 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { action } from '@storybook/addon-actions'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodTotalComponent } from './food-total.component'
+import { FoodTotalModule } from './food-total.module'
 
 export default {
   title: 'Food Total',
   component: FoodTotalComponent,
   decorators: [
     moduleMetadata({
-      imports: [ReactiveFormsModule, FormsModule],
+      imports: [FoodTotalModule],
     }),
   ],
 } as Meta
