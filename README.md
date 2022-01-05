@@ -6,6 +6,18 @@
 
 The application shows a Spanish menu and customer has to choose dishes and beverages from it. After each selection, a card is created to display description and price dynamically. Finally, the application calculates the total price that customer has to play before leaving the restaurant.
 
+## Install Volta
+
+This project uses Volta manager to pin the version of Node and NPM to 14 and 7 respectively. https://docs.volta.sh/guide/getting-started
+
+- Run `curl https://get.volta.sh | bash` install Volta
+- Set the VOLTA_HOME variable to $HOME/.volta
+- Add $VOLTA_HOME/bin to the beginning of your PATH variable
+- Run `volta install node@14` to install node v14
+- Run `volta install npm@7` to install npm v7
+- Run `volta pin node@14` to pin node version of the project to 14
+- Run `volta pin npm@7`to pin npm version of the project to 7
+
 ## Version
 
 - Node 14
