@@ -25,8 +25,8 @@ This project uses Volta manager to pin the version of Node and NPM to 14 and 7 r
 
 ## Setup Netlify function
 
-- npm install netlify-cli -g
-- ntl dev
+- `volta install netlify-cli`
+- `ntl dev`
 - http://localhost:8888/.netlify/functions/menu to retrieve menu
 
 ## Manually deploy Netlify function to production
@@ -43,7 +43,7 @@ This project uses Volta manager to pin the version of Node and NPM to 14 and 7 r
 ## Todo
 
 - Translation
-- GraphQL API inHasura
+- GraphQL API in Hasura
 
 ## CSS and UI libraries
 
