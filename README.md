@@ -67,6 +67,7 @@ Should we convert the application to PWA?
   <li><a href="http://www.blueskyconnie.com/?p=2342" target="_blank" rel="noreferrer noopener">Angular and Storybook – Component with content projection</a></li>
   <li><a href="http://www.blueskyconnie.com/?p=2537" target="_blank" rel="noreferrer noopener">Angular and Storybook – Publish to Chromatic</a></li>
   <li><a href="http://www.blueskyconnie.com/?p=2640" target="_blank" rel="noreferrer noopener">Angular and Storybook – Mock Data in Container Component</a></li>
+  <li><a href="http://blueskyconnie.com/?p=3180" target="_blank" rel="noreferrer noopener">How to render Tailwind CSS in Angular and Storybook</a></li>
 </ol>
 
 ### Angular and other open source libraries
