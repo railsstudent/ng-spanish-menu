@@ -124,7 +124,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
     const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)
     const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)
     faIconComponentRef.instance.icon = faExclamationTriangle
-    faIconComponentRef.instance.classes = ['text-red-500', 'text-[1.35rem]', 'mr-2']
+    faIconComponentRef.instance.classes = ['text-red-600', 'text-[1.35rem]', 'mr-2']
     faIconComponentRef.instance.render()
     this.componentRef = faIconComponentRef
   }
@@ -132,7 +132,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   private renderLowSupplyText() {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const lowSupplySpanElement = this.renderer.createElement('span') as HTMLSpanElement
-    lowSupplySpanElement.classList.add('text-red-500', 'text-xl')
+    lowSupplySpanElement.classList.add('text-red-600', 'text-xl')
     lowSupplySpanElement.innerText = 'Low Supply'
     this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)
   }

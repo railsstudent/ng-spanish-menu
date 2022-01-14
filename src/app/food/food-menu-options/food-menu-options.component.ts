@@ -9,11 +9,11 @@ import { MenuOptions } from '../enums'
   selector: 'app-food-menu-option',
   template: `
     <section class="flex justify-end p-3 pr-0">
-      <form [formGroup]="form">
-        <select class="pl-2 w-[200px] text-base" name="option" formControlName="option">
-          <option value="all">Show all</option>
-          <option value="available">Show available only</option>
-          <option value="soldOut">Show sold out</option>
+      <form [formGroup]="form" aria-label="option form">
+        <select class="pl-2 w-[200px] text-base" name="option" formControlName="option" aria-label="menu options">
+          <option value="all" aria-label="show all">Show all</option>
+          <option value="available" aria-label="show available">Show available only</option>
+          <option value="soldOut" aria-label="show sold out">Show sold out</option>
         </select>
       </form>
     </section>
