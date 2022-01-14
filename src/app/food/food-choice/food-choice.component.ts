@@ -111,28 +111,29 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
 
   private async displayLowSupplyComponent() {
     if (!this.componentRef) {
-      await this.displayLowSupplyIcon()
+      const textColor = 'text-red-600'
+      await this.displayLowSupplyIcon(textColor)
 
-      this.renderLowSupplyText()
+      this.renderLowSupplyText(textColor)
       this.cdr.detectChanges()
     }
   }
 
-  private async displayLowSupplyIcon() {
+  private async displayLowSupplyIcon(textColor: string) {
     const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle
     const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
     const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)
     const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)
     faIconComponentRef.instance.icon = faExclamationTriangle
-    faIconComponentRef.instance.classes = ['text-red-600', 'text-[1.35rem]', 'mr-2']
+    faIconComponentRef.instance.classes = [textColor, 'text-[1.35rem]', 'mr-2']
     faIconComponentRef.instance.render()
     this.componentRef = faIconComponentRef
   }
 
-  private renderLowSupplyText() {
+  private renderLowSupplyText(textColor: string) {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const lowSupplySpanElement = this.renderer.createElement('span') as HTMLSpanElement
-    lowSupplySpanElement.classList.add('text-red-600', 'text-xl')
+    lowSupplySpanElement.classList.add(textColor, 'text-xl')
     lowSupplySpanElement.innerText = 'Low Supply'
     this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)
   }
