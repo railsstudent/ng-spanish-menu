@@ -12,6 +12,7 @@ import { TotalCost } from '../interfaces'
           class="btn-indigo mr-2 mb-2 disabled:opacity-75"
           [disabled]="!isFoodOrdered"
           (click)="getCheck.emit(this.tip)"
+          arial-label="calculate total"
         >
           Give me the check
         </button>
@@ -19,16 +20,16 @@ import { TotalCost } from '../interfaces'
         <form class="inline" [formGroup]="form">
           <label
             >Tip:
-            <select class="pl-2 pr-8 py-1" name="tips" formControlName="tip">
+            <select class="pl-2 pr-8 py-1" name="tips" formControlName="tip" arial-label="percentage of tip dropdown">
               <option *ngFor="let tip of tips" [value]="tip">{{ tip }}%</option>
             </select>
           </label>
         </form>
       </div>
-      <section class="total-section">
-        <p class="inline mr-2">Subtotal: {{ totalBreakdown.subTotal }}</p>
-        <p class="inline mr-2">Tip: {{ totalBreakdown.totalTip }}</p>
-        <p class="inline mr-2 font-bold">Total: {{ totalBreakdown.total }}</p>
+      <section class="total-section" arial-label="total section">
+        <p class="inline mr-2" arial-label="subtotal">Subtotal: {{ totalBreakdown.subTotal }}</p>
+        <p class="inline mr-2" arial-label="tip">Tip: {{ totalBreakdown.totalTip }}</p>
+        <p class="inline mr-2 font-bold" arial-label="total amount of the order">Total: {{ totalBreakdown.total }}</p>
       </section>
     </div>
   `,

@@ -15,6 +15,7 @@
     type="submit"
     [disabled]="processing || form.invalid || quantityRemained <= 0"
     class="btn-indigo disabled:opacity-75"
+    aria-label="submit quantity"
   >
     <span class="mr-2">Submit</span>
     <ng-container #viewContainerRef></ng-container>
