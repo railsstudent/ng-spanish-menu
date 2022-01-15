@@ -111,7 +111,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
 
   private async displayLowSupplyComponent() {
     if (!this.componentRef) {
-      const textColor = 'text-red-600'
+      const textColor = 'text-red-500'
       await this.displayLowSupplyIcon(textColor)
 
       this.renderLowSupplyText(textColor)
