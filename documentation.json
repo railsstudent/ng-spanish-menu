@@ -2098,7 +2098,7 @@
     },
     {
       "name": "FoodMenuOptionsComponent",
-      "id": "component-FoodMenuOptionsComponent-9d088615c892641b92a32a0b25182037",
+      "id": "component-FoodMenuOptionsComponent-8302ec29432ae98975733c5afaf74c36",
       "file": "src/app/food/food-menu-options/food-menu-options.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -2109,7 +2109,7 @@
       "selector": "app-food-menu-option",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "template": "<section class=\"flex justify-end p-3 pr-0\" aria-label=\"option section\">\n  <form [formGroup]=\"form\" aria-label=\"option form\">\n    <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"menu options\">\n      <option value=\"all\" aria-label=\"show all\">Show all</option>\n      <option value=\"available\" aria-label=\"show available\">Show available only</option>\n      <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n    </select>\n  </form>\n</section>\n",
+      "template": "<section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n  <form [formGroup]=\"form\" aria-label=\"select food form\">\n    <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n      <option value=\"all\" aria-label=\"show all\">Show all</option>\n      <option value=\"available\" aria-label=\"show available\">Show available only</option>\n      <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n    </select>\n  </form>\n</section>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [],
@@ -2176,7 +2176,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"flex justify-end p-3 pr-0\" aria-label=\"option section\">\n      <form [formGroup]=\"form\" aria-label=\"option form\">\n        <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"menu options\">\n          <option value=\"all\" aria-label=\"show all\">Show all</option>\n          <option value=\"available\" aria-label=\"show available\">Show available only</option>\n          <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionsComponent implements OnInit, OnDestroy {\n  // #region Properties (3)\n\n  @Output()\n  public menuOptionSelected = new EventEmitter<string>()\n\n  public form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (3)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(MenuOptions.all),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value: string) => this.menuOptionSelected.emit(value))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n      <form [formGroup]=\"form\" aria-label=\"select food form\">\n        <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n          <option value=\"all\" aria-label=\"show all\">Show all</option>\n          <option value=\"available\" aria-label=\"show available\">Show available only</option>\n          <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionsComponent implements OnInit, OnDestroy {\n  // #region Properties (3)\n\n  @Output()\n  public menuOptionSelected = new EventEmitter<string>()\n\n  public form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (3)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(MenuOptions.all),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value: string) => this.menuOptionSelected.emit(value))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
@@ -2500,7 +2500,7 @@
     },
     {
       "name": "FoodTotalComponent",
-      "id": "component-FoodTotalComponent-90205a1fc89d4fb8c42a9beb35c71573",
+      "id": "component-FoodTotalComponent-08cad92bacb4b51ec44755ffc2de8550",
       "file": "src/app/food/food-total/food-total.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -2510,7 +2510,7 @@
       "selector": "app-food-total",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button\n      class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n      [disabled]=\"!isFoodOrdered\"\n      (click)=\"getCheck.emit(this.tip)\"\n      arial-label=\"calculate total\"\n    >\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label\n        >Tip:\n        <select class=\"pl-2 pr-8 py-1\" name=\"tips\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n          <option *ngFor=\"let tip of tips\" [value]=\"tip\">{{ tip }}%</option>\n        </select>\n      </label>\n    </form>\n  </div>\n  <section class=\"total-section\" arial-label=\"total section\">\n    <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n    <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n    <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n  </section>\n</div>\n",
+      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button\n      class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n      [disabled]=\"!isFoodOrdered\"\n      (click)=\"getCheck.emit(this.tip)\"\n      arial-label=\"calculate total\"\n    >\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label\n        >Tip:\n        <select class=\"pl-2 pr-8 py-1\" name=\"tips\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n          <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip\">{{ tip }}%</option>\n        </select>\n      </label>\n    </form>\n  </div>\n  <section class=\"total-section\" arial-label=\"total section\">\n    <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n    <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n    <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n  </section>\n</div>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
@@ -2585,7 +2585,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button\n          class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n          [disabled]=\"!isFoodOrdered\"\n          (click)=\"getCheck.emit(this.tip)\"\n          arial-label=\"calculate total\"\n        >\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label\n            >Tip:\n            <select class=\"pl-2 pr-8 py-1\" name=\"tips\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n              <option *ngFor=\"let tip of tips\" [value]=\"tip\">{{ tip }}%</option>\n            </select>\n          </label>\n        </form>\n      </div>\n      <section class=\"total-section\" arial-label=\"total section\">\n        <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n        <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n        <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent implements OnInit {\n  // #region Properties (6)\n\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (1)\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  // #endregion Public Accessors (1)\n\n  // #region Public Methods (1)\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n\n  // #endregion Public Methods (1)\n}\n",
+      "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button\n          class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n          [disabled]=\"!isFoodOrdered\"\n          (click)=\"getCheck.emit(this.tip)\"\n          arial-label=\"calculate total\"\n        >\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label\n            >Tip:\n            <select class=\"pl-2 pr-8 py-1\" name=\"tips\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n              <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip\">{{ tip }}%</option>\n            </select>\n          </label>\n        </form>\n      </div>\n      <section class=\"total-section\" arial-label=\"total section\">\n        <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n        <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n        <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent implements OnInit {\n  // #region Properties (6)\n\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (1)\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  // #endregion Public Accessors (1)\n\n  // #region Public Methods (1)\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n\n  // #endregion Public Methods (1)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
@@ -3283,21 +3283,21 @@
         "name": "environment",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/environments/environment.prod.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
-      },
-      {
-        "name": "environment",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/environments/environment.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
         "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
+      },
+      {
+        "name": "environment",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/environments/environment.prod.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
       },
       {
         "name": "FoodMenuCardTemplate",
@@ -3443,16 +3443,6 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "FoodMenuCardTemplate.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3478,6 +3468,16 @@
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuCardTemplate.bind({})"
       },
       {
         "name": "qtyMap",
@@ -3582,21 +3582,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodChoiceFormComponent>",
-        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-menu/food-menu.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<FoodMenuComponent>",
         "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodChoiceFormComponent>",
+        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3944,18 +3944,6 @@
           "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
         }
       ],
-      "src/environments/environment.prod.ts": [
-        {
-          "name": "environment",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/environments/environment.prod.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
-        }
-      ],
       "src/environments/environment.ts": [
         {
           "name": "environment",
@@ -3966,6 +3954,18 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
+        }
+      ],
+      "src/environments/environment.prod.ts": [
+        {
+          "name": "environment",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/environments/environment.prod.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
         }
       ],
       "src/app/food/food-menu-card/food-menu-card.stories.ts": [

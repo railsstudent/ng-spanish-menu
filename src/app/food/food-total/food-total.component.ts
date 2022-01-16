@@ -21,7 +21,7 @@ import { TotalCost } from '../interfaces'
           <label
             >Tip:
             <select class="pl-2 pr-8 py-1" name="tips" formControlName="tip" arial-label="percentage of tip dropdown">
-              <option *ngFor="let tip of tips" [value]="tip">{{ tip }}%</option>
+              <option *ngFor="let tip of tips" [value]="tip" [attr.arial-label]="tip + '%'">{{ tip }}%</option>
             </select>
           </label>
         </form>
