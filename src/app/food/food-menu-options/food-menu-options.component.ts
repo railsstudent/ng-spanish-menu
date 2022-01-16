@@ -8,9 +8,9 @@ import { MenuOptions } from '../enums'
 @Component({
   selector: 'app-food-menu-option',
   template: `
-    <section class="flex justify-end p-3 pr-0" aria-label="option section">
-      <form [formGroup]="form" aria-label="option form">
-        <select class="pl-2 w-[200px] text-base" name="option" formControlName="option" aria-label="menu options">
+    <section class="flex justify-end p-3 pr-0" aria-label="select food section">
+      <form [formGroup]="form" aria-label="select food form">
+        <select class="pl-2 w-[200px] text-base" name="option" formControlName="option" aria-label="select food">
           <option value="all" aria-label="show all">Show all</option>
           <option value="available" aria-label="show available">Show available only</option>
           <option value="soldOut" aria-label="show sold out">Show sold out</option>
