@@ -2500,7 +2500,7 @@
     },
     {
       "name": "FoodTotalComponent",
-      "id": "component-FoodTotalComponent-08cad92bacb4b51ec44755ffc2de8550",
+      "id": "component-FoodTotalComponent-d983f8d2b06b4bfd6b5201799d3198a6",
       "file": "src/app/food/food-total/food-total.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -2510,7 +2510,7 @@
       "selector": "app-food-total",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button\n      class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n      [disabled]=\"!isFoodOrdered\"\n      (click)=\"getCheck.emit(this.tip)\"\n      arial-label=\"calculate total\"\n    >\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label\n        >Tip:\n        <select class=\"pl-2 pr-8 py-1\" name=\"tips\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n          <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip\">{{ tip }}%</option>\n        </select>\n      </label>\n    </form>\n  </div>\n  <section class=\"total-section\" arial-label=\"total section\">\n    <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n    <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n    <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n  </section>\n</div>\n",
+      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button\n      class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n      [disabled]=\"!isFoodOrdered\"\n      (click)=\"getCheck.emit(this.tip)\"\n      arial-label=\"calculate total\"\n    >\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label for=\"tips\">Tip:</label>\n      <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n        <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n      </select>\n    </form>\n  </div>\n  <section class=\"total-section\" arial-label=\"total section\">\n    <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n    <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n    <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n  </section>\n</div>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
@@ -2518,28 +2518,28 @@
           "name": "currency",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 48,
+          "line": 46,
           "type": "string"
         },
         {
           "name": "isFoodOrdered",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 52,
+          "line": 50,
           "type": "boolean"
         },
         {
           "name": "tips",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 54,
+          "line": 52,
           "type": "number[]"
         },
         {
           "name": "totalBreakdown",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 56,
+          "line": 54,
           "type": "TotalCost"
         }
       ],
@@ -2549,7 +2549,7 @@
           "defaultValue": "new EventEmitter<number>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 50,
+          "line": 48,
           "type": "EventEmitter"
         }
       ],
@@ -2561,7 +2561,7 @@
           "type": "FormGroup",
           "optional": false,
           "description": "",
-          "line": 58,
+          "line": 56,
           "modifierKind": [123]
         }
       ],
@@ -2572,7 +2572,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 84,
+          "line": 82,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2585,7 +2585,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button\n          class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n          [disabled]=\"!isFoodOrdered\"\n          (click)=\"getCheck.emit(this.tip)\"\n          arial-label=\"calculate total\"\n        >\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label\n            >Tip:\n            <select class=\"pl-2 pr-8 py-1\" name=\"tips\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n              <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip\">{{ tip }}%</option>\n            </select>\n          </label>\n        </form>\n      </div>\n      <section class=\"total-section\" arial-label=\"total section\">\n        <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n        <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n        <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent implements OnInit {\n  // #region Properties (6)\n\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (1)\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  // #endregion Public Accessors (1)\n\n  // #region Public Methods (1)\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n\n  // #endregion Public Methods (1)\n}\n",
+      "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button\n          class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n          [disabled]=\"!isFoodOrdered\"\n          (click)=\"getCheck.emit(this.tip)\"\n          arial-label=\"calculate total\"\n        >\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label for=\"tips\">Tip:</label>\n          <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n            <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n          </select>\n        </form>\n      </div>\n      <section class=\"total-section\" arial-label=\"total section\">\n        <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n        <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n        <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent implements OnInit {\n  // #region Properties (6)\n\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (1)\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  // #endregion Public Accessors (1)\n\n  // #region Public Methods (1)\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n\n  // #endregion Public Methods (1)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
@@ -2602,7 +2602,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 58,
+        "line": 56,
         "jsdoctags": [
           {
             "name": "fb",
@@ -2623,7 +2623,7 @@
             "name": "tip",
             "type": "number",
             "returnType": "number",
-            "line": 70
+            "line": 68
           }
         }
       }
@@ -3283,21 +3283,21 @@
         "name": "environment",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/environments/environment.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
-      },
-      {
-        "name": "environment",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/environments/environment.prod.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
         "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
+      },
+      {
+        "name": "environment",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/environments/environment.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
       },
       {
         "name": "FoodMenuCardTemplate",
@@ -3433,7 +3433,27 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuCardTemplate.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3458,26 +3478,6 @@
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "Template.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-total/food-total.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "Template.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "FoodMenuCardTemplate.bind({})"
       },
       {
         "name": "qtyMap",
@@ -3572,16 +3572,6 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodChoiceComponent>",
-        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-menu/food-menu.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3592,11 +3582,11 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Story<FoodChoiceFormComponent>",
-        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
+        "type": "Story<FoodChoiceComponent>",
+        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3612,11 +3602,11 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Story<FoodShellComponent>",
-        "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
+        "type": "Story<FoodChoiceFormComponent>",
+        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3627,6 +3617,16 @@
         "deprecationMessage": "",
         "type": "Story<FoodTotalComponent>",
         "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodShellComponent>",
+        "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
       }
     ],
     "functions": [
@@ -3944,18 +3944,6 @@
           "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
         }
       ],
-      "src/environments/environment.ts": [
-        {
-          "name": "environment",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/environments/environment.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
-        }
-      ],
       "src/environments/environment.prod.ts": [
         {
           "name": "environment",
@@ -3966,6 +3954,18 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
+        }
+      ],
+      "src/environments/environment.ts": [
+        {
+          "name": "environment",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/environments/environment.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
         }
       ],
       "src/app/food/food-menu-card/food-menu-card.stories.ts": [
