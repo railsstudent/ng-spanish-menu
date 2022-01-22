@@ -18,7 +18,7 @@ import {
 } from '@angular/core'
 import { environment } from 'src/environments/environment'
 
-import { Choice, OrderedFoodChoice } from '../interfaces'
+import { Choice, OrderedFoodChoice, Stock } from '../interfaces'
 import { isQtyMapCurrentValueObjectLiteral } from './food-choice.type-guard'
 
 @Component({
@@ -39,8 +39,9 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   @ViewChild('lowSupplyRef', { read: ElementRef, static: true })
   public lowSupplierRef: ElementRef
   @Input()
-  public qtyMap: Record<string, number> | undefined | null
+  public qtyMap: Record<string, Stock> | undefined | null
   public remained: number
+  public stock: number
   public componentRef: ComponentRef<unknown> | null = null
   public minimumSupply: number
 
@@ -74,8 +75,15 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   public async ngOnInit(): Promise<void> {
-    this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0
-    this.minimumSupply = Math.ceil(this.remained * environment.lowSupplyPercentage)
+    if (this.qtyMap) {
+      this.remained = this.qtyMap[this.choice.id].quantity || 0
+      this.stock = this.qtyMap[this.choice.id].totalStock || 0
+      this.minimumSupply = Math.ceil(this.stock * environment.lowSupplyPercentage)
+    } else {
+      this.remained = 0
+      this.stock = 0
+      this.minimumSupply = 0
+    }
 
     await this.handleLowSupply()
   }

@@ -16,7 +16,7 @@ exports[`typescript/eslint`] = {
     "src/app/food/food-choice-form/food-choice-form.component.ts:153013722": [
       [94, 21, 19, "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.\\nIf your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.", "2980563503"]
     ],
-    "src/app/food/food-total/food-total.component.ts:757908995": [
+    "src/app/food/food-total/food-total.component.ts:2669904560": [
       [83, 56, 19, "Avoid referencing unbound methods which may cause unintentional scoping of \`this\`.\\nIf your function does not access \`this\`, you can annotate it with \`this: void\`, or consider using an arrow function instead.", "2980563503"]
     ]
   }`

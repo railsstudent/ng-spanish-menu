@@ -503,6 +503,38 @@
       ]
     },
     {
+      "name": "Stock",
+      "id": "interface-Stock-e3ec96a2c69946e754aba4c2e8cc0d28",
+      "file": "src/app/food/interfaces/stock.interface.ts",
+      "deprecated": false,
+      "deprecationMessage": "",
+      "type": "interface",
+      "sourceCode": "export interface Stock {\n  quantity: number\n  totalStock: number\n}\n",
+      "properties": [
+        {
+          "name": "quantity",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 2
+        },
+        {
+          "name": "totalStock",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 3
+        }
+      ],
+      "indexSignatures": [],
+      "kind": 164,
+      "methods": []
+    },
+    {
       "name": "Tip",
       "id": "interface-Tip-a20fc0f056db04ff89b25c6e54ae73f5",
       "file": "src/app/food/interfaces/tip.interface.ts",
@@ -1185,7 +1217,7 @@
     },
     {
       "name": "FoodChoiceComponent",
-      "id": "component-FoodChoiceComponent-f8d4c93865924587dc78229eea104b38",
+      "id": "component-FoodChoiceComponent-ddd903a18d932d1ff688d9ef795bd1db",
       "file": "src/app/food/food-choice/food-choice.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1211,7 +1243,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "line": 42,
-          "type": "Record<string | number> | undefined | null"
+          "type": "Record<string | Stock> | undefined | null"
         }
       ],
       "outputsClass": [
@@ -1233,7 +1265,7 @@
           "type": "ComponentRef<> | null",
           "optional": false,
           "description": "",
-          "line": 44,
+          "line": 45,
           "modifierKind": [123]
         },
         {
@@ -1259,7 +1291,7 @@
           "type": "number",
           "optional": false,
           "description": "",
-          "line": 45,
+          "line": 46,
           "modifierKind": [123]
         },
         {
@@ -1270,6 +1302,16 @@
           "optional": false,
           "description": "",
           "line": 43,
+          "modifierKind": [123]
+        },
+        {
+          "name": "stock",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "number",
+          "optional": false,
+          "description": "",
+          "line": 44,
           "modifierKind": [123]
         },
         {
@@ -1296,7 +1338,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 97,
+          "line": 105,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
@@ -1307,7 +1349,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 112,
+          "line": 120,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121, 130]
@@ -1325,7 +1367,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 122,
+          "line": 130,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121, 130],
@@ -1347,7 +1389,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 141,
+          "line": 149,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121, 130]
@@ -1365,7 +1407,7 @@
           "optional": false,
           "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 61,
+          "line": 62,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123, 130],
@@ -1387,7 +1429,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 72,
+          "line": 73,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -1398,7 +1440,7 @@
           "optional": false,
           "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 76,
+          "line": 77,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123, 130]
@@ -1416,7 +1458,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 133,
+          "line": 141,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121],
@@ -1445,7 +1487,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 83,
+          "line": 91,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -1469,7 +1511,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, OrderedFoodChoice } from '../interfaces'\nimport { isQtyMapCurrentValueObjectLiteral } from './food-choice.type-guard'\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {\n  // #region Properties (8)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public viewContainerRef: ViewContainerRef\n  @ViewChild('lowSupplyRef', { read: ElementRef, static: true })\n  public lowSupplierRef: ElementRef\n  @Input()\n  public qtyMap: Record<string, number> | undefined | null\n  public remained: number\n  public componentRef: ComponentRef<unknown> | null = null\n  public minimumSupply: number\n\n  // #endregion Properties (8)\n\n  // #region Constructors (1)\n\n  constructor(\n    private factoryResolver: ComponentFactoryResolver,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (4)\n\n  public async ngOnChanges(changes: SimpleChanges): Promise<void> {\n    const { qtyMap } = changes\n    if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {\n      this.remained = qtyMap.currentValue[this.choice.id]\n    } else {\n      this.remained = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n  }\n\n  public async ngOnInit(): Promise<void> {\n    this.remained = this.qtyMap ? this.qtyMap[this.choice.id] || 0 : 0\n    this.minimumSupply = Math.ceil(this.remained * environment.lowSupplyPercentage)\n\n    await this.handleLowSupply()\n  }\n\n  public submitFoodChoice(newQuantity: number): void {\n    const { ingredients, quantity, ...rest } = this.choice\n    if (this.remained - newQuantity >= 0) {\n      this.foodChoiceAdded.emit({\n        ...rest,\n        quantity: newQuantity,\n      })\n    }\n  }\n\n  // #endregion Public Methods (4)\n\n  // #region Private Methods (3)\n\n  private destroyComponents() {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n\n    if (this.viewContainerRef) {\n      this.viewContainerRef.clear()\n    }\n\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access\n    Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {\n      this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)\n    })\n  }\n\n  private async displayLowSupplyComponent() {\n    if (!this.componentRef) {\n      const textColor = 'text-red-500'\n      await this.displayLowSupplyIcon(textColor)\n\n      this.renderLowSupplyText(textColor)\n      this.cdr.detectChanges()\n    }\n  }\n\n  private async displayLowSupplyIcon(textColor: string) {\n    const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle\n    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)\n    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)\n    faIconComponentRef.instance.icon = faExclamationTriangle\n    faIconComponentRef.instance.classes = [textColor, 'text-[1.35rem]', 'mr-2']\n    faIconComponentRef.instance.render()\n    this.componentRef = faIconComponentRef\n  }\n\n  private renderLowSupplyText(textColor: string) {\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment\n    const lowSupplySpanElement = this.renderer.createElement('span') as HTMLSpanElement\n    lowSupplySpanElement.classList.add(textColor, 'text-xl')\n    lowSupplySpanElement.innerText = 'Low Supply'\n    this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)\n  }\n\n  private async handleLowSupply() {\n    console.log('handleLowSupply', this.remained)\n    if (this.remained <= 0) {\n      this.destroyComponents()\n    } else if (this.remained > 0 && this.remained <= this.minimumSupply) {\n      await this.displayLowSupplyComponent()\n    }\n  }\n\n  // #endregion Private Methods (3)\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, OrderedFoodChoice, Stock } from '../interfaces'\nimport { isQtyMapCurrentValueObjectLiteral } from './food-choice.type-guard'\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {\n  // #region Properties (8)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public viewContainerRef: ViewContainerRef\n  @ViewChild('lowSupplyRef', { read: ElementRef, static: true })\n  public lowSupplierRef: ElementRef\n  @Input()\n  public qtyMap: Record<string, Stock> | undefined | null\n  public remained: number\n  public stock: number\n  public componentRef: ComponentRef<unknown> | null = null\n  public minimumSupply: number\n\n  // #endregion Properties (8)\n\n  // #region Constructors (1)\n\n  constructor(\n    private factoryResolver: ComponentFactoryResolver,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (4)\n\n  public async ngOnChanges(changes: SimpleChanges): Promise<void> {\n    const { qtyMap } = changes\n    if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {\n      this.remained = qtyMap.currentValue[this.choice.id]\n    } else {\n      this.remained = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n  }\n\n  public async ngOnInit(): Promise<void> {\n    if (this.qtyMap) {\n      this.remained = this.qtyMap[this.choice.id].quantity || 0\n      this.stock = this.qtyMap[this.choice.id].totalStock || 0\n      this.minimumSupply = Math.ceil(this.stock * environment.lowSupplyPercentage)\n    } else {\n      this.remained = 0\n      this.stock = 0\n      this.minimumSupply = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public submitFoodChoice(newQuantity: number): void {\n    const { ingredients, quantity, ...rest } = this.choice\n    if (this.remained - newQuantity >= 0) {\n      this.foodChoiceAdded.emit({\n        ...rest,\n        quantity: newQuantity,\n      })\n    }\n  }\n\n  // #endregion Public Methods (4)\n\n  // #region Private Methods (3)\n\n  private destroyComponents() {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n\n    if (this.viewContainerRef) {\n      this.viewContainerRef.clear()\n    }\n\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access\n    Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {\n      this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)\n    })\n  }\n\n  private async displayLowSupplyComponent() {\n    if (!this.componentRef) {\n      const textColor = 'text-red-500'\n      await this.displayLowSupplyIcon(textColor)\n\n      this.renderLowSupplyText(textColor)\n      this.cdr.detectChanges()\n    }\n  }\n\n  private async displayLowSupplyIcon(textColor: string) {\n    const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle\n    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)\n    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)\n    faIconComponentRef.instance.icon = faExclamationTriangle\n    faIconComponentRef.instance.classes = [textColor, 'text-[1.35rem]', 'mr-2']\n    faIconComponentRef.instance.render()\n    this.componentRef = faIconComponentRef\n  }\n\n  private renderLowSupplyText(textColor: string) {\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment\n    const lowSupplySpanElement = this.renderer.createElement('span') as HTMLSpanElement\n    lowSupplySpanElement.classList.add(textColor, 'text-xl')\n    lowSupplySpanElement.innerText = 'Low Supply'\n    this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)\n  }\n\n  private async handleLowSupply() {\n    if (this.remained <= 0) {\n      this.destroyComponents()\n    } else if (this.remained > 0 && this.remained <= this.minimumSupply) {\n      await this.displayLowSupplyComponent()\n    }\n  }\n\n  // #endregion Private Methods (3)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -1503,7 +1545,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 45,
+        "line": 46,
         "jsdoctags": [
           {
             "name": "factoryResolver",
@@ -1825,7 +1867,7 @@
     },
     {
       "name": "FoodMenuComponent",
-      "id": "component-FoodMenuComponent-f44fdc94b165d4466c22fb46afd4026b",
+      "id": "component-FoodMenuComponent-dd2f350ff714a07a9aa5682916bf2da0",
       "file": "src/app/food/food-menu/food-menu.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1883,7 +1925,7 @@
           "name": "qtyMap",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "Record<string | number> | undefined",
+          "type": "Record<string | Stock> | undefined",
           "optional": false,
           "description": "",
           "line": 23,
@@ -2063,7 +2105,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs'\nimport { map, takeUntil, tap } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Output()\n  public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuItems$: Observable<MenuItem[] | undefined>\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)\n  public qtyMap: Record<string, number> | undefined\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private service: FoodService) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public choiceTrackByFn(index: number, choice: Choice): string | number {\n    return choice ? choice.id : index\n  }\n\n  public filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {\n    if (!menuItems || option === 'all') {\n      return menuItems\n    }\n\n    const typedOptionString = option as keyof typeof MenuOptions\n    const typedOption = MenuOptions[typedOptionString]\n\n    const filterFuncMap = {\n      [MenuOptions.all]: () => true,\n      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] > 0,\n      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] <= 0,\n    }\n\n    const filterFunc = filterFuncMap[typedOption]\n    return menuItems.reduce((acc, menuItem) => {\n      const matchedChoices = menuItem.choices.filter(filterFunc)\n      if (matchedChoices.length > 0) {\n        return acc.concat({\n          ...menuItem,\n          choices: matchedChoices,\n        })\n      }\n      return acc\n    }, [] as MenuItem[])\n  }\n\n  public menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n\n  public ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => ({\n        menuItems,\n        option,\n      })),\n      map(({ menuItems, option }) => this.filterMenuItems(menuItems, option)),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.service.quantityAvailableMap$.pipe(takeUntil(this.unsubscribe$)).subscribe((updatedQtyMap) => {\n      if (!updatedQtyMap) {\n        this.qtyMap = undefined\n      } else {\n        this.qtyMap = {\n          ...updatedQtyMap,\n        }\n      }\n    })\n\n    this.handleFoodChoiceSub$\n      .pipe(\n        tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))\n  }\n\n  // #endregion Public Methods (5)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs'\nimport { map, takeUntil, tap } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice, Stock } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Output()\n  public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuItems$: Observable<MenuItem[] | undefined>\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)\n  public qtyMap: Record<string, Stock> | undefined\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private service: FoodService) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public choiceTrackByFn(index: number, choice: Choice): string | number {\n    return choice ? choice.id : index\n  }\n\n  public filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {\n    if (!menuItems || option === 'all') {\n      return menuItems\n    }\n\n    const typedOptionString = option as keyof typeof MenuOptions\n    const typedOption = MenuOptions[typedOptionString]\n\n    const filterFuncMap = {\n      [MenuOptions.all]: () => true,\n      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,\n      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,\n    }\n\n    const filterFunc = filterFuncMap[typedOption]\n    return menuItems.reduce((acc, menuItem) => {\n      const matchedChoices = menuItem.choices.filter(filterFunc)\n      if (matchedChoices.length > 0) {\n        return acc.concat({\n          ...menuItem,\n          choices: matchedChoices,\n        })\n      }\n      return acc\n    }, [] as MenuItem[])\n  }\n\n  public menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n\n  public ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => ({\n        menuItems,\n        option,\n      })),\n      map(({ menuItems, option }) => this.filterMenuItems(menuItems, option)),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.service.quantityAvailableMap$.pipe(takeUntil(this.unsubscribe$)).subscribe((updatedQtyMap) => {\n      if (!updatedQtyMap) {\n        this.qtyMap = undefined\n      } else {\n        this.qtyMap = Object.keys(updatedQtyMap).reduce((acc: Record<string, Stock>, choiceId) => {\n          acc[choiceId] = {\n            quantity: updatedQtyMap[choiceId],\n            totalStock: updatedQtyMap[choiceId],\n          }\n          return acc\n        }, {})\n      }\n    })\n\n    this.handleFoodChoiceSub$\n      .pipe(\n        tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))\n  }\n\n  // #endregion Public Methods (5)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -2500,7 +2542,7 @@
     },
     {
       "name": "FoodTotalComponent",
-      "id": "component-FoodTotalComponent-d983f8d2b06b4bfd6b5201799d3198a6",
+      "id": "component-FoodTotalComponent-0d696ba970c2722c01308f22a8685ed5",
       "file": "src/app/food/food-total/food-total.component.ts",
       "encapsulation": [],
       "entryComponents": [],
@@ -2510,7 +2552,7 @@
       "selector": "app-food-total",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button\n      class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n      [disabled]=\"!isFoodOrdered\"\n      (click)=\"getCheck.emit(this.tip)\"\n      arial-label=\"calculate total\"\n    >\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label for=\"tips\">Tip:</label>\n      <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n        <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n      </select>\n    </form>\n  </div>\n  <section class=\"total-section\" arial-label=\"total section\">\n    <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n    <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n    <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n  </section>\n</div>\n",
+      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button\n      class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n      [disabled]=\"!isFoodOrdered\"\n      (click)=\"getCheck.emit(this.tip)\"\n      arial-label=\"calculate total\"\n    >\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label for=\"tips\" class=\"mr-2\">Tip:</label>\n      <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n        <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n      </select>\n    </form>\n  </div>\n  <section class=\"total-section\" arial-label=\"total section\">\n    <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n    <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n    <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n  </section>\n</div>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
@@ -2585,7 +2627,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button\n          class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n          [disabled]=\"!isFoodOrdered\"\n          (click)=\"getCheck.emit(this.tip)\"\n          arial-label=\"calculate total\"\n        >\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label for=\"tips\">Tip:</label>\n          <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n            <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n          </select>\n        </form>\n      </div>\n      <section class=\"total-section\" arial-label=\"total section\">\n        <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n        <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n        <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent implements OnInit {\n  // #region Properties (6)\n\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (1)\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  // #endregion Public Accessors (1)\n\n  // #region Public Methods (1)\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n\n  // #endregion Public Methods (1)\n}\n",
+      "sourceCode": "import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button\n          class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n          [disabled]=\"!isFoodOrdered\"\n          (click)=\"getCheck.emit(this.tip)\"\n          arial-label=\"calculate total\"\n        >\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label for=\"tips\" class=\"mr-2\">Tip:</label>\n          <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n            <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n          </select>\n        </form>\n      </div>\n      <section class=\"total-section\" arial-label=\"total section\">\n        <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n        <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n        <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n})\nexport class FoodTotalComponent implements OnInit {\n  // #region Properties (6)\n\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (1)\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  // #endregion Public Accessors (1)\n\n  // #region Public Methods (1)\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n\n  // #endregion Public Methods (1)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
@@ -3266,21 +3308,21 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "FoodMenuCardTemplate.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
       },
       {
         "name": "Primary",
@@ -4384,7 +4426,7 @@
         "linktype": "component",
         "name": "FoodChoiceComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/19",
+        "coverageCount": "0/20",
         "status": "low"
       },
       {
@@ -4740,6 +4782,15 @@
         "type": "interface",
         "linktype": "interface",
         "name": "PriceQuantity",
+        "coveragePercent": 0,
+        "coverageCount": "0/3",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/food/interfaces/stock.interface.ts",
+        "type": "interface",
+        "linktype": "interface",
+        "name": "Stock",
         "coveragePercent": 0,
         "coverageCount": "0/3",
         "status": "low"

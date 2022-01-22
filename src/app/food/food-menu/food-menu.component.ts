@@ -4,7 +4,7 @@ import { map, takeUntil, tap } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 
 import { MenuOptions } from '../enums'
-import { Choice, MenuItem, OrderedFoodChoice } from '../interfaces'
+import { Choice, MenuItem, OrderedFoodChoice, Stock } from '../interfaces'
 import { FoodService } from '../services'
 
 @Component({
@@ -20,7 +20,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()
   menuItems$: Observable<MenuItem[] | undefined>
   menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)
-  public qtyMap: Record<string, number> | undefined
+  public qtyMap: Record<string, Stock> | undefined
   unsubscribe$ = new Subject<boolean>()
 
   // #endregion Properties (6)
@@ -47,8 +47,8 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
 
     const filterFuncMap = {
       [MenuOptions.all]: () => true,
-      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] > 0,
-      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id] <= 0,
+      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,
+      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,
     }
 
     const filterFunc = filterFuncMap[typedOption]
@@ -93,9 +93,13 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
       if (!updatedQtyMap) {
         this.qtyMap = undefined
       } else {
-        this.qtyMap = {
-          ...updatedQtyMap,
-        }
+        this.qtyMap = Object.keys(updatedQtyMap).reduce((acc: Record<string, Stock>, choiceId) => {
+          acc[choiceId] = {
+            quantity: updatedQtyMap[choiceId],
+            totalStock: updatedQtyMap[choiceId],
+          }
+          return acc
+        }, {})
       }
     })
 
