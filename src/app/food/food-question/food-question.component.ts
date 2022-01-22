@@ -2,12 +2,11 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 
 @Component({
   selector: 'app-food-question',
-  // templateUrl: './food-question.component.html',
   template: `
     <div class="food-question flex flex-col border-2 border-indigo-400">
       <label name="question" class="item flex px-2 py-3">
         <span class="field">Question:</span>
-        <span class="flex-auto field-text">{{ question }}</span>
+        <span class="flex-auto field-text font-bold">{{ question }}</span>
       </label>
     </div>
   `,

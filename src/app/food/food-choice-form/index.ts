@@ -1,1 +1,1 @@
-export * from './food-choice-form.module'
+export * from './food-choice-form.component'

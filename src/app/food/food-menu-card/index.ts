@@ -1,1 +1,1 @@
-export * from './food-menu-card.module'
+export * from './food-menu-card.component'

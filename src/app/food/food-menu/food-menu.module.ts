@@ -1,15 +1,16 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 import { FoodChoiceModule } from '../food-choice'
-import { FoodMenuCardModule } from '../food-menu-card'
-import { FoodMenuOptionsModule } from '../food-menu-options'
-import { FoodQuestionModule } from '../food-question'
+import { FoodMenuCardComponent } from '../food-menu-card'
+import { FoodMenuOptionsComponent } from '../food-menu-options'
+import { FoodQuestionComponent } from '../food-question'
 import { FoodMenuComponent } from './food-menu.component'
 
 @NgModule({
-  declarations: [FoodMenuComponent],
-  imports: [CommonModule, FoodQuestionModule, FoodMenuCardModule, FoodMenuOptionsModule, FoodChoiceModule],
+  declarations: [FoodMenuComponent, FoodQuestionComponent, FoodMenuCardComponent, FoodMenuOptionsComponent],
+  imports: [CommonModule, FoodChoiceModule, FormsModule, ReactiveFormsModule],
   exports: [FoodMenuComponent],
 })
 export class FoodMenuModule {}

@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceModule } from '../food-choice'
-import { FoodQuestionModule } from '../food-question'
+import { FoodQuestionComponent } from '../food-question/food-question.component'
 import { FoodService } from '../services'
 import { MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodMenuCardComponent } from './food-menu-card.component'
@@ -14,8 +14,8 @@ export default {
   component: FoodMenuCardComponent,
   decorators: [
     moduleMetadata({
-      imports: [HttpClientModule, FoodQuestionModule, FoodChoiceModule],
-      declarations: [],
+      imports: [HttpClientModule, FoodChoiceModule],
+      declarations: [FoodQuestionComponent],
       providers: [
         {
           provide: FoodService,

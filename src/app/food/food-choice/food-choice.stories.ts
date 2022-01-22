@@ -2,17 +2,17 @@ import { HttpClientModule } from '@angular/common/http'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
-import { FoodChoiceFormModule } from '../food-choice-form'
 import { FoodService } from '../services'
 import { LowSupplyMockData, MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodChoiceComponent } from './food-choice.component'
+import { FoodChoiceModule } from './food-choice.module'
 
 export default {
   title: 'Food Choice',
   component: FoodChoiceComponent,
   decorators: [
     moduleMetadata({
-      imports: [HttpClientModule, FoodChoiceFormModule, FontAwesomeModule],
+      imports: [HttpClientModule, FoodChoiceModule, FontAwesomeModule],
       declarations: [],
       providers: [
         {
