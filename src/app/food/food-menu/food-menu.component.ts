@@ -89,19 +89,9 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
       takeUntil(this.unsubscribe$),
     )
 
-    this.service.quantityAvailableMap$.pipe(takeUntil(this.unsubscribe$)).subscribe((updatedQtyMap) => {
-      if (!updatedQtyMap) {
-        this.qtyMap = undefined
-      } else {
-        this.qtyMap = Object.keys(updatedQtyMap).reduce((acc: Record<string, Stock>, choiceId) => {
-          acc[choiceId] = {
-            quantity: updatedQtyMap[choiceId],
-            totalStock: updatedQtyMap[choiceId],
-          }
-          return acc
-        }, {})
-      }
-    })
+    this.service.quantityAvailableMap$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((quantityMap) => (this.qtyMap = this.updateQuantity(quantityMap)))
 
     this.handleFoodChoiceSub$
       .pipe(
@@ -111,5 +101,22 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
       .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))
   }
 
+  private updateQuantity(quantityMap: Record<string, number> | undefined) {
+    if (!quantityMap) {
+      return undefined
+    }
+
+    return Object.keys(quantityMap).reduce((acc: Record<string, Stock>, choiceId) => {
+      if (acc[choiceId]) {
+        acc[choiceId].quantity = quantityMap[choiceId]
+      } else {
+        acc[choiceId] = {
+          quantity: quantityMap[choiceId],
+          totalStock: quantityMap[choiceId],
+        }
+      }
+      return acc
+    }, { ...this.qtyMap } || {})
+  }
   // #endregion Public Methods (5)
 }

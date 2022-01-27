@@ -62,7 +62,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   public async ngOnChanges(changes: SimpleChanges): Promise<void> {
     const { qtyMap } = changes
     if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {
-      this.remained = qtyMap.currentValue[this.choice.id]
+      this.remained = qtyMap.currentValue[this.choice.id].quantity || 0
     } else {
       this.remained = 0
     }
