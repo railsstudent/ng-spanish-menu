@@ -113,6 +113,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
         acc[choiceId] = {
           quantity: quantityMap[choiceId],
           totalStock: quantityMap[choiceId],
+          isLowSupply: false,
         }
       }
       return acc

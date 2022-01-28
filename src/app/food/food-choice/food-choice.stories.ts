@@ -30,9 +30,9 @@ const Template: Story<FoodChoiceComponent> = (args: FoodChoiceComponent) => ({
 })
 
 const qtyMap = {
-  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10 },
-  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 0 },
-  [LowSupplyMockData[0].choices[2].id]: { quantity: 1, totalStock: 1 },
+  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },
+  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 0, isLowSupply: false },
+  [LowSupplyMockData[0].choices[2].id]: { quantity: 1, totalStock: 1, isLowSupply: false },
 }
 
 export const Primary = Template.bind({})
