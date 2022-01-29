@@ -80,12 +80,12 @@
     },
     {
       "name": "FoodServiceInterface",
-      "id": "interface-FoodServiceInterface-834ddeb0084c851ce4c41a42e0141530",
+      "id": "interface-FoodServiceInterface-3cc022ec295734a51bfa625023d1c713",
       "file": "src/app/food/interfaces/food-service.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "import { Observable } from 'rxjs'\n\nimport { MenuItem } from './menu.interface'\nimport { PriceQuantity } from './price-quantity.interface'\nimport { TotalCost } from './total.interface'\n\nexport interface FoodServiceInterface {\n  getFood(url: string): Observable<MenuItem[] | undefined>\n  calculateTotal(food: PriceQuantity[], tip: number): TotalCost\n  updateQuantity(id: string, quantity: number): void\n  getQuantity(id: string): number\n  getTips(url: string): Observable<number[]>\n}\n",
+      "sourceCode": "import { Observable } from 'rxjs'\n\nimport { MenuItem } from './menu.interface'\nimport { PriceQuantity } from './price-quantity.interface'\nimport { TotalCost } from './total.interface'\n\nexport interface FoodServiceInterface {\n  getFood(url: string): Observable<MenuItem[] | undefined>\n  calculateTotal(food: PriceQuantity[], tip: number): TotalCost\n  updateQuantity(id: string, quantity: number, isLowSupply: boolean): void\n  getQuantity(id: string): number\n  getTips(url: string): Observable<number[]>\n}\n",
       "properties": [],
       "indexSignatures": [],
       "kind": 166,
@@ -231,6 +231,12 @@
               "type": "number",
               "deprecated": false,
               "deprecationMessage": ""
+            },
+            {
+              "name": "isLowSupply",
+              "type": "boolean",
+              "deprecated": false,
+              "deprecationMessage": ""
             }
           ],
           "optional": false,
@@ -252,6 +258,15 @@
             {
               "name": "quantity",
               "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "isLowSupply",
+              "type": "boolean",
               "deprecated": false,
               "deprecationMessage": "",
               "tagName": {
@@ -352,12 +367,12 @@
     },
     {
       "name": "OrderedFoodChoice",
-      "id": "interface-OrderedFoodChoice-3952981fd4d16ee1c43868baaa7e0a96",
+      "id": "interface-OrderedFoodChoice-8681e3ee8a0c02fc4fb97cc136d5afa2",
       "file": "src/app/food/interfaces/ordered-choice.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface OrderedFoodChoice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n}\n",
+      "sourceCode": "export interface OrderedFoodChoice {\n  id: string\n  name: string\n  description: string\n  currency: string\n  price: number\n  quantity: number\n  isLowSupply?: boolean\n}\n",
       "properties": [
         {
           "name": "currency",
@@ -385,6 +400,15 @@
           "optional": false,
           "description": "",
           "line": 2
+        },
+        {
+          "name": "isLowSupply",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": true,
+          "description": "",
+          "line": 8
         },
         {
           "name": "name",
@@ -504,13 +528,22 @@
     },
     {
       "name": "Stock",
-      "id": "interface-Stock-e3ec96a2c69946e754aba4c2e8cc0d28",
+      "id": "interface-Stock-fdf997568880f1c6c0468e82bbd7615f",
       "file": "src/app/food/interfaces/stock.interface.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "interface",
-      "sourceCode": "export interface Stock {\n  quantity: number\n  totalStock: number\n}\n",
+      "sourceCode": "export interface Stock {\n  quantity: number\n  totalStock: number\n  isLowSupply: boolean\n}\n",
       "properties": [
+        {
+          "name": "isLowSupply",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "boolean",
+          "optional": false,
+          "description": "",
+          "line": 4
+        },
         {
           "name": "quantity",
           "deprecated": false,
@@ -602,7 +635,7 @@
   "injectables": [
     {
       "name": "FoodService",
-      "id": "injectable-FoodService-e787eb91ade5027f0837ae8922bf593f",
+      "id": "injectable-FoodService-a380ffae83434a1ecc503fd012f81d96",
       "file": "src/app/food/services/food.service.ts",
       "properties": [
         {
@@ -617,7 +650,7 @@
         },
         {
           "name": "quantityAvailableSub$",
-          "defaultValue": "new BehaviorSubject<Record<string, number> | undefined>(undefined)",
+          "defaultValue": "new BehaviorSubject<Record<string, Stock> | undefined>(undefined)",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
@@ -716,7 +749,7 @@
           "optional": false,
           "returnType": "number",
           "typeParameters": [],
-          "line": 67,
+          "line": 71,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -745,7 +778,7 @@
           "optional": false,
           "returnType": "Observable<number[]>",
           "typeParameters": [],
-          "line": 75,
+          "line": 79,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -774,7 +807,7 @@
           "optional": false,
           "returnType": "number",
           "typeParameters": [],
-          "line": 104,
+          "line": 112,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121],
@@ -804,12 +837,18 @@
               "type": "number",
               "deprecated": false,
               "deprecationMessage": ""
+            },
+            {
+              "name": "isLowSupply",
+              "type": "boolean",
+              "deprecated": false,
+              "deprecationMessage": ""
             }
           ],
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 86,
+          "line": 90,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -831,6 +870,15 @@
               "tagName": {
                 "text": "param"
               }
+            },
+            {
+              "name": "isLowSupply",
+              "type": "boolean",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
             }
           ]
         }
@@ -839,7 +887,7 @@
       "deprecationMessage": "",
       "description": "",
       "rawdescription": "\n",
-      "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { BehaviorSubject, Observable, of } from 'rxjs'\nimport { catchError, pluck, share, tap } from 'rxjs/operators'\n\nimport { FoodServiceInterface, Menu, MenuItem, PriceQuantity, Tip, TotalCost } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService implements FoodServiceInterface {\n  // #region Properties (2)\n\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)\n\n  // eslint-disable-next-line @typescript-eslint/member-ordering\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  // #endregion Properties (2)\n\n  // #region Constructors (1)\n\n  constructor(private http: HttpClient) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public calculateTotal(food: PriceQuantity[], tip = 0): TotalCost {\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    const subTotal = this.roundAmount(unroundedTotal)\n    const totalTip = this.roundAmount(unroundedTotal * tip)\n    const total = this.roundAmount(subTotal + totalTip)\n\n    return {\n      subTotal,\n      totalTip,\n      total,\n    }\n  }\n\n  public getFood(url: string): Observable<MenuItem[] | undefined> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      tap((menu) => {\n        console.log('menu', menu)\n        const qtyMap = menu.reduce((acc, mi) => {\n          mi.choices.forEach(({ id, quantity }) => {\n            acc[id] = quantity\n          })\n          return acc\n        }, {} as Record<string, number>)\n        this.quantityAvailableSub$.next(qtyMap)\n      }),\n      catchError((err: Error) => {\n        console.error(err)\n        return of(undefined)\n      }),\n      share(),\n    )\n  }\n\n  public getQuantity(id: string): number {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      return qtyAvailableMap[id] || 0\n    }\n    return 0\n  }\n\n  public getTips(url: string): Observable<number[]> {\n    return this.http.get<Tip>(url).pipe(\n      pluck('tips'),\n      catchError((err: Error) => {\n        console.error(err)\n        return of([0])\n      }),\n      share(),\n    )\n  }\n\n  public updateQuantity(id: string, quantity: number): void {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      const oldQty = qtyAvailableMap[id]\n      const nextQty = oldQty - quantity\n      if (nextQty >= 0) {\n        this.quantityAvailableSub$.next({\n          ...qtyAvailableMap,\n          [id]: nextQty,\n        })\n      }\n    }\n  }\n\n  // #endregion Public Methods (5)\n\n  // #region Private Methods (1)\n\n  private roundAmount(amount: number): number {\n    const cents = 100\n\n    return Math.round(amount * cents) / cents\n  }\n\n  // #endregion Private Methods (1)\n}\n",
+      "sourceCode": "import { HttpClient } from '@angular/common/http'\nimport { Injectable } from '@angular/core'\nimport { BehaviorSubject, Observable, of } from 'rxjs'\nimport { catchError, pluck, share, tap } from 'rxjs/operators'\n\nimport { FoodServiceInterface, Menu, MenuItem, PriceQuantity, Stock, Tip, TotalCost } from '../interfaces'\n\n@Injectable({\n  providedIn: 'root',\n})\nexport class FoodService implements FoodServiceInterface {\n  // #region Properties (2)\n\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, Stock> | undefined>(undefined)\n\n  // eslint-disable-next-line @typescript-eslint/member-ordering\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  // #endregion Properties (2)\n\n  // #region Constructors (1)\n\n  constructor(private http: HttpClient) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public calculateTotal(food: PriceQuantity[], tip = 0): TotalCost {\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    const subTotal = this.roundAmount(unroundedTotal)\n    const totalTip = this.roundAmount(unroundedTotal * tip)\n    const total = this.roundAmount(subTotal + totalTip)\n\n    return {\n      subTotal,\n      totalTip,\n      total,\n    }\n  }\n\n  public getFood(url: string): Observable<MenuItem[] | undefined> {\n    return this.http.get<Menu>(url).pipe(\n      pluck('menu'),\n      tap((menu) => {\n        console.log('menu', menu)\n        const qtyMap = menu.reduce((acc, mi) => {\n          mi.choices.forEach(({ id, quantity }) => {\n            acc[id] = {\n              quantity,\n              isLowSupply: false,\n              totalStock: quantity,\n            }\n          })\n          return acc\n        }, {} as Record<string, Stock>)\n        this.quantityAvailableSub$.next(qtyMap)\n      }),\n      catchError((err: Error) => {\n        console.error(err)\n        return of(undefined)\n      }),\n      share(),\n    )\n  }\n\n  public getQuantity(id: string): number {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      return qtyAvailableMap[id].quantity || 0\n    }\n    return 0\n  }\n\n  public getTips(url: string): Observable<number[]> {\n    return this.http.get<Tip>(url).pipe(\n      pluck('tips'),\n      catchError((err: Error) => {\n        console.error(err)\n        return of([0])\n      }),\n      share(),\n    )\n  }\n\n  public updateQuantity(id: string, quantity: number, isLowSupply: boolean): void {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      const { quantity: oldQty, totalStock } = qtyAvailableMap[id]\n      const nextQty = oldQty - quantity\n      if (nextQty >= 0) {\n        this.quantityAvailableSub$.next({\n          ...qtyAvailableMap,\n          [id]: {\n            quantity: nextQty,\n            isLowSupply,\n            totalStock,\n          },\n        })\n      }\n    }\n  }\n\n  // #endregion Public Methods (5)\n\n  // #region Private Methods (1)\n\n  private roundAmount(amount: number): number {\n    const cents = 100\n\n    return Math.round(amount * cents) / cents\n  }\n\n  // #endregion Private Methods (1)\n}\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -874,12 +922,12 @@
   "classes": [
     {
       "name": "MockFoodService",
-      "id": "class-MockFoodService-6e70b88bcf45670c83b3b0090f8d2f68",
+      "id": "class-MockFoodService-54c69be1a6898f544222d99e086cdbd4",
       "file": "src/app/food/storybook-mock/mock.ts",
       "deprecated": false,
       "deprecationMessage": "",
       "type": "class",
-      "sourceCode": "import { BehaviorSubject, Observable, of } from 'rxjs'\n\nimport { FoodServiceInterface, MenuItem, PriceQuantity, TotalCost } from '../interfaces'\n\nexport class MockFoodService implements FoodServiceInterface {\n  // #region Properties (2)\n\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)\n\n  // eslint-disable-next-line @typescript-eslint/member-ordering\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  // #endregion Properties (2)\n\n  // #region Constructors (1)\n\n  constructor(private menuItems?: MenuItem[]) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public calculateTotal(food: PriceQuantity[], tip = 0): TotalCost {\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    const subTotal = this.roundAmount(unroundedTotal)\n    const totalTip = this.roundAmount(unroundedTotal * tip)\n    const total = this.roundAmount(unroundedTotal + totalTip)\n\n    return {\n      subTotal,\n      totalTip,\n      total,\n    }\n  }\n\n  public getFood(): Observable<MenuItem[] | undefined> {\n    const qtyMap = this.buildQtyMap()\n    this.quantityAvailableSub$.next(qtyMap)\n    return of(this.menuItems)\n  }\n\n  public getQuantity(id: string): number {\n    const qtyAvailableMap = this.getLatestQtyMap()\n    if (qtyAvailableMap) {\n      return qtyAvailableMap[id] || 0\n    }\n    return 0\n  }\n\n  public getTips(): Observable<number[]> {\n    return of([0, 5, 10, 15, 20])\n  }\n\n  public updateQuantity(id: string, quantity: number): void {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      const oldQty = qtyAvailableMap[id]\n      const nextQty = oldQty - quantity\n      if (nextQty >= 0) {\n        this.quantityAvailableSub$.next({\n          ...qtyAvailableMap,\n          [id]: nextQty,\n        })\n      }\n    }\n  }\n\n  // #endregion Public Methods (5)\n\n  // #region Private Methods (3)\n\n  private buildQtyMap(): Record<string, number> | undefined {\n    if (!this.menuItems) {\n      return undefined\n    }\n    return this.menuItems.reduce((acc, mi) => {\n      mi.choices.forEach(({ id, quantity }) => {\n        acc[id] = quantity\n      })\n      return acc\n    }, {} as Record<string, number>)\n  }\n\n  private getLatestQtyMap() {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (!qtyAvailableMap) {\n      const qtyMap = this.buildQtyMap()\n      this.quantityAvailableSub$.next(qtyMap)\n    }\n    return this.quantityAvailableSub$.getValue()\n  }\n\n  private roundAmount(amount: number): number {\n    const cents = 100\n\n    return Math.round(amount * cents) / cents\n  }\n\n  // #endregion Private Methods (3)\n}\n",
+      "sourceCode": "import { BehaviorSubject, Observable, of } from 'rxjs'\n\nimport { FoodServiceInterface, MenuItem, PriceQuantity, Stock, TotalCost } from '../interfaces'\n\nexport class MockFoodService implements FoodServiceInterface {\n  // #region Properties (2)\n\n  private quantityAvailableSub$ = new BehaviorSubject<Record<string, Stock> | undefined>(undefined)\n\n  // eslint-disable-next-line @typescript-eslint/member-ordering\n  quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()\n\n  // #endregion Properties (2)\n\n  // #region Constructors (1)\n\n  constructor(private menuItems?: MenuItem[]) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public calculateTotal(food: PriceQuantity[], tip = 0): TotalCost {\n    const unroundedTotal = food.reduce((acc, choice) => {\n      const { price, quantity } = choice\n      return acc + price * quantity\n    }, 0)\n\n    const subTotal = this.roundAmount(unroundedTotal)\n    const totalTip = this.roundAmount(unroundedTotal * tip)\n    const total = this.roundAmount(unroundedTotal + totalTip)\n\n    return {\n      subTotal,\n      totalTip,\n      total,\n    }\n  }\n\n  public getFood(): Observable<MenuItem[] | undefined> {\n    const qtyMap = this.buildQtyMap()\n    this.quantityAvailableSub$.next(qtyMap)\n    return of(this.menuItems)\n  }\n\n  public getQuantity(id: string): number {\n    const qtyAvailableMap = this.getLatestQtyMap()\n    if (qtyAvailableMap) {\n      return qtyAvailableMap[id].quantity || 0\n    }\n    return 0\n  }\n\n  public getTips(): Observable<number[]> {\n    return of([0, 5, 10, 15, 20])\n  }\n\n  public updateQuantity(id: string, quantity: number, isLowSupply: boolean): void {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (qtyAvailableMap) {\n      const { quantity: oldQty, totalStock } = qtyAvailableMap[id]\n      const nextQty = oldQty - quantity\n      if (nextQty >= 0) {\n        this.quantityAvailableSub$.next({\n          ...qtyAvailableMap,\n          [id]: {\n            quantity: nextQty,\n            totalStock,\n            isLowSupply,\n          },\n        })\n      }\n    }\n  }\n\n  // #endregion Public Methods (5)\n\n  // #region Private Methods (3)\n\n  private buildQtyMap(): Record<string, Stock> | undefined {\n    if (!this.menuItems) {\n      return undefined\n    }\n    return this.menuItems.reduce((acc, mi) => {\n      mi.choices.forEach(({ id, quantity }) => {\n        acc[id] = {\n          quantity,\n          isLowSupply: false,\n          totalStock: quantity,\n        }\n      })\n      return acc\n    }, {} as Record<string, Stock>)\n  }\n\n  private getLatestQtyMap() {\n    const qtyAvailableMap = this.quantityAvailableSub$.getValue()\n    if (!qtyAvailableMap) {\n      const qtyMap = this.buildQtyMap()\n      this.quantityAvailableSub$.next(qtyMap)\n    }\n    return this.quantityAvailableSub$.getValue()\n  }\n\n  private roundAmount(amount: number): number {\n    const cents = 100\n\n    return Math.round(amount * cents) / cents\n  }\n\n  // #endregion Private Methods (3)\n}\n",
       "constructorObj": {
         "name": "constructor",
         "description": "",
@@ -921,7 +969,7 @@
         },
         {
           "name": "quantityAvailableSub$",
-          "defaultValue": "new BehaviorSubject<Record<string, number> | undefined>(undefined)",
+          "defaultValue": "new BehaviorSubject<Record<string, Stock> | undefined>(undefined)",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
@@ -938,7 +986,7 @@
           "optional": false,
           "returnType": "Record | undefined",
           "typeParameters": [],
-          "line": 76,
+          "line": 80,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
@@ -1006,7 +1054,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 88,
+          "line": 96,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
@@ -1064,7 +1112,7 @@
           "optional": false,
           "returnType": "number",
           "typeParameters": [],
-          "line": 97,
+          "line": 105,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121],
@@ -1094,6 +1142,12 @@
               "type": "number",
               "deprecated": false,
               "deprecationMessage": ""
+            },
+            {
+              "name": "isLowSupply",
+              "type": "boolean",
+              "deprecated": false,
+              "deprecationMessage": ""
             }
           ],
           "optional": false,
@@ -1116,6 +1170,15 @@
             {
               "name": "quantity",
               "type": "number",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "tagName": {
+                "text": "param"
+              }
+            },
+            {
+              "name": "isLowSupply",
+              "type": "boolean",
               "deprecated": false,
               "deprecationMessage": "",
               "tagName": {
@@ -1217,7 +1280,7 @@
     },
     {
       "name": "FoodChoiceComponent",
-      "id": "component-FoodChoiceComponent-aaec5eb84634cee04d86692af9d76333",
+      "id": "component-FoodChoiceComponent-b9c9c091783d07c4cf0e76f222fc5a4f",
       "file": "src/app/food/food-choice/food-choice.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1265,7 +1328,7 @@
           "type": "ComponentRef<> | null",
           "optional": false,
           "description": "",
-          "line": 45,
+          "line": 44,
           "modifierKind": [123]
         },
         {
@@ -1291,7 +1354,7 @@
           "type": "number",
           "optional": false,
           "description": "",
-          "line": 46,
+          "line": 45,
           "modifierKind": [123]
         },
         {
@@ -1302,16 +1365,6 @@
           "optional": false,
           "description": "",
           "line": 43,
-          "modifierKind": [123]
-        },
-        {
-          "name": "stock",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "number",
-          "optional": false,
-          "description": "",
-          "line": 44,
           "modifierKind": [123]
         },
         {
@@ -1338,7 +1391,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 105,
+          "line": 104,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
@@ -1349,7 +1402,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 120,
+          "line": 119,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121, 130]
@@ -1367,7 +1420,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 130,
+          "line": 129,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121, 130],
@@ -1389,7 +1442,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 149,
+          "line": 148,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121, 130]
@@ -1407,7 +1460,7 @@
           "optional": false,
           "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 62,
+          "line": 61,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123, 130],
@@ -1429,7 +1482,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 73,
+          "line": 72,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -1440,7 +1493,7 @@
           "optional": false,
           "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 77,
+          "line": 76,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123, 130]
@@ -1458,7 +1511,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 141,
+          "line": 140,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121],
@@ -1487,7 +1540,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 91,
+          "line": 89,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -1511,7 +1564,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, OrderedFoodChoice, Stock } from '../interfaces'\nimport { isQtyMapCurrentValueObjectLiteral } from './food-choice.type-guard'\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {\n  // #region Properties (8)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public viewContainerRef: ViewContainerRef\n  @ViewChild('lowSupplyRef', { read: ElementRef, static: true })\n  public lowSupplierRef: ElementRef\n  @Input()\n  public qtyMap: Record<string, Stock> | undefined | null\n  public remained: number\n  public stock: number\n  public componentRef: ComponentRef<unknown> | null = null\n  public minimumSupply: number\n\n  // #endregion Properties (8)\n\n  // #region Constructors (1)\n\n  constructor(\n    private factoryResolver: ComponentFactoryResolver,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (4)\n\n  public async ngOnChanges(changes: SimpleChanges): Promise<void> {\n    const { qtyMap } = changes\n    if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {\n      this.remained = qtyMap.currentValue[this.choice.id].quantity || 0\n    } else {\n      this.remained = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n  }\n\n  public async ngOnInit(): Promise<void> {\n    if (this.qtyMap) {\n      this.remained = this.qtyMap[this.choice.id].quantity || 0\n      this.stock = this.qtyMap[this.choice.id].totalStock || 0\n      this.minimumSupply = Math.ceil(this.stock * environment.lowSupplyPercentage)\n    } else {\n      this.remained = 0\n      this.stock = 0\n      this.minimumSupply = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public submitFoodChoice(newQuantity: number): void {\n    const { ingredients, quantity, ...rest } = this.choice\n    if (this.remained - newQuantity >= 0) {\n      this.foodChoiceAdded.emit({\n        ...rest,\n        quantity: newQuantity,\n      })\n    }\n  }\n\n  // #endregion Public Methods (4)\n\n  // #region Private Methods (3)\n\n  private destroyComponents() {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n\n    if (this.viewContainerRef) {\n      this.viewContainerRef.clear()\n    }\n\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access\n    Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {\n      this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)\n    })\n  }\n\n  private async displayLowSupplyComponent() {\n    if (!this.componentRef) {\n      const textColor = 'text-red-500'\n      await this.displayLowSupplyIcon(textColor)\n\n      this.renderLowSupplyText(textColor)\n      this.cdr.detectChanges()\n    }\n  }\n\n  private async displayLowSupplyIcon(textColor: string) {\n    const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle\n    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)\n    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)\n    faIconComponentRef.instance.icon = faExclamationTriangle\n    faIconComponentRef.instance.classes = [textColor, 'text-[1.35rem]', 'mr-2']\n    faIconComponentRef.instance.render()\n    this.componentRef = faIconComponentRef\n  }\n\n  private renderLowSupplyText(textColor: string) {\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment\n    const lowSupplySpanElement = this.renderer.createElement('span') as HTMLSpanElement\n    lowSupplySpanElement.classList.add(textColor, 'text-xl')\n    lowSupplySpanElement.innerText = 'Low Supply'\n    this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)\n  }\n\n  private async handleLowSupply() {\n    if (this.remained <= 0) {\n      this.destroyComponents()\n    } else if (this.remained > 0 && this.remained <= this.minimumSupply) {\n      await this.displayLowSupplyComponent()\n    }\n  }\n\n  // #endregion Private Methods (3)\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  ElementRef,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnDestroy,\n  OnInit,\n  Output,\n  Renderer2,\n  SimpleChanges,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { environment } from 'src/environments/environment'\n\nimport { Choice, OrderedFoodChoice, Stock } from '../interfaces'\nimport { isQtyMapCurrentValueObjectLiteral } from './food-choice.type-guard'\n\n@Component({\n  selector: 'app-food-choice',\n  templateUrl: './food-choice.component.html',\n  styleUrls: ['./food-choice.component.scss'],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {\n  // #region Properties (8)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public viewContainerRef: ViewContainerRef\n  @ViewChild('lowSupplyRef', { read: ElementRef, static: true })\n  public lowSupplierRef: ElementRef\n  @Input()\n  public qtyMap: Record<string, Stock> | undefined | null\n  public remained: number\n  public componentRef: ComponentRef<unknown> | null = null\n  public minimumSupply: number\n\n  // #endregion Properties (8)\n\n  // #region Constructors (1)\n\n  constructor(\n    private factoryResolver: ComponentFactoryResolver,\n    private cdr: ChangeDetectorRef,\n    private renderer: Renderer2,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (4)\n\n  public async ngOnChanges(changes: SimpleChanges): Promise<void> {\n    const { qtyMap } = changes\n    if (isQtyMapCurrentValueObjectLiteral(qtyMap)) {\n      this.remained = qtyMap.currentValue[this.choice.id].quantity || 0\n    } else {\n      this.remained = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n  }\n\n  public async ngOnInit(): Promise<void> {\n    if (this.qtyMap) {\n      this.remained = this.qtyMap[this.choice.id].quantity || 0\n      const stock = this.qtyMap[this.choice.id].totalStock || 0\n      this.minimumSupply = Math.ceil(stock * environment.lowSupplyPercentage)\n    } else {\n      this.remained = 0\n      this.minimumSupply = 0\n    }\n\n    await this.handleLowSupply()\n  }\n\n  public submitFoodChoice(newQuantity: number): void {\n    const { ingredients, quantity, ...rest } = this.choice\n    if (this.remained - newQuantity >= 0) {\n      this.foodChoiceAdded.emit({\n        ...rest,\n        quantity: newQuantity,\n        isLowSupply: this.isLowSupply,\n      })\n    }\n  }\n\n  // #endregion Public Methods (4)\n\n  // #region Private Methods (3)\n\n  private destroyComponents() {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n\n    if (this.viewContainerRef) {\n      this.viewContainerRef.clear()\n    }\n\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access\n    Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {\n      this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)\n    })\n  }\n\n  private async displayLowSupplyComponent() {\n    if (!this.componentRef) {\n      const textColor = 'text-red-500'\n      await this.displayLowSupplyIcon(textColor)\n\n      this.renderLowSupplyText(textColor)\n      this.cdr.detectChanges()\n    }\n  }\n\n  private async displayLowSupplyIcon(textColor: string) {\n    const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle\n    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)\n    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)\n    faIconComponentRef.instance.icon = faExclamationTriangle\n    faIconComponentRef.instance.classes = [textColor, 'text-[1.35rem]', 'mr-2']\n    faIconComponentRef.instance.render()\n    this.componentRef = faIconComponentRef\n  }\n\n  private renderLowSupplyText(textColor: string) {\n    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment\n    const lowSupplySpanElement = this.renderer.createElement('span') as HTMLSpanElement\n    lowSupplySpanElement.classList.add(textColor, 'text-xl')\n    lowSupplySpanElement.innerText = 'Low Supply'\n    this.renderer.appendChild(this.lowSupplierRef.nativeElement, lowSupplySpanElement)\n  }\n\n  private async handleLowSupply() {\n    if (this.remained <= 0) {\n      this.destroyComponents()\n    } else if (this.isLowSupply) {\n      await this.displayLowSupplyComponent()\n    }\n  }\n\n  private get isLowSupply() {\n    return this.remained > 0 && this.remained <= this.minimumSupply\n  }\n\n  // #endregion Private Methods (3)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": [
         {
@@ -1545,7 +1598,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 46,
+        "line": 45,
         "jsdoctags": [
           {
             "name": "factoryResolver",
@@ -1577,6 +1630,17 @@
         ]
       },
       "implements": ["OnInit", "OnChanges", "OnDestroy"],
+      "accessors": {
+        "isLowSupply": {
+          "name": "isLowSupply",
+          "getSignature": {
+            "name": "isLowSupply",
+            "type": "",
+            "returnType": "",
+            "line": 156
+          }
+        }
+      },
       "templateData": "<div class=\"food-choice flex flex-col p-2 box-border-indigo\">\n  <div class=\"row\">\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div class=\"row\">\n    <label name=\"ingredient\" class=\"item\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text italic\">{{ choice.ingredients }}</span>\n    </label>\n  </div>\n  <div>\n    <ng-container [ngSwitch]=\"remained > 0\">\n      <div class=\"flex\">\n        <app-food-choice-form\n          class=\"mx-3 inline grow\"\n          [choice]=\"choice\"\n          (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n          *ngSwitchCase=\"true\"\n        >\n        </app-food-choice-form>\n        <div class=\"flex items-center grow\" #lowSupplyRef>\n          <ng-container #viewContainerRef></ng-container>\n        </div>\n      </div>\n\n      <ng-container *ngSwitchDefault>\n        <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n      </ng-container>\n    </ng-container>\n  </div>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item text-[#a94442] inline\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
     },
     {
@@ -1867,7 +1931,7 @@
     },
     {
       "name": "FoodMenuComponent",
-      "id": "component-FoodMenuComponent-01eca396e175126a624cba5443ac7db0",
+      "id": "component-FoodMenuComponent-aea6e105eeaeca9e8357b4c2dda2ca09",
       "file": "src/app/food/food-menu/food-menu.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -2102,7 +2166,7 @@
           "args": [
             {
               "name": "quantityMap",
-              "type": "Record<string | number> | undefined",
+              "type": "Record<string | Stock> | undefined",
               "deprecated": false,
               "deprecationMessage": ""
             }
@@ -2110,14 +2174,14 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 104,
+          "line": 108,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121],
           "jsdoctags": [
             {
               "name": "quantityMap",
-              "type": "Record<string | number> | undefined",
+              "type": "Record<string | Stock> | undefined",
               "deprecated": false,
               "deprecationMessage": "",
               "tagName": {
@@ -2134,7 +2198,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs'\nimport { map, takeUntil, tap } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice, Stock } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Output()\n  public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuItems$: Observable<MenuItem[] | undefined>\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)\n  public qtyMap: Record<string, Stock> | undefined\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private service: FoodService) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public choiceTrackByFn(index: number, choice: Choice): string | number {\n    return choice ? choice.id : index\n  }\n\n  public filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {\n    if (!menuItems || option === 'all') {\n      return menuItems\n    }\n\n    const typedOptionString = option as keyof typeof MenuOptions\n    const typedOption = MenuOptions[typedOptionString]\n\n    const filterFuncMap = {\n      [MenuOptions.all]: () => true,\n      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,\n      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,\n    }\n\n    const filterFunc = filterFuncMap[typedOption]\n    return menuItems.reduce((acc, menuItem) => {\n      const matchedChoices = menuItem.choices.filter(filterFunc)\n      if (matchedChoices.length > 0) {\n        return acc.concat({\n          ...menuItem,\n          choices: matchedChoices,\n        })\n      }\n      return acc\n    }, [] as MenuItem[])\n  }\n\n  public menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n\n  public ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => ({\n        menuItems,\n        option,\n      })),\n      map(({ menuItems, option }) => this.filterMenuItems(menuItems, option)),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.service.quantityAvailableMap$\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((quantityMap) => (this.qtyMap = this.updateQuantity(quantityMap)))\n\n    this.handleFoodChoiceSub$\n      .pipe(\n        tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))\n  }\n\n  private updateQuantity(quantityMap: Record<string, number> | undefined) {\n    if (!quantityMap) {\n      return undefined\n    }\n\n    return Object.keys(quantityMap).reduce((acc: Record<string, Stock>, choiceId) => {\n      if (acc[choiceId]) {\n        acc[choiceId].quantity = quantityMap[choiceId]\n      } else {\n        acc[choiceId] = {\n          quantity: quantityMap[choiceId],\n          totalStock: quantityMap[choiceId],\n        }\n      }\n      return acc\n    }, {})\n  }\n  // #endregion Public Methods (5)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs'\nimport { map, takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice, Stock } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Output()\n  public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuItems$: Observable<MenuItem[] | undefined>\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)\n  public qtyMap: Record<string, Stock> | undefined\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private service: FoodService) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public choiceTrackByFn(index: number, choice: Choice): string | number {\n    return choice ? choice.id : index\n  }\n\n  public filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {\n    if (!menuItems || option === 'all') {\n      return menuItems\n    }\n\n    const typedOptionString = option as keyof typeof MenuOptions\n    const typedOption = MenuOptions[typedOptionString]\n\n    const filterFuncMap = {\n      [MenuOptions.all]: () => true,\n      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,\n      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,\n    }\n\n    const filterFunc = filterFuncMap[typedOption]\n    return menuItems.reduce((acc, menuItem) => {\n      const matchedChoices = menuItem.choices.filter(filterFunc)\n      if (matchedChoices.length > 0) {\n        return acc.concat({\n          ...menuItem,\n          choices: matchedChoices,\n        })\n      }\n      return acc\n    }, [] as MenuItem[])\n  }\n\n  public menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n  }\n\n  public ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => ({\n        menuItems,\n        option,\n      })),\n      map(({ menuItems, option }) => this.filterMenuItems(menuItems, option)),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.service.quantityAvailableMap$\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((quantityMap) => (this.qtyMap = this.updateQuantity(quantityMap)))\n\n    this.handleFoodChoiceSub$\n      .pipe(\n        // tap(({ id, quantity, isLowSupply = false }) => this.service.updateQuantity(id, quantity)),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((choice) => {\n        const { id, quantity, isLowSupply = false } = choice\n        this.service.updateQuantity(id, quantity, isLowSupply)\n        this.addDynamicFoodChoice.emit(choice)\n      })\n  }\n\n  private updateQuantity(quantityMap: Record<string, Stock> | undefined) {\n    if (!quantityMap) {\n      return undefined\n    }\n\n    return Object.keys(quantityMap).reduce((acc: Record<string, Stock>, choiceId) => {\n      acc[choiceId] = {\n        ...quantityMap[choiceId],\n      }\n      return acc\n    }, { ...this.qtyMap } || {})\n  }\n  // #endregion Public Methods (5)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -2169,7 +2233,7 @@
     },
     {
       "name": "FoodMenuOptionsComponent",
-      "id": "component-FoodMenuOptionsComponent-8302ec29432ae98975733c5afaf74c36",
+      "id": "component-FoodMenuOptionsComponent-4bd498a1028246150609e8165d80b778",
       "file": "src/app/food/food-menu-options/food-menu-options.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -2180,7 +2244,7 @@
       "selector": "app-food-menu-option",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "template": "<section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n  <form [formGroup]=\"form\" aria-label=\"select food form\">\n    <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n      <option value=\"all\" aria-label=\"show all\">Show all</option>\n      <option value=\"available\" aria-label=\"show available\">Show available only</option>\n      <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n    </select>\n  </form>\n</section>\n",
+      "template": "<section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n  <form [formGroup]=\"form\" aria-label=\"select food form\">\n    <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n      <option value=\"all\" aria-label=\"show all\">Show all</option>\n      <option value=\"available\" aria-label=\"show available\">Show available only</option>\n      <option value=\"lowSupply\" aria-label=\"show low supply\">Show low supply</option>\n      <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n    </select>\n  </form>\n</section>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [],
@@ -2190,7 +2254,7 @@
           "defaultValue": "new EventEmitter<string>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 34,
+          "line": 35,
           "type": "EventEmitter"
         }
       ],
@@ -2202,7 +2266,7 @@
           "type": "FormGroup",
           "optional": false,
           "description": "",
-          "line": 36,
+          "line": 37,
           "modifierKind": [123]
         },
         {
@@ -2213,7 +2277,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 37
+          "line": 38
         }
       ],
       "methodsClass": [
@@ -2223,7 +2287,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 49,
+          "line": 50,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2234,7 +2298,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 54,
+          "line": 55,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2247,7 +2311,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n      <form [formGroup]=\"form\" aria-label=\"select food form\">\n        <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n          <option value=\"all\" aria-label=\"show all\">Show all</option>\n          <option value=\"available\" aria-label=\"show available\">Show available only</option>\n          <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionsComponent implements OnInit, OnDestroy {\n  // #region Properties (3)\n\n  @Output()\n  public menuOptionSelected = new EventEmitter<string>()\n\n  public form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (3)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(MenuOptions.all),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value: string) => this.menuOptionSelected.emit(value))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n      <form [formGroup]=\"form\" aria-label=\"select food form\">\n        <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n          <option value=\"all\" aria-label=\"show all\">Show all</option>\n          <option value=\"available\" aria-label=\"show available\">Show available only</option>\n          <option value=\"lowSupply\" aria-label=\"show low supply\">Show low supply</option>\n          <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionsComponent implements OnInit, OnDestroy {\n  // #region Properties (3)\n\n  @Output()\n  public menuOptionSelected = new EventEmitter<string>()\n\n  public form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (3)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(MenuOptions.all),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value: string) => this.menuOptionSelected.emit(value))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
@@ -2264,7 +2328,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 37,
+        "line": 38,
         "jsdoctags": [
           {
             "name": "fb",
@@ -3127,7 +3191,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/menu.ts",
+        "file": "src/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -3137,7 +3201,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/tips.ts",
+        "file": "src/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -3217,21 +3281,21 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/menu.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/assets/functions/menu.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "LongDescription",
@@ -3317,7 +3381,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3327,7 +3391,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3357,7 +3421,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-total/food-total.stories.ts",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3367,7 +3431,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3381,7 +3445,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
-        "defaultValue": "{\n  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10 },\n  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 0 },\n  [LowSupplyMockData[0].choices[2].id]: { quantity: 1, totalStock: 1 },\n}"
+        "defaultValue": "{\n  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },\n  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 0, isLowSupply: false },\n  [LowSupplyMockData[0].choices[2].id]: { quantity: 1, totalStock: 1, isLowSupply: false },\n}"
       },
       {
         "name": "qtyMap",
@@ -3466,11 +3530,11 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Story<FoodChoiceFormComponent>",
-        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
+        "type": "Story<FoodChoiceComponent>",
+        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3486,11 +3550,11 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Story<FoodChoiceComponent>",
-        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
+        "type": "Story<FoodChoiceFormComponent>",
+        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3506,21 +3570,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-total/food-total.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodTotalComponent>",
-        "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Story<FoodShellComponent>",
         "defaultValue": "(args: FoodShellComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-total/food-total.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodTotalComponent>",
+        "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
       }
     ],
     "functions": [
@@ -3710,6 +3774,28 @@
           "type": "literal type"
         }
       ],
+      "src/assets/functions/tips.ts": [
+        {
+          "name": "CORS_HEADERS",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
+        },
+        {
+          "name": "handler",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Handler",
+          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+        }
+      ],
       "src/assets/functions/menu.ts": [
         {
           "name": "CORS_HEADERS",
@@ -3740,28 +3826,6 @@
           "deprecationMessage": "",
           "type": "Handler",
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-        }
-      ],
-      "src/assets/functions/tips.ts": [
-        {
-          "name": "CORS_HEADERS",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
-        },
-        {
-          "name": "handler",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Handler",
-          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
       "src/app/food/food-choice-form/food-choice-form.stories.ts": [
@@ -4019,7 +4083,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "object",
-          "defaultValue": "{\n  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10 },\n  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 0 },\n  [LowSupplyMockData[0].choices[2].id]: { quantity: 1, totalStock: 1 },\n}"
+          "defaultValue": "{\n  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },\n  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 0, isLowSupply: false },\n  [LowSupplyMockData[0].choices[2].id]: { quantity: 1, totalStock: 1, isLowSupply: false },\n}"
         },
         {
           "name": "SoldOut",
@@ -4455,7 +4519,7 @@
         "linktype": "component",
         "name": "FoodChoiceComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/20",
+        "coverageCount": "0/19",
         "status": "low"
       },
       {
@@ -4803,7 +4867,7 @@
         "linktype": "interface",
         "name": "OrderedFoodChoice",
         "coveragePercent": 0,
-        "coverageCount": "0/7",
+        "coverageCount": "0/8",
         "status": "low"
       },
       {
@@ -4821,7 +4885,7 @@
         "linktype": "interface",
         "name": "Stock",
         "coveragePercent": 0,
-        "coverageCount": "0/3",
+        "coverageCount": "0/4",
         "status": "low"
       },
       {

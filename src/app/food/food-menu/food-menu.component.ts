@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'
-import { BehaviorSubject, combineLatest, Observable, Subject } from 'rxjs'
-import { map, takeUntil, tap } from 'rxjs/operators'
+import { BehaviorSubject, combineLatest, Observable, Subject, Subscription } from 'rxjs'
+import { map, takeUntil } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 
 import { MenuOptions } from '../enums'
@@ -22,6 +22,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)
   public qtyMap: Record<string, Stock> | undefined
   unsubscribe$ = new Subject<boolean>()
+  subscriptions: Subscription[] = []
 
   // #endregion Properties (6)
 
@@ -71,6 +72,9 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.unsubscribe$.next(true)
     this.unsubscribe$.unsubscribe()
+    for (const subscription of this.subscriptions) {
+      subscription.unsubscribe()
+    }
   }
 
   public ngOnInit(): void {
@@ -81,43 +85,34 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
       this.menuOptionSub$,
       this.service.quantityAvailableMap$,
     ]).pipe(
-      map(([menuItems, option]) => ({
-        menuItems,
-        option,
-      })),
-      map(({ menuItems, option }) => this.filterMenuItems(menuItems, option)),
+      map(([menuItems, option]) => this.filterMenuItems(menuItems, option)),
       takeUntil(this.unsubscribe$),
     )
 
-    this.service.quantityAvailableMap$
-      .pipe(takeUntil(this.unsubscribe$))
-      .subscribe((quantityMap) => (this.qtyMap = this.updateQuantity(quantityMap)))
+    this.subscriptions.push(
+      this.service.quantityAvailableMap$.subscribe((quantityMap) => (this.qtyMap = this.updateQuantity(quantityMap))),
+    )
 
-    this.handleFoodChoiceSub$
-      .pipe(
-        tap(({ id, quantity }) => this.service.updateQuantity(id, quantity)),
-        takeUntil(this.unsubscribe$),
-      )
-      .subscribe((choice) => this.addDynamicFoodChoice.emit(choice))
+    this.subscriptions.push(
+      this.handleFoodChoiceSub$.subscribe((choice) => {
+        const { id, quantity, isLowSupply = false } = choice
+        this.service.updateQuantity(id, quantity, isLowSupply)
+        this.addDynamicFoodChoice.emit(choice)
+      }),
+    )
   }
 
-  private updateQuantity(quantityMap: Record<string, number> | undefined) {
+  private updateQuantity(quantityMap: Record<string, Stock> | undefined) {
     if (!quantityMap) {
       return undefined
     }
 
     return Object.keys(quantityMap).reduce((acc: Record<string, Stock>, choiceId) => {
-      if (acc[choiceId]) {
-        acc[choiceId].quantity = quantityMap[choiceId]
-      } else {
-        acc[choiceId] = {
-          quantity: quantityMap[choiceId],
-          totalStock: quantityMap[choiceId],
-          isLowSupply: false,
-        }
+      acc[choiceId] = {
+        ...quantityMap[choiceId],
       }
       return acc
-    }, { ...this.qtyMap } || {})
+    }, {})
   }
   // #endregion Public Methods (5)
 }

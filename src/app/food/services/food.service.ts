@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core'
 import { BehaviorSubject, Observable, of } from 'rxjs'
 import { catchError, pluck, share, tap } from 'rxjs/operators'
 
-import { FoodServiceInterface, Menu, MenuItem, PriceQuantity, Tip, TotalCost } from '../interfaces'
+import { FoodServiceInterface, Menu, MenuItem, PriceQuantity, Stock, Tip, TotalCost } from '../interfaces'
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ import { FoodServiceInterface, Menu, MenuItem, PriceQuantity, Tip, TotalCost } f
 export class FoodService implements FoodServiceInterface {
   // #region Properties (2)
 
-  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)
+  private quantityAvailableSub$ = new BehaviorSubject<Record<string, Stock> | undefined>(undefined)
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()
@@ -50,10 +50,14 @@ export class FoodService implements FoodServiceInterface {
         console.log('menu', menu)
         const qtyMap = menu.reduce((acc, mi) => {
           mi.choices.forEach(({ id, quantity }) => {
-            acc[id] = quantity
+            acc[id] = {
+              quantity,
+              isLowSupply: false,
+              totalStock: quantity,
+            }
           })
           return acc
-        }, {} as Record<string, number>)
+        }, {} as Record<string, Stock>)
         this.quantityAvailableSub$.next(qtyMap)
       }),
       catchError((err: Error) => {
@@ -67,7 +71,7 @@ export class FoodService implements FoodServiceInterface {
   public getQuantity(id: string): number {
     const qtyAvailableMap = this.quantityAvailableSub$.getValue()
     if (qtyAvailableMap) {
-      return qtyAvailableMap[id] || 0
+      return qtyAvailableMap[id].quantity || 0
     }
     return 0
   }
@@ -83,15 +87,19 @@ export class FoodService implements FoodServiceInterface {
     )
   }
 
-  public updateQuantity(id: string, quantity: number): void {
+  public updateQuantity(id: string, quantity: number, isLowSupply: boolean): void {
     const qtyAvailableMap = this.quantityAvailableSub$.getValue()
     if (qtyAvailableMap) {
-      const oldQty = qtyAvailableMap[id]
+      const { quantity: oldQty, totalStock } = qtyAvailableMap[id]
       const nextQty = oldQty - quantity
       if (nextQty >= 0) {
         this.quantityAvailableSub$.next({
           ...qtyAvailableMap,
-          [id]: nextQty,
+          [id]: {
+            quantity: nextQty,
+            isLowSupply,
+            totalStock,
+          },
         })
       }
     }

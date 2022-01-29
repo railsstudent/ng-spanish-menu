@@ -34,8 +34,6 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   public choice: Choice
   @Output()
   public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
-  @Output()
-  public alertLowSupply = new EventEmitter<string>()
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
   public viewContainerRef: ViewContainerRef
   @ViewChild('lowSupplyRef', { read: ElementRef, static: true })
@@ -94,6 +92,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
       this.foodChoiceAdded.emit({
         ...rest,
         quantity: newQuantity,
+        isLowSupply: this.isLowSupply(this.remained - newQuantity),
       })
     }
   }
@@ -149,10 +148,13 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   private async handleLowSupply() {
     if (this.remained <= 0) {
       this.destroyComponents()
-    } else if (this.remained > 0 && this.remained <= this.minimumSupply) {
+    } else if (this.isLowSupply(this.remained)) {
       await this.displayLowSupplyComponent()
-      this.alertLowSupply.emit(this.choice.id)
     }
+  }
+
+  private isLowSupply(remained: number): boolean {
+    return remained > 0 && remained <= this.minimumSupply
   }
 
   // #endregion Private Methods (3)

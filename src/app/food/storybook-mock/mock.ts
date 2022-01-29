@@ -1,11 +1,11 @@
 import { BehaviorSubject, Observable, of } from 'rxjs'
 
-import { FoodServiceInterface, MenuItem, PriceQuantity, TotalCost } from '../interfaces'
+import { FoodServiceInterface, MenuItem, PriceQuantity, Stock, TotalCost } from '../interfaces'
 
 export class MockFoodService implements FoodServiceInterface {
   // #region Properties (2)
 
-  private quantityAvailableSub$ = new BehaviorSubject<Record<string, number> | undefined>(undefined)
+  private quantityAvailableSub$ = new BehaviorSubject<Record<string, Stock> | undefined>(undefined)
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()
@@ -46,7 +46,7 @@ export class MockFoodService implements FoodServiceInterface {
   public getQuantity(id: string): number {
     const qtyAvailableMap = this.getLatestQtyMap()
     if (qtyAvailableMap) {
-      return qtyAvailableMap[id] || 0
+      return qtyAvailableMap[id].quantity || 0
     }
     return 0
   }
@@ -55,15 +55,19 @@ export class MockFoodService implements FoodServiceInterface {
     return of([0, 5, 10, 15, 20])
   }
 
-  public updateQuantity(id: string, quantity: number): void {
+  public updateQuantity(id: string, quantity: number, isLowSupply: boolean): void {
     const qtyAvailableMap = this.quantityAvailableSub$.getValue()
     if (qtyAvailableMap) {
-      const oldQty = qtyAvailableMap[id]
+      const { quantity: oldQty, totalStock } = qtyAvailableMap[id]
       const nextQty = oldQty - quantity
       if (nextQty >= 0) {
         this.quantityAvailableSub$.next({
           ...qtyAvailableMap,
-          [id]: nextQty,
+          [id]: {
+            quantity: nextQty,
+            totalStock,
+            isLowSupply,
+          },
         })
       }
     }
@@ -73,16 +77,20 @@ export class MockFoodService implements FoodServiceInterface {
 
   // #region Private Methods (3)
 
-  private buildQtyMap(): Record<string, number> | undefined {
+  private buildQtyMap(): Record<string, Stock> | undefined {
     if (!this.menuItems) {
       return undefined
     }
     return this.menuItems.reduce((acc, mi) => {
       mi.choices.forEach(({ id, quantity }) => {
-        acc[id] = quantity
+        acc[id] = {
+          quantity,
+          isLowSupply: false,
+          totalStock: quantity,
+        }
       })
       return acc
-    }, {} as Record<string, number>)
+    }, {} as Record<string, Stock>)
   }
 
   private getLatestQtyMap() {

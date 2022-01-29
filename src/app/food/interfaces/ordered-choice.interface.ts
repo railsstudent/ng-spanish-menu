@@ -5,4 +5,5 @@ export interface OrderedFoodChoice {
   currency: string
   price: number
   quantity: number
+  isLowSupply?: boolean
 }
