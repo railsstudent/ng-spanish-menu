@@ -34,6 +34,8 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   public choice: Choice
   @Output()
   public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
+  @Output()
+  public alertLowSupply = new EventEmitter<string>()
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
   public viewContainerRef: ViewContainerRef
   @ViewChild('lowSupplyRef', { read: ElementRef, static: true })
@@ -41,7 +43,6 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   @Input()
   public qtyMap: Record<string, Stock> | undefined | null
   public remained: number
-  public stock: number
   public componentRef: ComponentRef<unknown> | null = null
   public minimumSupply: number
 
@@ -77,11 +78,10 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   public async ngOnInit(): Promise<void> {
     if (this.qtyMap) {
       this.remained = this.qtyMap[this.choice.id].quantity || 0
-      this.stock = this.qtyMap[this.choice.id].totalStock || 0
-      this.minimumSupply = Math.ceil(this.stock * environment.lowSupplyPercentage)
+      const stock = this.qtyMap[this.choice.id].totalStock || 0
+      this.minimumSupply = Math.ceil(stock * environment.lowSupplyPercentage)
     } else {
       this.remained = 0
-      this.stock = 0
       this.minimumSupply = 0
     }
 
@@ -151,6 +151,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
       this.destroyComponents()
     } else if (this.remained > 0 && this.remained <= this.minimumSupply) {
       await this.displayLowSupplyComponent()
+      this.alertLowSupply.emit(this.choice.id)
     }
   }
 
