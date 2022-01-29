@@ -13,6 +13,7 @@ import { MenuOptions } from '../enums'
         <select class="pl-2 w-[200px] text-base" name="option" formControlName="option" aria-label="select food">
           <option value="all" aria-label="show all">Show all</option>
           <option value="available" aria-label="show available">Show available only</option>
+          <option value="lowSupply" aria-label="show low supply">Show low supply</option>
           <option value="soldOut" aria-label="show sold out">Show sold out</option>
         </select>
       </form>
