@@ -19,7 +19,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()
   handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()
   menuItems$: Observable<MenuItem[] | undefined>
-  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)
+  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.ALL)
   public qtyMap: Record<string, Stock> | undefined
   unsubscribe$ = new Subject<boolean>()
   subscriptions: Subscription[] = []
@@ -47,9 +47,11 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
     const typedOption = MenuOptions[typedOptionString]
 
     const filterFuncMap = {
-      [MenuOptions.all]: () => true,
-      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,
-      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,
+      [MenuOptions.ALL]: () => true,
+      [MenuOptions.AVAILABLE]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,
+      [MenuOptions.SOLD_OUT]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,
+      [MenuOptions.LOW_SUPPLY]: (choice: Choice) =>
+        this.qtyMap && this.qtyMap[choice.id].quantity > 0 && this.qtyMap[choice.id].isLowSupply,
     }
 
     const filterFunc = filterFuncMap[typedOption]
