@@ -18,7 +18,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   @Output()
   public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()
   handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()
-  menuItems$: Observable<MenuItem[] | undefined>
+  menuItems$: Observable<{ menuItems: MenuItem[]; option: string } | undefined>
   menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.ALL)
   public qtyMap: Record<string, Stock> | undefined
   unsubscribe$ = new Subject<boolean>()
@@ -38,9 +38,9 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
     return choice ? choice.id : index
   }
 
-  public filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {
-    if (!menuItems || option === 'all') {
-      return menuItems
+  public filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] {
+    if (!menuItems) {
+      return []
     }
 
     const typedOptionString = option as keyof typeof MenuOptions
@@ -55,7 +55,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
     }
 
     const filterFunc = filterFuncMap[typedOption]
-    return menuItems.reduce((acc, menuItem) => {
+    return menuItems.reduce((acc: MenuItem[], menuItem) => {
       const matchedChoices = menuItem.choices.filter(filterFunc)
       if (matchedChoices.length > 0) {
         return acc.concat({
@@ -64,7 +64,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
         })
       }
       return acc
-    }, [] as MenuItem[])
+    }, [])
   }
 
   public menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {
@@ -87,7 +87,16 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
       this.menuOptionSub$,
       this.service.quantityAvailableMap$,
     ]).pipe(
-      map(([menuItems, option]) => this.filterMenuItems(menuItems, option)),
+      map(([menuItems, option]) => {
+        if (menuItems) {
+          const filteredMenuItems = this.filterMenuItems(menuItems, option)
+          return {
+            menuItems: filteredMenuItems,
+            option,
+          }
+        }
+        return undefined
+      }),
       takeUntil(this.unsubscribe$),
     )
 
