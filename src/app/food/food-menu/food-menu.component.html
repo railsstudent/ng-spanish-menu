@@ -1,23 +1,19 @@
 <div class="food-menu" *ngIf="menuItems$ | async as data; else notAvailable">
   <app-food-menu-option (menuOptionSelected)="menuOptionSub$.next($event)"></app-food-menu-option>
-  <ng-container [ngSwitch]="data.menuItems.length > 0">
-    <ng-container *ngSwitchCase="true">
-      <app-food-menu-card *ngFor="let menuItem of data.menuItems; index as i; trackBy: menuItemTrackByFn">
-        <app-food-question [question]="menuItem.question" head></app-food-question>
-        <ng-container *ngFor="let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn" body>
-          <app-food-choice
-            [choice]="choice"
-            [qtyMap]="qtyMap"
-            (foodChoiceAdded)="handleFoodChoiceSub$.next($event)"
-          ></app-food-choice>
-        </ng-container>
-      </app-food-menu-card>
-    </ng-container>
-    <ng-container *ngSwitchDefault>
-      <ng-container *ngTemplateOutlet="noFood; context: { $implicit: data.option }"> </ng-container>
-    </ng-container>
-  </ng-container>
+  <ng-container *ngTemplateOutlet="data.menuItems.length > 0 ? hasFood : noFood; context: { data }"></ng-container>
 </div>
 
 <ng-template #notAvailable>No menu</ng-template>
-<ng-template #noFood let-option>No food or drink that is {{ option }}</ng-template>
+<ng-template #hasFood let-data="data">
+  <app-food-menu-card *ngFor="let menuItem of data.menuItems; index as i; trackBy: menuItemTrackByFn">
+    <app-food-question [question]="menuItem.question" head></app-food-question>
+    <ng-container *ngFor="let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn" body>
+      <app-food-choice
+        [choice]="choice"
+        [qtyMap]="qtyMap"
+        (foodChoiceAdded)="handleFoodChoiceSub$.next($event)"
+      ></app-food-choice>
+    </ng-container>
+  </app-food-menu-card>
+</ng-template>
+<ng-template #noFood let-data="data">No food or drink that is {{ data.option }}</ng-template>

@@ -1949,7 +1949,7 @@
     },
     {
       "name": "FoodMenuComponent",
-      "id": "component-FoodMenuComponent-510565c4667fc69f28486aff80ebffe3",
+      "id": "component-FoodMenuComponent-4105027b71a04ca169e8de59affd331d",
       "file": "src/app/food/food-menu/food-menu.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1988,14 +1988,14 @@
           "name": "menuItems$",
           "deprecated": false,
           "deprecationMessage": "",
-          "type": "Observable<[] | undefined>",
+          "type": "Observable<literal type | undefined>",
           "optional": false,
           "description": "",
           "line": 21
         },
         {
           "name": "menuOptionSub$",
-          "defaultValue": "new BehaviorSubject<string>(MenuOptions.all)",
+          "defaultValue": "new BehaviorSubject<string>(MenuOptions.ALL)",
           "deprecated": false,
           "deprecationMessage": "",
           "type": "",
@@ -2096,7 +2096,7 @@
             }
           ],
           "optional": false,
-          "returnType": "[] | undefined",
+          "returnType": "MenuItem[]",
           "typeParameters": [],
           "line": 41,
           "deprecated": false,
@@ -2142,7 +2142,7 @@
           "optional": false,
           "returnType": "string | number",
           "typeParameters": [],
-          "line": 68,
+          "line": 70,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -2173,7 +2173,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 72,
+          "line": 74,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2184,7 +2184,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 80,
+          "line": 82,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2202,7 +2202,7 @@
           "optional": false,
           "returnType": "any",
           "typeParameters": [],
-          "line": 105,
+          "line": 116,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121],
@@ -2226,7 +2226,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject, Subscription } from 'rxjs'\nimport { map, takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice, Stock } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Output()\n  public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuItems$: Observable<MenuItem[] | undefined>\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.all)\n  public qtyMap: Record<string, Stock> | undefined\n  unsubscribe$ = new Subject<boolean>()\n  subscriptions: Subscription[] = []\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private service: FoodService) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public choiceTrackByFn(index: number, choice: Choice): string | number {\n    return choice ? choice.id : index\n  }\n\n  public filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] | undefined {\n    if (!menuItems || option === 'all') {\n      return menuItems\n    }\n\n    const typedOptionString = option as keyof typeof MenuOptions\n    const typedOption = MenuOptions[typedOptionString]\n\n    const filterFuncMap = {\n      [MenuOptions.all]: () => true,\n      [MenuOptions.available]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,\n      [MenuOptions.soldOut]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,\n    }\n\n    const filterFunc = filterFuncMap[typedOption]\n    return menuItems.reduce((acc, menuItem) => {\n      const matchedChoices = menuItem.choices.filter(filterFunc)\n      if (matchedChoices.length > 0) {\n        return acc.concat({\n          ...menuItem,\n          choices: matchedChoices,\n        })\n      }\n      return acc\n    }, [] as MenuItem[])\n  }\n\n  public menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n    for (const subscription of this.subscriptions) {\n      subscription.unsubscribe()\n    }\n  }\n\n  public ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => this.filterMenuItems(menuItems, option)),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.subscriptions.push(\n      this.service.quantityAvailableMap$.subscribe((quantityMap) => (this.qtyMap = this.updateQuantity(quantityMap))),\n    )\n\n    this.subscriptions.push(\n      this.handleFoodChoiceSub$.subscribe((choice) => {\n        const { id, quantity, isLowSupply = false } = choice\n        this.service.updateQuantity(id, quantity, isLowSupply)\n        this.addDynamicFoodChoice.emit(choice)\n      }),\n    )\n  }\n\n  private updateQuantity(quantityMap: Record<string, Stock> | undefined) {\n    if (!quantityMap) {\n      return undefined\n    }\n\n    return Object.keys(quantityMap).reduce((acc: Record<string, Stock>, choiceId) => {\n      acc[choiceId] = {\n        ...quantityMap[choiceId],\n      }\n      return acc\n    }, {})\n  }\n  // #endregion Public Methods (5)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { BehaviorSubject, combineLatest, Observable, Subject, Subscription } from 'rxjs'\nimport { map, takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { MenuOptions } from '../enums'\nimport { Choice, MenuItem, OrderedFoodChoice, Stock } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-menu',\n  templateUrl: './food-menu.component.html',\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Output()\n  public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()\n  handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()\n  menuItems$: Observable<{ menuItems: MenuItem[]; option: string } | undefined>\n  menuOptionSub$ = new BehaviorSubject<string>(MenuOptions.ALL)\n  public qtyMap: Record<string, Stock> | undefined\n  unsubscribe$ = new Subject<boolean>()\n  subscriptions: Subscription[] = []\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(private service: FoodService) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (5)\n\n  public choiceTrackByFn(index: number, choice: Choice): string | number {\n    return choice ? choice.id : index\n  }\n\n  public filterMenuItems(menuItems: MenuItem[] | undefined, option: string): MenuItem[] {\n    if (!menuItems) {\n      return []\n    }\n\n    const typedOptionString = option as keyof typeof MenuOptions\n    const typedOption = MenuOptions[typedOptionString]\n\n    const filterFuncMap = {\n      [MenuOptions.ALL]: () => true,\n      [MenuOptions.AVAILABLE]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,\n      [MenuOptions.SOLD_OUT]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,\n      [MenuOptions.LOW_SUPPLY]: (choice: Choice) =>\n        this.qtyMap && this.qtyMap[choice.id].quantity > 0 && this.qtyMap[choice.id].isLowSupply,\n    }\n\n    const filterFunc = filterFuncMap[typedOption]\n    return menuItems.reduce((acc: MenuItem[], menuItem) => {\n      const matchedChoices = menuItem.choices.filter(filterFunc)\n      if (matchedChoices.length > 0) {\n        return acc.concat({\n          ...menuItem,\n          choices: matchedChoices,\n        })\n      }\n      return acc\n    }, [])\n  }\n\n  public menuItemTrackByFn(index: number, menuItem: MenuItem): string | number {\n    return menuItem ? menuItem.id : index\n  }\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.unsubscribe()\n    for (const subscription of this.subscriptions) {\n      subscription.unsubscribe()\n    }\n  }\n\n  public ngOnInit(): void {\n    const menuUrl = `${environment.baseUrl}/menu`\n\n    this.menuItems$ = combineLatest([\n      this.service.getFood(menuUrl),\n      this.menuOptionSub$,\n      this.service.quantityAvailableMap$,\n    ]).pipe(\n      map(([menuItems, option]) => {\n        if (menuItems) {\n          const filteredMenuItems = this.filterMenuItems(menuItems, option)\n          return {\n            menuItems: filteredMenuItems,\n            option,\n          }\n        }\n        return undefined\n      }),\n      takeUntil(this.unsubscribe$),\n    )\n\n    this.subscriptions.push(\n      this.service.quantityAvailableMap$.subscribe((quantityMap) => (this.qtyMap = this.updateQuantity(quantityMap))),\n    )\n\n    this.subscriptions.push(\n      this.handleFoodChoiceSub$.subscribe((choice) => {\n        const { id, quantity, isLowSupply = false } = choice\n        this.service.updateQuantity(id, quantity, isLowSupply)\n        this.addDynamicFoodChoice.emit(choice)\n      }),\n    )\n  }\n\n  private updateQuantity(quantityMap: Record<string, Stock> | undefined) {\n    if (!quantityMap) {\n      return undefined\n    }\n\n    return Object.keys(quantityMap).reduce((acc: Record<string, Stock>, choiceId) => {\n      acc[choiceId] = {\n        ...quantityMap[choiceId],\n      }\n      return acc\n    }, {})\n  }\n  // #endregion Public Methods (5)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "",
@@ -2257,11 +2257,11 @@
         ]
       },
       "implements": ["OnInit", "OnDestroy"],
-      "templateData": "<div class=\"food-menu\" *ngIf=\"menuItems$ | async as menuItems; else notAvailable\">\n  <app-food-menu-option (menuOptionSelected)=\"menuOptionSub$.next($event)\"></app-food-menu-option>\n  <app-food-menu-card *ngFor=\"let menuItem of menuItems; index as i; trackBy: menuItemTrackByFn\">\n    <app-food-question [question]=\"menuItem.question\" head></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\" body>\n      <app-food-choice\n        [choice]=\"choice\"\n        [qtyMap]=\"qtyMap\"\n        (foodChoiceAdded)=\"handleFoodChoiceSub$.next($event)\"\n      ></app-food-choice>\n    </ng-container>\n  </app-food-menu-card>\n</div>\n<ng-template #notAvailable>No menu</ng-template>\n"
+      "templateData": "<div class=\"food-menu\" *ngIf=\"menuItems$ | async as data; else notAvailable\">\n  <app-food-menu-option (menuOptionSelected)=\"menuOptionSub$.next($event)\"></app-food-menu-option>\n  <ng-container [ngSwitch]=\"data.menuItems.length > 0\">\n    <ng-container *ngSwitchCase=\"true\">\n      <app-food-menu-card *ngFor=\"let menuItem of data.menuItems; index as i; trackBy: menuItemTrackByFn\">\n        <app-food-question [question]=\"menuItem.question\" head></app-food-question>\n        <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\" body>\n          <app-food-choice\n            [choice]=\"choice\"\n            [qtyMap]=\"qtyMap\"\n            (foodChoiceAdded)=\"handleFoodChoiceSub$.next($event)\"\n          ></app-food-choice>\n        </ng-container>\n      </app-food-menu-card>\n    </ng-container>\n    <ng-container *ngSwitchDefault>\n      <ng-container *ngTemplateOutlet=\"noFood; context: { $implicit: data.option }\"> </ng-container>\n    </ng-container>\n  </ng-container>\n</div>\n\n<ng-template #notAvailable>No menu</ng-template>\n<ng-template #noFood let-option>No food or drink that is {{ option }}</ng-template>\n"
     },
     {
       "name": "FoodMenuOptionsComponent",
-      "id": "component-FoodMenuOptionsComponent-4bd498a1028246150609e8165d80b778",
+      "id": "component-FoodMenuOptionsComponent-af784ef05418e43b425cf1e2a79a7def",
       "file": "src/app/food/food-menu-options/food-menu-options.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -2272,17 +2272,26 @@
       "selector": "app-food-menu-option",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "template": "<section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n  <form [formGroup]=\"form\" aria-label=\"select food form\">\n    <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n      <option value=\"all\" aria-label=\"show all\">Show all</option>\n      <option value=\"available\" aria-label=\"show available\">Show available only</option>\n      <option value=\"lowSupply\" aria-label=\"show low supply\">Show low supply</option>\n      <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n    </select>\n  </form>\n</section>\n",
+      "template": "<section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n  <form [formGroup]=\"form\" aria-label=\"select food form\">\n    <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n      <option value=\"ALL\" aria-label=\"show all\">Show all</option>\n      <option value=\"AVAILABLE\" aria-label=\"show available\">Show available only</option>\n      <option value=\"LOW_SUPPLY\" aria-label=\"show low supply\">Show low supply</option>\n      <option value=\"SOLD_OUT\" aria-label=\"show sold out\">Show sold out</option>\n    </select>\n  </form>\n</section>\n",
       "templateUrl": [],
       "viewProviders": [],
-      "inputsClass": [],
+      "inputsClass": [
+        {
+          "name": "menuOption",
+          "defaultValue": "MenuOptions.ALL",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "line": 35,
+          "type": "any"
+        }
+      ],
       "outputsClass": [
         {
           "name": "menuOptionSelected",
           "defaultValue": "new EventEmitter<string>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 35,
+          "line": 37,
           "type": "EventEmitter"
         }
       ],
@@ -2294,7 +2303,7 @@
           "type": "FormGroup",
           "optional": false,
           "description": "",
-          "line": 37,
+          "line": 38,
           "modifierKind": [123]
         },
         {
@@ -2305,7 +2314,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 38
+          "line": 39
         }
       ],
       "methodsClass": [
@@ -2315,7 +2324,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 50,
+          "line": 51,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2326,7 +2335,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 55,
+          "line": 56,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2339,7 +2348,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n      <form [formGroup]=\"form\" aria-label=\"select food form\">\n        <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n          <option value=\"all\" aria-label=\"show all\">Show all</option>\n          <option value=\"available\" aria-label=\"show available\">Show available only</option>\n          <option value=\"lowSupply\" aria-label=\"show low supply\">Show low supply</option>\n          <option value=\"soldOut\" aria-label=\"show sold out\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionsComponent implements OnInit, OnDestroy {\n  // #region Properties (3)\n\n  @Output()\n  public menuOptionSelected = new EventEmitter<string>()\n\n  public form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (3)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(MenuOptions.all),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value: string) => this.menuOptionSelected.emit(value))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\n\nimport { MenuOptions } from '../enums'\n\n@Component({\n  selector: 'app-food-menu-option',\n  template: `\n    <section class=\"flex justify-end p-3 pr-0\" aria-label=\"select food section\">\n      <form [formGroup]=\"form\" aria-label=\"select food form\">\n        <select class=\"pl-2 w-[200px] text-base\" name=\"option\" formControlName=\"option\" aria-label=\"select food\">\n          <option value=\"ALL\" aria-label=\"show all\">Show all</option>\n          <option value=\"AVAILABLE\" aria-label=\"show available\">Show available only</option>\n          <option value=\"LOW_SUPPLY\" aria-label=\"show low supply\">Show low supply</option>\n          <option value=\"SOLD_OUT\" aria-label=\"show sold out\">Show sold out</option>\n        </select>\n      </form>\n    </section>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodMenuOptionsComponent implements OnInit, OnDestroy {\n  // #region Properties (3)\n\n  @Input()\n  menuOption = MenuOptions.ALL\n  @Output()\n  public menuOptionSelected = new EventEmitter<string>()\n  public form: FormGroup\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (3)\n\n  // #region Constructors (1)\n\n  constructor(private fb: FormBuilder) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      option: new FormControl(this.menuOption),\n    })\n\n    this.form.controls['option'].valueChanges\n      .pipe(takeUntil(this.unsubscribe$))\n      .subscribe((value: string) => this.menuOptionSelected.emit(value))\n  }\n\n  // #endregion Public Methods (2)\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
@@ -2356,7 +2365,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 38,
+        "line": 39,
         "jsdoctags": [
           {
             "name": "fb",
@@ -3206,6 +3215,16 @@
   "miscellaneous": {
     "variables": [
       {
+        "name": "Available",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
+      },
+      {
         "name": "context",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -3356,6 +3375,16 @@
         "defaultValue": "Template.bind({})"
       },
       {
+        "name": "LowSupply",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
+      },
+      {
         "name": "LowSupplyMockData",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -3399,6 +3428,16 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-card/food-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3410,16 +3449,6 @@
         "ctype": "miscellaneous",
         "subtype": "variable",
         "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "Template.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3525,6 +3554,16 @@
         "defaultValue": "FoodMenuCardTemplate.bind({})"
       },
       {
+        "name": "SoldOut",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
+      },
+      {
         "name": "SoldOutMenu",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -3548,6 +3587,16 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
+        "file": "src/app/food/food-choice/food-choice.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodChoiceComponent>",
+        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
         "file": "src/app/food/food-card/food-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3563,16 +3612,6 @@
         "deprecationMessage": "",
         "type": "Story<FoodChoiceFormComponent>",
         "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
-        "file": "src/app/food/food-choice/food-choice.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodChoiceComponent>",
-        "defaultValue": "(args: FoodChoiceComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3754,22 +3793,28 @@
         "name": "MenuOptions",
         "childs": [
           {
-            "name": "all",
+            "name": "ALL",
             "deprecated": false,
             "deprecationMessage": "",
-            "value": "all"
+            "value": "ALL"
           },
           {
-            "name": "available",
+            "name": "AVAILABLE",
             "deprecated": false,
             "deprecationMessage": "",
-            "value": "available"
+            "value": "AVAILABLE"
           },
           {
-            "name": "soldOut",
+            "name": "SOLD_OUT",
             "deprecated": false,
             "deprecationMessage": "",
-            "value": "soldOut"
+            "value": "SOLD_OUT"
+          },
+          {
+            "name": "LOW_SUPPLY",
+            "deprecated": false,
+            "deprecationMessage": "",
+            "value": "LOW_SUPPLY"
           }
         ],
         "ctype": "miscellaneous",
@@ -3781,6 +3826,58 @@
       }
     ],
     "groupedVariables": {
+      "src/app/food/food-menu-options/food-menu-options.stories.ts": [
+        {
+          "name": "Available",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "FoodMenuOptionsTemplate.bind({})"
+        },
+        {
+          "name": "FoodMenuOptionsTemplate",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Story<FoodMenuOptionsComponent>",
+          "defaultValue": "(args: FoodMenuOptionsComponent) => ({\n  props: args,\n})"
+        },
+        {
+          "name": "LowSupply",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "FoodMenuOptionsTemplate.bind({})"
+        },
+        {
+          "name": "Primary",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "FoodMenuOptionsTemplate.bind({})"
+        },
+        {
+          "name": "SoldOut",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "FoodMenuOptionsTemplate.bind({})"
+        }
+      ],
       "src/test.ts": [
         {
           "name": "context",
@@ -3994,28 +4091,6 @@
           "deprecationMessage": "",
           "type": "",
           "defaultValue": "FoodMenuCardTemplate.bind({})"
-        }
-      ],
-      "src/app/food/food-menu-options/food-menu-options.stories.ts": [
-        {
-          "name": "FoodMenuOptionsTemplate",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Story<FoodMenuOptionsComponent>",
-          "defaultValue": "(args: FoodMenuOptionsComponent) => ({\n  props: args,\n})"
-        },
-        {
-          "name": "Primary",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "",
-          "defaultValue": "FoodMenuOptionsTemplate.bind({})"
         }
       ],
       "src/app/food/food-card/food-card.stories.ts": [
@@ -4366,22 +4441,28 @@
           "name": "MenuOptions",
           "childs": [
             {
-              "name": "all",
+              "name": "ALL",
               "deprecated": false,
               "deprecationMessage": "",
-              "value": "all"
+              "value": "ALL"
             },
             {
-              "name": "available",
+              "name": "AVAILABLE",
               "deprecated": false,
               "deprecationMessage": "",
-              "value": "available"
+              "value": "AVAILABLE"
             },
             {
-              "name": "soldOut",
+              "name": "SOLD_OUT",
               "deprecated": false,
               "deprecationMessage": "",
-              "value": "soldOut"
+              "value": "SOLD_OUT"
+            },
+            {
+              "name": "LOW_SUPPLY",
+              "deprecated": false,
+              "deprecationMessage": "",
+              "value": "LOW_SUPPLY"
             }
           ],
           "ctype": "miscellaneous",
@@ -4674,7 +4755,17 @@
         "linktype": "component",
         "name": "FoodMenuOptionsComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/7",
+        "coverageCount": "0/8",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "Available",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
         "status": "low"
       },
       {
@@ -4692,7 +4783,27 @@
         "type": "variable",
         "linktype": "miscellaneous",
         "linksubtype": "variable",
+        "name": "LowSupply",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
         "name": "Primary",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "SoldOut",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"
