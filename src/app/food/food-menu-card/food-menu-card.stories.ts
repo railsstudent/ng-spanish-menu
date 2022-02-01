@@ -5,6 +5,7 @@ import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodChoiceModule } from '../food-choice'
 import { FoodQuestionComponent } from '../food-question/food-question.component'
+import { Stock } from '../interfaces'
 import { FoodService } from '../services'
 import { MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodMenuCardComponent } from './food-menu-card.component'
@@ -39,9 +40,9 @@ const FoodMenuCardTemplate: Story<FoodMenuCardComponent> = (args: FoodMenuCardCo
   </app-food-menu-card>`,
 })
 
-const qtyMap = {
-  [MockData[0].choices[0].id]: 10,
-  [SoldOutMockData[0].choices[1].id]: 0,
+const qtyMap: Record<string, Stock> = {
+  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },
+  [SoldOutMockData[0].choices[1].id]: { quantity: 10, totalStock: 10, isLowSupply: true },
 }
 
 export const Primary = FoodMenuCardTemplate.bind({})

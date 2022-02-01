@@ -1,4 +1,4 @@
-export enum MenuOptions {
+export enum MENE_OPTIONS {
   ALL = 'ALL',
   AVAILABLE = 'AVAILABLE',
   SOLD_OUT = 'SOLD_OUT',

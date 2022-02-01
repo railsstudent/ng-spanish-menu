@@ -16,4 +16,4 @@
     </ng-container>
   </app-food-menu-card>
 </ng-template>
-<ng-template #noFood let-data="data">No food or drink that is {{ data.option }}</ng-template>
+<ng-template #noFood let-data="data">No food or drink that is {{ data.option | renderMenuOption }}.</ng-template>
