@@ -2,7 +2,7 @@
   "pipes": [
     {
       "name": "RenderOptionPipe",
-      "id": "pipe-RenderOptionPipe-dc77b15756832f81227febd4d521bc08",
+      "id": "pipe-RenderOptionPipe-4afd8514b30c8adb17955373350d39d4",
       "file": "src/app/food/food-menu/render-menu-option.pipe.ts",
       "type": "pipe",
       "deprecated": false,
@@ -41,7 +41,7 @@
         }
       ],
       "ngname": "renderMenuOption",
-      "sourceCode": "import { Pipe, PipeTransform } from '@angular/core'\n\nimport { MENE_OPTIONS } from '../enums'\n\n@Pipe({\n  name: 'renderMenuOption',\n})\nexport class RenderOptionPipe implements PipeTransform {\n  transform(value: MENE_OPTIONS): string {\n    if ([MENE_OPTIONS.ALL, MENE_OPTIONS.AVAILABLE].includes(value)) {\n      return ''\n    } else if (value === MENE_OPTIONS.LOW_SUPPLY) {\n      return 'that is low supply'\n    }\n\n    return 'that is sold out'\n  }\n}\n"
+      "sourceCode": "import { Pipe, PipeTransform } from '@angular/core'\n\nimport { MENE_OPTIONS } from '../enums'\n\n@Pipe({\n  name: 'renderMenuOption',\n})\nexport class RenderOptionPipe implements PipeTransform {\n  transform(value: MENE_OPTIONS): string {\n    if ([MENE_OPTIONS.ALL, MENE_OPTIONS.AVAILABLE].includes(value)) {\n      return 'available'\n    } else if (value === MENE_OPTIONS.LOW_SUPPLY) {\n      return 'low supply'\n    }\n\n    return 'sold out'\n  }\n}\n"
     }
   ],
   "interfaces": [
@@ -1707,7 +1707,7 @@
     },
     {
       "name": "FoodChoiceFormComponent",
-      "id": "component-FoodChoiceFormComponent-74b21f44e339cbd0734d939832583a96",
+      "id": "component-FoodChoiceFormComponent-954a4e40b7c82072178bd4084475808d",
       "file": "src/app/food/food-choice-form/food-choice-form.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1816,7 +1816,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 133,
+          "line": 134,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
@@ -1825,9 +1825,9 @@
           "name": "displaySpinnerIcon",
           "args": [],
           "optional": false,
-          "returnType": "any",
+          "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 121,
+          "line": 122,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121, 130]
@@ -1862,7 +1862,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  EventEmitter,\n  Input,\n  OnDestroy,\n  OnInit,\n  Output,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, switchMap, takeUntil, tap } from 'rxjs/operators'\n\nimport { Choice } from '../interfaces'\nimport { FoodService } from '../services'\nimport { fulfillOrderValidator } from '../validators'\nimport { isFormValueQuantity } from './food-choice-form.type-guard'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      .ng-invalid:not(form) {\n        border-left: 5px solid #a94442;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceSubmitted = new EventEmitter<number>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  viewContainerRef: ViewContainerRef\n  public form: FormGroup\n  public processing = false\n  componentRef: ComponentRef<unknown> | null = null\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(\n    private fb: FormBuilder,\n    private foodService: FoodService,\n    private factoryResolver: ComponentFactoryResolver,\n    private cdr: ChangeDetectorRef,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (2)\n\n  public get quantity(): FormControl | undefined {\n    if (!this.form) {\n      return undefined\n    }\n    return this.form.get('quantity') as FormControl\n  }\n\n  public get quantityRemained(): number {\n    return this.foodService.getQuantity(this.choice.id)\n  }\n\n  // #endregion Public Accessors (2)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      quantity: new FormControl(1, {\n        validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.choice.id, this.foodService)],\n        updateOn: 'blur',\n      }),\n    })\n\n    this.submitChoice$\n      .pipe(\n        switchMap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n          return this.displaySpinnerIcon()\n        }),\n        delay(1000),\n        map(() => (isFormValueQuantity(this.form) ? this.form.value.quantity : 0)),\n        tap(() => {\n          this.destroyComponents()\n          this.processing = false\n        }),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  // #endregion Public Methods (2)\n\n  private async displaySpinnerIcon() {\n    const faSpinner = (await import('@fortawesome/free-solid-svg-icons')).faSpinner\n    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)\n    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)\n    faIconComponentRef.instance.icon = faSpinner\n    faIconComponentRef.instance.pulse = true\n    faIconComponentRef.instance.render()\n    this.componentRef = faIconComponentRef\n    this.cdr.detectChanges()\n  }\n\n  private destroyComponents() {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n\n    if (this.viewContainerRef) {\n      this.viewContainerRef.clear()\n    }\n  }\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  EventEmitter,\n  Input,\n  OnDestroy,\n  OnInit,\n  Output,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, switchMap, takeUntil, tap } from 'rxjs/operators'\n\nimport { Choice } from '../interfaces'\nimport { FoodService } from '../services'\nimport { fulfillOrderValidator } from '../validators'\nimport { isFormValueQuantity } from './food-choice-form.type-guard'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      .ng-invalid:not(form) {\n        border-left: 5px solid #a94442;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceSubmitted = new EventEmitter<number>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  viewContainerRef: ViewContainerRef\n  public form: FormGroup\n  public processing = false\n  componentRef: ComponentRef<unknown> | null = null\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(\n    private fb: FormBuilder,\n    private foodService: FoodService,\n    private factoryResolver: ComponentFactoryResolver,\n    private cdr: ChangeDetectorRef,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (2)\n\n  public get quantity(): FormControl | undefined {\n    if (!this.form) {\n      return undefined\n    }\n    return this.form.get('quantity') as FormControl\n  }\n\n  public get quantityRemained(): number {\n    return this.foodService.getQuantity(this.choice.id)\n  }\n\n  // #endregion Public Accessors (2)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      quantity: new FormControl(1, {\n        validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.choice.id, this.foodService)],\n        updateOn: 'blur',\n      }),\n    })\n\n    const delayTime = 1000\n    this.submitChoice$\n      .pipe(\n        switchMap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n          return this.displaySpinnerIcon()\n        }),\n        delay(delayTime),\n        map(() => (isFormValueQuantity(this.form) ? this.form.value.quantity : 0)),\n        tap(() => {\n          this.destroyComponents()\n          this.processing = false\n        }),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  // #endregion Public Methods (2)\n\n  private async displaySpinnerIcon(): Promise<void> {\n    const faSpinner = (await import('@fortawesome/free-solid-svg-icons')).faSpinner\n    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)\n    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)\n    faIconComponentRef.instance.icon = faSpinner\n    faIconComponentRef.instance.pulse = true\n    faIconComponentRef.instance.render()\n    this.componentRef = faIconComponentRef\n    this.cdr.detectChanges()\n  }\n\n  private destroyComponents(): void {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n\n    if (this.viewContainerRef) {\n      this.viewContainerRef.clear()\n    }\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n\n      .ng-invalid:not(form) {\n        border-left: 5px solid #a94442;\n      }\n    \n",
@@ -2301,7 +2301,7 @@
         ]
       },
       "implements": ["OnInit", "OnDestroy"],
-      "templateData": "<div class=\"food-menu\" *ngIf=\"menuItems$ | async as data; else notAvailable\">\n  <app-food-menu-option (menuOptionSelected)=\"menuOptionSub$.next($event)\"></app-food-menu-option>\n  <ng-container *ngTemplateOutlet=\"data.menuItems.length > 0 ? hasFood : noFood; context: { data }\"></ng-container>\n</div>\n\n<ng-template #notAvailable>No menu</ng-template>\n<ng-template #hasFood let-data=\"data\">\n  <app-food-menu-card *ngFor=\"let menuItem of data.menuItems; index as i; trackBy: menuItemTrackByFn\">\n    <app-food-question [question]=\"menuItem.question\" head></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\" body>\n      <app-food-choice\n        [choice]=\"choice\"\n        [qtyMap]=\"qtyMap\"\n        (foodChoiceAdded)=\"handleFoodChoiceSub$.next($event)\"\n      ></app-food-choice>\n    </ng-container>\n  </app-food-menu-card>\n</ng-template>\n<ng-template #noFood let-data=\"data\">No food or drink {{ data.option | renderMenuOption }}</ng-template>\n"
+      "templateData": "<div class=\"food-menu\" *ngIf=\"menuItems$ | async as data; else notAvailable\">\n  <app-food-menu-option (menuOptionSelected)=\"menuOptionSub$.next($event)\"></app-food-menu-option>\n  <ng-container *ngTemplateOutlet=\"data.menuItems.length > 0 ? hasFood : noFood; context: { data }\"></ng-container>\n</div>\n\n<ng-template #notAvailable>No menu</ng-template>\n<ng-template #hasFood let-data=\"data\">\n  <app-food-menu-card *ngFor=\"let menuItem of data.menuItems; index as i; trackBy: menuItemTrackByFn\">\n    <app-food-question [question]=\"menuItem.question\" head></app-food-question>\n    <ng-container *ngFor=\"let choice of menuItem.choices; index as j; trackBy: choiceTrackByFn\" body>\n      <app-food-choice\n        [choice]=\"choice\"\n        [qtyMap]=\"qtyMap\"\n        (foodChoiceAdded)=\"handleFoodChoiceSub$.next($event)\"\n      ></app-food-choice>\n    </ng-container>\n  </app-food-menu-card>\n</ng-template>\n<ng-template #noFood let-data=\"data\">No food or drink that is {{ data.option | renderMenuOption }}.</ng-template>\n"
     },
     {
       "name": "FoodMenuOptionsComponent",
@@ -3335,21 +3335,21 @@
         "name": "environment",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/environments/environment.prod.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "object",
-        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
-      },
-      {
-        "name": "environment",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/environments/environment.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
         "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
+      },
+      {
+        "name": "environment",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/environments/environment.prod.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "object",
+        "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
       },
       {
         "name": "FoodMenuCardTemplate",
@@ -3475,7 +3475,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "file": "src/app/food/food-card/food-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3495,7 +3495,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-card/food-card.stories.ts",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3525,7 +3525,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-total/food-total.stories.ts",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3535,7 +3535,7 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
@@ -3634,11 +3634,11 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
+        "file": "src/app/food/food-card/food-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Story<FoodChoiceFormComponent>",
-        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
+        "type": "Story<FoodCardComponent>",
+        "defaultValue": "(args: FoodCardComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3654,11 +3654,21 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-card/food-card.stories.ts",
+        "file": "src/app/food/food-choice-form/food-choice-form.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Story<FoodCardComponent>",
-        "defaultValue": "(args: FoodCardComponent) => ({\n  props: args,\n})"
+        "type": "Story<FoodChoiceFormComponent>",
+        "defaultValue": "(args: FoodChoiceFormComponent) => ({\n  props: args,\n})"
+      },
+      {
+        "name": "Template",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu/food-menu.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Story<FoodMenuComponent>",
+        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
       },
       {
         "name": "Template",
@@ -3674,16 +3684,6 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-total/food-total.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Story<FoodTotalComponent>",
-        "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
-      },
-      {
-        "name": "Template",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-shell/food-shell.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
@@ -3694,11 +3694,11 @@
         "name": "Template",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu/food-menu.stories.ts",
+        "file": "src/app/food/food-total/food-total.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
-        "type": "Story<FoodMenuComponent>",
-        "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
+        "type": "Story<FoodTotalComponent>",
+        "defaultValue": "(args: FoodTotalComponent) => ({\n  props: {\n    ...args,\n    getCheck: action('getCheck'),\n  },\n})"
       }
     ],
     "functions": [
@@ -4074,18 +4074,6 @@
           "defaultValue": "(args: FoodMenuComponent) => ({\n  props: args,\n})"
         }
       ],
-      "src/environments/environment.prod.ts": [
-        {
-          "name": "environment",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/environments/environment.prod.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
-        }
-      ],
       "src/environments/environment.ts": [
         {
           "name": "environment",
@@ -4096,6 +4084,18 @@
           "deprecationMessage": "",
           "type": "object",
           "defaultValue": "{\n  production: false,\n  baseUrl: '/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
+        }
+      ],
+      "src/environments/environment.prod.ts": [
+        {
+          "name": "environment",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/environments/environment.prod.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  production: true,\n  baseUrl: 'https://mystifying-panini-99633b.netlify.app/.netlify/functions',\n  lowSupplyPercentage: 0.4,\n}"
         }
       ],
       "src/app/food/food-menu-card/food-menu-card.stories.ts": [

@@ -42,7 +42,7 @@ const FoodMenuCardTemplate: Story<FoodMenuCardComponent> = (args: FoodMenuCardCo
 
 const qtyMap: Record<string, Stock> = {
   [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },
-  [SoldOutMockData[0].choices[1].id]: { quantity: 10, totalStock: 10, isLowSupply: true },
+  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 10, isLowSupply: true },
 }
 
 export const Primary = FoodMenuCardTemplate.bind({})
