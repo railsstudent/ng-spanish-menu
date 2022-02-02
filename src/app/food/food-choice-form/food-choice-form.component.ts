@@ -119,7 +119,7 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
 
   // #endregion Public Methods (2)
 
-  private async displaySpinnerIcon() {
+  private async displaySpinnerIcon(): Promise<void> {
     const faSpinner = (await import('@fortawesome/free-solid-svg-icons')).faSpinner
     const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
     const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)
@@ -131,7 +131,7 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
     this.cdr.detectChanges()
   }
 
-  private destroyComponents() {
+  private destroyComponents(): void {
     if (this.componentRef) {
       this.componentRef.destroy()
     }
