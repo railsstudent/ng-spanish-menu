@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms'
 import { Subject } from 'rxjs'
 import { takeUntil } from 'rxjs/operators'
 
-import { MENE_OPTIONS } from '../enums'
+import { MENU_OPTIONS } from '../enums'
 
 @Component({
   selector: 'app-food-menu-option',
@@ -32,7 +32,7 @@ export class FoodMenuOptionsComponent implements OnInit, OnDestroy {
   // #region Properties (3)
 
   @Input()
-  menuOption = MENE_OPTIONS.ALL
+  menuOption = MENU_OPTIONS.ALL
   @Output()
   public menuOptionSelected = new EventEmitter<string>()
   public form: FormGroup

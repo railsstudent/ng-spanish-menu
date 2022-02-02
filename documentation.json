@@ -3505,21 +3505,21 @@
         "name": "Primary",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
-      },
-      {
-        "name": "Primary",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "FoodMenuCardTemplate.bind({})"
+      },
+      {
+        "name": "Primary",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
       },
       {
         "name": "Primary",
@@ -3559,7 +3559,7 @@
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Record<string, Stock>",
-        "defaultValue": "{\n  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },\n  [SoldOutMockData[0].choices[1].id]: { quantity: 10, totalStock: 10, isLowSupply: true },\n}"
+        "defaultValue": "{\n  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },\n  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 10, isLowSupply: true },\n}"
       },
       {
         "name": "require",
@@ -3594,21 +3594,21 @@
         "name": "SoldOut",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "",
-        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
-      },
-      {
-        "name": "SoldOut",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/app/food/food-menu-card/food-menu-card.stories.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "",
         "defaultValue": "FoodMenuCardTemplate.bind({})"
+      },
+      {
+        "name": "SoldOut",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-menu-options/food-menu-options.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "FoodMenuOptionsTemplate.bind({})"
       },
       {
         "name": "SoldOutMenu",
@@ -4127,7 +4127,7 @@
           "deprecated": false,
           "deprecationMessage": "",
           "type": "Record<string, Stock>",
-          "defaultValue": "{\n  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },\n  [SoldOutMockData[0].choices[1].id]: { quantity: 10, totalStock: 10, isLowSupply: true },\n}"
+          "defaultValue": "{\n  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },\n  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 10, isLowSupply: true },\n}"
         },
         {
           "name": "SoldOut",

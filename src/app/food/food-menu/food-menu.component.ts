@@ -3,7 +3,7 @@ import { BehaviorSubject, combineLatest, Observable, Subject, Subscription } fro
 import { map, takeUntil } from 'rxjs/operators'
 import { environment } from 'src/environments/environment'
 
-import { MENE_OPTIONS } from '../enums'
+import { MENU_OPTIONS } from '../enums'
 import { Choice, MenuItem, OrderedFoodChoice, Stock } from '../interfaces'
 import { FoodService } from '../services'
 
@@ -19,7 +19,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()
   handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()
   menuItems$: Observable<{ menuItems: MenuItem[]; option: string } | undefined>
-  menuOptionSub$ = new BehaviorSubject<string>(MENE_OPTIONS.ALL)
+  menuOptionSub$ = new BehaviorSubject<string>(MENU_OPTIONS.ALL)
   public qtyMap: Record<string, Stock> | undefined
   unsubscribe$ = new Subject<boolean>()
   subscriptions: Subscription[] = []
@@ -43,14 +43,14 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
       return []
     }
 
-    const typedOptionString = option as keyof typeof MENE_OPTIONS
-    const typedOption = MENE_OPTIONS[typedOptionString]
+    const typedOptionString = option as keyof typeof MENU_OPTIONS
+    const typedOption = MENU_OPTIONS[typedOptionString]
 
     const filterFuncMap = {
-      [MENE_OPTIONS.ALL]: () => true,
-      [MENE_OPTIONS.AVAILABLE]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,
-      [MENE_OPTIONS.SOLD_OUT]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,
-      [MENE_OPTIONS.LOW_SUPPLY]: (choice: Choice) =>
+      [MENU_OPTIONS.ALL]: () => true,
+      [MENU_OPTIONS.AVAILABLE]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity > 0,
+      [MENU_OPTIONS.SOLD_OUT]: (choice: Choice) => this.qtyMap && this.qtyMap[choice.id].quantity <= 0,
+      [MENU_OPTIONS.LOW_SUPPLY]: (choice: Choice) =>
         this.qtyMap && this.qtyMap[choice.id].quantity > 0 && this.qtyMap[choice.id].isLowSupply,
     }
 
