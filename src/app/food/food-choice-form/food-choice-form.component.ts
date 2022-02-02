@@ -97,6 +97,7 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
       }),
     })
 
+    const delayTime = 1000
     this.submitChoice$
       .pipe(
         switchMap(($event) => {
@@ -105,7 +106,7 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
           this.processing = true
           return this.displaySpinnerIcon()
         }),
-        delay(1000),
+        delay(delayTime),
         map(() => (isFormValueQuantity(this.form) ? this.form.value.quantity : 0)),
         tap(() => {
           this.destroyComponents()
