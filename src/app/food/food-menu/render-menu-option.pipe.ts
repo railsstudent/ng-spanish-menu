@@ -7,7 +7,7 @@ import { MENU_OPTIONS } from '../enums'
 })
 export class RenderOptionPipe implements PipeTransform {
   transform(value: MENU_OPTIONS): string {
-    if ([MENU_OPTIONS.ALL, MENU_OPTIONS.AVAILABLE].includes(value)) {
+    if (value === MENU_OPTIONS.AVAILABLE) {
       return 'available'
     } else if (value === MENU_OPTIONS.LOW_SUPPLY) {
       return 'low supply'
