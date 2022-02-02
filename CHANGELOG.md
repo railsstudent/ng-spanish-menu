@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.9](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.8...0.0.9) (2022-02-02)
+
+
+### Features
+
+* add alert low supply event ([04b6c69](https://github.com/railsstudent/ng-spanish-menu/commit/04b6c698b2cc8c3e57392afe42f2ff64d253f51c))
+* add custom pipe to transform enum value to display text ([bf56e82](https://github.com/railsstudent/ng-spanish-menu/commit/bf56e825682fbeee45bb5fe912598d906602b9a4))
+* animate spinner icon ([f86cb94](https://github.com/railsstudent/ng-spanish-menu/commit/f86cb94f75f524d568d7b2e2cbe9246cc027be8c))
+* display food in low supply ([96b9934](https://github.com/railsstudent/ng-spanish-menu/commit/96b99346edf96c1a457bc37b268058f04e15db6a))
+* display low supply text dynamically ([771fe15](https://github.com/railsstudent/ng-spanish-menu/commit/771fe15e4817a1b74f4782373f33ba142ac32d0a))
+* display message when menu option returns zero food or drink ([dd5112a](https://github.com/railsstudent/ng-spanish-menu/commit/dd5112a6acddbb0f1ea5cda35d228ae614cd426f))
+* dynamically display angular fontawesome icon ([6a21e55](https://github.com/railsstudent/ng-spanish-menu/commit/6a21e559c885b65cedd7a3bbe229eb0cad789a15))
+* dynamically display angular fontawesome icon ([02d94b6](https://github.com/railsstudent/ng-spanish-menu/commit/02d94b64b758a129807c8883a364d7738dc58fdb))
+* dynamically display angular fontawesome icon ([e073c2c](https://github.com/railsstudent/ng-spanish-menu/commit/e073c2c6a0eef3f8219bc3f8476055771bfb39c3))
+* filter food in low supply ([2a8cd56](https://github.com/railsstudent/ng-spanish-menu/commit/2a8cd56da342d43d41e1ac1a15daa039aaab6821))
+* low supply indicator ([3dc6977](https://github.com/railsstudent/ng-spanish-menu/commit/3dc69774259b68d7da49dd6c5039e512461be93a))
+* low supply option ([f0707f3](https://github.com/railsstudent/ng-spanish-menu/commit/f0707f3c8d1e99527a7fbf4980345bf984656ff6))
+* show food in low supply ([c90575e](https://github.com/railsstudent/ng-spanish-menu/commit/c90575eca0759c9f1ea20e829f947dd0829a05d0))
+
+
+### Bug fixes
+
+* accessibility violation ([2b88f55](https://github.com/railsstudent/ng-spanish-menu/commit/2b88f551d4c11714563e6744ee259315932d8125))
+* accessibility violations ([73e7979](https://github.com/railsstudent/ng-spanish-menu/commit/73e797947206209dbad5dca31fbb2ca641988197))
+* accessibility violations ([dbe9f6f](https://github.com/railsstudent/ng-spanish-menu/commit/dbe9f6fe9e2cb812c30adc4dff39724872b7bc6d))
+* add missing field-text in food-card component ([1ea79bc](https://github.com/railsstudent/ng-spanish-menu/commit/1ea79bc761041b565393a41ff61100a8c2b9719a))
+* add stock interface ([7b18470](https://github.com/railsstudent/ng-spanish-menu/commit/7b18470a7d6cb26c5f0e71afd55dc2a2a4ab5b6e))
+* show low supply icon and text after chaning from sold out menu option to show all menu option ([f566be4](https://github.com/railsstudent/ng-spanish-menu/commit/f566be421517fd0a0d58440f60c159b913017147))
+
 ### [0.0.8](https://github.com/railsstudent/ng-spanish-menu/compare/0.0.7...0.0.8) (2021-12-22)
 
 
