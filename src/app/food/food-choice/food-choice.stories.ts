@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
+import { Stock } from '../interfaces'
 import { FoodService } from '../services'
 import { LowSupplyMockData, MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodChoiceComponent } from './food-choice.component'
@@ -29,10 +30,22 @@ const Template: Story<FoodChoiceComponent> = (args: FoodChoiceComponent) => ({
   props: args,
 })
 
-const qtyMap = {
-  [MockData[0].choices[0].id]: { quantity: 10, totalStock: 10, isLowSupply: false },
-  [SoldOutMockData[0].choices[1].id]: { quantity: 0, totalStock: 0, isLowSupply: false },
-  [LowSupplyMockData[0].choices[2].id]: { quantity: 1, totalStock: 1, isLowSupply: false },
+const qtyMap: Record<string, Stock> = {
+  [MockData[0].choices[0].id]: {
+    quantity: 10,
+    totalStock: 10,
+    isLowSupply: false,
+  },
+  [SoldOutMockData[0].choices[1].id]: {
+    quantity: 0,
+    totalStock: 0,
+    isLowSupply: false,
+  },
+  [LowSupplyMockData[0].choices[2].id]: {
+    quantity: 1,
+    totalStock: 1,
+    isLowSupply: false,
+  },
 }
 
 export const Primary = Template.bind({})
