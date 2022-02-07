@@ -19,11 +19,7 @@
     "release:patch:dryrun": "npm run release  -- --dry-run --release-as patch",
     "release:patch": "npm run release -- --no-verify --release-as patch",
     "cspell": "cspell",
-    "commit": "git-cz",
-    "betterer": "betterer --cache",
-    "betterer:precommit": "betterer precommit --cache",
-    "betterer:merge": "betterer merge",
-    "betterer:update": "betterer --update"
+    "commit": "git-cz"
   },
   "dependencies": {
     "@angular/animations": "~12.2.0",
@@ -53,10 +49,6 @@
     "@angular/compiler-cli": "~12.2.0",
     "@angular/elements": "^12.2.10",
     "@babel/core": "^7.15.0",
-    "@betterer/angular": "^5.1.2",
-    "@betterer/betterer": "^5.1.2",
-    "@betterer/cli": "^5.1.2",
-    "@betterer/eslint": "^5.1.2",
     "@commitlint/cli": "^14.1.0",
     "@commitlint/config-conventional": "^13.2.0",
     "@commitlint/prompt": "^14.1.0",
@@ -77,7 +69,7 @@
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "@webcomponents/custom-elements": "^1.5.0",
-    "angular-cli-ghpages": "^1.0.0-rc.2",
+    "angular-cli-ghpages": "^1.0.0",
     "babel-loader": "^8.2.2",
     "chromatic": "^6.0.4",
     "commitizen": "^4.2.4",
