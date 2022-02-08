@@ -2,7 +2,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodService } from '../services'
-import { MockData, MockFoodService } from '../storybook-mock'
+import { MockData, MockFoodService, SoldOutMockData } from '../storybook-mock'
 import { FoodShellComponent } from './food-shell.component'
 import { FoodShellModule } from './food-shell.module'
 
@@ -28,3 +28,15 @@ const Template: Story<FoodShellComponent> = (args: FoodShellComponent) => ({
 })
 
 export const Primary = Template.bind({})
+
+export const SoldOut = Template.bind({})
+SoldOut.decorators = [
+  moduleMetadata({
+    providers: [
+      {
+        provide: FoodService,
+        useFactory: () => new MockFoodService(SoldOutMockData),
+      },
+    ],
+  }),
+]
