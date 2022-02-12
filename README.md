@@ -78,6 +78,7 @@ Should we convert the application to PWA?
   <li><a href="http://www.blueskyconnie.com/?p=2470" target="_blank" rel="noreferrer noopener">How Angular calls CORS enabled Netlify Function</a></li>
   <li><a href="http://www.blueskyconnie.com/?p=3127" target="_blank" rel="noreferrer noopener">Tailwind CSS in JIT mode with Angular</a></li>
   <li><a href="http://www.blueskyconnie.com/?p=3181" target="_blank" rel="noreferrer noopener">Dynamically import module in Angular</a></li>
+  <li><a href="http://www.blueskyconnie.com/?p=3520" target="_blank" rel="noreferrer noopener">Customize template with ngTemplateOutlet and ngTemplate in Angular</a></li>
 </ol>
 
 ### Best coding practices
