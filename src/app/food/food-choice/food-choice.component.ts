@@ -24,7 +24,13 @@ import { isQtyMapCurrentValueObjectLiteral } from './food-choice.type-guard'
 @Component({
   selector: 'app-food-choice',
   templateUrl: './food-choice.component.html',
-  styleUrls: ['./food-choice.component.scss'],
+  styles: [
+    `
+      :host {
+        display: block;
+      }
+    `,
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {

@@ -1,0 +1,12 @@
+:host {
+  display: block;
+}
+
+.row {
+  @apply flex flex-wrap justify-start;
+}
+
+.item {
+  flex: 1 1 calc(100% / 4 - 0.75rem * 2 - 0.5rem * 2);
+  @apply px-3 py-2 text-base;
+}
