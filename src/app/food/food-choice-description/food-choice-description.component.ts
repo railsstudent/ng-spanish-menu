@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core'
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core'
 
 import { Choice } from '../interfaces'
 
@@ -33,6 +33,7 @@ import { Choice } from '../interfaces'
     </ng-container>
   `,
   styleUrls: ['./food-choice-description.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodChoiceDescriptionComponent {
   @Input()
