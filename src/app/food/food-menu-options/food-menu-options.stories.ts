@@ -20,6 +20,9 @@ const FoodMenuOptionsTemplate: Story<FoodMenuOptionsComponent> = (args: FoodMenu
 })
 
 export const Primary = FoodMenuOptionsTemplate.bind({})
+Primary.args = {
+  menuOption: MENU_OPTIONS.ALL,
+}
 
 export const Available = FoodMenuOptionsTemplate.bind({})
 Available.args = {

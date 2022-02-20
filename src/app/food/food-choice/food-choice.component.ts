@@ -34,9 +34,9 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   public choice: Choice
   @Output()
   public foodChoiceAdded = new EventEmitter<OrderedFoodChoice>()
-  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
+  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: false })
   public viewContainerRef: ViewContainerRef
-  @ViewChild('lowSupplyRef', { read: ElementRef, static: true })
+  @ViewChild('lowSupplyRef', { read: ElementRef, static: false })
   public lowSupplierRef: ElementRef
   @Input()
   public qtyMap: Record<string, Stock> | undefined | null
@@ -110,10 +110,12 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
       this.viewContainerRef.clear()
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
-    Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {
-      this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)
-    })
+    if (this.lowSupplierRef) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument, @typescript-eslint/no-unsafe-member-access
+      Array.from(this.lowSupplierRef.nativeElement.children).forEach((child) => {
+        this.renderer.removeChild(this.lowSupplierRef.nativeElement, child)
+      })
+    }
   }
 
   private async displayLowSupplyComponent() {

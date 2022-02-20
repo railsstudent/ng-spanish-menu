@@ -1703,7 +1703,7 @@
         ]
       },
       "implements": ["OnInit", "OnChanges", "OnDestroy"],
-      "templateData": "<div class=\"food-choice flex flex-col p-2 box-border-indigo\">\n  <div class=\"row\">\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div class=\"row\">\n    <label name=\"ingredient\" class=\"item\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text italic\">{{ choice.ingredients }}</span>\n    </label>\n  </div>\n  <div>\n    <ng-container [ngSwitch]=\"remained > 0\">\n      <div class=\"flex\">\n        <app-food-choice-form\n          class=\"mx-3 inline grow\"\n          [choice]=\"choice\"\n          (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n          *ngSwitchCase=\"true\"\n        >\n        </app-food-choice-form>\n        <div class=\"flex items-center grow\" #lowSupplyRef>\n          <ng-container #viewContainerRef></ng-container>\n        </div>\n      </div>\n\n      <ng-container *ngSwitchDefault>\n        <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n      </ng-container>\n    </ng-container>\n  </div>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item text-[#a94442] inline\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
+      "templateData": "<div class=\"food-choice flex flex-col p-2 box-border-indigo\">\n  <div class=\"row\">\n    <label name=\"name\" class=\"item\">\n      <span class=\"field\">Name:</span>\n      <span class=\"field-text\">{{ choice.name }}</span>\n    </label>\n    <label name=\"description\" class=\"item\">\n      <span class=\"field\">Description:</span>\n      <span class=\"field-text\">{{ choice.description }}</span>\n    </label>\n    <label name=\"price\" class=\"item\">\n      <span class=\"field\">Price:</span>\n      <span class=\"field-text\">{{ choice.currency }} {{ choice.price }}</span>\n    </label>\n    <label name=\"quantity\" class=\"item\">\n      <span class=\"field\">Quantity:</span>\n      <span class=\"field-text\">{{ remained }}</span>\n    </label>\n  </div>\n  <div class=\"row\">\n    <label name=\"ingredient\" class=\"item\">\n      <span class=\"field\">Ingredients:</span>\n      <span class=\"field-text italic\">{{ choice.ingredients }}</span>\n    </label>\n  </div>\n  <div>\n    <ng-container *ngTemplateOutlet=\"remained > 0 ? order : soldout; context: { choice: choice }\"></ng-container>\n\n    <!---\n    <ng-container [ngSwitch]=\"remained > 0\">\n      <div class=\"flex\">\n        <app-food-choice-form\n          class=\"mx-3 inline grow\"\n          [choice]=\"choice\"\n          (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n          *ngSwitchCase=\"true\"\n        >\n        </app-food-choice-form>\n        <div class=\"flex items-center grow\" #lowSupplyRef>\n          <ng-container #viewContainerRef></ng-container>\n        </div>\n      </div>\n\n      <ng-container *ngSwitchDefault>\n        <ng-container *ngTemplateOutlet=\"soldout; context: { choice: choice }\"> </ng-container>\n      </ng-container>\n    </ng-container>\n  -->\n  </div>\n  <ng-template #order let-choice=\"choice\">\n    <div class=\"flex\">\n      <app-food-choice-form\n        class=\"mx-3 inline grow\"\n        [choice]=\"choice\"\n        (foodChoiceSubmitted)=\"submitFoodChoice($event)\"\n        *ngSwitchCase=\"true\"\n      >\n      </app-food-choice-form>\n      <div class=\"flex items-center grow\" #lowSupplyRef>\n        <ng-container #viewContainerRef></ng-container>\n      </div>\n    </div>\n  </ng-template>\n  <ng-template #soldout let-choice=\"choice\">\n    <span class=\"item text-[#a94442] inline\">Sorry, {{ choice.name }} is sold out</span>\n  </ng-template>\n</div>\n"
     },
     {
       "name": "FoodChoiceFormComponent",
@@ -3611,6 +3611,16 @@
         "defaultValue": "FoodMenuOptionsTemplate.bind({})"
       },
       {
+        "name": "SoldOut",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/app/food/food-shell/food-shell.stories.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "",
+        "defaultValue": "Template.bind({})"
+      },
+      {
         "name": "SoldOutMenu",
         "ctype": "miscellaneous",
         "subtype": "variable",
@@ -4332,6 +4342,16 @@
           "defaultValue": "Template.bind({})"
         },
         {
+          "name": "SoldOut",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/app/food/food-shell/food-shell.stories.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "",
+          "defaultValue": "Template.bind({})"
+        },
+        {
           "name": "Template",
           "ctype": "miscellaneous",
           "subtype": "variable",
@@ -4967,6 +4987,16 @@
         "linktype": "miscellaneous",
         "linksubtype": "variable",
         "name": "Primary",
+        "coveragePercent": 0,
+        "coverageCount": "0/1",
+        "status": "low"
+      },
+      {
+        "filePath": "src/app/food/food-shell/food-shell.stories.ts",
+        "type": "variable",
+        "linktype": "miscellaneous",
+        "linksubtype": "variable",
+        "name": "SoldOut",
         "coveragePercent": 0,
         "coverageCount": "0/1",
         "status": "low"

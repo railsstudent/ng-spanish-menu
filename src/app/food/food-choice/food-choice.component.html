@@ -24,25 +24,17 @@
     </label>
   </div>
   <div>
-    <ng-container [ngSwitch]="remained > 0">
-      <div class="flex">
-        <app-food-choice-form
-          class="mx-3 inline grow"
-          [choice]="choice"
-          (foodChoiceSubmitted)="submitFoodChoice($event)"
-          *ngSwitchCase="true"
-        >
-        </app-food-choice-form>
-        <div class="flex items-center grow" #lowSupplyRef>
-          <ng-container #viewContainerRef></ng-container>
-        </div>
-      </div>
-
-      <ng-container *ngSwitchDefault>
-        <ng-container *ngTemplateOutlet="soldout; context: { choice: choice }"> </ng-container>
-      </ng-container>
-    </ng-container>
+    <ng-container *ngTemplateOutlet="remained > 0 ? order : soldout; context: { choice: choice }"></ng-container>
   </div>
+  <ng-template #order let-choice="choice">
+    <div class="flex">
+      <app-food-choice-form class="mx-3 inline grow" [choice]="choice" (foodChoiceSubmitted)="submitFoodChoice($event)">
+      </app-food-choice-form>
+      <div class="flex items-center grow" #lowSupplyRef>
+        <ng-container #viewContainerRef></ng-container>
+      </div>
+    </div>
+  </ng-template>
   <ng-template #soldout let-choice="choice">
     <span class="item text-[#a94442] inline">Sorry, {{ choice.name }} is sold out</span>
   </ng-template>
