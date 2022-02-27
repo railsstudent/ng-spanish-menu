@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver,
   ComponentRef,
   ElementRef,
   EventEmitter,
@@ -28,8 +27,6 @@ import { isQtyMapCurrentValueObjectLiteral } from './food-choice.type-guard'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
-  // #region Properties (8)
-
   @Input()
   public choice: Choice
   @Output()
@@ -44,19 +41,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   public componentRef: ComponentRef<unknown> | null = null
   public minimumSupply: number
 
-  // #endregion Properties (8)
-
-  // #region Constructors (1)
-
-  constructor(
-    private factoryResolver: ComponentFactoryResolver,
-    private cdr: ChangeDetectorRef,
-    private renderer: Renderer2,
-  ) {}
-
-  // #endregion Constructors (1)
-
-  // #region Public Methods (4)
+  constructor(private cdr: ChangeDetectorRef, private renderer: Renderer2) {}
 
   public async ngOnChanges(changes: SimpleChanges): Promise<void> {
     const { qtyMap } = changes
@@ -97,10 +82,6 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
 
-  // #endregion Public Methods (4)
-
-  // #region Private Methods (3)
-
   private destroyComponents() {
     if (this.componentRef) {
       this.componentRef.destroy()
@@ -131,8 +112,7 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   private async displayLowSupplyIcon(textColor: string) {
     const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle
     const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
-    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)
-    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)
+    const faIconComponentRef = this.viewContainerRef.createComponent(FaIconComponent)
     faIconComponentRef.instance.icon = faExclamationTriangle
     faIconComponentRef.instance.classes = [textColor, 'text-[1.35rem]', 'mr-2']
     faIconComponentRef.instance.render()
@@ -158,6 +138,4 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   private isLowSupply(remained: number): boolean {
     return remained > 0 && remained <= this.minimumSupply
   }
-
-  // #endregion Private Methods (3)
 }
