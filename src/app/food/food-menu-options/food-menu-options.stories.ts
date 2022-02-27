@@ -1,4 +1,4 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 // also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
@@ -10,7 +10,7 @@ export default {
   component: FoodMenuOptionsComponent,
   decorators: [
     moduleMetadata({
-      imports: [ReactiveFormsModule, FormsModule],
+      imports: [ReactiveFormsModule],
     }),
   ],
 } as Meta

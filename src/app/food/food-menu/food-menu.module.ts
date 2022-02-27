@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 
 import { FoodChoiceModule } from '../food-choice'
 import { FoodMenuCardComponent } from '../food-menu-card'
@@ -17,7 +17,7 @@ import { RenderOptionPipe } from './render-menu-option.pipe'
     FoodMenuOptionsComponent,
     RenderOptionPipe,
   ],
-  imports: [CommonModule, FoodChoiceModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FoodChoiceModule, ReactiveFormsModule],
   exports: [FoodMenuComponent],
 })
 export class FoodMenuModule {}

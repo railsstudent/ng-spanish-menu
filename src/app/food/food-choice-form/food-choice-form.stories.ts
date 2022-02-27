@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { ReactiveFormsModule } from '@angular/forms'
 import { Meta, moduleMetadata, Story } from '@storybook/angular'
 
 import { FoodService } from '../services'
@@ -11,7 +11,7 @@ export default {
   component: FoodChoiceFormComponent,
   decorators: [
     moduleMetadata({
-      imports: [HttpClientModule, FormsModule, ReactiveFormsModule],
+      imports: [HttpClientModule, ReactiveFormsModule],
       declarations: [],
       providers: [
         {
