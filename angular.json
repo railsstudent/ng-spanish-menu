@@ -110,6 +110,20 @@
             "repo": "https://github.com/railsstudent/ng-spanish-menu.git",
             "noSilent": true
           }
+        },
+
+        "storybook": {
+          "builder": "@storybook/angular:start-storybook",
+          "options": {
+            "browserTarget": "angular-cli:build",
+            "port": 6006
+          }
+        },
+        "build-storybook": {
+          "builder": "@storybook/angular:build-storybook",
+          "options": {
+            "browserTarget": "angular-cli:build"
+          }
         }
       }
     }
