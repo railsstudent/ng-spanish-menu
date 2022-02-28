@@ -1750,7 +1750,7 @@
     },
     {
       "name": "FoodChoiceFormComponent",
-      "id": "component-FoodChoiceFormComponent-9071ae50dd60db87852a7ef01d5bf304bf3f7dfb9ee9e9f04ccd26d3ef195d034c138602f053bd34375f3e4b5e0714f004c03e1ed3da7560b48b8baf96484c87",
+      "id": "component-FoodChoiceFormComponent-25e5b89c40eb800825d7afbea69342c73be0bcc9e660f9e92177cdf2bb2b251c00e3737aafeb18742ae3318a88cd98a599aa4ad182cf42a8f7a83f1721e5b9cf",
       "file": "src/app/food/food-choice-form/food-choice-form.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -1770,7 +1770,7 @@
           "name": "choice",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 44,
+          "line": 41,
           "type": "Choice",
           "decorators": []
         }
@@ -1781,7 +1781,7 @@
           "defaultValue": "new EventEmitter<number>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 46,
+          "line": 43,
           "type": "EventEmitter"
         }
       ],
@@ -1794,7 +1794,7 @@
           "type": "ComponentRef<> | null",
           "optional": false,
           "description": "",
-          "line": 51
+          "line": 48
         },
         {
           "name": "form",
@@ -1803,7 +1803,7 @@
           "type": "FormGroup",
           "optional": false,
           "description": "",
-          "line": 49,
+          "line": 46,
           "modifierKind": [123]
         },
         {
@@ -1814,7 +1814,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 50,
+          "line": 47,
           "modifierKind": [123]
         },
         {
@@ -1825,7 +1825,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 52
+          "line": 49
         },
         {
           "name": "unsubscribe$",
@@ -1835,7 +1835,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 53
+          "line": 50
         },
         {
           "name": "viewContainerRef",
@@ -1844,7 +1844,7 @@
           "type": "ViewContainerRef",
           "optional": false,
           "description": "",
-          "line": 48,
+          "line": 45,
           "decorators": [
             {
               "name": "ViewChild",
@@ -1860,7 +1860,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 134,
+          "line": 111,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
@@ -1871,7 +1871,7 @@
           "optional": false,
           "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 122,
+          "line": 100,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121, 131]
@@ -1882,7 +1882,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 85,
+          "line": 65,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -1893,7 +1893,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 92,
+          "line": 72,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -1906,7 +1906,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentFactoryResolver,\n  ComponentRef,\n  EventEmitter,\n  Input,\n  OnDestroy,\n  OnInit,\n  Output,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, switchMap, takeUntil, tap } from 'rxjs/operators'\n\nimport { Choice } from '../interfaces'\nimport { FoodService } from '../services'\nimport { fulfillOrderValidator } from '../validators'\nimport { isFormValueQuantity } from './food-choice-form.type-guard'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      .ng-invalid:not(form) {\n        border-left: 5px solid #a94442;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceSubmitted = new EventEmitter<number>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  viewContainerRef: ViewContainerRef\n  public form: FormGroup\n  public processing = false\n  componentRef: ComponentRef<unknown> | null = null\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n\n  // #endregion Properties (6)\n\n  // #region Constructors (1)\n\n  constructor(\n    private fb: FormBuilder,\n    private foodService: FoodService,\n    private factoryResolver: ComponentFactoryResolver,\n    private cdr: ChangeDetectorRef,\n  ) {}\n\n  // #endregion Constructors (1)\n\n  // #region Public Accessors (2)\n\n  public get quantity(): FormControl | undefined {\n    if (!this.form) {\n      return undefined\n    }\n    return this.form.get('quantity') as FormControl\n  }\n\n  public get quantityRemained(): number {\n    return this.foodService.getQuantity(this.choice.id)\n  }\n\n  // #endregion Public Accessors (2)\n\n  // #region Public Methods (2)\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      quantity: new FormControl(1, {\n        validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.choice.id, this.foodService)],\n        updateOn: 'blur',\n      }),\n    })\n\n    const delayTime = 1000\n    this.submitChoice$\n      .pipe(\n        switchMap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n          return this.displaySpinnerIcon()\n        }),\n        delay(delayTime),\n        map(() => (isFormValueQuantity(this.form) ? this.form.value.quantity : 0)),\n        tap(() => {\n          this.destroyComponents()\n          this.processing = false\n        }),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  // #endregion Public Methods (2)\n\n  private async displaySpinnerIcon(): Promise<void> {\n    const faSpinner = (await import('@fortawesome/free-solid-svg-icons')).faSpinner\n    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)\n    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)\n    faIconComponentRef.instance.icon = faSpinner\n    faIconComponentRef.instance.pulse = true\n    faIconComponentRef.instance.render()\n    this.componentRef = faIconComponentRef\n    this.cdr.detectChanges()\n  }\n\n  private destroyComponents(): void {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n\n    if (this.viewContainerRef) {\n      this.viewContainerRef.clear()\n    }\n  }\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentRef,\n  EventEmitter,\n  Input,\n  OnDestroy,\n  OnInit,\n  Output,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\nimport { Subject } from 'rxjs'\nimport { delay, map, switchMap, takeUntil, tap } from 'rxjs/operators'\n\nimport { Choice } from '../interfaces'\nimport { FoodService } from '../services'\nimport { fulfillOrderValidator } from '../validators'\nimport { isFormValueQuantity } from './food-choice-form.type-guard'\n\n@Component({\n  selector: 'app-food-choice-form',\n  templateUrl: './food-choice-form.component.html',\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n\n      .ng-invalid:not(form) {\n        border-left: 5px solid #a94442;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodChoiceFormComponent implements OnInit, OnDestroy {\n  @Input()\n  public choice: Choice\n  @Output()\n  public foodChoiceSubmitted = new EventEmitter<number>()\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  viewContainerRef: ViewContainerRef\n  public form: FormGroup\n  public processing = false\n  componentRef: ComponentRef<unknown> | null = null\n  submitChoice$ = new Subject<Event>()\n  unsubscribe$ = new Subject<boolean>()\n\n  constructor(private fb: FormBuilder, private foodService: FoodService, private cdr: ChangeDetectorRef) {}\n\n  public get quantity(): FormControl | undefined {\n    if (!this.form) {\n      return undefined\n    }\n    return this.form.get('quantity') as FormControl\n  }\n\n  public get quantityRemained(): number {\n    return this.foodService.getQuantity(this.choice.id)\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n\n    this.unsubscribe$.next(true)\n    this.unsubscribe$.complete()\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      quantity: new FormControl(1, {\n        validators: [Validators.required, Validators.min(1), fulfillOrderValidator(this.choice.id, this.foodService)],\n        updateOn: 'blur',\n      }),\n    })\n\n    const delayTime = 1000\n    this.submitChoice$\n      .pipe(\n        switchMap(($event) => {\n          $event.preventDefault()\n          $event.stopPropagation()\n          this.processing = true\n          return this.displaySpinnerIcon()\n        }),\n        delay(delayTime),\n        map(() => (isFormValueQuantity(this.form) ? this.form.value.quantity : 0)),\n        tap(() => {\n          this.destroyComponents()\n          this.processing = false\n        }),\n        takeUntil(this.unsubscribe$),\n      )\n      .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))\n  }\n\n  private async displaySpinnerIcon(): Promise<void> {\n    const { faSpinner } = await import('@fortawesome/free-solid-svg-icons')\n    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent\n    const faIconComponentRef = this.viewContainerRef.createComponent(FaIconComponent)\n    faIconComponentRef.instance.icon = faSpinner\n    faIconComponentRef.instance.pulse = true\n    faIconComponentRef.instance.render()\n    this.componentRef = faIconComponentRef\n    this.cdr.detectChanges()\n  }\n\n  private destroyComponents(): void {\n    if (this.componentRef) {\n      this.componentRef.destroy()\n    }\n\n    if (this.viewContainerRef) {\n      this.viewContainerRef.clear()\n    }\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n\n      .ng-invalid:not(form) {\n        border-left: 5px solid #a94442;\n      }\n    \n",
@@ -1929,19 +1929,13 @@
             "deprecationMessage": ""
           },
           {
-            "name": "factoryResolver",
-            "type": "ComponentFactoryResolver",
-            "deprecated": false,
-            "deprecationMessage": ""
-          },
-          {
             "name": "cdr",
             "type": "ChangeDetectorRef",
             "deprecated": false,
             "deprecationMessage": ""
           }
         ],
-        "line": 53,
+        "line": 50,
         "jsdoctags": [
           {
             "name": "fb",
@@ -1955,15 +1949,6 @@
           {
             "name": "foodService",
             "type": "FoodService",
-            "deprecated": false,
-            "deprecationMessage": "",
-            "tagName": {
-              "text": "param"
-            }
-          },
-          {
-            "name": "factoryResolver",
-            "type": "ComponentFactoryResolver",
             "deprecated": false,
             "deprecationMessage": "",
             "tagName": {
@@ -1989,7 +1974,7 @@
             "name": "quantity",
             "type": "",
             "returnType": "FormControl | undefined",
-            "line": 70
+            "line": 54
           }
         },
         "quantityRemained": {
@@ -1998,7 +1983,7 @@
             "name": "quantityRemained",
             "type": "number",
             "returnType": "number",
-            "line": 77
+            "line": 61
           }
         }
       },
@@ -2512,7 +2497,7 @@
     },
     {
       "name": "FoodShellComponent",
-      "id": "component-FoodShellComponent-725b2de5edd7b44e3c3da9fd6ba74a92d88ad7ca6c8db6f1b93d7cfbe18c8a5a7c1a36f5703882ef76c08b87dc60288071605a8044f1b222de71ffeb4369fb74",
+      "id": "component-FoodShellComponent-fd3d8689aeb2b56636aa1ee4d92e202c3ab473bdbc4865634cefa58745dbbd929d932ca2aef501d743fc480afe05cfcc5ca91287cf935aeed7bd950cc767112b",
       "file": "src/app/food/food-shell/food-shell.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -2537,7 +2522,7 @@
           "type": "ComponentRef<FoodCardComponent>[]",
           "optional": false,
           "description": "",
-          "line": 55,
+          "line": 53,
           "modifierKind": [123]
         },
         {
@@ -2548,7 +2533,7 @@
           "type": "OrderedFoodChoice[]",
           "optional": false,
           "description": "",
-          "line": 56,
+          "line": 54,
           "modifierKind": [123]
         },
         {
@@ -2558,7 +2543,7 @@
           "type": "ViewContainerRef",
           "optional": false,
           "description": "",
-          "line": 53,
+          "line": 51,
           "decorators": [
             {
               "name": "ViewChild",
@@ -2574,7 +2559,7 @@
           "type": "Observable<number[]>",
           "optional": false,
           "description": "",
-          "line": 57
+          "line": 55
         },
         {
           "name": "totalBreakdown",
@@ -2584,7 +2569,7 @@
           "type": "TotalCost",
           "optional": false,
           "description": "",
-          "line": 59,
+          "line": 57,
           "modifierKind": [123]
         },
         {
@@ -2595,7 +2580,7 @@
           "type": "",
           "optional": false,
           "description": "",
-          "line": 65
+          "line": 63
         }
       ],
       "methodsClass": [
@@ -2612,7 +2597,7 @@
           "optional": false,
           "returnType": "Promise<void>",
           "typeParameters": [],
-          "line": 69,
+          "line": 67,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123, 131],
@@ -2641,7 +2626,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 85,
+          "line": 83,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123],
@@ -2663,7 +2648,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 105,
+          "line": 103,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [121]
@@ -2674,7 +2659,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 92,
+          "line": 90,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2685,7 +2670,7 @@
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 100,
+          "line": 98,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2698,7 +2683,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentRef,\n  OnDestroy,\n  OnInit,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { Observable, Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { FoodCardComponent } from '../food-card'\nimport { OrderedFoodChoice, TotalCost } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-shell',\n  template: `\n    <div class=\"p-[1.125rem]\">\n      <p class=\"text-center text-2xl text-indigo-500 underline\">Angular Nation Spanish Food Menu</p>\n      <app-food-menu class=\"block mb-2\" (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n      <p>Your order</p>\n      <section class=\"flex flex-wrap items-stretch p-2 mb-1\">\n        <ng-container #viewContainerRef></ng-container>\n      </section>\n      <ng-container *ngIf=\"tips$ | async as tips\">\n        <app-food-total\n          [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n          [currency]=\"orderedFood?.[0]?.currency || ''\"\n          [tips]=\"tips\"\n          [totalBreakdown]=\"totalBreakdown\"\n          (getCheck)=\"calculate($event)\"\n        ></app-food-total>\n      </ng-container>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodShellComponent implements OnInit, OnDestroy {\n  // #region Properties (6)\n\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public orderedViewContainer: ViewContainerRef\n\n  public componentRefs: ComponentRef<FoodCardComponent>[] = []\n  public orderedFood: OrderedFoodChoice[] = []\n  tips$: Observable<number[]>\n\n  public totalBreakdown: TotalCost = {\n    subTotal: 0,\n    totalTip: 0,\n    total: 0,\n  }\n\n  unsubscribe$ = new Subject<boolean>()\n\n  constructor(private foodService: FoodService, private cdr: ChangeDetectorRef) {}\n\n  public async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {\n    const lazyComponent = await import('../food-card/food-card.component')\n    const componentRef = this.orderedViewContainer.createComponent(lazyComponent.FoodCardComponent)\n    const { total } = this.foodService.calculateTotal([choice])\n\n    componentRef.instance.ordered = {\n      ...choice,\n    }\n\n    componentRef.instance.total = total\n    this.componentRefs.push(componentRef)\n\n    this.orderedFood = [...this.orderedFood, choice]\n    this.cdr.detectChanges()\n  }\n\n  public calculate(tip: number): void {\n    const newTotal = this.foodService.calculateTotal(this.orderedFood, tip)\n    this.totalBreakdown = {\n      ...newTotal,\n    }\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n    if (this.unsubscribe$.next && this.unsubscribe$.complete) {\n      this.unsubscribe$.next(true)\n      this.unsubscribe$.complete()\n    }\n  }\n\n  public ngOnInit(): void {\n    const tipUrl = `${environment.baseUrl}/tips`\n    this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))\n  }\n\n  private destroyComponents() {\n    for (const componentRef of this.componentRefs) {\n      if (componentRef && componentRef.destroy) {\n        componentRef.destroy()\n      }\n    }\n    if (this.orderedViewContainer) {\n      this.orderedViewContainer.clear()\n    }\n  }\n}\n",
+      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  ChangeDetectorRef,\n  Component,\n  ComponentRef,\n  OnDestroy,\n  OnInit,\n  ViewChild,\n  ViewContainerRef,\n} from '@angular/core'\nimport { Observable, Subject } from 'rxjs'\nimport { takeUntil } from 'rxjs/operators'\nimport { environment } from 'src/environments/environment'\n\nimport { FoodCardComponent } from '../food-card'\nimport { OrderedFoodChoice, TotalCost } from '../interfaces'\nimport { FoodService } from '../services'\n\n@Component({\n  selector: 'app-food-shell',\n  template: `\n    <div class=\"p-[1.125rem]\">\n      <p class=\"text-center text-2xl text-indigo-500 underline\">Angular Nation Spanish Food Menu</p>\n      <app-food-menu class=\"block mb-2\" (addDynamicFoodChoice)=\"addDynamicFoodChoice($event)\"></app-food-menu>\n      <p>Your order</p>\n      <section class=\"flex flex-wrap items-stretch p-2 mb-1\">\n        <ng-container #viewContainerRef></ng-container>\n      </section>\n      <ng-container *ngIf=\"tips$ | async as tips\">\n        <app-food-total\n          [isFoodOrdered]=\"orderedFood && orderedFood.length > 0\"\n          [currency]=\"orderedFood?.[0]?.currency || ''\"\n          [tips]=\"tips\"\n          [totalBreakdown]=\"totalBreakdown\"\n          (getCheck)=\"calculate($event)\"\n        ></app-food-total>\n      </ng-container>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodShellComponent implements OnInit, OnDestroy {\n  @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })\n  public orderedViewContainer: ViewContainerRef\n\n  public componentRefs: ComponentRef<FoodCardComponent>[] = []\n  public orderedFood: OrderedFoodChoice[] = []\n  tips$: Observable<number[]>\n\n  public totalBreakdown: TotalCost = {\n    subTotal: 0,\n    totalTip: 0,\n    total: 0,\n  }\n\n  unsubscribe$ = new Subject<boolean>()\n\n  constructor(private foodService: FoodService, private cdr: ChangeDetectorRef) {}\n\n  public async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {\n    const lazyComponent = await import('../food-card/food-card.component')\n    const componentRef = this.orderedViewContainer.createComponent(lazyComponent.FoodCardComponent)\n    const { total } = this.foodService.calculateTotal([choice])\n\n    componentRef.instance.ordered = {\n      ...choice,\n    }\n\n    componentRef.instance.total = total\n    this.componentRefs.push(componentRef)\n\n    this.orderedFood = [...this.orderedFood, choice]\n    this.cdr.detectChanges()\n  }\n\n  public calculate(tip: number): void {\n    const newTotal = this.foodService.calculateTotal(this.orderedFood, tip)\n    this.totalBreakdown = {\n      ...newTotal,\n    }\n  }\n\n  public ngOnDestroy(): void {\n    this.destroyComponents()\n    if (this.unsubscribe$.next && this.unsubscribe$.complete) {\n      this.unsubscribe$.next(true)\n      this.unsubscribe$.complete()\n    }\n  }\n\n  public ngOnInit(): void {\n    const tipUrl = `${environment.baseUrl}/tips`\n    this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))\n  }\n\n  private destroyComponents() {\n    for (const componentRef of this.componentRefs) {\n      if (componentRef && componentRef.destroy) {\n        componentRef.destroy()\n      }\n    }\n    if (this.orderedViewContainer) {\n      this.orderedViewContainer.clear()\n    }\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
@@ -2721,7 +2706,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 65,
+        "line": 63,
         "jsdoctags": [
           {
             "name": "foodService",
@@ -2747,7 +2732,7 @@
     },
     {
       "name": "FoodTotalComponent",
-      "id": "component-FoodTotalComponent-73b73000c89974526d2fd254f4be89728d120f5f8470bb551b51f7ba62e14688b9a903663cdd680413a65e1022430eff1eb3e81acecc5edcc4610b1c380fbaed",
+      "id": "component-FoodTotalComponent-68d85b4e652fbc1f4df5d8c122f06e40669347e5babd3dcae157a618a6c5de8ee073ee569d27f41b745f5fddf0ee678c200d62dd7930406f15e52a02e7e00a54",
       "file": "src/app/food/food-total/food-total.component.ts",
       "changeDetection": "ChangeDetectionStrategy.OnPush",
       "encapsulation": [],
@@ -2758,7 +2743,7 @@
       "selector": "app-food-total",
       "styleUrls": [],
       "styles": ["\n      :host {\n        display: block;\n      }\n    "],
-      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button\n      class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n      [disabled]=\"!isFoodOrdered\"\n      (click)=\"getCheck.emit(this.tip)\"\n      arial-label=\"calculate total\"\n    >\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label for=\"tips\" class=\"mr-2\">Tip:</label>\n      <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n        <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n      </select>\n    </form>\n  </div>\n  <section class=\"total-section\" arial-label=\"total section\">\n    <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown?.subTotal ?? -1 }}</p>\n    <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown?.totalTip ?? -1 }}</p>\n    <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">\n      Total: {{ totalBreakdown?.total ?? -1 }}\n    </p>\n  </section>\n</div>\n",
+      "template": "<div class=\"flex flex-col p-2 box-border-indigo\">\n  <div class=\"selection\">\n    <button\n      class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n      [disabled]=\"!isFoodOrdered\"\n      (click)=\"getCheck.emit(this.tip)\"\n      arial-label=\"calculate total\"\n    >\n      Give me the check\n    </button>\n    <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n    <form class=\"inline\" [formGroup]=\"form\">\n      <label for=\"tips\" class=\"mr-2\">Tip:</label>\n      <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n        <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n      </select>\n    </form>\n  </div>\n  <section class=\"total-section\" arial-label=\"total section\">\n    <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n    <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n    <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n  </section>\n</div>\n",
       "templateUrl": [],
       "viewProviders": [],
       "inputsClass": [
@@ -2766,7 +2751,7 @@
           "name": "currency",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 56,
+          "line": 45,
           "type": "string",
           "decorators": []
         },
@@ -2774,7 +2759,7 @@
           "name": "isFoodOrdered",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 60,
+          "line": 49,
           "type": "boolean",
           "decorators": []
         },
@@ -2782,7 +2767,7 @@
           "name": "tips",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 62,
+          "line": 51,
           "type": "number[]",
           "decorators": []
         },
@@ -2790,7 +2775,7 @@
           "name": "totalBreakdown",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 64,
+          "line": 53,
           "type": "TotalCost",
           "decorators": []
         }
@@ -2801,7 +2786,7 @@
           "defaultValue": "new EventEmitter<number>()",
           "deprecated": false,
           "deprecationMessage": "",
-          "line": 58,
+          "line": 47,
           "type": "EventEmitter"
         }
       ],
@@ -2813,46 +2798,18 @@
           "type": "FormGroup",
           "optional": false,
           "description": "",
-          "line": 66,
+          "line": 55,
           "modifierKind": [123]
         }
       ],
       "methodsClass": [
-        {
-          "name": "ngOnChanges",
-          "args": [
-            {
-              "name": "changes",
-              "type": "SimpleChanges",
-              "deprecated": false,
-              "deprecationMessage": ""
-            }
-          ],
-          "optional": false,
-          "returnType": "void",
-          "typeParameters": [],
-          "line": 88,
-          "deprecated": false,
-          "deprecationMessage": "",
-          "jsdoctags": [
-            {
-              "name": "changes",
-              "type": "SimpleChanges",
-              "deprecated": false,
-              "deprecationMessage": "",
-              "tagName": {
-                "text": "param"
-              }
-            }
-          ]
-        },
         {
           "name": "ngOnInit",
           "args": [],
           "optional": false,
           "returnType": "void",
           "typeParameters": [],
-          "line": 80,
+          "line": 69,
           "deprecated": false,
           "deprecationMessage": "",
           "modifierKind": [123]
@@ -2865,7 +2822,7 @@
       "description": "",
       "rawdescription": "\n",
       "type": "component",
-      "sourceCode": "import {\n  ChangeDetectionStrategy,\n  Component,\n  EventEmitter,\n  Input,\n  OnChanges,\n  OnInit,\n  Output,\n  SimpleChanges,\n} from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button\n          class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n          [disabled]=\"!isFoodOrdered\"\n          (click)=\"getCheck.emit(this.tip)\"\n          arial-label=\"calculate total\"\n        >\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label for=\"tips\" class=\"mr-2\">Tip:</label>\n          <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n            <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n          </select>\n        </form>\n      </div>\n      <section class=\"total-section\" arial-label=\"total section\">\n        <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown?.subTotal ?? -1 }}</p>\n        <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown?.totalTip ?? -1 }}</p>\n        <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">\n          Total: {{ totalBreakdown?.total ?? -1 }}\n        </p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodTotalComponent implements OnInit, OnChanges {\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  constructor(private fb: FormBuilder) {}\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  public ngOnInit(): void {\n    console.log('totalBreakdown', this.totalBreakdown)\n\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n\n  ngOnChanges(changes: SimpleChanges): void {\n    const { totalBreakdown } = changes\n    if (totalBreakdown) {\n      console.log('currentValue', totalBreakdown.currentValue)\n      const currentValue = totalBreakdown.currentValue\n      this.totalBreakdown.subTotal = currentValue.subtotal ?? 0\n      this.totalBreakdown.total = currentValue.total ?? 0\n      this.totalBreakdown.totalTip = currentValue.totalTip ?? 0\n    }\n  }\n}\n",
+      "sourceCode": "import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'\nimport { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'\n\nimport { TotalCost } from '../interfaces'\n\n@Component({\n  selector: 'app-food-total',\n  template: `\n    <div class=\"flex flex-col p-2 box-border-indigo\">\n      <div class=\"selection\">\n        <button\n          class=\"btn-indigo mr-2 mb-2 disabled:opacity-75\"\n          [disabled]=\"!isFoodOrdered\"\n          (click)=\"getCheck.emit(this.tip)\"\n          arial-label=\"calculate total\"\n        >\n          Give me the check\n        </button>\n        <p class=\"inline mr-2\">Currency: {{ currency || '' }}</p>\n        <form class=\"inline\" [formGroup]=\"form\">\n          <label for=\"tips\" class=\"mr-2\">Tip:</label>\n          <select id=\"tips\" class=\"pl-2 pr-8 py-1\" formControlName=\"tip\" arial-label=\"percentage of tip dropdown\">\n            <option *ngFor=\"let tip of tips\" [value]=\"tip\" [attr.arial-label]=\"tip + '%'\">{{ tip }}%</option>\n          </select>\n        </form>\n      </div>\n      <section class=\"total-section\" arial-label=\"total section\">\n        <p class=\"inline mr-2\" arial-label=\"subtotal\">Subtotal: {{ totalBreakdown.subTotal }}</p>\n        <p class=\"inline mr-2\" arial-label=\"tip\">Tip: {{ totalBreakdown.totalTip }}</p>\n        <p class=\"inline mr-2 font-bold\" arial-label=\"total amount of the order\">Total: {{ totalBreakdown.total }}</p>\n      </section>\n    </div>\n  `,\n  styles: [\n    `\n      :host {\n        display: block;\n      }\n    `,\n  ],\n  changeDetection: ChangeDetectionStrategy.OnPush,\n})\nexport class FoodTotalComponent implements OnInit {\n  @Input()\n  public currency: string\n  @Output()\n  public getCheck = new EventEmitter<number>()\n  @Input()\n  public isFoodOrdered: boolean\n  @Input()\n  public tips: number[]\n  @Input()\n  public totalBreakdown: TotalCost\n\n  public form: FormGroup\n\n  constructor(private fb: FormBuilder) {}\n\n  public get tip(): number {\n    const cents = 100\n    const control = this.form.get('tip') as FormControl\n    if (!control) {\n      return 0\n    }\n\n    return (control.value as number) / cents\n  }\n\n  public ngOnInit(): void {\n    this.form = this.fb.group({\n      tip: new FormControl(this.tips[0], { validators: [Validators.required] }),\n    })\n  }\n}\n",
       "assetsDirs": [],
       "styleUrlsData": "",
       "stylesData": "\n      :host {\n        display: block;\n      }\n    \n",
@@ -2882,7 +2839,7 @@
             "deprecationMessage": ""
           }
         ],
-        "line": 66,
+        "line": 55,
         "jsdoctags": [
           {
             "name": "fb",
@@ -2895,7 +2852,7 @@
           }
         ]
       },
-      "implements": ["OnInit", "OnChanges"],
+      "implements": ["OnInit"],
       "accessors": {
         "tip": {
           "name": "tip",
@@ -2903,7 +2860,7 @@
             "name": "tip",
             "type": "number",
             "returnType": "number",
-            "line": 70
+            "line": 59
           }
         }
       }
@@ -3362,7 +3319,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/menu.ts",
+        "file": "src/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -3372,7 +3329,7 @@
         "name": "CORS_HEADERS",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/tips.ts",
+        "file": "src/assets/functions/menu.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "object",
@@ -3452,21 +3409,21 @@
         "name": "handler",
         "ctype": "miscellaneous",
         "subtype": "variable",
-        "file": "src/assets/functions/menu.ts",
-        "deprecated": false,
-        "deprecationMessage": "",
-        "type": "Handler",
-        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-      },
-      {
-        "name": "handler",
-        "ctype": "miscellaneous",
-        "subtype": "variable",
         "file": "src/assets/functions/tips.ts",
         "deprecated": false,
         "deprecationMessage": "",
         "type": "Handler",
         "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+      },
+      {
+        "name": "handler",
+        "ctype": "miscellaneous",
+        "subtype": "variable",
+        "file": "src/assets/functions/menu.ts",
+        "deprecated": false,
+        "deprecationMessage": "",
+        "type": "Handler",
+        "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
       },
       {
         "name": "LongDescription",
@@ -4085,6 +4042,28 @@
           "type": "literal type"
         }
       ],
+      "src/assets/functions/tips.ts": [
+        {
+          "name": "CORS_HEADERS",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "object",
+          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
+        },
+        {
+          "name": "handler",
+          "ctype": "miscellaneous",
+          "subtype": "variable",
+          "file": "src/assets/functions/tips.ts",
+          "deprecated": false,
+          "deprecationMessage": "",
+          "type": "Handler",
+          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
+        }
+      ],
       "src/assets/functions/menu.ts": [
         {
           "name": "CORS_HEADERS",
@@ -4115,28 +4094,6 @@
           "deprecationMessage": "",
           "type": "Handler",
           "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify(data),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
-        }
-      ],
-      "src/assets/functions/tips.ts": [
-        {
-          "name": "CORS_HEADERS",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "object",
-          "defaultValue": "{\n  'Access-Control-Allow-Origin': '*',\n  'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',\n  'Access-Control-Allow-Methods': 'OPTIONS, GET',\n  'Content-Type': 'application/json',\n}"
-        },
-        {
-          "name": "handler",
-          "ctype": "miscellaneous",
-          "subtype": "variable",
-          "file": "src/assets/functions/tips.ts",
-          "deprecated": false,
-          "deprecationMessage": "",
-          "type": "Handler",
-          "defaultValue": "async (event) => {\n  if (event.httpMethod === 'OPTIONS') {\n    return {\n      statusCode: 204,\n      headers: CORS_HEADERS,\n    }\n  }\n\n  if (event.httpMethod === 'GET') {\n    return {\n      statusCode: 200,\n      headers: CORS_HEADERS,\n      body: JSON.stringify({\n        tips: [0, 5, 7.5, 10, 12.5, 15, 20],\n      }),\n    }\n  }\n\n  return {\n    statusCode: 500,\n    body: `Unsupported http method: ${event.httpMethod}`,\n  }\n}"
         }
       ],
       "src/app/food/food-choice-form/food-choice-form.stories.ts": [
@@ -5185,7 +5142,7 @@
         "linktype": "component",
         "name": "FoodTotalComponent",
         "coveragePercent": 0,
-        "coverageCount": "0/10",
+        "coverageCount": "0/9",
         "status": "low"
       },
       {

@@ -5,7 +5,12 @@ module.exports = {
   ],
   "addons": [
     "@storybook/addon-links",
-    "@storybook/addon-essentials",
+    {
+      name: "@storybook/addon-essentials",
+      options: {
+        docs: false,
+      }
+    },
     "@storybook/addon-interactions",
     "@storybook/addon-postcss",
     "@storybook/addon-a11y"
