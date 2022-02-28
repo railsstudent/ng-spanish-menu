@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver,
   ComponentRef,
   OnDestroy,
   OnInit,
@@ -48,8 +47,6 @@ import { FoodService } from '../services'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodShellComponent implements OnInit, OnDestroy {
-  // #region Properties (6)
-
   @ViewChild('viewContainerRef', { read: ViewContainerRef, static: true })
   public orderedViewContainer: ViewContainerRef
 
@@ -65,24 +62,11 @@ export class FoodShellComponent implements OnInit, OnDestroy {
 
   unsubscribe$ = new Subject<boolean>()
 
-  // #endregion Properties (6)
-
-  // #region Constructors (1)
-
-  constructor(
-    private componentFactoryResolver: ComponentFactoryResolver,
-    private foodService: FoodService,
-    private cdr: ChangeDetectorRef,
-  ) {}
-
-  // #endregion Constructors (1)
-
-  // #region Public Methods (4)
+  constructor(private foodService: FoodService, private cdr: ChangeDetectorRef) {}
 
   public async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {
     const lazyComponent = await import('../food-card/food-card.component')
-    const resolvedComponent = this.componentFactoryResolver.resolveComponentFactory(lazyComponent.FoodCardComponent)
-    const componentRef = this.orderedViewContainer.createComponent(resolvedComponent)
+    const componentRef = this.orderedViewContainer.createComponent(lazyComponent.FoodCardComponent)
     const { total } = this.foodService.calculateTotal([choice])
 
     componentRef.instance.ordered = {
@@ -105,8 +89,10 @@ export class FoodShellComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.destroyComponents()
-    this.unsubscribe$.next(true)
-    this.unsubscribe$.complete()
+    if (this.unsubscribe$.next && this.unsubscribe$.complete) {
+      this.unsubscribe$.next(true)
+      this.unsubscribe$.complete()
+    }
   }
 
   public ngOnInit(): void {
@@ -114,18 +100,14 @@ export class FoodShellComponent implements OnInit, OnDestroy {
     this.tips$ = this.foodService.getTips(tipUrl).pipe(takeUntil(this.unsubscribe$))
   }
 
-  // #endregion Public Methods (4)
-
-  // #region Private Methods (1)
-
   private destroyComponents() {
     for (const componentRef of this.componentRefs) {
-      componentRef.destroy()
+      if (componentRef && componentRef.destroy) {
+        componentRef.destroy()
+      }
     }
     if (this.orderedViewContainer) {
       this.orderedViewContainer.clear()
     }
   }
-
-  // #endregion Private Methods (1)
 }

@@ -2,7 +2,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  ComponentFactoryResolver,
   ComponentRef,
   EventEmitter,
   Input,
@@ -38,8 +37,6 @@ import { isFormValueQuantity } from './food-choice-form.type-guard'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodChoiceFormComponent implements OnInit, OnDestroy {
-  // #region Properties (6)
-
   @Input()
   public choice: Choice
   @Output()
@@ -52,20 +49,7 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   submitChoice$ = new Subject<Event>()
   unsubscribe$ = new Subject<boolean>()
 
-  // #endregion Properties (6)
-
-  // #region Constructors (1)
-
-  constructor(
-    private fb: FormBuilder,
-    private foodService: FoodService,
-    private factoryResolver: ComponentFactoryResolver,
-    private cdr: ChangeDetectorRef,
-  ) {}
-
-  // #endregion Constructors (1)
-
-  // #region Public Accessors (2)
+  constructor(private fb: FormBuilder, private foodService: FoodService, private cdr: ChangeDetectorRef) {}
 
   public get quantity(): FormControl | undefined {
     if (!this.form) {
@@ -77,10 +61,6 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
   public get quantityRemained(): number {
     return this.foodService.getQuantity(this.choice.id)
   }
-
-  // #endregion Public Accessors (2)
-
-  // #region Public Methods (2)
 
   public ngOnDestroy(): void {
     this.destroyComponents()
@@ -117,13 +97,10 @@ export class FoodChoiceFormComponent implements OnInit, OnDestroy {
       .subscribe((quantity) => this.foodChoiceSubmitted.emit(quantity))
   }
 
-  // #endregion Public Methods (2)
-
   private async displaySpinnerIcon(): Promise<void> {
-    const faSpinner = (await import('@fortawesome/free-solid-svg-icons')).faSpinner
+    const { faSpinner } = await import('@fortawesome/free-solid-svg-icons')
     const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
-    const resolvedFaIconComponent = this.factoryResolver.resolveComponentFactory(FaIconComponent)
-    const faIconComponentRef = this.viewContainerRef.createComponent(resolvedFaIconComponent)
+    const faIconComponentRef = this.viewContainerRef.createComponent(FaIconComponent)
     faIconComponentRef.instance.icon = faSpinner
     faIconComponentRef.instance.pulse = true
     faIconComponentRef.instance.render()

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { TotalCost } from '../interfaces'
@@ -38,10 +38,9 @@ import { TotalCost } from '../interfaces'
       }
     `,
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodTotalComponent implements OnInit {
-  // #region Properties (6)
-
   @Input()
   public currency: string
   @Output()
@@ -55,15 +54,7 @@ export class FoodTotalComponent implements OnInit {
 
   public form: FormGroup
 
-  // #endregion Properties (6)
-
-  // #region Constructors (1)
-
   constructor(private fb: FormBuilder) {}
-
-  // #endregion Constructors (1)
-
-  // #region Public Accessors (1)
 
   public get tip(): number {
     const cents = 100
@@ -75,15 +66,9 @@ export class FoodTotalComponent implements OnInit {
     return (control.value as number) / cents
   }
 
-  // #endregion Public Accessors (1)
-
-  // #region Public Methods (1)
-
   public ngOnInit(): void {
     this.form = this.fb.group({
       tip: new FormControl(this.tips[0], { validators: [Validators.required] }),
     })
   }
-
-  // #endregion Public Methods (1)
 }
