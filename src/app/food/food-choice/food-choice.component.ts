@@ -110,8 +110,8 @@ export class FoodChoiceComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private async displayLowSupplyIcon(textColor: string) {
-    const faExclamationTriangle = (await import('@fortawesome/free-solid-svg-icons')).faExclamationTriangle
-    const FaIconComponent = (await import('@fortawesome/angular-fontawesome')).FaIconComponent
+    const { faExclamationTriangle } = await import('@fortawesome/free-solid-svg-icons')
+    const { FaIconComponent } = await import('@fortawesome/angular-fontawesome')
     const faIconComponentRef = this.viewContainerRef.createComponent(FaIconComponent)
     faIconComponentRef.instance.icon = faExclamationTriangle
     faIconComponentRef.instance.classes = [textColor, 'text-[1.35rem]', 'mr-2']

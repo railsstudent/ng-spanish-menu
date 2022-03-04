@@ -65,8 +65,8 @@ export class FoodShellComponent implements OnInit, OnDestroy {
   constructor(private foodService: FoodService, private cdr: ChangeDetectorRef) {}
 
   public async addDynamicFoodChoice(choice: OrderedFoodChoice): Promise<void> {
-    const lazyComponent = await import('../food-card/food-card.component')
-    const componentRef = this.orderedViewContainer.createComponent(lazyComponent.FoodCardComponent)
+    const { FoodCardComponent } = await import('../food-card/food-card.component')
+    const componentRef = this.orderedViewContainer.createComponent(FoodCardComponent)
     const { total } = this.foodService.calculateTotal([choice])
 
     componentRef.instance.ordered = {
