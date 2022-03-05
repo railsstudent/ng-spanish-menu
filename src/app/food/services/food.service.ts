@@ -9,22 +9,11 @@ import { FoodServiceInterface, Menu, MenuItem, PriceQuantity, Stock, Tip, TotalC
   providedIn: 'root',
 })
 export class FoodService implements FoodServiceInterface {
-  // #region Properties (2)
-
   private quantityAvailableSub$ = new BehaviorSubject<Record<string, Stock> | undefined>(undefined)
 
-  // eslint-disable-next-line @typescript-eslint/member-ordering
   quantityAvailableMap$ = this.quantityAvailableSub$.asObservable()
 
-  // #endregion Properties (2)
-
-  // #region Constructors (1)
-
   constructor(private http: HttpClient) {}
-
-  // #endregion Constructors (1)
-
-  // #region Public Methods (5)
 
   public calculateTotal(food: PriceQuantity[], tip = 0): TotalCost {
     const unroundedTotal = food.reduce((acc, choice) => {
@@ -60,7 +49,7 @@ export class FoodService implements FoodServiceInterface {
         }, {} as Record<string, Stock>)
         this.quantityAvailableSub$.next(qtyMap)
       }),
-      catchError((err: Error) => {
+      catchError((err: unknown) => {
         console.error(err)
         return of(undefined)
       }),
@@ -79,7 +68,7 @@ export class FoodService implements FoodServiceInterface {
   public getTips(url: string): Observable<number[]> {
     return this.http.get<Tip>(url).pipe(
       pluck('tips'),
-      catchError((err: Error) => {
+      catchError((err: unknown) => {
         console.error(err)
         return of([0])
       }),
@@ -105,15 +94,9 @@ export class FoodService implements FoodServiceInterface {
     }
   }
 
-  // #endregion Public Methods (5)
-
-  // #region Private Methods (1)
-
   private roundAmount(amount: number): number {
     const cents = 100
 
     return Math.round(amount * cents) / cents
   }
-
-  // #endregion Private Methods (1)
 }

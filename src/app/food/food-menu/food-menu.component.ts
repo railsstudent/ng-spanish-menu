@@ -13,8 +13,6 @@ import { FoodService } from '../services'
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FoodMenuComponent implements OnInit, OnDestroy {
-  // #region Properties (6)
-
   @Output()
   public addDynamicFoodChoice = new EventEmitter<OrderedFoodChoice>()
   handleFoodChoiceSub$ = new Subject<OrderedFoodChoice>()
@@ -24,15 +22,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
   unsubscribe$ = new Subject<boolean>()
   subscriptions: Subscription[] = []
 
-  // #endregion Properties (6)
-
-  // #region Constructors (1)
-
   constructor(private service: FoodService) {}
-
-  // #endregion Constructors (1)
-
-  // #region Public Methods (5)
 
   public choiceTrackByFn(index: number, choice: Choice): string | number {
     return choice ? choice.id : index
@@ -73,7 +63,7 @@ export class FoodMenuComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this.unsubscribe$.next(true)
-    this.unsubscribe$.unsubscribe()
+    this.unsubscribe$.complete()
     for (const subscription of this.subscriptions) {
       subscription.unsubscribe()
     }
