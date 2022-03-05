@@ -36,7 +36,6 @@ export class FoodService implements FoodServiceInterface {
     return this.http.get<Menu>(url).pipe(
       pluck('menu'),
       tap((menu) => {
-        console.log('menu', menu)
         const qtyMap = menu.reduce((acc, mi) => {
           mi.choices.forEach(({ id, quantity }) => {
             acc[id] = {
